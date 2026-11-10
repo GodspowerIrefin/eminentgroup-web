@@ -18,3 +18,13 @@ input,select,textarea,button{font-family:inherit}
 @keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #c8102e;outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+
+.nav-toggle{align-items:center;justify-content:center}
+.nav-toggle:hover{background:#f4f7fd}
+@media (max-width:900px){
+  .nav-toggle{display:flex !important}
+  #mainNav{display:none !important;width:100%;flex-direction:column !important;align-items:stretch !important;gap:4px !important;padding:12px 0 4px}
+  #mainNav.open{display:flex !important}
+  #mainNav a{width:100%;padding:12px 4px}
+  #mainNav a.btn{width:auto;text-align:center;margin-top:8px}
+}
