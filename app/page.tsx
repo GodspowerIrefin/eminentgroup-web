@@ -9,7 +9,7 @@ import Reveal from "@/components/Reveal";
 import RoleMarquee from "@/components/RoleMarquee";
 import RolesExplorer from "@/components/RolesExplorer";
 import SectionHead from "@/components/SectionHead";
-import { leaders, roles, services, settings, site } from "@/lib/site";
+import { leaders, services, settings, site } from "@/lib/site";
 
 const tints = ["bg-sand", "bg-mint", "bg-blush", "bg-gold-200/45"];
 const serviceIcons: IconName[] = ["search", "shield", "calendar", "chat"];
@@ -71,22 +71,6 @@ export default function Home() {
             </div>
           </Reveal>
         </div>
-      </section>
-
-      <section className="border-y border-rule bg-sand">
-        <dl className="mx-auto grid max-w-[1200px] grid-cols-2 gap-y-8 px-5 py-12 text-center sm:px-8 lg:grid-cols-4">
-          {[
-            [String(roles.length), "Healthcare roles placed"],
-            [String(settings.length), "Care settings served"],
-            ["3", "Placement types"],
-            [site.license, "Maryland agency license"],
-          ].map(([n, label]) => (
-            <div key={label}>
-              <dt className="display whitespace-nowrap text-[clamp(1.75rem,3.3vw,2.75rem)] !font-semibold text-forest">{n}</dt>
-              <dd className="mt-2 text-[15px] font-medium text-mut">{label}</dd>
-            </div>
-          ))}
-        </dl>
       </section>
 
       <RoleMarquee />
