@@ -26,6 +26,44 @@ export default function About() {
         lead="Eminent One LLC places nurses and care staff with hospitals, nursing homes, rehabilitation centers, assisted living facilities, and home care agencies in Baltimore County and Baltimore City."
       />
 
+      <section className="band-dark px-5 py-16 sm:px-8 lg:py-24">
+        <div className="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-2">
+          <div>
+            <SectionHead
+              eyebrow="About us"
+              title="A licensed Maryland healthcare staffing agency."
+              lead={`Eminent One LLC is based in Windsor Mill and holds ${site.licenseLabel}. We place nurses and care staff with facilities in ${site.areas}.`}
+            />
+            <Reveal className="mt-10 flex flex-wrap gap-x-10 gap-y-6">
+              {leaders.map((p) => (
+                <div key={p.name} className="flex items-center gap-4">
+                  <span className="display flex h-14 w-14 items-center justify-center rounded-full border border-rule text-lg">
+                    {p.initials}
+                  </span>
+                  <div>
+                    <p className="font-bold">{p.name}</p>
+                    <p className="text-sm text-mut">{p.title}</p>
+                  </div>
+                </div>
+              ))}
+            </Reveal>
+          </div>
+          <dl className="grid gap-x-10 sm:grid-cols-2">
+            {[
+              ["Verified credentials", "Licenses, certifications, and background checks confirmed before placement."],
+              ["Flexible terms", "Temporary, temp-to-perm, or permanent placements."],
+              ["Follow-up", "We stay in touch with facilities and professionals after the placement."],
+              ["Local Maryland team", `Based in Windsor Mill, serving ${site.areas}.`],
+            ].map(([title, body], i) => (
+              <Reveal key={title} delay={i * 0.07} className="border-t border-rule py-7">
+                <dt className="text-lg font-bold">{title}</dt>
+                <dd className="mt-2 leading-relaxed text-mut">{body}</dd>
+              </Reveal>
+            ))}
+          </dl>
+        </div>
+      </section>
+
       <section className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
           <Reveal>
