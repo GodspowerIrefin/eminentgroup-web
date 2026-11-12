@@ -25,6 +25,49 @@ export const nav = [
   { href: "/contact", label: "Contact" },
 ];
 
+export const megaNav = [
+  {
+    label: "Staffing Services",
+    href: "/services",
+    items: [
+      { label: "Registered Nurses", href: "/services/registered-nurses" },
+      { label: "All Roles We Place", href: "/services" },
+      { label: "Temporary and Permanent Staffing", href: "/services" },
+    ],
+  },
+  {
+    label: "For Employers",
+    href: "/employers",
+    items: [
+      { label: "Request Staff", href: "/employers#request" },
+      { label: "Employer Services", href: "/employers" },
+      { label: "Referrals", href: "/referrals" },
+    ],
+  },
+  {
+    label: "Careers",
+    href: "/job-seekers",
+    items: [
+      { label: "Open Positions", href: "/job-seekers#openings" },
+      { label: "Apply for Work", href: "/job-seekers#apply" },
+      { label: "Registered Nurse Roles", href: "/job-seekers?role=RN#apply" },
+    ],
+  },
+  {
+    label: "Who We Are",
+    href: "/about",
+    items: [
+      { label: "About Eminent One", href: "/about" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    label: "Insights",
+    href: "/resources",
+    items: [{ label: "Resources", href: "/resources" }],
+  },
+];
+
 export const services = [
   {
     title: "Recruitment and placement",
