@@ -15,7 +15,7 @@ export default function JobList() {
                 className="card card-hover group block p-8 sm:p-10"
               >
                 <div className="flex items-start justify-between gap-6">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-navy/8 px-3 py-1 text-[12px] font-bold uppercase tracking-widest text-navy">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-forest/8 px-3 py-1 text-[12px] font-bold uppercase tracking-widest text-forest">
                     <span className="h-1.5 w-1.5 rounded-full bg-red" />
                     Open
                   </span>
@@ -50,7 +50,7 @@ export default function JobList() {
         <p className="text-[17px] text-mut">
           Also hiring CNAs and GNAs, home health aides, medical assistants, therapists, social
           workers, and caregivers.{" "}
-          <Link href="/job-seekers#apply" className="font-semibold text-navy underline underline-offset-4">
+          <Link href="/job-seekers#apply" className="font-semibold text-forest underline underline-offset-4">
             Apply
           </Link>
         </p>

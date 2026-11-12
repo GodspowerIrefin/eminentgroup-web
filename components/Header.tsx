@@ -31,24 +31,39 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-300 ${
         solid
-          ? "bg-white/90 shadow-[0_1px_0_rgba(13,23,54,0.08),0_12px_32px_-20px_rgba(13,23,54,0.35)] backdrop-blur-md"
+          ? "bg-white/90 shadow-[0_1px_0_rgba(23,26,38,0.08),0_12px_32px_-20px_rgba(23,26,38,0.35)] backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
+      <div
+        className={`hidden overflow-hidden bg-night text-[13px] text-white/80 transition-[height] duration-300 lg:block ${
+          scrolled ? "h-0" : "h-9"
+        }`}
+      >
+        <div className="mx-auto flex h-9 max-w-[1200px] items-center justify-between px-8">
+          <span>{site.licenseLabel}</span>
+          <span className="flex gap-6">
+            <a href={site.phoneHref} className="link-underline font-semibold text-white">
+              {site.phone}
+            </a>
+            <a href={`mailto:${site.email}`} className="link-underline">
+              {site.email}
+            </a>
+          </span>
+        </div>
+      </div>
       <div
         className={`mx-auto flex max-w-[1200px] items-center justify-between gap-6 px-5 transition-[height] duration-300 sm:px-8 ${
           scrolled ? "h-[68px]" : "h-[84px]"
         }`}
       >
         <Link href="/" aria-label={`${site.name} home`} onClick={() => setOpen(false)}>
-          <Logo light={!solid} />
+          <Logo />
         </Link>
 
         <nav
           aria-label="Main"
-          className={`hidden items-center gap-7 text-[14.5px] font-semibold lg:flex ${
-            solid ? "text-[#0d1736]" : "text-white"
-          }`}
+          className="hidden items-center gap-7 text-[14.5px] font-semibold text-[#171a26] lg:flex"
         >
           {nav.map((item) => (
             <Link
@@ -74,9 +89,7 @@ export default function Header() {
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((v) => !v)}
-          className={`relative h-11 w-11 rounded-full border lg:hidden ${
-            solid ? "border-[rgba(13,23,54,0.18)] text-[#0d1736]" : "border-white/30 text-white"
-          }`}
+          className="relative h-11 w-11 rounded-full border border-[rgba(23,26,38,0.18)] text-[#171a26] lg:hidden"
         >
           <span
             className={`absolute left-3 right-3 h-[2px] bg-current transition-transform duration-300 ${
@@ -93,7 +106,7 @@ export default function Header() {
 
       <div
         id="mobile-nav"
-        className={`grid overflow-hidden bg-white text-[#0d1736] transition-[grid-template-rows] duration-500 ease-out lg:hidden ${
+        className={`grid overflow-hidden bg-white text-[#171a26] transition-[grid-template-rows] duration-500 ease-out lg:hidden ${
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
@@ -104,7 +117,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="display border-b border-[rgba(13,23,54,0.1)] py-4 text-[28px]"
+                className="display border-b border-[rgba(23,26,38,0.1)] py-4 text-[28px]"
               >
                 {item.label}
               </Link>
@@ -119,7 +132,7 @@ export default function Header() {
               </Link>
               <a
                 href={site.phoneHref}
-                className="flex h-[52px] items-center justify-center rounded-full border border-[rgba(13,23,54,0.18)] font-semibold"
+                className="flex h-[52px] items-center justify-center rounded-full border border-[rgba(23,26,38,0.18)] font-semibold"
               >
                 Call {site.phone}
               </a>

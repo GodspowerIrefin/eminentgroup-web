@@ -38,7 +38,7 @@ export default function RegisteredNurses() {
               <ul className="mt-8 border-t border-rule">
                 {duties.map((d, i) => (
                   <li key={d} className="flex gap-6 border-b border-rule py-6 text-lg leading-relaxed">
-                    <span className="display numeral text-2xl text-navy/35">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="display numeral text-2xl text-forest/35">{String(i + 1).padStart(2, "0")}</span>
                     {d}
                   </li>
                 ))}
@@ -58,7 +58,7 @@ export default function RegisteredNurses() {
 
           <aside className="flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start">
             <Reveal>
-              <div className="rounded-[28px] bg-navy p-9 text-white">
+              <div className="rounded-[28px] bg-forest p-9 text-white">
                 <h2 className="display text-3xl">Request an RN</h2>
                 <p className="mb-7 mt-3 text-white/75">Tell us the shift and start date.</p>
                 <Button href="/employers#request" variant="light">
@@ -73,7 +73,7 @@ export default function RegisteredNurses() {
                 <Button href="/job-seekers?position=RN#apply">Apply for work</Button>
                 <p className="mt-6 text-[15px] text-mut">
                   Or call{" "}
-                  <a href={site.phoneHref} className="font-semibold text-navy underline underline-offset-4">
+                  <a href={site.phoneHref} className="font-semibold text-forest underline underline-offset-4">
                     {site.phone}
                   </a>
                 </p>
@@ -91,7 +91,7 @@ export default function RegisteredNurses() {
               <Link
                 key={r.name}
                 href="/services"
-                className="rounded-full border border-rule px-5 py-2.5 font-medium transition-colors hover:border-navy hover:bg-navy hover:text-white"
+                className="rounded-full border border-rule px-5 py-2.5 font-medium transition-colors hover:border-forest hover:bg-forest hover:text-white"
               >
                 {r.name}
               </Link>

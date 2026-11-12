@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
+import Icon, { type IconName } from "@/components/Icon";
 import CtaBand from "@/components/CtaBand";
 import JobList from "@/components/JobList";
 import ProcessTabs from "@/components/ProcessTabs";
@@ -8,7 +9,10 @@ import Reveal from "@/components/Reveal";
 import RoleMarquee from "@/components/RoleMarquee";
 import RolesExplorer from "@/components/RolesExplorer";
 import SectionHead from "@/components/SectionHead";
-import { leaders, services, site } from "@/lib/site";
+import { leaders, services, settings, site } from "@/lib/site";
+
+const tints = ["bg-sand", "bg-mint", "bg-blush", "bg-gold-200/45"];
+const serviceIcons: IconName[] = ["search", "shield", "calendar", "chat"];
 
 const assurances = [
   "Licenses and certifications verified",
@@ -20,15 +24,18 @@ const assurances = [
 export default function Home() {
   return (
     <>
-      <section className="band-dark hero-grid overflow-hidden">
-        <div className="mx-auto grid max-w-[1200px] items-center gap-14 px-5 pb-16 pt-32 sm:px-8 lg:grid-cols-[1.15fr_1fr] lg:pb-20 lg:pt-36">
+      <section className="hero-wash relative overflow-hidden">
+        <span aria-hidden="true" className="deco-ring -right-32 -top-24 h-[34rem] w-[34rem]" />
+        <span aria-hidden="true" className="deco-ring -left-24 bottom-10 h-72 w-72" />
+        <div className="relative mx-auto grid max-w-[1200px] items-center gap-14 px-5 pb-16 pt-32 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:pb-24 lg:pt-44">
           <div>
             <p className="eyebrow step-in">Healthcare staffing · Windsor Mill, MD</p>
             <h1
               className="display step-in mt-6 text-[clamp(2.4rem,5vw,4.25rem)]"
               style={{ animationDelay: "80ms" }}
             >
-              Healthcare staffing for Maryland facilities and care professionals.
+              Healthcare staffing with <span className="mark">a personal touch</span> for Maryland
+              facilities and care professionals.
             </h1>
             <p
               className="step-in mt-7 max-w-xl text-lg leading-relaxed text-mut"
@@ -43,10 +50,21 @@ export default function Home() {
                 Apply for work
               </Button>
             </div>
+            <ul className="step-in mt-10 flex flex-wrap gap-x-7 gap-y-3 text-[15px] font-medium" style={{ animationDelay: "320ms" }}>
+              {assurances.map((item) => (
+                <li key={item} className="flex items-center gap-2.5">
+                  <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" className="shrink-0 text-forest">
+                    <path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="step-in relative" style={{ animationDelay: "200ms" }}>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[32px] sm:aspect-[5/5] lg:aspect-[4/5]">
+          <div className="step-in relative mx-auto w-full max-w-[460px] lg:max-w-none" style={{ animationDelay: "200ms" }}>
+            <span aria-hidden="true" className="absolute -inset-4 -z-0 rounded-[999px_999px_36px_36px] bg-gold/30" />
+            <div className="arch relative aspect-[4/5] overflow-hidden bg-sand">
               <Image
                 src="/images/hero-team.jpg"
                 alt="Three healthcare professionals in scrubs"
@@ -55,39 +73,23 @@ export default function Home() {
                 sizes="(min-width: 1024px) 520px, 100vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent" />
             </div>
-            <div className="absolute -left-3 bottom-8 rounded-2xl bg-white px-5 py-4 text-[#0d1736] shadow-2xl sm:-left-8">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#56607b]">
-                Maryland licensed
-              </p>
+            <div className="float-slow absolute -left-3 bottom-10 rounded-2xl bg-white px-5 py-4 shadow-[0_24px_48px_-20px_rgba(23,26,38,0.35)] sm:-left-10">
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-mut">Maryland licensed</p>
               <p className="mt-1 font-bold">Health Care Staff Agency</p>
-              <p className="text-sm text-[#56607b]">License # {site.license}</p>
+              <p className="text-sm text-mut">License # {site.license}</p>
             </div>
             <Link
               href="#openings"
-              className="absolute -right-2 top-8 flex items-center gap-2.5 rounded-full bg-red px-4 py-2.5 text-sm font-semibold text-white shadow-xl sm:-right-5"
+              className="float-slower absolute -right-2 top-14 flex items-center gap-2.5 rounded-full bg-night px-4 py-2.5 text-sm font-semibold text-white shadow-xl sm:-right-6"
             >
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-70" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-80" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
               </span>
               Now hiring RNs and LPNs
             </Link>
           </div>
-        </div>
-
-        <div className="border-t border-rule">
-          <ul className="mx-auto grid max-w-[1200px] gap-x-8 gap-y-4 px-5 py-7 text-[15px] font-medium sm:grid-cols-2 sm:px-8 lg:grid-cols-4">
-            {assurances.map((item) => (
-              <li key={item} className="flex items-center gap-3">
-                <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" className="shrink-0 text-[#ff8fa1]">
-                  <path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                {item}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -103,9 +105,11 @@ export default function Home() {
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {services.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.07}>
-                <article className="card card-hover h-full p-8 sm:p-10">
-                  <span className="display numeral text-5xl text-navy/25">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-6 text-[22px] font-bold leading-snug">{s.title}</h3>
+                <article className={`card card-hover h-full border-transparent p-8 sm:p-10 ${tints[i]}`}>
+                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-forest shadow-sm">
+                    <Icon name={serviceIcons[i]} size={28} />
+                  </span>
+                  <h3 className="mt-7 text-[22px] font-bold leading-snug">{s.title}</h3>
                   <p className="mt-3 text-[17px] leading-relaxed text-mut">{s.body}</p>
                 </article>
               </Reveal>
@@ -120,6 +124,26 @@ export default function Home() {
           <Reveal className="mt-10">
             <RolesExplorer />
           </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-sand px-5 py-14 sm:px-8 lg:py-20">
+        <div className="mx-auto max-w-[1200px]">
+          <SectionHead eyebrow="Where we place" title="Hospitals, nursing homes, and home care." />
+          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {settings.map((name, i) => (
+              <li key={name}>
+                <Reveal delay={i * 0.06}>
+                  <div className="card card-hover flex h-full min-h-[148px] flex-col justify-between p-6">
+                    <span className="text-forest">
+                      <Icon name={i % 2 ? "stethoscope" : "building"} size={30} />
+                    </span>
+                    <span className="mt-6 text-lg font-bold leading-snug">{name}</span>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

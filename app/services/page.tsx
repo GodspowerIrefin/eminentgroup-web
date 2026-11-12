@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Medical staffing services from Eminent One LLC: recruitment, credentialing, and placement of RNs, LPNs, CNAs, HHAs, and other healthcare professionals in the Baltimore area.",
 };
 
-const link = "font-semibold text-navy underline underline-offset-4";
+const link = "font-semibold text-forest underline underline-offset-4";
 
 export default function Services() {
   return (
@@ -35,7 +35,7 @@ export default function Services() {
             {services.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.07}>
                 <article className="card card-hover h-full p-8 sm:p-10">
-                  <span className="display numeral text-5xl text-navy/25">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="display numeral text-5xl text-forest/25">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="mt-6 text-[22px] font-bold leading-snug">{s.title}</h3>
                   <p className="mt-3 text-[17px] leading-relaxed text-mut">{s.body}</p>
                 </article>
@@ -61,7 +61,7 @@ export default function Services() {
       <section className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-5 md:grid-cols-2">
           <Reveal>
-            <div className="h-full rounded-[28px] bg-navy p-9 text-white sm:p-12">
+            <div className="h-full rounded-[28px] bg-forest p-9 text-white sm:p-12">
               <h2 className="display text-4xl">For healthcare facilities</h2>
               <p className="mb-9 mt-4 text-lg leading-relaxed text-white/75">
                 Tell us the roles, shifts, and start date. We recruit, verify, and place the staff.
