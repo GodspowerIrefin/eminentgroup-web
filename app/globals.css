@@ -33,6 +33,7 @@
   --color-forest-950: var(--forest-950);
   --color-gold: var(--gold);
   --color-gold-200: var(--gold-200);
+  --color-gold-600: #c2750f;
   --color-sand: var(--sand);
   --color-blush: var(--blush);
   --color-mint: var(--mint);
@@ -265,4 +266,32 @@ body {
   font-weight: 300;
   letter-spacing: -0.02em;
   font-variant-numeric: lining-nums;
+}
+
+/* Mega menu list rule, red to gold like the reference's accent bar */
+.mega-rule {
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(to bottom, var(--red, #c8102e), var(--gold)) 1;
+}
+.sq-btn {
+  display: inline-flex;
+  min-height: 56px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0 2rem;
+  font-weight: 700;
+  font-size: 16px;
+  border: 1px solid var(--night);
+  transition: background-color 0.25s, color 0.25s;
+}
+.sq-btn-solid { background: var(--night); color: #fff; }
+.sq-btn-solid:hover { background: var(--forest); border-color: var(--forest); }
+.sq-btn-line { background: transparent; color: var(--ink); }
+.sq-btn-line:hover { background: var(--night); color: #fff; }
+.hero-curve {
+  clip-path: ellipse(75% 100% at 50% 0%);
+}
+@media (max-width: 767px) {
+  .hero-curve { clip-path: ellipse(110% 100% at 50% 0%); }
 }

@@ -14,82 +14,62 @@ import { leaders, services, settings, site } from "@/lib/site";
 const tints = ["bg-sand", "bg-mint", "bg-blush", "bg-gold-200/45"];
 const serviceIcons: IconName[] = ["search", "shield", "calendar", "chat"];
 
-const assurances = [
-  "Licenses and certifications verified",
-  "Background checks completed",
-  "Temporary, temp-to-perm, permanent",
-  "Follow-up after placement",
-];
-
 export default function Home() {
   return (
     <>
-      <section className="hero-wash relative overflow-hidden">
-        <span aria-hidden="true" className="deco-ring -right-32 -top-24 h-[34rem] w-[34rem]" />
-        <span aria-hidden="true" className="deco-ring -left-24 bottom-10 h-72 w-72" />
-        <div className="relative mx-auto grid max-w-[1200px] items-center gap-14 px-5 pb-16 pt-32 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:pb-24 lg:pt-44">
-          <div>
-            <p className="eyebrow step-in">Healthcare staffing · Windsor Mill, MD</p>
-            <h1
-              className="display step-in mt-6 text-[clamp(2.4rem,5vw,4.25rem)]"
-              style={{ animationDelay: "80ms" }}
-            >
-              Healthcare staffing with <span className="mark">a personal touch</span> for Maryland
-              facilities and care professionals.
-            </h1>
-            <p
-              className="step-in mt-7 max-w-xl text-lg leading-relaxed text-mut"
-              style={{ animationDelay: "160ms" }}
-            >
-              We find, verify, and place RNs, LPNs, CNAs, home health aides, and more in hospitals,
-              nursing homes, rehab centers, assisted living, and home care.
-            </p>
-            <div className="step-in mt-10 flex flex-wrap gap-4" style={{ animationDelay: "240ms" }}>
-              <Button href="/employers#request">Request staff</Button>
-              <Button href="/job-seekers#apply" variant="ghost">
-                Apply for work
-              </Button>
-            </div>
-            <ul className="step-in mt-10 flex flex-wrap gap-x-7 gap-y-3 text-[15px] font-medium" style={{ animationDelay: "320ms" }}>
-              {assurances.map((item) => (
-                <li key={item} className="flex items-center gap-2.5">
-                  <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" className="shrink-0 text-forest">
-                    <path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+      <section className="relative overflow-hidden bg-canvas">
+        <div className="mx-auto max-w-[1100px] px-5 pb-14 pt-36 text-center sm:px-8 lg:pb-20 lg:pt-52">
+          <h1 className="display step-in text-[clamp(2.75rem,7.2vw,6rem)] !leading-[1.04]">
+            Staffing healthcare <span className="text-gold-600">with a personal touch</span>
+          </h1>
+          <p
+            className="step-in mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-mut sm:text-xl"
+            style={{ animationDelay: "120ms" }}
+          >
+            A licensed Maryland agency connecting nurses and care professionals with hospitals,
+            nursing homes, rehab centers, assisted living, and home care.
+          </p>
+        </div>
 
-          <div className="step-in relative mx-auto w-full max-w-[460px] lg:max-w-none" style={{ animationDelay: "200ms" }}>
-            <span aria-hidden="true" className="absolute -inset-4 -z-0 rounded-[999px_999px_36px_36px] bg-gold/30" />
-            <div className="arch relative aspect-[4/5] overflow-hidden bg-sand">
-              <Image
-                src="/images/hero-team.jpg"
-                alt="Three healthcare professionals in scrubs"
-                fill
-                priority
-                sizes="(min-width: 1024px) 520px, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="float-slow absolute -left-3 bottom-10 rounded-2xl bg-white px-5 py-4 shadow-[0_24px_48px_-20px_rgba(23,26,38,0.35)] sm:-left-10">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-mut">Maryland licensed</p>
-              <p className="mt-1 font-bold">Health Care Staff Agency</p>
-              <p className="text-sm text-mut">License # {site.license}</p>
-            </div>
-            <Link
-              href="#openings"
-              className="float-slower absolute -right-2 top-14 flex items-center gap-2.5 rounded-full bg-night px-4 py-2.5 text-sm font-semibold text-white shadow-xl sm:-right-6"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-80" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
-              </span>
-              Now hiring RNs and LPNs
-            </Link>
+        <div className="step-in relative mx-auto max-w-[1360px] px-3 sm:px-6" style={{ animationDelay: "220ms" }}>
+          <div className="hero-curve relative h-[360px] overflow-hidden sm:h-[520px] lg:h-[620px]">
+            <Image
+              src="/images/hero-team.jpg"
+              alt="Three healthcare professionals in scrubs"
+              fill
+              priority
+              sizes="(min-width: 1360px) 1360px, 100vw"
+              className="object-cover object-[50%_30%]"
+            />
+            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-tr from-forest/55 via-transparent to-gold/45 mix-blend-multiply" />
+            <div aria-hidden="true" className="absolute -bottom-24 -left-16 h-80 w-[28rem] rotate-12 bg-gold/55 [clip-path:polygon(0_100%,100%_0,100%_100%)]" />
+            <div aria-hidden="true" className="absolute -right-10 -top-10 h-72 w-[26rem] -rotate-6 bg-forest/60 [clip-path:polygon(0_0,100%_0,100%_100%)]" />
           </div>
+          <div className="float-slow absolute bottom-10 left-6 hidden rounded-md bg-white px-5 py-4 shadow-[0_24px_48px_-20px_rgba(23,26,38,0.4)] sm:block lg:left-16">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-mut">Maryland licensed</p>
+            <p className="mt-1 font-bold">Health Care Staff Agency</p>
+            <p className="text-sm text-mut">License # {site.license}</p>
+          </div>
+        </div>
+
+        <div className="mx-auto max-w-[900px] px-5 pb-20 pt-16 text-center sm:px-8 lg:pb-28 lg:pt-24">
+          <Reveal>
+            <h2 className="display text-[clamp(2rem,4.6vw,3.75rem)] !font-semibold">
+              Filling shifts and careers across the Baltimore area
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-mut">
+              We recruit, verify, and place RNs, LPNs, CNAs, home health aides, and more, then stay
+              in touch after the placement starts.
+            </p>
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <Link href="/employers#request" className="sq-btn sq-btn-solid">
+                Request Staff
+              </Link>
+              <Link href="/job-seekers#apply" className="sq-btn sq-btn-line">
+                Explore Careers
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
