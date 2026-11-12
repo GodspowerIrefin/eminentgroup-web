@@ -4,7 +4,7 @@ import { nav, site } from "@/lib/site";
 
 export default function Footer() {
   return (
-    <footer className="band-dark">
+    <footer className="band-dark band-night">
       <div className="mx-auto max-w-[1200px] px-5 pb-10 pt-20 sm:px-8">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>

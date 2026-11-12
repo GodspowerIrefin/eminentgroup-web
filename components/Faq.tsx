@@ -23,7 +23,7 @@ export default function Faq({ items }: { items: { q: string; a: ReactNode }[] })
                 <span
                   aria-hidden="true"
                   className={`relative h-9 w-9 shrink-0 rounded-full border border-rule transition-[transform,background-color,color] duration-300 ${
-                    isOpen ? "rotate-45 bg-navy text-white" : ""
+                    isOpen ? "rotate-45 bg-forest text-white" : ""
                   }`}
                 >
                   <span className="absolute left-1/2 top-1/2 h-[2px] w-3.5 -translate-x-1/2 -translate-y-1/2 bg-current" />

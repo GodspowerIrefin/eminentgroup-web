@@ -20,7 +20,7 @@ export default function ProcessTabs() {
       >
         <span
           aria-hidden="true"
-          className={`absolute bottom-1.5 left-1.5 top-1.5 w-[calc(50%-6px)] rounded-full bg-navy transition-transform duration-500 ease-out-soft ${
+          className={`absolute bottom-1.5 left-1.5 top-1.5 w-[calc(50%-6px)] rounded-full bg-forest transition-transform duration-500 ease-out-soft ${
             active === "professionals" ? "translate-x-full" : ""
           }`}
         />
@@ -50,7 +50,7 @@ export default function ProcessTabs() {
               className="card step-in p-8"
               style={{ animationDelay: `${i * 90}ms` }}
             >
-              <span className="display numeral text-6xl text-navy/25">{String(i + 1).padStart(2, "0")}</span>
+              <span className="display numeral text-6xl text-forest/25">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="mt-6 text-xl font-bold">{step.title}</h3>
               <p className="mt-2 leading-relaxed text-mut">{step.body}</p>
             </li>

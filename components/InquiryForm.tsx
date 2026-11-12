@@ -56,21 +56,21 @@ export default function InquiryForm({
 
   if (sent) {
     return (
-      <div role="status" className="step-in rounded-2xl bg-canvas p-8 text-[#0d1736]">
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-navy text-white">
+      <div role="status" className="step-in rounded-2xl bg-canvas p-8 text-[#171a26]">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest text-white">
           <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
             <path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>
         <h3 className="display mt-5 text-3xl">Your email is ready to send.</h3>
-        <p className="mt-3 leading-relaxed text-[#56607b]">
+        <p className="mt-3 leading-relaxed text-[#5b6070]">
           Your email app has opened with these details filled in. Press send there to reach our
           office. If nothing opened, email{" "}
-          <a className="font-semibold text-navy underline" href={`mailto:${site.email}`}>
+          <a className="font-semibold text-forest underline" href={`mailto:${site.email}`}>
             {site.email}
           </a>{" "}
           or call{" "}
-          <a className="font-semibold text-navy underline" href={site.phoneHref}>
+          <a className="font-semibold text-forest underline" href={site.phoneHref}>
             {site.phone}
           </a>
           .
@@ -78,7 +78,7 @@ export default function InquiryForm({
         <button
           type="button"
           onClick={() => setSent(false)}
-          className="mt-6 text-sm font-semibold text-navy underline"
+          className="mt-6 text-sm font-semibold text-forest underline"
         >
           Edit the form
         </button>
@@ -104,7 +104,7 @@ export default function InquiryForm({
             key={field.name}
             className={field.wide || field.type === "textarea" ? "sm:col-span-2" : ""}
           >
-            <label htmlFor={id} className="mb-2 block text-sm font-semibold text-[#0d1736]">
+            <label htmlFor={id} className="mb-2 block text-sm font-semibold text-[#171a26]">
               {field.label}
               {field.required ? <span className="text-red"> *</span> : null}
             </label>
@@ -135,7 +135,7 @@ export default function InquiryForm({
         >
           {submitLabel}
         </button>
-        <p className="text-sm text-[#56607b]">{note ?? "Opens your email app with the details filled in."}</p>
+        <p className="text-sm text-[#5b6070]">{note ?? "Opens your email app with the details filled in."}</p>
       </div>
     </form>
   );

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Contact Eminent One LLC, a Maryland healthcare staffing agency based in Windsor Mill. Call 410-929-9388 or send us a message.",
 };
 
-const linkClass = "link-underline font-semibold text-navy";
+const linkClass = "link-underline font-semibold text-forest";
 
 export default function Contact() {
   return (

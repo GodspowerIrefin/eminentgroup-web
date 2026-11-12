@@ -61,12 +61,12 @@ export default function Resources() {
                         className="group flex flex-wrap items-center justify-between gap-x-8 gap-y-2 py-7 transition-[padding] duration-300 hover:pl-3"
                       >
                         <span>
-                          <span className="block text-xl font-bold transition-colors group-hover:text-navy">
+                          <span className="block text-xl font-bold transition-colors group-hover:text-forest">
                             {name}
                           </span>
                           <span className="mt-1 block text-mut">{body}</span>
                         </span>
-                        <span className="flex items-center gap-2 text-[15px] font-semibold text-navy">
+                        <span className="flex items-center gap-2 text-[15px] font-semibold text-forest">
                           {url}
                           <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                             <path d="M4 10l6-6M5 4h5v5" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />

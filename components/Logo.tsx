@@ -14,7 +14,7 @@ export default function Logo({ light = false }: { light?: boolean }) {
       </svg>
       <span className="flex flex-col leading-none">
         <span
-          className={`text-[17px] font-extrabold tracking-[0.14em] ${light ? "text-white" : "text-navy"}`}
+          className={`text-[17px] font-bold tracking-[0.14em] ${light ? "text-white" : "text-navy"}`}
         >
           EMINENT ONE
         </span>

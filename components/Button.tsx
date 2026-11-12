@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 
 const styles = {
   primary: "bg-red text-white hover:bg-red-600 shadow-[0_10px_30px_-12px_rgba(200,16,46,0.7)]",
-  navy: "bg-navy text-white hover:bg-navy-900",
-  light: "bg-white text-navy hover:bg-white/90",
+  navy: "bg-night text-white hover:bg-black",
+  light: "bg-white text-night hover:bg-white/90",
   ghost: "border border-rule text-ink hover:border-current",
 };
 

@@ -15,8 +15,10 @@ export default function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="band-dark hero-grid">
-      <div className="mx-auto max-w-[1200px] px-5 pb-16 pt-32 sm:px-8 lg:pb-20 lg:pt-40">
+    <section className="hero-wash relative overflow-hidden border-b border-rule">
+      <span aria-hidden="true" className="deco-ring -right-24 -top-10 h-[26rem] w-[26rem]" />
+      <span aria-hidden="true" className="deco-ring -right-4 top-40 h-56 w-56" />
+      <div className="relative mx-auto max-w-[1200px] px-5 pb-14 pt-32 sm:px-8 lg:pb-20 lg:pt-44">
         <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap gap-2 text-[13px] text-mut">
           <Link href="/" className="link-underline">
             Home

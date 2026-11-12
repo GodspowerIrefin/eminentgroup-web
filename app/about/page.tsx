@@ -38,7 +38,7 @@ export default function About() {
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="rounded-[28px] bg-navy p-9 text-white sm:p-11">
+            <div className="rounded-[28px] bg-forest p-9 text-white sm:p-11">
               <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-white/60">Our mission</p>
               <p className="display mt-5 text-[clamp(1.6rem,2.6vw,2.1rem)] leading-[1.2]">
                 To connect qualified healthcare professionals with the Maryland facilities that need
@@ -55,8 +55,8 @@ export default function About() {
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {work.map(([title, body], i) => (
               <Reveal key={title} delay={i * 0.08}>
-                <article className="card card-hover h-full bg-canvas p-8">
-                  <span className="display numeral text-5xl text-navy/25">{String(i + 1).padStart(2, "0")}</span>
+                <article className={`card card-hover h-full border-transparent p-8 ${["bg-sand", "bg-mint", "bg-blush"][i]}`}>
+                  <span className="display numeral text-5xl text-forest/40">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="mt-6 text-xl font-bold">{title}</h3>
                   <p className="mt-3 leading-relaxed text-mut">{body}</p>
                 </article>
@@ -73,7 +73,7 @@ export default function About() {
             {leaders.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.08}>
                 <article className="card flex h-full items-center gap-7 p-8 sm:p-10">
-                  <span className="display flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-navy text-3xl text-white">
+                  <span className="display flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-forest text-3xl text-white">
                     {p.initials}
                   </span>
                   <div>

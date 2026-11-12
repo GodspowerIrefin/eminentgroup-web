@@ -36,7 +36,7 @@ export default function Employers() {
             <ol className="mt-8 border-t border-rule">
               {expect.map((item, i) => (
                 <li key={item} className="flex gap-6 border-b border-rule py-6 text-[17px] leading-relaxed">
-                  <span className="display numeral text-2xl text-navy/35">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="display numeral text-2xl text-forest/35">{String(i + 1).padStart(2, "0")}</span>
                   {item}
                 </li>
               ))}
