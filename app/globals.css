@@ -26,14 +26,18 @@
   --color-ink: var(--ink);
   --color-mut: var(--mut);
   --color-rule: var(--rule);
-  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), var(--font-inter), sans-serif;
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 body {
@@ -65,16 +69,16 @@ body {
 
 .display {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.04;
-  font-variation-settings: "opsz" 144, "SOFT" 40;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 1.1;
+  text-wrap: balance;
 }
 
 .eyebrow {
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--red);
 }
@@ -197,4 +201,10 @@ body {
   .step-in {
     animation: none;
   }
+}
+
+.display.numeral {
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
 }

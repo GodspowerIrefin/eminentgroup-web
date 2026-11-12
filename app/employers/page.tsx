@@ -29,14 +29,14 @@ export default function Employers() {
         lead="We recruit, screen, and place healthcare professionals for your facility. We handle the credentialing, so every placement meets regulatory and facility requirements."
       />
 
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto grid max-w-[1200px] gap-14 lg:grid-cols-[1fr_1.35fr] lg:gap-20">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
+        <div className="mx-auto grid max-w-[1200px] gap-14 lg:grid-cols-[1fr_1.35fr] lg:gap-14">
           <Reveal className="lg:sticky lg:top-28 lg:self-start">
             <p className="eyebrow">What to expect</p>
             <ol className="mt-8 border-t border-rule">
               {expect.map((item, i) => (
                 <li key={item} className="flex gap-6 border-b border-rule py-6 text-[17px] leading-relaxed">
-                  <span className="display text-2xl text-navy/35">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="display numeral text-2xl text-navy/35">{String(i + 1).padStart(2, "0")}</span>
                   {item}
                 </li>
               ))}

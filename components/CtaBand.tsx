@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 
 export default function CtaBand() {
   return (
-    <section className="px-5 py-20 sm:px-8 lg:py-28">
+    <section className="px-5 py-16 sm:px-8 lg:py-24">
       <Reveal className="mx-auto max-w-[1200px]">
         <div className="relative overflow-hidden rounded-[32px] bg-navy px-7 py-14 text-white sm:px-14 lg:py-20">
           <div
@@ -13,7 +13,7 @@ export default function CtaBand() {
           />
           <div className="relative flex flex-wrap items-end justify-between gap-10">
             <div>
-              <h2 className="display max-w-xl text-[clamp(2rem,4.4vw,3.5rem)]">
+              <h2 className="display max-w-xl text-[clamp(1.875rem,3.6vw,3rem)]">
                 Request staff or apply for work.
               </h2>
               <p className="mt-5 text-lg text-white/75">

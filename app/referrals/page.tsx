@@ -18,7 +18,7 @@ export default function Referrals() {
         title="Refer a facility or a healthcare professional."
         lead="Give us their contact details and we will follow up with them directly."
       />
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
         <Reveal className="mx-auto max-w-[900px]">
           <FormCard
             title="Refer someone"

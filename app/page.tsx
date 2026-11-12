@@ -21,11 +21,11 @@ export default function Home() {
   return (
     <>
       <section className="band-dark hero-grid overflow-hidden">
-        <div className="mx-auto grid max-w-[1200px] items-center gap-14 px-5 pb-20 pt-36 sm:px-8 lg:grid-cols-[1.15fr_1fr] lg:pb-28 lg:pt-44">
+        <div className="mx-auto grid max-w-[1200px] items-center gap-14 px-5 pb-16 pt-32 sm:px-8 lg:grid-cols-[1.15fr_1fr] lg:pb-20 lg:pt-36">
           <div>
             <p className="eyebrow step-in">Healthcare staffing · Windsor Mill, MD</p>
             <h1
-              className="display step-in mt-6 text-[clamp(2.75rem,6.4vw,5.25rem)]"
+              className="display step-in mt-6 text-[clamp(2.4rem,5vw,4.25rem)]"
               style={{ animationDelay: "80ms" }}
             >
               Healthcare staffing for Maryland facilities and care professionals.
@@ -93,18 +93,18 @@ export default function Home() {
 
       <RoleMarquee />
 
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead
             eyebrow="Our services"
-            title="Staffing for Baltimore-area healthcare facilities."
+            title={"Staffing for Baltimore\u2011area healthcare facilities."}
             lead="We recruit nurses and care staff, verify their credentials, and place them where they are needed."
           />
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
             {services.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.07}>
                 <article className="card card-hover h-full p-8 sm:p-10">
-                  <span className="display text-5xl text-navy/25">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="display numeral text-5xl text-navy/25">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="mt-6 text-[22px] font-bold leading-snug">{s.title}</h3>
                   <p className="mt-3 text-[17px] leading-relaxed text-mut">{s.body}</p>
                 </article>
@@ -114,16 +114,16 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-paper px-5 py-24 sm:px-8 lg:py-32">
+      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead eyebrow="Staff we place" title="The roles your facility needs filled." />
-          <Reveal className="mt-14">
+          <Reveal className="mt-10">
             <RolesExplorer />
           </Reveal>
         </div>
       </section>
 
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead eyebrow="How it works" title="From request to first shift." />
           <Reveal className="mt-10">
@@ -132,7 +132,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="band-dark px-5 py-24 sm:px-8 lg:py-32">
+      <section className="band-dark px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-2">
           <div>
             <SectionHead
@@ -175,10 +175,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="openings" className="px-5 py-24 sm:px-8 lg:py-32">
+      <section id="openings" className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead eyebrow="Open positions" title="Current openings." />
-          <div className="mt-14">
+          <div className="mt-10">
             <JobList />
           </div>
         </div>

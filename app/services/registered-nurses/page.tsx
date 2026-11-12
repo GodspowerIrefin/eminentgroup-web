@@ -30,7 +30,7 @@ export default function RegisteredNurses() {
         crumbs={[{ href: "/services", label: "Medical Staffing" }]}
       />
 
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-14 lg:grid-cols-[1.4fr_1fr]">
           <div>
             <Reveal>
@@ -38,7 +38,7 @@ export default function RegisteredNurses() {
               <ul className="mt-8 border-t border-rule">
                 {duties.map((d, i) => (
                   <li key={d} className="flex gap-6 border-b border-rule py-6 text-lg leading-relaxed">
-                    <span className="display text-2xl text-navy/35">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="display numeral text-2xl text-navy/35">{String(i + 1).padStart(2, "0")}</span>
                     {d}
                   </li>
                 ))}
@@ -83,7 +83,7 @@ export default function RegisteredNurses() {
         </div>
       </section>
 
-      <section className="bg-paper px-5 py-24 sm:px-8">
+      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-20">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead eyebrow="Other roles" title="Other professionals we place." />
           <Reveal className="mt-10 flex flex-wrap gap-3">

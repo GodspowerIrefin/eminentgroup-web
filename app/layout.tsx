@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/site";
 
-const jakarta = Plus_Jakarta_Sans({ variable: "--font-jakarta", subsets: ["latin"] });
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
-});
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
+const interTight = Inter_Tight({ variable: "--font-inter-tight", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -28,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${fraunces.variable} antialiased`}>
+    <html lang="en" className={`${inter.variable} ${interTight.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col">
         <a
           href="#main"

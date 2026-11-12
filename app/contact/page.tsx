@@ -21,8 +21,8 @@ export default function Contact() {
         title="Talk to our office."
         lead="Staffing requests and job inquiries, by phone or email."
       />
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto grid max-w-[1200px] gap-14 lg:grid-cols-[1fr_1.35fr] lg:gap-20">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
+        <div className="mx-auto grid max-w-[1200px] gap-14 lg:grid-cols-[1fr_1.35fr] lg:gap-14">
           <Reveal className="lg:sticky lg:top-28 lg:self-start">
             <dl className="border-t border-rule">
               <div className="border-b border-rule py-7">

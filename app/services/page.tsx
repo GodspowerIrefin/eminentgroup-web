@@ -28,14 +28,14 @@ export default function Services() {
         <Button href="/employers#request">Request staff</Button>
       </PageHero>
 
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead eyebrow="What we do" title="How we staff your facility." />
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
             {services.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.07}>
                 <article className="card card-hover h-full p-8 sm:p-10">
-                  <span className="display text-5xl text-navy/25">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="display numeral text-5xl text-navy/25">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="mt-6 text-[22px] font-bold leading-snug">{s.title}</h3>
                   <p className="mt-3 text-[17px] leading-relaxed text-mut">{s.body}</p>
                 </article>
@@ -45,20 +45,20 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="bg-paper px-5 py-24 sm:px-8 lg:py-32">
+      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead
             eyebrow="Roles we place"
             title="Healthcare professionals we supply."
             lead="Need a role that is not listed? Tell us the role you need filled."
           />
-          <Reveal className="mt-14">
+          <Reveal className="mt-10">
             <RolesExplorer />
           </Reveal>
         </div>
       </section>
 
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-5 md:grid-cols-2">
           <Reveal>
             <div className="h-full rounded-[28px] bg-navy p-9 text-white sm:p-12">
@@ -85,7 +85,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="bg-paper px-5 py-24 sm:px-8 lg:py-32">
+      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[1fr_1.4fr]">
           <SectionHead eyebrow="Questions" title="Frequently asked questions." />
           <Reveal>
