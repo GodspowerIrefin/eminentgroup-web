@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+:root {
+  --navy-950: #081230;
+  --navy-900: #0c1a42;
+  --navy: #14327f;
+  --navy-400: #5d78c2;
+  --red: #c8102e;
+  --red-600: #a80d26;
+  --canvas: #f6f4ef;
+  --paper: #ffffff;
+  --ink: #0d1736;
+  --mut: #56607b;
+  --rule: rgba(13, 23, 54, 0.12);
+}
+
+@theme inline {
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy: var(--navy);
+  --color-navy-400: var(--navy-400);
+  --color-red: var(--red);
+  --color-red-600: var(--red-600);
+  --color-canvas: var(--canvas);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-mut: var(--mut);
+  --color-rule: var(--rule);
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--navy);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* dark bands flip the tokens so shared components restyle themselves */
+.band-dark {
+  --ink: #ffffff;
+  --mut: #b9c3e0;
+  --rule: rgba(255, 255, 255, 0.16);
+  --paper: rgba(255, 255, 255, 0.06);
+  background: var(--navy-950);
+  color: var(--ink);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.band-dark .eyebrow {
+  color: #ff8fa1;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s var(--ease-out-soft),
+    transform 0.7s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* cards lift and show a pointer-tracked glow */
+.card {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 20px;
+  transition:
+    transform 0.35s var(--ease-out-soft),
+    box-shadow 0.35s var(--ease-out-soft),
+    border-color 0.35s;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(20, 50, 127, 0.35);
+  box-shadow: 0 24px 48px -24px rgba(12, 26, 66, 0.35);
+}
+
+.link-underline {
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat;
+  transition: background-size 0.3s var(--ease-out-soft);
+}
+.link-underline:hover,
+.link-underline[aria-current="page"] {
+  background-size: 100% 1.5px;
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-grid {
+  background-image:
+    radial-gradient(60rem 30rem at 85% -10%, rgba(93, 120, 194, 0.35), transparent 60%),
+    radial-gradient(40rem 26rem at -10% 110%, rgba(200, 16, 46, 0.22), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: auto, auto, 56px 56px, 56px 56px;
+}
+
+.field {
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 16px;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: #fff;
+  color: #0d1736;
+  font-size: 1rem;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.field:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 4px rgba(20, 50, 127, 0.12);
+}
+.field[aria-invalid="true"] {
+  border-color: var(--red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee {
+    animation: none;
+  }
+  .card,
+  .link-underline {
+    transition: none;
+  }
+}
+
+.step-in {
+  animation: step-in 0.6s var(--ease-out-soft) both;
+}
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .step-in {
+    animation: none;
+  }
+}
