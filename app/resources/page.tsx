@@ -43,8 +43,8 @@ export default function Resources() {
         eyebrow="Helpful links"
         title="Licensing, regulatory, and industry references."
       />
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto flex max-w-[1200px] flex-col gap-20">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-14">
           {groups.map((group) => (
             <div key={group.title} className="grid gap-8 lg:grid-cols-[1fr_2.4fr]">
               <Reveal>

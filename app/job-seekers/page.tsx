@@ -62,7 +62,7 @@ export default async function JobSeekers({ searchParams }: PageProps<"/job-seeke
         </Button>
       </PageHero>
 
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-5 md:grid-cols-2">
           <Reveal>
             <List title="Why work with us" items={why} />
@@ -73,16 +73,16 @@ export default async function JobSeekers({ searchParams }: PageProps<"/job-seeke
         </div>
       </section>
 
-      <section id="openings" className="bg-paper px-5 py-24 sm:px-8 lg:py-32">
+      <section id="openings" className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead eyebrow="Open positions" title="Current openings." />
-          <div className="mt-14">
+          <div className="mt-10">
             <JobList />
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
         <Reveal className="mx-auto max-w-[900px]">
           <FormCard
             id="apply"

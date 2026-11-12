@@ -26,8 +26,8 @@ export default function About() {
         lead="Eminent One LLC places nurses and care staff with hospitals, nursing homes, rehabilitation centers, assisted living facilities, and home care agencies in Baltimore County and Baltimore City."
       />
 
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
-        <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
+        <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
           <Reveal>
             <p className="display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.25]">
               We operate under {site.licenseLabel}.
@@ -49,14 +49,14 @@ export default function About() {
         </div>
       </section>
 
-      <section className="bg-paper px-5 py-24 sm:px-8 lg:py-32">
+      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead eyebrow="How we work" title="What every placement includes." />
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
             {work.map(([title, body], i) => (
               <Reveal key={title} delay={i * 0.08}>
                 <article className="card card-hover h-full bg-canvas p-8">
-                  <span className="display text-5xl text-navy/25">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="display numeral text-5xl text-navy/25">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="mt-6 text-xl font-bold">{title}</h3>
                   <p className="mt-3 leading-relaxed text-mut">{body}</p>
                 </article>
@@ -66,10 +66,10 @@ export default function About() {
         </div>
       </section>
 
-      <section className="px-5 py-24 sm:px-8 lg:py-32">
+      <section className="px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead eyebrow="Leadership" title="The people behind Eminent One." />
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
             {leaders.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.08}>
                 <article className="card flex h-full items-center gap-7 p-8 sm:p-10">
