@@ -196,13 +196,11 @@ export const leaders = [
     initials: "PI",
     name: "Percy Irefin",
     title: "Chief Executive Officer",
-    credential: "MBA, Healthcare Administration",
   },
   {
     initials: "JI",
     name: "Janet Irefin",
     title: "Director",
-    credential: "MS, Clinical Mental Health Counseling and School Counseling",
   },
 ];
 

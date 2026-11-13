@@ -117,7 +117,6 @@ export default function About() {
                   <div>
                     <h3 className="display text-3xl">{p.name}</h3>
                     <p className="mt-1.5 font-semibold text-red">{p.title}</p>
-                    <p className="mt-2 text-[15px] leading-relaxed text-mut">{p.credential}</p>
                   </div>
                 </article>
               </Reveal>
