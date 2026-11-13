@@ -8,7 +8,7 @@ export default function Logo({ light = false }: { light?: boolean }) {
         alt=""
         width={509}
         height={360}
-        className="h-[38px] w-auto"
+        className="h-[52px] w-auto sm:h-[60px]"
       />
       <span className="flex flex-col leading-none">
         <span
