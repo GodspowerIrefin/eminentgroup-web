@@ -12,7 +12,7 @@ export const site = {
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=8310+Liberty+Rd+Windsor+Mill+MD+21244",
   license: "HCSA-01609",
-  licenseLabel: "Maryland Health Care Staff Agency License # HCSA-01609",
+  licenseLabel: "Maryland Health Care Staff Agency Licensed",
   areas: "Baltimore County and Baltimore City",
 };
 

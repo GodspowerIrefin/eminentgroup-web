@@ -32,7 +32,7 @@ export default function About() {
             <SectionHead
               eyebrow="About us"
               title="A licensed Maryland healthcare staffing agency."
-              lead={`Eminent One LLC is based in Windsor Mill and holds ${site.licenseLabel}. We place nurses and care staff with facilities in ${site.areas}.`}
+              lead={`Eminent One LLC is based in Windsor Mill and holds Maryland Health Care Staff Agency license ${site.license}. We place nurses and care staff with facilities in ${site.areas}.`}
             />
             <Reveal className="mt-10 flex flex-wrap gap-x-10 gap-y-6">
               {leaders.map((p) => (
@@ -68,7 +68,7 @@ export default function About() {
         <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
           <Reveal>
             <p className="display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.25]">
-              We operate under {site.licenseLabel}.
+              We operate under Maryland Health Care Staff Agency license {site.license}.
             </p>
             <p className="mt-8 text-lg leading-relaxed text-mut">
               Facilities come to us for temporary coverage, temp-to-perm arrangements, and permanent
