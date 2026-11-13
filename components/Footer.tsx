@@ -105,7 +105,7 @@ export default function Footer() {
           <div className="text-right text-[13px] text-white/60">
             <p>{site.licenseLabel}</p>
             <p className="mt-1">
-              © {new Date().getFullYear()} {site.name}. All rights reserved.
+              © {new Date().getFullYear()} Eminent One Group. All rights reserved.
             </p>
           </div>
         </div>
