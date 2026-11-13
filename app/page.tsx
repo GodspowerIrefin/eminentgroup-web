@@ -54,7 +54,7 @@ export default function Home() {
         <div className="mx-auto max-w-[900px] px-5 pb-20 pt-16 text-center sm:px-8 lg:pb-28 lg:pt-24">
           <Reveal>
             <h2 className="display text-[clamp(2rem,4.6vw,3.75rem)] !font-semibold">
-              Filling shifts and careers across the Baltimore area
+              Filling shifts and careers across our service area
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-mut">
               We recruit, verify, and place RNs, LPNs, CNAs, home health aides, and more, then stay
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1200px]">
           <SectionHead
             eyebrow="Our services"
-            title={"Staffing for Baltimore\u2011area healthcare facilities."}
+            title={"Staffing for healthcare facilities across Maryland."}
             lead="We recruit nurses and care staff, verify their credentials, and place them where they are needed."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2">

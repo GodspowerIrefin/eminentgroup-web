@@ -8,7 +8,7 @@ import { leaders, site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Eminent One LLC is a licensed Maryland health care staff agency in Windsor Mill, placing nurses and care staff with facilities in Baltimore County and Baltimore City.",
+    "Eminent One LLC is a licensed Maryland health care staff agency placing nurses and care staff with facilities across our service area.",
 };
 
 const work = [
@@ -22,8 +22,8 @@ export default function About() {
     <>
       <PageHero
         eyebrow="Who we are"
-        title="A licensed healthcare staffing agency in Windsor Mill, Maryland."
-        lead="Eminent One LLC places nurses and care staff with hospitals, nursing homes, rehabilitation centers, assisted living facilities, and home care agencies in Baltimore County and Baltimore City."
+        title="A licensed healthcare staffing agency in Maryland."
+        lead="Eminent One LLC places nurses and care staff with hospitals, nursing homes, rehabilitation centers, assisted living facilities, and home care agencies across our service area."
       />
 
       <section className="band-dark px-5 py-16 sm:px-8 lg:py-24">
@@ -32,7 +32,7 @@ export default function About() {
             <SectionHead
               eyebrow="About us"
               title="A licensed Maryland healthcare staffing agency."
-              lead={`Eminent One LLC is based in Windsor Mill and holds Maryland Health Care Staff Agency license ${site.license}. We place nurses and care staff with facilities in ${site.areas}.`}
+              lead={`Eminent One LLC is a Maryland agency and holds Maryland Health Care Staff Agency license ${site.license}. We place nurses and care staff with facilities across our service area.`}
             />
             <Reveal className="mt-10 flex flex-wrap gap-x-10 gap-y-6">
               {leaders.map((p) => (
@@ -53,7 +53,7 @@ export default function About() {
               ["Verified credentials", "Licenses, certifications, and background checks confirmed before placement."],
               ["Flexible terms", "Temporary, temp-to-perm, or permanent placements."],
               ["Follow-up", "We stay in touch with facilities and professionals after the placement."],
-              ["Local Maryland team", `Based in Windsor Mill, serving ${site.areas}.`],
+              ["Local Maryland team", "Based in Maryland and serving our service area."],
             ].map(([title, body], i) => (
               <Reveal key={title} delay={i * 0.07} className="border-t border-rule py-7">
                 <dt className="text-lg font-bold">{title}</dt>
