@@ -1,17 +1,15 @@
+import Image from "next/image";
+
 export default function Logo({ light = false }: { light?: boolean }) {
-  const stroke = light ? "#ffffff" : "#14327f";
   return (
     <span className="flex items-center gap-3">
-      <svg width="40" height="40" viewBox="0 0 44 44" aria-hidden="true">
-        <polygon
-          points="22,3 39,12.5 39,31.5 22,41 5,31.5 5,12.5"
-          fill="none"
-          stroke={stroke}
-          strokeWidth="3"
-          strokeLinejoin="round"
-        />
-        <circle cx="22" cy="22" r="5" fill="#c8102e" />
-      </svg>
+      <Image
+        src={light ? "/images/eo-mark-white.png" : "/images/eo-mark.png"}
+        alt=""
+        width={509}
+        height={360}
+        className="h-[38px] w-auto"
+      />
       <span className="flex flex-col leading-none">
         <span
           className={`text-[17px] font-bold tracking-[0.14em] ${light ? "text-white" : "text-navy"}`}
