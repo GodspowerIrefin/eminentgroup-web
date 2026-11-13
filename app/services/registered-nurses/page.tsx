@@ -10,7 +10,7 @@ import { roles, settings, site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Registered Nurses",
   description:
-    "Registered Nurse (RN) staffing from Eminent One LLC, placing RNs in hospitals, nursing homes, rehab centers, assisted living, and home care in the Baltimore area.",
+    "Registered Nurse (RN) staffing from Eminent One LLC, placing RNs in hospitals, nursing homes, rehab centers, assisted living, and home care across our service area.",
 };
 
 const duties = [

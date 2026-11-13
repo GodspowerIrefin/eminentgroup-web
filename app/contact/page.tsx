@@ -8,7 +8,7 @@ import { roleOptions, site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Contact Eminent One LLC, a Maryland healthcare staffing agency based in Windsor Mill. Call 410-929-9388 or send us a message.",
+    "Contact Eminent One LLC, a Maryland healthcare staffing agency. Call 410-929-9388 or send us a message.",
 };
 
 const linkClass = "link-underline font-semibold text-forest";

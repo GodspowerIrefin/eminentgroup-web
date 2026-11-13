@@ -12,7 +12,7 @@ import { roleOptions } from "@/lib/site";
 export const metadata: Metadata = {
   title: "For Job Seekers",
   description:
-    "Apply to work with Eminent One LLC. Healthcare staffing opportunities for RNs, LPNs, CNAs, HHAs, and more with Baltimore-area facilities.",
+    "Apply to work with Eminent One LLC. Healthcare staffing opportunities for RNs, LPNs, CNAs, HHAs, and more with facilities across our service area.",
 };
 
 const why = [
@@ -53,8 +53,8 @@ export default async function JobSeekers({ searchParams }: PageProps<"/job-seeke
     <>
       <PageHero
         eyebrow="For job seekers"
-        title="Nursing and care work in the Baltimore area."
-        lead="We place RNs, LPNs, CNAs, home health aides, and other healthcare professionals with facilities in Baltimore County and Baltimore City. Apply and we will match you to openings that fit your license and availability."
+        title="Nursing and care work across our service area."
+        lead="We place RNs, LPNs, CNAs, home health aides, and other healthcare professionals with facilities across our service area. Apply and we will match you to openings that fit your license and availability."
       >
         <Button href="#apply">Apply now</Button>
         <Button href="#openings" variant="ghost">

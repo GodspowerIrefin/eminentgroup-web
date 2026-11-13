@@ -12,7 +12,7 @@ import { services, site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Medical Staffing",
   description:
-    "Medical staffing services from Eminent One LLC: recruitment, credentialing, and placement of RNs, LPNs, CNAs, HHAs, and other healthcare professionals in the Baltimore area.",
+    "Medical staffing services from Eminent One LLC: recruitment, credentialing, and placement of RNs, LPNs, CNAs, HHAs, and other healthcare professionals across our service area.",
 };
 
 const link = "font-semibold text-forest underline underline-offset-4";
@@ -109,7 +109,7 @@ export default function Services() {
                 },
                 {
                   q: "Where do you operate?",
-                  a: `Our office is in Windsor Mill. We staff facilities in ${site.areas}.`,
+                  a: "Our office is in Maryland. We staff facilities across our service area.",
                 },
                 {
                   q: "How do we get started?",
