@@ -133,7 +133,7 @@ export default function Header() {
         >
           <nav
             aria-label="Main"
-            className={`hidden items-center gap-1 rounded-full bg-white pl-4 pr-2 shadow-[0_14px_36px_-18px_rgba(10,42,39,0.55)] transition-[height] duration-300 lg:flex ${
+            className={`hidden items-center gap-1 rounded-full bg-white pl-4 pr-2 shadow-[0_14px_36px_-18px_rgba(10,42,39,0.55)] transition-[height] duration-300 xl:flex ${
               scrolled ? "h-[60px]" : "h-[68px]"
             }`}
           >
@@ -147,7 +147,7 @@ export default function Header() {
                     aria-expanded={active === i}
                     aria-current={current ? "page" : undefined}
                     onClick={close}
-                    className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-[14.5px] font-semibold transition-colors hover:text-red ${
+                    className={`flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-2 text-[14.5px] font-semibold transition-colors hover:text-red ${
                       current || active === i ? "text-red" : "text-ink"
                     }`}
                   >
@@ -177,28 +177,6 @@ export default function Header() {
                 </div>
               );
             })}
-
-            <form action="/services" role="search" className="ml-2 hidden items-center xl:flex">
-              <label htmlFor="site-search" className="sr-only">
-                Search services
-              </label>
-              <span className="relative">
-                <input
-                  id="site-search"
-                  name="q"
-                  type="search"
-                  placeholder="Search"
-                  className="h-10 w-[130px] rounded-full border border-rule bg-canvas pl-4 pr-10 text-[14px] text-ink placeholder:text-mut"
-                />
-                <button
-                  type="submit"
-                  aria-label="Search"
-                  className="absolute right-1 top-1 flex h-8 w-8 items-center justify-center rounded-full text-forest hover:text-red"
-                >
-                  <Icon name="find" size={18} />
-                </button>
-              </span>
-            </form>
 
             <a
               href={site.phoneHref}
