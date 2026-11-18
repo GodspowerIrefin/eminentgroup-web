@@ -117,14 +117,6 @@ export default function Header() {
           >
             <Logo light />
           </Link>
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 240 12"
-            preserveAspectRatio="none"
-            className="absolute -bottom-2 left-6 h-3 w-[78%] text-gold"
-          >
-            <path d="M0 2c50 0 120 8 240 8" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-          </svg>
         </div>
 
         {/* nav bar */}
@@ -186,10 +178,7 @@ export default function Header() {
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-red text-white">
                 <Icon name="user" size={20} />
               </span>
-              <span className="flex flex-col leading-tight">
-                <span className="text-[11px] text-mut">For facilities</span>
-                <span className="text-[13px] font-extrabold tracking-wide text-ink">REQUEST STAFF</span>
-              </span>
+              <span className="text-[13px] font-extrabold tracking-wide text-ink">REQUEST STAFF</span>
             </Link>
           </nav>
 

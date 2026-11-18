@@ -6,7 +6,7 @@ import { useRef, useState, type KeyboardEvent } from "react";
 import Eyebrow from "./Eyebrow";
 import Icon, { type IconName } from "./Icon";
 import Reveal from "./Reveal";
-import { roles, settings } from "@/lib/site";
+import { settings } from "@/lib/site";
 
 // One entry per setting in lib/site.ts, in the same order.
 // Photos are free Pexels stock (pexels.com/license), stored in public/images/settings.
@@ -16,13 +16,6 @@ const details: { icon: IconName; text: string; img: string; alt: string }[] = [
   { icon: "activity", text: "Therapy and nursing professionals for rehabilitation.", img: "/images/settings/rehabilitation.jpg", alt: "A physiotherapist guiding a patient through an exercise" },
   { icon: "user", text: "Care professionals for assisted living communities.", img: "/images/settings/assisted-living.jpg", alt: "Seniors playing chess together in a lounge" },
   { icon: "home", text: "Aides and caregivers for clients in their homes.", img: "/images/settings/home-care.jpg", alt: "Two caregivers helping an elderly man in bed" },
-];
-
-// Derived from lib/site.ts; placement types = temporary, temp-to-perm, permanent.
-const stats = [
-  { label: "Care settings", value: settings.length },
-  { label: "Professional roles", value: roles.length },
-  { label: "Placement types", value: 3 },
 ];
 
 export default function Industries() {
@@ -54,7 +47,7 @@ export default function Industries() {
 
       <div className="mx-auto max-w-[1280px]">
         {/* heading + stats */}
-        <Reveal className="grid items-end gap-10 lg:grid-cols-[1.2fr_1fr]">
+        <Reveal className="grid items-end gap-10">
           <div>
             <Eyebrow className="!text-gold">Where we place</Eyebrow>
             <h2 className="display mt-4 max-w-[20ch] text-[clamp(2rem,3.8vw,3.25rem)]">
@@ -64,14 +57,6 @@ export default function Industries() {
               We place professionals across these care settings throughout Maryland.
             </p>
           </div>
-          <dl className="grid grid-cols-3 divide-x divide-white/15 rounded-2xl border border-white/15 bg-white/[0.04]">
-            {stats.map((s) => (
-              <div key={s.label} className="flex flex-col-reverse items-center px-3 py-5 text-center">
-                <dt className="mt-1 text-[12.5px] font-semibold text-white/65">{s.label}</dt>
-                <dd className="display text-[clamp(2rem,3.4vw,2.75rem)] leading-none text-gold">{s.value}</dd>
-              </div>
-            ))}
-          </dl>
         </Reveal>
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
