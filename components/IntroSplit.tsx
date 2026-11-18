@@ -1,23 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import Eyebrow from "./Eyebrow";
-import Icon from "./Icon";
+import Icon, { type IconName } from "./Icon";
 import Reveal from "./Reveal";
-import { site } from "@/lib/site";
+import { services, site } from "@/lib/site";
 
-const audiences = [
-  {
-    label: "Employers",
-    href: "/employers",
-    img: "/images/placeholders/intro-employers.svg",
-    alt: "Healthcare facility team, placeholder",
-  },
-  {
-    label: "Job Seekers",
-    href: "/job-seekers",
-    img: "/images/placeholders/intro-job-seekers.svg",
-    alt: "Healthcare professional, placeholder",
-  },
+const media: { icon: IconName; img: string }[] = [
+  { icon: "search", img: "/images/placeholders/solution-recruitment.svg" },
+  { icon: "shield", img: "/images/placeholders/solution-credentialing.svg" },
+  { icon: "calendar", img: "/images/placeholders/solution-staffing.svg" },
+  { icon: "chat", img: "/images/placeholders/solution-followup.svg" },
 ];
 
 const links = [
@@ -31,7 +23,7 @@ export default function IntroSplit() {
       <div className="mx-auto max-w-[1280px]">
         <Reveal className="grid items-end gap-6 lg:grid-cols-2 lg:gap-16">
           <div>
-            <Eyebrow>Who we serve</Eyebrow>
+            <Eyebrow>Our services</Eyebrow>
             <h2 className="display mt-4 text-[clamp(2rem,4.4vw,3.75rem)]">
               Staffing for facilities. Work for professionals.
             </h2>
@@ -41,28 +33,31 @@ export default function IntroSplit() {
 
         <div className="relative mt-14 grid gap-10 lg:grid-cols-[1.35fr_1fr] lg:gap-14">
           <div className="grid gap-5 sm:grid-cols-2">
-            {audiences.map((a, i) => (
-              <Reveal key={a.label} delay={i * 0.12}>
-                <Link
-                  href={a.href}
-                  className="group zoom-host lift relative block overflow-hidden"
-                >
-                  <div className="zoom-img relative aspect-[3/4] overflow-hidden bg-forest">
+            {services.map((sv, i) => (
+              <Reveal key={sv.title} delay={i * 0.1}>
+                <Link href="/services" className="group zoom-host lift relative block overflow-hidden">
+                  <div className="zoom-img relative aspect-[4/5] overflow-hidden bg-forest">
                     <Image
-                      src={a.img}
-                      alt={a.alt}
+                      src={media[i].img}
+                      alt={`${sv.title}, placeholder image`}
                       fill
                       unoptimized
-                      sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 100vw"
+                      sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 100vw"
                       className="object-cover"
                     />
                   </div>
-                  <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-forest-950/90 to-transparent" />
-                  <div className="absolute inset-x-5 bottom-5 flex items-center justify-between bg-white/20 px-5 py-4 text-white backdrop-blur-md">
-                    <span className="display text-[22px]">{a.label}</span>
-                    <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true" className="chev">
-                      <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                  <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-forest-950/95 to-transparent" />
+                  <span className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center rounded-full bg-white text-forest shadow-md">
+                    <Icon name={media[i].icon} size={24} />
+                  </span>
+                  <div className="absolute inset-x-4 bottom-4 bg-white/15 px-4 py-4 text-white backdrop-blur-md">
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="display text-[19px] leading-snug">{sv.title}</h3>
+                      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" className="chev mt-1.5 shrink-0">
+                        <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                    <p className="mt-2 text-[14px] leading-snug text-white/85">{sv.body}</p>
                   </div>
                 </Link>
               </Reveal>

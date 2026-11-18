@@ -2,7 +2,6 @@ import Advantages from "@/components/Advantages";
 import Industries from "@/components/Industries";
 import HomeHero from "@/components/HomeHero";
 import IntroSplit from "@/components/IntroSplit";
-import SolutionsCarousel from "@/components/SolutionsCarousel";
 import CtaBand from "@/components/CtaBand";
 import JobList from "@/components/JobList";
 import ProcessTabs from "@/components/ProcessTabs";
@@ -16,7 +15,6 @@ export default function Home() {
     <>
       <HomeHero />
       <IntroSplit />
-      <SolutionsCarousel />
       <Advantages />
       <CtaBand />
       <Industries />
