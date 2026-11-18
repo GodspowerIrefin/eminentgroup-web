@@ -178,18 +178,19 @@ export default function Header() {
               );
             })}
 
-            <a
-              href={site.phoneHref}
+            <Link
+              href="/employers#request"
+              onClick={close}
               className="group ml-2 flex items-center gap-3 rounded-full py-1.5 pl-1.5 pr-4 hover:bg-sand"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-red text-white">
-                <Icon name="phone" size={20} />
+                <Icon name="user" size={20} />
               </span>
               <span className="flex flex-col leading-tight">
-                <span className="text-[11px] text-mut">Request</span>
-                <span className="text-[13px] font-extrabold tracking-wide text-ink">CONSULT CALL</span>
+                <span className="text-[11px] text-mut">For facilities</span>
+                <span className="text-[13px] font-extrabold tracking-wide text-ink">REQUEST STAFF</span>
               </span>
-            </a>
+            </Link>
           </nav>
 
           <button
