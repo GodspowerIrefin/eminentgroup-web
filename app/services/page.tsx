@@ -7,7 +7,8 @@ import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import RolesExplorer from "@/components/RolesExplorer";
 import SectionHead from "@/components/SectionHead";
-import { services, site } from "@/lib/site";
+import ServiceSteps from "@/components/ServiceSteps";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Medical Staffing",
@@ -28,22 +29,7 @@ export default function Services() {
         <Button href="/employers#request">Request staff</Button>
       </PageHero>
 
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="What we do" title="How we staff your facility." />
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {services.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.07}>
-                <article className="card card-hover h-full p-8 sm:p-10">
-                  <span className="display numeral text-5xl text-forest/25">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-6 text-[22px] font-bold leading-snug">{s.title}</h3>
-                  <p className="mt-3 text-[17px] leading-relaxed text-mut">{s.body}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServiceSteps />
 
       <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
@@ -85,7 +71,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
+      <section id="faq" className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[1fr_1.4fr]">
           <SectionHead eyebrow="Questions" title="Frequently asked questions." />
           <Reveal>

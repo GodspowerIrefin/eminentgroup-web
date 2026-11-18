@@ -183,20 +183,6 @@ body {
   background-size: 100% 1.5px;
 }
 
-.marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 38s linear infinite;
-}
-.marquee:hover {
-  animation-play-state: paused;
-}
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 .hero-wash {
   background-image:
     radial-gradient(46rem 28rem at 92% 0%, var(--blush), transparent 62%),
@@ -233,9 +219,6 @@ body {
     opacity: 1;
     transform: none;
     transition: none;
-  }
-  .marquee {
-    animation: none;
   }
   .card,
   .link-underline {
@@ -294,4 +277,570 @@ body {
 }
 @media (max-width: 767px) {
   .hero-curve { clip-path: ellipse(110% 100% at 50% 0%); }
+}
+
+/* ---- restyle additions ---- */
+.fade-up {
+  animation: fade-up 0.8s var(--ease-out-soft) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+.slide-in-left,
+.slide-in-right {
+  opacity: 0;
+  transition:
+    opacity 0.8s var(--ease-out-soft),
+    transform 0.8s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.slide-in-left {
+  transform: translateX(-48px);
+}
+.slide-in-right {
+  transform: translateX(48px);
+}
+.is-visible.slide-in-left,
+.is-visible.slide-in-right {
+  opacity: 1;
+  transform: none;
+}
+.zoom-img img {
+  transition: transform 0.8s var(--ease-out-soft);
+}
+.zoom-host:hover .zoom-img img {
+  transform: scale(1.06);
+}
+.lift {
+  transition:
+    transform 0.35s var(--ease-out-soft),
+    box-shadow 0.35s var(--ease-out-soft);
+}
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 50px -26px rgba(10, 42, 39, 0.5);
+}
+.chev {
+  transition: transform 0.3s var(--ease-out-soft);
+}
+.group:hover .chev,
+.group:focus-visible .chev {
+  transform: translateX(5px);
+}
+.nudge {
+  transition: transform 0.3s var(--ease-out-soft);
+}
+.group:hover .nudge {
+  transform: translate(3px, -3px);
+}
+.group:hover .nudge-flip {
+  transform: translate(-3px, -3px);
+}
+.hero-slide {
+  transition: opacity 0.9s ease;
+}
+.slide-curve {
+  border-bottom-right-radius: 56px;
+}
+
+/* ---- advantages ---- */
+.adv-card {
+  transition:
+    transform 0.4s var(--ease-out-soft),
+    box-shadow 0.4s var(--ease-out-soft),
+    border-color 0.3s;
+}
+.adv-card:hover {
+  transform: translateY(-5px);
+  border-color: transparent;
+  box-shadow: 0 30px 60px -32px rgba(10, 42, 39, 0.45);
+}
+.adv-bar {
+  transition: transform 0.5s var(--ease-out-soft);
+}
+.adv-card:hover .adv-bar {
+  transform: scaleX(1);
+}
+.adv-icon {
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.adv-card:hover .adv-icon {
+  background: var(--forest-950);
+  color: var(--gold);
+  transform: rotate(-8deg) scale(1.05);
+}
+@media (prefers-reduced-motion: reduce) {
+  .adv-card,
+  .adv-bar,
+  .adv-icon {
+    transition: none;
+  }
+  .adv-card:hover,
+  .adv-card:hover .adv-icon {
+    transform: none;
+  }
+}
+
+/* ---- open positions ---- */
+.job-card {
+  transition:
+    transform 0.4s var(--ease-out-soft),
+    box-shadow 0.4s var(--ease-out-soft),
+    border-color 0.3s;
+}
+.job-card:is(:hover, :focus-visible) {
+  transform: translateY(-5px);
+  border-color: rgba(224, 162, 58, 0.6);
+  box-shadow: 0 30px 60px -32px rgba(10, 42, 39, 0.45);
+}
+.job-code,
+.job-apply {
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.job-card:is(:hover, :focus-visible) .job-code {
+  background: var(--gold);
+  color: var(--forest-950);
+  transform: rotate(-6deg);
+}
+.job-card:is(:hover, :focus-visible) .job-apply {
+  background: var(--red-600);
+}
+/* soft pulse on the "now hiring" dot */
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: inherit;
+  animation: live-pulse 2s ease-out infinite;
+}
+@keyframes live-pulse {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .job-card,
+  .job-code,
+  .job-apply {
+    transition: none;
+  }
+  .job-card:is(:hover, :focus-visible),
+  .job-card:is(:hover, :focus-visible) .job-code {
+    transform: none;
+  }
+  .live-dot::after {
+    animation: none;
+  }
+}
+
+/* ---- how it works: timeline ---- */
+.how-line {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1.6s var(--ease-out-soft) 0.3s;
+}
+.is-visible.how-steps .how-line {
+  transform: scaleY(1);
+}
+.how-card {
+  transition:
+    transform 0.4s var(--ease-out-soft),
+    box-shadow 0.4s var(--ease-out-soft),
+    border-color 0.3s;
+}
+.how-num,
+.how-icon {
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border-color 0.3s,
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.how-step:hover .how-card {
+  transform: translateX(6px);
+  border-color: transparent;
+  box-shadow: 0 28px 56px -30px rgba(10, 42, 39, 0.45);
+}
+.how-step:hover .how-num {
+  background: var(--forest-950);
+  border-color: var(--forest-950);
+  color: #fff;
+  transform: scale(1.08);
+}
+.how-step:hover .how-icon {
+  background: var(--red);
+  color: #fff;
+  transform: rotate(-8deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .how-line {
+    transform: none;
+    transition: none;
+  }
+  .how-card,
+  .how-num,
+  .how-icon {
+    transition: none;
+  }
+  .how-step:hover .how-card,
+  .how-step:hover .how-num,
+  .how-step:hover .how-icon {
+    transform: none;
+  }
+}
+
+/* ---- where we place: setting tabs + photo stage ---- */
+.setting-tab {
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    transform 0.35s var(--ease-out-soft);
+}
+.setting-tab:hover,
+.setting-tab[aria-selected="true"] {
+  transform: translateX(6px);
+}
+.setting-bar {
+  transform-origin: center;
+  transition: transform 0.4s var(--ease-out-soft);
+}
+.setting-photo {
+  opacity: 0;
+  transform: scale(1.08);
+  transition:
+    opacity 0.8s ease,
+    transform 1.6s var(--ease-out-soft);
+}
+.setting-photo.is-on {
+  opacity: 1;
+  transform: scale(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .setting-tab,
+  .setting-bar,
+  .setting-photo {
+    transition: none;
+  }
+  .setting-tab:hover,
+  .setting-tab[aria-selected="true"],
+  .setting-photo {
+    transform: none;
+  }
+}
+
+/* ---- roles explorer ---- */
+.role-tab {
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    box-shadow 0.3s,
+    transform 0.3s var(--ease-out-soft);
+}
+.role-tab:hover {
+  transform: translateX(4px);
+}
+.role-tab[aria-selected="true"] {
+  transform: translateX(8px);
+}
+.role-photo {
+  animation: role-photo 0.9s var(--ease-out-soft) both;
+}
+@keyframes role-photo {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+.role-code {
+  animation: role-code 0.8s var(--ease-out-soft) both;
+}
+@keyframes role-code {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .role-tab,
+  .role-photo,
+  .role-code {
+    transition: none;
+    animation: none;
+  }
+  .role-tab:hover,
+  .role-tab[aria-selected="true"] {
+    transform: none;
+  }
+}
+
+/* ---- home: service cards ---- */
+.svc-card {
+  transition:
+    transform 0.4s var(--ease-out-soft),
+    box-shadow 0.4s var(--ease-out-soft),
+    border-color 0.3s;
+}
+.svc-card:is(:hover, :focus-visible) {
+  transform: translateY(-6px);
+  border-color: transparent;
+  box-shadow: 0 30px 60px -30px rgba(10, 42, 39, 0.45);
+}
+.svc-card:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+.svc-icon {
+  transition:
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s;
+}
+.svc-card:is(:hover, :focus-visible) .svc-icon {
+  transform: translateY(50%) rotate(-10deg) scale(1.08);
+  background: var(--forest);
+}
+.svc-bar {
+  transition: transform 0.5s var(--ease-out-soft);
+}
+.svc-card:is(:hover, :focus-visible) .svc-bar {
+  transform: scaleX(1);
+}
+.svc-card:focus-visible .zoom-img img {
+  transform: scale(1.06);
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc-card,
+  .svc-icon,
+  .svc-bar {
+    transition: none;
+  }
+  .svc-card:is(:hover, :focus-visible) {
+    transform: none;
+  }
+}
+
+/* ---- services: process cards ---- */
+/* on scroll into view: diamond spins in, photo rises, icon and number pop */
+.proc-diamond {
+  transform: rotate(0deg) scale(0.55);
+  opacity: 0;
+  transition:
+    transform 1s var(--ease-out-soft),
+    opacity 0.6s ease,
+    border-color 0.3s;
+  transition-delay: calc(var(--reveal-delay, 0s) + 0.15s);
+}
+.proc-photo {
+  transform: translateY(18px) scale(0.94);
+  transition:
+    transform 0.8s var(--ease-out-soft),
+    box-shadow 0.4s;
+  transition-delay: var(--reveal-delay, 0s);
+}
+.proc-photo img {
+  transition: transform 0.8s var(--ease-out-soft);
+}
+.proc-icon,
+.proc-num {
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.4s ease,
+    background-color 0.3s,
+    color 0.3s;
+}
+.proc-icon {
+  transition-delay: calc(var(--reveal-delay, 0s) + 0.45s);
+}
+.proc-num {
+  transform-origin: bottom right;
+  transition-delay: calc(var(--reveal-delay, 0s) + 0.6s);
+}
+.is-visible.proc .proc-diamond {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+.is-visible.proc .proc-photo {
+  transform: none;
+}
+.is-visible.proc .proc-icon,
+.is-visible.proc .proc-num {
+  opacity: 1;
+  transform: none;
+}
+/* hover and keyboard focus: diamond turns a quarter, photo zooms, icon lifts */
+.proc-card:focus-visible {
+  box-shadow: 0 0 0 2px var(--red);
+}
+.is-visible.proc .proc-card:is(:hover, :focus-visible) .proc-diamond {
+  transform: rotate(135deg) scale(1.04);
+  border-color: var(--red);
+  transition-delay: 0s;
+}
+.proc-card:is(:hover, :focus-visible) .proc-photo img {
+  transform: scale(1.08);
+}
+.is-visible.proc .proc-card:is(:hover, :focus-visible) .proc-icon {
+  transform: translateY(-6px) rotate(-6deg);
+  background: var(--red);
+  color: #fff;
+  transition-delay: 0s;
+}
+.is-visible.proc .proc-card:is(:hover, :focus-visible) .proc-num {
+  transform: scale(1.15);
+  background: var(--red);
+  transition-delay: 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .proc-diamond,
+  .proc-photo,
+  .proc-photo img,
+  .proc-icon,
+  .proc-num {
+    transition: none;
+  }
+  .proc-diamond {
+    opacity: 1;
+    transform: rotate(45deg);
+  }
+  .proc-photo,
+  .proc-icon,
+  .proc-num {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- home hero motion ---- */
+/* portraits pop in one after another */
+.pop-in {
+  animation: pop-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(16px);
+  }
+}
+/* soft rings that ripple out from each portrait */
+.ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(224, 162, 58, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  animation: ripple 3.2s ease-out infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes ripple {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
+}
+/* gold headline line with a light sweep every few seconds */
+.shimmer-text {
+  background: linear-gradient(105deg, var(--gold) 0%, var(--gold) 40%, #fff4dc 50%, var(--gold) 60%, var(--gold) 100%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s ease-in-out 1.2s infinite;
+}
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  35%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+/* primary button: a glint passes across it now and then */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: glint 5s ease-in-out 2s infinite;
+}
+@keyframes glint {
+  0% {
+    transform: translateX(-120%);
+  }
+  25%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+/* background contour lines drift very slowly */
+.contour-drift {
+  animation: contour-drift 40s ease-in-out infinite alternate;
+}
+@keyframes contour-drift {
+  to {
+    transform: translate(-40px, 24px) rotate(1.5deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pop-in,
+  .ripple,
+  .shimmer-text,
+  .btn-shine::after,
+  .contour-drift {
+    animation: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    animation: none;
+  }
+  .slide-in-left,
+  .slide-in-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .zoom-img img,
+  .lift,
+  .chev,
+  .nudge,
+  .nudge-flip,
+  .hero-slide {
+    transition: none;
+  }
+  .zoom-host:hover .zoom-img img,
+  .lift:hover,
+  .group:hover .chev,
+  .group:hover .nudge,
+  .group:hover .nudge-flip {
+    transform: none;
+  }
 }
