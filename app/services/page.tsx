@@ -85,7 +85,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
+      <section id="faq" className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[1fr_1.4fr]">
           <SectionHead eyebrow="Questions" title="Frequently asked questions." />
           <Reveal>

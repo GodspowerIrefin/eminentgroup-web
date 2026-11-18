@@ -9,14 +9,15 @@ export default function CountUp({ to, duration = 1400 }: { to: number; duration?
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setValue(to);
-      return;
-    }
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let frame = 0;
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
       observer.disconnect();
+      if (reduce) {
+        setValue(to);
+        return;
+      }
       const start = performance.now();
       const tick = (now: number) => {
         const p = Math.min((now - start) / duration, 1);
