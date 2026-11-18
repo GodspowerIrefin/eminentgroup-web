@@ -4,9 +4,8 @@ import HomeHero from "@/components/HomeHero";
 import IntroSplit from "@/components/IntroSplit";
 import CtaBand from "@/components/CtaBand";
 import JobList from "@/components/JobList";
-import ProcessTabs from "@/components/ProcessTabs";
+import HowItWorks from "@/components/HowItWorks";
 import Reveal from "@/components/Reveal";
-import RoleMarquee from "@/components/RoleMarquee";
 import RolesExplorer from "@/components/RolesExplorer";
 import SectionHead from "@/components/SectionHead";
 
@@ -15,39 +14,38 @@ export default function Home() {
     <>
       <HomeHero />
       <IntroSplit />
-      <Advantages />
-      <CtaBand />
-      <Industries />
-
-      <RoleMarquee />
 
       <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="Staff we place" title="The roles your facility needs filled." />
-          <Reveal className="mt-10">
+        <div className="mx-auto max-w-[1280px]">
+          <SectionHead
+            eyebrow="Staff we place"
+            title="The roles your facility needs filled."
+            lead="Pick a role to see what they do and where we place them. Need a role that is not listed? Tell us what you need."
+          />
+          <Reveal className="mt-12">
             <RolesExplorer />
           </Reveal>
         </div>
       </section>
 
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="How it works" title="From request to first shift." />
-          <Reveal className="mt-10">
-            <ProcessTabs />
-          </Reveal>
-        </div>
-      </section>
+      <Industries />
+      <HowItWorks />
 
-      <section id="openings" className="px-5 py-16 sm:px-8 lg:py-24">
+      <section id="openings" className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
         <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="Open positions" title="Current openings." />
+          <SectionHead
+            eyebrow="Open positions"
+            title="Current openings."
+            lead="Pay is per hour. Apply to an opening below, or send a general application for any role."
+          />
           <div className="mt-10">
             <JobList />
           </div>
         </div>
       </section>
 
+      <CtaBand />
+      <Advantages />
     </>
   );
 }

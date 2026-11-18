@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
 import Icon, { type IconName } from "./Icon";
@@ -13,17 +12,9 @@ const types: { label: string; icon: IconName }[] = [
 
 export default function CtaBand() {
   return (
-    <section className="px-5 pb-16 pt-16 sm:px-8 lg:pb-24 lg:pt-36">
+    <section className="px-5 py-16 sm:px-8 lg:py-24">
       <Reveal className="relative mx-auto max-w-[1200px]">
-        <Image
-          src="/images/placeholders/cta-person.svg"
-          alt=""
-          width={480}
-          height={600}
-          unoptimized
-          className="pointer-events-none absolute -top-36 right-6 z-10 hidden h-[260px] w-auto lg:block xl:right-12"
-        />
-        <div className="relative overflow-hidden rounded-[32px] bg-forest-950 px-7 pb-10 pt-14 text-white sm:px-14 lg:pt-24">
+        <div className="relative overflow-hidden rounded-[32px] bg-forest-950 px-7 pb-10 pt-14 text-white sm:px-14 lg:pt-20">
           <span aria-hidden="true" className="deco-ring -bottom-40 -left-20 h-80 w-80 !border-white/10" />
           <span aria-hidden="true" className="deco-ring -right-24 -top-24 h-80 w-80 !border-white/10" />
 
