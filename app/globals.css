@@ -363,6 +363,195 @@ body {
 .slide-curve {
   border-bottom-right-radius: 56px;
 }
+
+/* ---- services: process cards ---- */
+/* on scroll into view: diamond spins in, photo rises, icon and number pop */
+.proc-diamond {
+  transform: rotate(0deg) scale(0.55);
+  opacity: 0;
+  transition:
+    transform 1s var(--ease-out-soft),
+    opacity 0.6s ease,
+    border-color 0.3s;
+  transition-delay: calc(var(--reveal-delay, 0s) + 0.15s);
+}
+.proc-photo {
+  transform: translateY(18px) scale(0.94);
+  transition:
+    transform 0.8s var(--ease-out-soft),
+    box-shadow 0.4s;
+  transition-delay: var(--reveal-delay, 0s);
+}
+.proc-photo img {
+  transition: transform 0.8s var(--ease-out-soft);
+}
+.proc-icon,
+.proc-num {
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.4s ease,
+    background-color 0.3s,
+    color 0.3s;
+}
+.proc-icon {
+  transition-delay: calc(var(--reveal-delay, 0s) + 0.45s);
+}
+.proc-num {
+  transform-origin: bottom right;
+  transition-delay: calc(var(--reveal-delay, 0s) + 0.6s);
+}
+.is-visible.proc .proc-diamond {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+}
+.is-visible.proc .proc-photo {
+  transform: none;
+}
+.is-visible.proc .proc-icon,
+.is-visible.proc .proc-num {
+  opacity: 1;
+  transform: none;
+}
+/* hover and keyboard focus: diamond turns a quarter, photo zooms, icon lifts */
+.proc-card:focus-visible {
+  box-shadow: 0 0 0 2px var(--red);
+}
+.is-visible.proc .proc-card:is(:hover, :focus-visible) .proc-diamond {
+  transform: rotate(135deg) scale(1.04);
+  border-color: var(--red);
+  transition-delay: 0s;
+}
+.proc-card:is(:hover, :focus-visible) .proc-photo img {
+  transform: scale(1.08);
+}
+.is-visible.proc .proc-card:is(:hover, :focus-visible) .proc-icon {
+  transform: translateY(-6px) rotate(-6deg);
+  background: var(--red);
+  color: #fff;
+  transition-delay: 0s;
+}
+.is-visible.proc .proc-card:is(:hover, :focus-visible) .proc-num {
+  transform: scale(1.15);
+  background: var(--red);
+  transition-delay: 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .proc-diamond,
+  .proc-photo,
+  .proc-photo img,
+  .proc-icon,
+  .proc-num {
+    transition: none;
+  }
+  .proc-diamond {
+    opacity: 1;
+    transform: rotate(45deg);
+  }
+  .proc-photo,
+  .proc-icon,
+  .proc-num {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- home hero motion ---- */
+/* portraits pop in one after another */
+.pop-in {
+  animation: pop-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: var(--d, 0s);
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(16px);
+  }
+}
+/* soft rings that ripple out from each portrait */
+.ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(224, 162, 58, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  animation: ripple 3.2s ease-out infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes ripple {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
+}
+/* gold headline line with a light sweep every few seconds */
+.shimmer-text {
+  background: linear-gradient(105deg, var(--gold) 0%, var(--gold) 40%, #fff4dc 50%, var(--gold) 60%, var(--gold) 100%);
+  background-size: 250% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s ease-in-out 1.2s infinite;
+}
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  35%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+/* primary button: a glint passes across it now and then */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: glint 5s ease-in-out 2s infinite;
+}
+@keyframes glint {
+  0% {
+    transform: translateX(-120%);
+  }
+  25%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+/* background contour lines drift very slowly */
+.contour-drift {
+  animation: contour-drift 40s ease-in-out infinite alternate;
+}
+@keyframes contour-drift {
+  to {
+    transform: translate(-40px, 24px) rotate(1.5deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pop-in,
+  .ripple,
+  .shimmer-text,
+  .btn-shine::after,
+  .contour-drift {
+    animation: none;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .fade-up {
     animation: none;
