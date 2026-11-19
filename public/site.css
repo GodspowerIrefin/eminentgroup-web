@@ -1,0 +1,323 @@
+/* Page CSS: only what the design kit leaves to the page (references/system.md). Everything else,
+   the grid, type, sections, buttons, cards and forms, comes from /assets. */
+
+/* the client's EO mark beside the name, in the nav and the footer */
+.nav__logo { display: inline-flex; align-items: center; gap: var(--s-2); white-space: nowrap; }
+.logo-mark { display: block; width: auto; height: 26px; flex: none; }
+@media (max-width: 639px) { .logo-mark { height: 22px; } }
+.footer__mark { font-size: 22px; }
+.footer__mark .logo-mark { height: 32px; }
+@media (max-width: 639px) { .footer__mark { font-size: 18px; } .footer__mark .logo-mark { height: 26px; } }
+
+/* picture-develops: the section's one photograph, on the split's right column, as tall as the text */
+.develop { margin: 0; border-radius: var(--r-lg); overflow: hidden; height: min(620px, var(--ly-fit)); }
+.develop > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+@media (max-width: 1023px) { .develop { height: auto; aspect-ratio: 4 / 3; margin-top: var(--s-7); } }
+
+/* an open shift: its facts as label and value rows inside the card */
+.job { display: flex; flex-direction: column; gap: var(--s-5); }
+.job__facts { display: grid; gap: var(--s-4); margin: 0; }
+.job__facts > div { display: grid; gap: var(--s-1); }
+.job__facts dt { font-size: var(--t-label); font-weight: 500; color: var(--muted); }
+.job__facts dd { margin: 0; }
+.job__pay { font-size: var(--t-card); font-variant-numeric: tabular-nums; }
+.job__apply { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: var(--s-2); }
+
+/* the footer's contact lines under the name */
+.footer__contact { display: grid; gap: var(--s-3); font-size: var(--t-small); }
+.footer__contact a:hover { color: var(--action); }
+
+/* booking-form recipe: the form on the alternate ground, 48px inside, beside the text column */
+.form-panel { background: var(--g-alt, var(--surface)); border-radius: var(--r-lg); padding: var(--s-7); }
+@media (max-width: 639px) { .form-panel { padding: var(--s-5); } }
+
+/* ---- home: how each section fits its screens at each width (layout-v4.md section 2) ---- */
+
+/* the open jobs as rows: the apply link under each row's line */
+.jobs > li > .link { grid-column: 1; justify-self: start; }
+
+/* 1024-1279 (a 768px screen): the eight role rows a little tighter, and the three steps stay three
+   across (the kit's two-plus-one runs past the screen); the panels hold photographs only */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  #roles .rows > li { padding-block: var(--s-3); }
+  #roles .rows > li:first-child { padding-top: 0; }
+  #steps .grid > .card.span-4 { grid-column: auto / span 4; }
+  #steps .panel { --p-h: 220px; }
+}
+
+/* tablet (640-1023) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* the hero photograph takes what the words leave, so the first screen ends on the buttons */
+  .hero--photo { --photo: max(240px, calc(100svh - 472px)); }
+  /* #roles in one screen: the rows in two columns, the photograph taking the rest of the screen */
+  #roles > .wrap { height: calc(100svh - var(--padt) - var(--padb) - var(--bar)); grid-template-rows: auto minmax(0, 1fr); align-content: stretch; row-gap: var(--s-7); }
+  #roles .rows { columns: 2; column-gap: var(--gutter); }
+  #roles .rows > li { break-inside: avoid; }
+  #roles .rows > li:nth-child(5) { padding-top: 0; }
+  #roles .develop { height: 100%; min-height: 0; aspect-ratio: auto; margin-top: 0; }
+  /* #steps in one screen: the three cards stay three across, a little tighter, short photographs */
+  #steps .grid > .card.span-4 { grid-column: auto / span 4; --c-pad: var(--s-4); }
+  #steps .panel { --p-h: 168px; }
+}
+
+/* phone */
+@media (max-width: 639px) {
+  #roles .develop { height: 100%; min-height: 0; aspect-ratio: auto; margin-top: 0; }
+  /* the peek list keeps its names (a tap changes the photograph); the lines under them go */
+  #settings [data-peek-to] > p { display: none; }
+  #steps .panel { --p-h: 300px; }
+}
+
+/* the narrowest phones (320): the name beside the mark a size down, so the bar's button and menu fit */
+@media (max-width: 359px) {
+  #settings { --hm: 2; }
+  #steps .panel { --p-h: 200px; }
+  .nav .nav__logo { font-size: 17px; gap: 6px; }
+  .nav .logo-mark { height: 18px; }
+}
+
+/* ---- inner pages ---- */
+/* about, phone: the three placement tiles keep their titles and photographs in one screen */
+@media (max-width: 639px) { #work .tile > p { display: none; } }
+/* resources: the photograph under the three link groups takes the rest of the screen */
+.links__photo { margin-top: var(--s-7); min-height: 200px; }
+
+/* ---- spacing: sections as tall as their content (client's request: less white space between sections) ----
+   The kit makes every section exactly one or two screens tall; here each section after the hero takes
+   its content's height with a fixed padding, and the photographs that used to fill the screen get a
+   height of their own. */
+html main > :is(section, .section):not(.hero, .section--hero),
+html footer.closing {
+  --padt: 72px; --padb: 72px;
+  height: auto; min-height: 0;
+}
+html footer.closing { --padt: 72px; --padb: 40px; }
+@media (max-width: 1023px) {
+  html main > :is(section, .section):not(.hero, .section--hero), html footer.closing { --padt: 56px; --padb: 56px; }
+}
+@media (max-width: 639px) {
+  html main > :is(section, .section):not(.hero, .section--hero), html footer.closing { --padt: 44px; --padb: 44px; }
+}
+/* two-screen sections keep their two groups, without a screen's worth of space between them */
+html main > :is(section, .section):is(.g2, .g2m) > .wrap,
+html footer.closing.g2m > .wrap { grid-template-rows: auto auto; row-gap: var(--s-8); }
+/* photographs that took the rest of the screen now have their own height */
+html .frame--fill { flex: none; min-height: 460px; }
+html .develop { height: 620px; }
+html .links__photo { min-height: 360px; }
+@media (max-width: 1023px) {
+  html .frame--fill { min-height: 380px; }
+  html .develop, html #roles .develop { height: 420px; }
+  html #roles > .wrap { height: auto; }
+}
+@media (max-width: 639px) {
+  html .frame--fill { min-height: 280px; }
+  html .develop, html #roles .develop { height: 360px; }
+}
+/* the credential statement: just the sentence, no screen of air around it */
+html main > section.statement { --padt: 80px; --padb: 80px; }
+/* the close: less room between the big button and the links */
+html footer.closing .closing__links { margin-top: var(--s-9); }
+/* the content block takes its own height (the kit sizes it to the screen, which no longer applies) */
+html main > :is(section, .section):not(.hero, .section--hero) > .wrap,
+html footer.closing > .wrap { height: auto; flex: none; min-height: 0; }
+html main > :is(section, .section) > .wrap > .fill,
+html .group > .fill { flex: none; }
+
+/* ---- editorial hero (home; DESIGN-BRIEF.md) ----
+   Warm off-white ground, a Fraunces headline on the left half that rises line by line, a thin rule
+   over the lead and buttons, the photograph bled to the right edge under a rounded mask. The one
+   accent stays the brand blue on the primary button. Motion: transform and opacity only, CSS, once
+   on load; under reduced motion everything stands still and in place. */
+.ed-hero {
+  --ed-ground: #f5f2eb; --ed-ink: #16150f; --ed-lead: #3d3a33; --ed-rule: rgb(22 21 15 / 0.18);
+  --bg: var(--ed-ground); --ink: var(--ed-ink);
+  position: relative; background: var(--ed-ground); color: var(--ed-ink);
+  display: flex; flex-direction: column;
+}
+.ed-hero__media {
+  position: absolute; z-index: 0; margin: 0; top: var(--nav); right: 0; bottom: 0;
+  width: calc(50% - var(--gutter) / 2);
+  overflow: hidden; border-top-left-radius: clamp(96px, 11vw, 180px); background: #e6e0d3;
+}
+/* at least the first screen, and taller when enlarged text needs it (never clipped); beats the kit's fixed hero height */
+main > .hero.ed-hero { height: auto; min-height: 100vh; min-height: 100svh; }
+.ed-hero > .wrap { flex: 1 0 auto; height: auto; display: flex; flex-direction: column; }
+.ed-hero__media > img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--ly-pos, 50% 50%); }
+.ed-hero__text {
+  position: relative; z-index: 1; flex: 1 0 auto; height: auto;
+  width: calc(50% - var(--gutter) / 2);
+  display: flex; flex-direction: column; justify-content: center; gap: var(--s-7); /* headline and lead stay together, centred beside the photograph */
+}
+.ed-hero .ed-hero__title {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif; font-variation-settings: "opsz" 72; font-weight: 360;
+  font-size: clamp(56px, 5.6vw + 12px, 96px); line-height: 1; letter-spacing: -0.025em;
+  color: var(--ed-ink); text-wrap: initial; max-width: none; margin: 0;
+}
+/* each line is its own mask; the extra room keeps descenders (g, y) inside it */
+.ed-hero__line { display: block; overflow: hidden; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.ed-hero__line > span { display: inline-block; }
+.ed-hero__foot { display: grid; gap: var(--s-6); max-width: 34rem; padding-top: var(--s-5); border-top: 1px solid var(--ed-rule); }
+.ed-hero .ed-hero__lead { font-size: 18px; line-height: 1.6; color: var(--ed-lead); max-width: 44ch; margin: 0; }
+
+/* tablet and phone: the photograph across the top under the header, the words under it */
+@media (max-width: 1023px) {
+  .ed-hero { --photo: min(42svh, 62vw); }
+  .ed-hero__media {
+    left: 0; right: 0; bottom: auto; width: auto; height: var(--photo);
+    border-top-left-radius: 0; border-bottom-left-radius: clamp(56px, 12vw, 120px);
+  }
+  .ed-hero__media > img { object-position: var(--ly-pos-phone, var(--ly-pos, 50% 50%)); }
+  .ed-hero__text { width: 100%; justify-content: flex-start; gap: var(--s-6); }
+  .ed-hero .ed-hero__title { font-size: clamp(42px, 6vw + 18px, 72px); }
+}
+@media (max-width: 639px) {
+  .ed-hero { --photo: min(46svh, 84vw); }
+  .ed-hero .ed-hero__lead { font-size: 17px; }
+  .ed-hero .ed-hero__foot { gap: var(--s-5); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ed-hero__line > span { animation: ed-line 850ms cubic-bezier(0.16, 0.84, 0.24, 1) both; animation-delay: calc(150ms + var(--i, 0) * 120ms); }
+  .ed-hero__media > img { animation: ed-settle 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) 50ms both; }
+  .ed-hero__foot { animation: ed-soft 700ms cubic-bezier(0.2, 0.7, 0.2, 1) 560ms both; }
+}
+@keyframes ed-line { from { transform: translateY(110%); } to { transform: none; } }
+@keyframes ed-settle { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: none; } }
+@keyframes ed-soft { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* ---- site-wide fixes (audit) ---- */
+/* in-page links and keyboard focus stop clear of the fixed header (WCAG 2.4.11) */
+html { scroll-padding-top: calc(var(--nav) + var(--s-5)); }
+/* the facility rows are controls: they look it */
+[data-peek-to] { cursor: pointer; }
+
+/* ---- editorial sections (home; DESIGN.md, DESIGN-BRIEF.md) ----
+   Three grounds alternate for rhythm: Paper, Forest (deep green) and Night (near-black). Each tone
+   sets the kit's tokens, so lists, links, focus rings and the statement follow it. The one accent
+   (Credential Blue) stays on actions; on the dark grounds a light tint of it marks the highlighted
+   word and the selected row. */
+.tone-paper {
+  --bg: #f5f2eb; --surface: #ece7dc; --card: #ece7dc; --ink: #16150f; --muted: #5f5a50; --ink-soft: #3d3a33;
+  --line: rgb(22 21 15 / 0.14); --line-strong: rgb(22 21 15 / 0.3);
+}
+.tone-forest {
+  --bg: #12332b; --surface: #1a4238; --card: #1a4238; --ink: #f5f2eb; --muted: #b9c6bd; --ink-soft: #d9e0da;
+  --line: rgb(245 242 235 / 0.16); --line-strong: rgb(245 242 235 / 0.32);
+  --accent: #a9bfff; --action: #f5f2eb; --action-ink: #12332b;
+}
+.tone-night {
+  --bg: #121210; --surface: #1d1d1a; --card: #1d1d1a; --ink: #f5f2eb; --muted: #aaa69c; --ink-soft: #d8d4ca;
+  --line: rgb(245 242 235 / 0.14); --line-strong: rgb(245 242 235 / 0.3);
+  --accent: #a9bfff; --action: #f5f2eb; --action-ink: #121210;
+}
+:is(.tone-paper, .tone-forest, .tone-night) { background: var(--bg); color: var(--ink); }
+:is(.tone-forest, .tone-night) ::selection { background: rgb(169 191 255 / 0.35); }
+
+/* toned sections breathe a little more than the plain ones */
+html main > section.section[class*="tone-"] { --padt: 120px; --padb: 120px; }
+@media (max-width: 1023px) { html main > section.section[class*="tone-"] { --padt: 88px; --padb: 88px; } }
+@media (max-width: 639px) { html main > section.section[class*="tone-"] { --padt: 64px; --padb: 64px; } }
+
+/* film grain on the dark grounds: a still noise layer, never animated */
+.has-grain { position: relative; isolation: isolate; }
+.has-grain::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.16; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+.has-grain > .wrap { position: relative; z-index: 1; }
+
+/* headlines: the serif, larger, as the brief asks (64px at desktop) */
+:root { --t-h2: clamp(36px, 2.6vw + 24px, 64px); }
+h2 { font-variation-settings: "opsz" 72; letter-spacing: -0.02em; text-wrap: balance; }
+.section-head > p { font-size: 18px; line-height: 1.6; color: var(--ink-soft, var(--ink)); max-width: 46ch; }
+/* the logo's name, the footer wordmark and the big button stay in the text face */
+.nav__logo, .footer__mark, .btn--xl { font-family: var(--font-text); }
+.btn--xl { font-weight: 500; }
+/* small uppercase labels (the brief) */
+.t-label { text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* photographs on the editorial sections: one big corner, facing the words */
+:is(.tone-paper, .tone-forest, .tone-night) .frame--photo,
+.tone-forest .develop { border-radius: 8px; border-top-left-radius: clamp(64px, 8vw, 140px); }
+
+/* #roles on Forest: the list in ivory with a hairline under each row */
+.tone-forest .rows__value { color: var(--muted); }
+/* #settings on Night: the photograph framed deep, the selected row in ivory */
+.tone-night [data-peek-to] > p { color: var(--muted); }
+
+/* #steps: a timeline whose line draws as the section scrolls past (reveal.js sets --draw) */
+.timeline { position: relative; }
+.timeline__rail { position: absolute; left: 0; right: 0; top: 28px; height: 1px; background: var(--line); }
+.timeline__line { display: block; height: 100%; background: var(--ink); transform-origin: left center; transform: scaleX(var(--draw, 1)); }
+.timeline__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-7) var(--gutter); margin: 0; padding: 0; list-style: none; }
+.step { display: flex; flex-direction: column; gap: var(--s-4); }
+.step__num {
+  position: relative; z-index: 1; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%;
+  background: var(--bg); border: 1px solid var(--line-strong);
+  font: var(--display-weight) 26px/1 var(--font-display); font-variation-settings: "opsz" 72; color: var(--ink);
+  margin-bottom: var(--s-2);
+}
+.step__title { font: 500 20px/1.3 var(--font-text); letter-spacing: -0.01em; }
+.step__body { color: var(--ink-soft, var(--ink)); max-width: 34ch; }
+.step__media { margin-top: var(--s-2); aspect-ratio: 4 / 3; overflow: hidden; border-radius: 8px; border-top-left-radius: 56px; background: var(--surface); }
+.step__media > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 639px) {
+  .timeline__rail { display: none; }
+  .timeline__steps { grid-template-columns: minmax(0, 1fr); gap: var(--s-8); }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  .timeline__steps { gap: var(--s-6) var(--s-4); }
+  .step__title { font-size: 18px; }
+}
+
+/* the statement on Forest: large serif, words lighting up as you scroll (the kit's word-highlight) */
+.tone-forest .mo-wh__text { font-size: clamp(32px, 2.4vw + 18px, 54px); line-height: 1.18; max-width: 24ch; margin-top: var(--s-5); }
+.statement .t-label { color: var(--muted); }
+
+/* ---- scroll reveals (public/reveal.js): only transform and opacity, only when html.rv is set ---- */
+[data-reveal="up"]:not(.rows--stagger) { transition: opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: calc(var(--i, 0) * 110ms); }
+html.rv:not(.rv-done) [data-reveal="up"]:not(.rows--stagger):not(.is-in) { opacity: 0; transform: translateY(16px); }
+.rows--stagger > li { transition: opacity 600ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1); transition-delay: calc(120ms + var(--i, 0) * 60ms); }
+html.rv:not(.rv-done) .rows--stagger:not(.is-in) > li { opacity: 0; transform: translateY(12px); }
+html.rv:not(.rv-done) [data-reveal="lines"]:not(.is-in) { opacity: 0; }
+.rv-line { display: block; overflow: hidden; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.rv-inner { display: inline-block; transition: transform 850ms cubic-bezier(0.16, 0.84, 0.24, 1); transition-delay: calc(var(--i, 0) * 110ms); }
+html.rv [data-reveal="lines"]:not(.is-in) .rv-inner { transform: translateY(110%); }
+[data-reveal="img"] img { transition: opacity 1000ms cubic-bezier(0.2, 0.7, 0.2, 1), transform 1400ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+html.rv:not(.rv-done) [data-reveal="img"]:not(.is-in) img { opacity: 0; transform: scale(1.08); }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] *, [data-reveal], .rv-inner { transition: none !important; }
+}
+
+/* cookie consent banner: brand ink and action blue (--p-*), slide-up only when motion is allowed */
+.cookie { position: fixed; left: var(--s-4); right: var(--s-4); bottom: var(--s-4); z-index: 1000; max-width: 880px; margin-inline: auto; display: flex; align-items: center; gap: var(--s-5); padding: var(--s-4) var(--s-5); background: var(--p-bg); color: var(--p-ink); border: 1px solid rgba(17,17,17,.12); border-radius: 12px; box-shadow: 0 12px 40px rgba(17,17,17,.18); font-family: var(--font-text); }
+@media (prefers-reduced-motion: no-preference) { .cookie { animation: cookie-in .45s cubic-bezier(.2,.7,.2,1) both; } }
+@keyframes cookie-in { from { opacity: 0; transform: translateY(24px); } }
+.cookie__text { flex: 1; font-size: 14px; line-height: 1.5; }
+.cookie__text p { margin: 0; color: var(--p-muted); }
+.cookie__title { margin: 0 0 2px; font: 600 15px/1.3 var(--font-text); color: var(--p-ink); }
+.cookie__prefs { display: grid; gap: var(--s-2); margin-top: var(--s-3); }
+.cookie__row { display: flex; gap: var(--s-2); align-items: flex-start; }
+.cookie__row input { margin-top: 3px; accent-color: var(--p-action); }
+.cookie__row strong { display: block; color: var(--p-ink); }
+.cookie__actions { display: flex; gap: var(--s-2); flex: none; align-items: center; }
+.cookie .btn { height: var(--btn-h-sm); padding: 0 var(--s-4); white-space: nowrap; }
+.cookie .btn--primary { background: var(--p-action); color: var(--p-action-ink); }
+.cookie .btn--secondary { background: transparent; color: var(--p-ink); border-color: rgba(17,17,17,.3); }
+.cookie .btn--text { background: transparent; color: var(--p-action); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 759px) { .cookie { flex-direction: column; align-items: stretch; gap: var(--s-3); } .cookie__actions { flex-direction: column-reverse; align-items: stretch; } }
+
+/* ---- extra life: header shadow, row and card hover, photo zoom (transform and opacity only) ---- */
+header.nav { transition: box-shadow 250ms ease; }
+header.nav.is-scrolled { box-shadow: 0 6px 24px rgba(17,17,17,.08); }
+@media (prefers-reduced-motion: no-preference) {
+  .rows > li { transition: transform 300ms cubic-bezier(.2,.7,.2,1), background-color 300ms ease; }
+  .rows > li:hover { transform: translateX(6px); }
+  .card { transition: transform 300ms cubic-bezier(.2,.7,.2,1), box-shadow 300ms ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(17,17,17,.12); }
+  .frame--photo { overflow: hidden; }
+  .frame--photo img { transition: transform 900ms cubic-bezier(.2,.7,.2,1); }
+  .frame--photo:hover img { transform: scale(1.04); }
+}

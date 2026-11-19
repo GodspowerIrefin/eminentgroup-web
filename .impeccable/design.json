@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-18T21:15:00.000Z",
+  "title": "Design System: Eminent One",
+  "extensions": {
+    "colorMeta": {
+      "credential-blue": {
+        "role": "primary",
+        "displayName": "Credential Blue",
+        "canonical": "#1a4be0",
+        "tonalRamp": ["oklch(15% 0.06 265)", "oklch(25% 0.1 265)", "oklch(35% 0.15 265)", "oklch(45% 0.2 265)", "oklch(55% 0.19 265)", "oklch(70% 0.13 265)", "oklch(85% 0.06 265)", "oklch(95% 0.02 265)"]
+      },
+      "credential-blue-deep": {
+        "role": "primary",
+        "displayName": "Credential Blue, pressed",
+        "canonical": "color-mix(in oklab, #1a4be0 86%, #16150f)",
+        "tonalRamp": ["oklch(15% 0.05 265)", "oklch(25% 0.09 265)", "oklch(33% 0.13 265)", "oklch(43% 0.17 265)", "oklch(53% 0.17 265)", "oklch(68% 0.12 265)", "oklch(84% 0.05 265)", "oklch(95% 0.02 265)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#f5f2eb",
+        "tonalRamp": ["oklch(18% 0.008 85)", "oklch(30% 0.01 85)", "oklch(42% 0.012 85)", "oklch(55% 0.014 85)", "oklch(68% 0.015 85)", "oklch(80% 0.015 85)", "oklch(90% 0.013 85)", "oklch(96.2% 0.009 85)"]
+      },
+      "photo-mat": {
+        "role": "neutral",
+        "displayName": "Photo Mat",
+        "canonical": "#e6e0d3",
+        "tonalRamp": ["oklch(18% 0.012 85)", "oklch(30% 0.016 85)", "oklch(42% 0.019 85)", "oklch(55% 0.021 85)", "oklch(68% 0.022 85)", "oklch(80% 0.022 85)", "oklch(90.5% 0.02 85)", "oklch(96% 0.012 85)"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#16150f",
+        "tonalRamp": ["oklch(15% 0.008 100)", "oklch(19% 0.009 100)", "oklch(30% 0.009 100)", "oklch(42% 0.009 100)", "oklch(55% 0.008 100)", "oklch(70% 0.007 100)", "oklch(85% 0.005 100)", "oklch(95% 0.003 100)"]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#3d3a33",
+        "tonalRamp": ["oklch(15% 0.01 85)", "oklch(25% 0.012 85)", "oklch(35% 0.013 85)", "oklch(45% 0.013 85)", "oklch(57% 0.012 85)", "oklch(70% 0.01 85)", "oklch(85% 0.007 85)", "oklch(95% 0.004 85)"]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgb(22 21 15 / 0.18)",
+        "tonalRamp": ["rgb(22 21 15 / 0.9)", "rgb(22 21 15 / 0.7)", "rgb(22 21 15 / 0.5)", "rgb(22 21 15 / 0.35)", "rgb(22 21 15 / 0.24)", "rgb(22 21 15 / 0.18)", "rgb(22 21 15 / 0.11)", "rgb(22 21 15 / 0.06)"]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "#111111",
+        "tonalRamp": ["oklch(12% 0 0)", "oklch(17.5% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(52% 0 0)", "oklch(68% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"]
+      },
+      "on-accent": {
+        "role": "neutral",
+        "displayName": "On Accent",
+        "canonical": "#ffffff",
+        "tonalRamp": ["oklch(30% 0 0)", "oklch(45% 0 0)", "oklch(58% 0 0)", "oklch(70% 0 0)", "oklch(80% 0 0)", "oklch(88% 0 0)", "oklch(95% 0 0)", "oklch(100% 0 0)"]
+      },
+      "error": {
+        "role": "neutral",
+        "displayName": "Error",
+        "canonical": "color-mix(in oklab, #d92d20 72%, #16150f)",
+        "tonalRamp": ["oklch(18% 0.06 28)", "oklch(28% 0.1 28)", "oklch(38% 0.14 28)", "oklch(48% 0.17 28)", "oklch(58% 0.17 28)", "oklch(72% 0.12 28)", "oklch(86% 0.06 28)", "oklch(95% 0.02 28)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page heroes only; revealed line by line." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings (up to 64px desktop); not yet built, legacy sections still use Outfit." },
+      "title": { "displayName": "Title", "purpose": "Card and list-item titles, form section titles." },
+      "body": { "displayName": "Body", "purpose": "Leads, paragraphs and answers; 17px on phones." },
+      "label": { "displayName": "Label", "purpose": "Small uppercase section labels and captions above a headline or rule." }
+    },
+    "shadows": [
+      { "name": "none", "value": "none", "purpose": "The system is flat: no shadow on cards, panels or buttons in new sections." },
+      { "name": "legacy-card", "value": "inset 0 1px 0 rgb(255 255 255 / 0.07), 0 1px 2px rgb(0 0 0 / 0.05)", "purpose": "The kit card's faint edge, on legacy sections only; do not carry into new work." }
+    ],
+    "motion": [
+      { "name": "ease-ui", "value": "cubic-bezier(0.2, 0.8, 0.2, 1)", "purpose": "Hover, press and panel transitions (about 150ms in, 120ms out)." },
+      { "name": "ease-reveal", "value": "cubic-bezier(0.16, 0.84, 0.24, 1)", "purpose": "Headline lines rising from their masks." },
+      { "name": "ease-settle", "value": "cubic-bezier(0.2, 0.7, 0.2, 1)", "purpose": "Photographs settling from 1.08 to 1; supporting copy fading up." },
+      { "name": "duration-hover", "value": "150ms", "purpose": "Buttons and links answering the pointer (the brief allows up to 200ms)." },
+      { "name": "duration-line", "value": "850ms", "purpose": "One headline line's reveal; 120ms between lines, first at 150ms." },
+      { "name": "duration-image", "value": "1200ms", "purpose": "A photograph's fade and settle on entry." },
+      { "name": "duration-support", "value": "700ms", "purpose": "Lead and buttons rising 16px into place, starting at 560ms." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "0px" },
+      { "name": "tablet", "value": "640px" },
+      { "name": "desktop", "value": "1024px" },
+      { "name": "wide", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The page's one filled action, in Credential Blue with a sliding arrow.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Request staff <svg class=\"ds-arrow\" viewBox=\"0 0 12 12\" width=\"12\" height=\"12\" aria-hidden=\"true\"><path d=\"M1 6h8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M4.5 2.5 8 6l-3.5 3.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 24px; border-radius: 8px; border: 1px solid transparent; background: #1a4be0; color: #ffffff; font: 500 16px/1 Outfit, system-ui, sans-serif; text-decoration: none; transition: background-color 150ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 90ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-btn-primary .ds-arrow { transition: transform 150ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-btn-primary:hover { background: color-mix(in oklab, #1a4be0 86%, #16150f); } .ds-btn-primary:hover .ds-arrow { transform: translateX(3px); } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid #1a4be0; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The quieter second action: Paper face with an ink outline.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">Apply for work</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; height: 44px; padding: 0 24px; border-radius: 8px; border: 1px solid rgb(22 21 15 / 0.2); background: #f5f2eb; color: #16150f; font: 500 16px/1 Outfit, system-ui, sans-serif; text-decoration: none; transition: background-color 150ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 150ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-btn-secondary:hover { background: color-mix(in oklab, #f5f2eb 94%, #16150f); border-color: rgb(22 21 15 / 0.35); } .ds-btn-secondary:focus-visible { outline: 2px solid #1a4be0; outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "A labelled field: visible label above, 44px control, error written under it.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field__label\">Facility</span><input class=\"ds-field__input\" type=\"text\"></label>",
+      "css": ".ds-field { display: grid; gap: 8px; font: 500 14px/1.3 Outfit, system-ui, sans-serif; color: #16150f; } .ds-field__input { height: 44px; padding: 0 12px; border: 1px solid rgb(22 21 15 / 0.2); border-radius: 8px; background: #f5f2eb; color: #16150f; font: 400 16px/1.4 Outfit, system-ui, sans-serif; } .ds-field__input:focus-visible { outline: 2px solid #1a4be0; outline-offset: 2px; } .ds-field__input[aria-invalid=\"true\"] { border: 2px solid color-mix(in oklab, #d92d20 72%, #16150f); }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Words left, the EO name centred, the secondary word and primary button right; moves to Paper under this system.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav__links\"><a href=\"#\">Services</a><a href=\"#\">Employers</a><a href=\"#\">Careers</a><a href=\"#\">About</a></div><a class=\"ds-nav__logo\" href=\"#\">Eminent One</a><div class=\"ds-nav__actions\"><a href=\"#\">Apply for work</a><a class=\"ds-nav__btn\" href=\"#\">Request staff</a></div></nav>",
+      "css": ".ds-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 72px; padding: 0 24px; background: #f5f2eb; border-bottom: 1px solid rgb(22 21 15 / 0.11); font: 500 15px/1 Outfit, system-ui, sans-serif; color: #16150f; } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav__links { display: flex; gap: 28px; } .ds-nav__links a { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; padding-bottom: 4px; transition: background-size 150ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-nav__links a:hover { background-size: 100% 1px; } .ds-nav__logo { font-size: 24px; letter-spacing: -0.02em; } .ds-nav__actions { display: flex; justify-content: flex-end; align-items: center; gap: 24px; } .ds-nav__btn { display: inline-flex; align-items: center; height: 44px; padding: 0 24px; border-radius: 8px; background: #1a4be0; color: #ffffff !important; } .ds-nav__btn:hover { background: color-mix(in oklab, #1a4be0 86%, #16150f); } .ds-nav a:focus-visible { outline: 2px solid #1a4be0; outline-offset: 2px; }"
+    },
+    {
+      "name": "Editorial Hero",
+      "kind": "custom",
+      "refersTo": "hero-photo-mask",
+      "description": "The signature section: Fraunces headline rising line by line on Paper, a hairline, the lead and actions, the photograph bled right under the one big corner.",
+      "html": "<section class=\"ds-hero\"><div class=\"ds-hero__text\"><h1 class=\"ds-hero__title\"><span class=\"ds-line\"><span style=\"--i:0\">Healthcare</span></span> <span class=\"ds-line\"><span style=\"--i:1\">staffing in</span></span> <span class=\"ds-line\"><span style=\"--i:2\">Maryland</span></span></h1><div class=\"ds-hero__foot\"><p>We recruit, credential and place nurses and care staff with Maryland facilities. State license HCSA-01609.</p><a class=\"ds-hero__btn\" href=\"#\">Request staff</a></div></div><div class=\"ds-hero__mask\"></div></section>",
+      "css": ".ds-hero { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; min-height: 520px; background: #f5f2eb; color: #16150f; overflow: hidden; } .ds-hero__text { display: flex; flex-direction: column; justify-content: space-between; padding: 48px 0 48px 40px; gap: 48px; } .ds-hero__title { margin: 0; font: 360 64px/1 Fraunces, Georgia, serif; font-variation-settings: 'opsz' 72; letter-spacing: -0.025em; } .ds-line { display: block; overflow: hidden; padding-bottom: 0.12em; margin-bottom: -0.12em; } .ds-line > span { display: inline-block; animation: ds-rise 850ms cubic-bezier(0.16, 0.84, 0.24, 1) both; animation-delay: calc(150ms + var(--i) * 120ms); } .ds-hero__foot { display: grid; gap: 24px; padding-top: 24px; border-top: 1px solid rgb(22 21 15 / 0.18); } .ds-hero__foot p { margin: 0; font: 400 18px/1.6 Outfit, system-ui, sans-serif; color: #3d3a33; max-width: 44ch; } .ds-hero__btn { justify-self: start; display: inline-flex; align-items: center; height: 44px; padding: 0 24px; border-radius: 8px; background: #1a4be0; color: #ffffff; font: 500 16px/1 Outfit, system-ui, sans-serif; text-decoration: none; } .ds-hero__btn:hover { background: color-mix(in oklab, #1a4be0 86%, #16150f); } .ds-hero__btn:focus-visible { outline: 2px solid #1a4be0; outline-offset: 2px; } .ds-hero__mask { background: #e6e0d3; border-top-left-radius: 120px; animation: ds-settle 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) 50ms both; } @keyframes ds-rise { from { transform: translateY(110%); } to { transform: none; } } @keyframes ds-settle { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: none; } } @media (prefers-reduced-motion: reduce) { .ds-line > span, .ds-hero__mask { animation: none; } }"
+    },
+    {
+      "name": "Hairline List",
+      "kind": "custom",
+      "refersTo": "hairline",
+      "description": "Names and values read across, each row closed by a hairline; replaces boxed cards for facts.",
+      "html": "<ul class=\"ds-rows\"><li><span>Registered nurses</span><span>RN</span></li><li><span>Licensed practical nurses</span><span>LPN</span></li><li><span>Home health aides</span><span>HHA</span></li></ul>",
+      "css": ".ds-rows { list-style: none; margin: 0; padding: 0; font: 400 18px/1.5 Outfit, system-ui, sans-serif; color: #16150f; background: #f5f2eb; } .ds-rows li { display: flex; justify-content: space-between; gap: 24px; padding: 16px 0; border-bottom: 1px solid rgb(22 21 15 / 0.18); } .ds-rows li:first-child { padding-top: 0; } .ds-rows li > span:first-child { font-weight: 500; } .ds-rows li > span:last-child { font-variant-numeric: tabular-nums; color: #3d3a33; }"
+    },
+    {
+      "name": "Closing Band",
+      "kind": "custom",
+      "refersTo": "closing-band",
+      "description": "The deep Night section that ends every page: headline, one line, the large primary action.",
+      "html": "<footer class=\"ds-close\"><h2>Request staff for your facility</h2><p>Send the role, the shift and the start date. The office replies by phone or email.</p><a class=\"ds-close__btn\" href=\"#\">Request staff</a></footer>",
+      "css": ".ds-close { display: grid; gap: 16px; justify-items: start; padding: 72px 40px 40px; background: #111111; color: #ffffff; } .ds-close h2 { margin: 0; font: 360 48px/1.05 Fraunces, Georgia, serif; font-variation-settings: 'opsz' 72; letter-spacing: -0.02em; } .ds-close p { margin: 0 0 16px; font: 400 18px/1.6 Outfit, system-ui, sans-serif; color: rgb(255 255 255 / 0.78); } .ds-close__btn { display: inline-flex; align-items: center; justify-content: center; height: 64px; width: min(100%, 640px); border-radius: 8px; background: #ffffff; color: #111111; font: 500 21px/1 Outfit, system-ui, sans-serif; text-decoration: none; transition: background-color 150ms cubic-bezier(0.2, 0.8, 0.2, 1); } .ds-close__btn:hover { background: color-mix(in oklab, #ffffff 88%, #111111); } .ds-close__btn:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Consultancy Brief",
+    "overview": "The site should read like a premium firm's printed brief: a serif headline set large on warm paper, a thin rule, a few plain sentences, one clear action, and a photograph given real room. Confidence comes from restraint and from facts the reader can check (the license number, the credential checks, the named owners), never from decoration. The visitor is usually a facility manager filling a gap in a schedule, so the page is calm, quick to scan and certain about what to do next.\n\nDensity is low and deliberate. Generous margins, asymmetric halves and long horizontal hairlines do the structuring that boxes and cards did before. Rhythm across a page comes from alternating warm paper sections with deep near-black ones, and from photography cropped under large rounded masks. Motion is measured: headlines rise line by line, photographs settle into place, buttons answer in about 200ms, and nothing moves for its own sake.\n\nThis system replaces the site's original look (pure white ground, Outfit headlines, kit cards on grey). The home hero is the first section built in it and is the reference for every section that follows; the rest of the site is legacy until it is moved over. The words never change: every visible string lives in `content/content.ts` and is locked by `content-lock.md`.",
+    "keyCharacteristics": [
+      "Warm paper ground (no pure white pages), alternating with near-black sections for rhythm.",
+      "Fraunces display headlines at large sizes against an Outfit body: big size contrast.",
+      "Credential Blue as the only accent, on actions and the focus ring.",
+      "Thin hairline dividers and small uppercase labels instead of boxes.",
+      "Full-bleed photographs under large rounded masks.",
+      "Transform-and-opacity motion only, still under reduced motion."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Credential Blue appears only where the visitor acts or where one word is highlighted. No blue backgrounds, panels, icons or decorative strokes.", "section": "colors" },
+      { "name": "The Paper, Not White Rule", "body": "No section ground is pure white (#ffffff). Light sections are Paper; deep sections are Night.", "section": "colors" },
+      { "name": "The Size Contrast Rule", "body": "A headline is at least three times its body text on desktop (96px over 18px in the hero). Middle sizes between 24px and 48px are avoided; contrast comes from the jump, not from many steps.", "section": "typography" },
+      { "name": "The Optical Size Rule", "body": "Fraunces keeps its optical size at 72 even at 96px, so its hairlines stay sturdy enough for a healthcare business rather than turning into fashion-magazine Didone.", "section": "typography" },
+      { "name": "The Half and Bleed Rule", "body": "Pair a text half with a photograph that runs to the screen edge. Never centre a short block of text in an empty screen.", "section": "layout" },
+      { "name": "The Flat Paper Rule", "body": "No box-shadow on cards, panels or buttons in new sections. Separation is a hairline, a change of ground, or space.", "section": "elevation" },
+      { "name": "The One Big Corner Rule", "body": "A masked photograph rounds one corner generously, the corner that faces the text; the other three stay square to the screen edges.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do set every light section on Paper (#f5f2eb) and every deep section on Night (#111111).",
+      "Do keep Credential Blue (#1a4be0) for actions, the focus ring and one highlighted word, nothing else.",
+      "Do set headlines in Fraunces 360 with its optical size held at 72, and body text in Outfit at 17 to 18px.",
+      "Do separate content with 1px hairlines (rgb(22 21 15 / 0.18)) and space rather than boxes.",
+      "Do reveal headlines line by line behind masks (700 to 900ms, staggered) and let photographs settle from 1.08 to 1, animating only transform and opacity.",
+      "Do make every animation stand still and in place under prefers-reduced-motion.",
+      "Do keep the EO logo as supplied, in the header and the footer."
+    ],
+    "donts": [
+      "Don't change any visible text; copy comes only from `content/content.ts` and is locked by `content-lock.md`.",
+      "Don't use pure white (#ffffff) as a page or section ground.",
+      "Don't introduce a second accent colour, a gradient on interface elements, or blue used as decoration.",
+      "Don't animate width, height, top, left or colour for entrances; only transform and opacity.",
+      "Don't add drop shadows to new cards, panels or buttons.",
+      "Don't let Fraunces run at full optical size at display sizes; hold it at 72."
+    ]
+  }
+}

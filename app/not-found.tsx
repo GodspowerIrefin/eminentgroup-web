@@ -1,10 +1,24 @@
-import Button from "@/components/Button";
-import PageHero from "@/components/PageHero";
+import Closing from "@/components/Closing";
+import Header from "@/components/Header";
+import { HeroSplit } from "@/components/Heroes";
+import { actions, pages, pic } from "@/content/content";
+
+const c = pages.notFound;
 
 export default function NotFound() {
   return (
-    <PageHero eyebrow="Page not found" title="We could not find that page." lead="The link may be out of date.">
-      <Button href="/">Back to home</Button>
-    </PageHero>
+    <>
+      <Header />
+      <main id="top">
+        <HeroSplit
+          title={c.hero.title}
+          lead={c.hero.lead}
+          image={pic(c.hero.image)}
+          primary={actions.requestStaff}
+          secondary={actions.applyForWork}
+        />
+      </main>
+      <Closing />
+    </>
   );
 }

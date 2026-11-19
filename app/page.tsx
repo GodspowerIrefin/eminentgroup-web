@@ -1,150 +1,191 @@
-import Image from "next/image";
-import Link from "next/link";
-import Icon, { type IconName } from "@/components/Icon";
-import CtaBand from "@/components/CtaBand";
-import JobList from "@/components/JobList";
-import ProcessTabs from "@/components/ProcessTabs";
-import Reveal from "@/components/Reveal";
-import RoleMarquee from "@/components/RoleMarquee";
-import RolesExplorer from "@/components/RolesExplorer";
-import SectionHead from "@/components/SectionHead";
-import { services, settings, site } from "@/lib/site";
+import Closing from "@/components/Closing";
+import Header from "@/components/Header";
+import { HeroEditorial } from "@/components/Heroes";
+import { actions, jobCopy, jobs, jobShift, pages, photos, pic, roles } from "@/content/content";
 
-const tints = ["bg-sand", "bg-mint", "bg-blush", "bg-gold-200/45"];
-const serviceIcons: IconName[] = ["search", "shield", "calendar", "chat"];
+// Home, in the editorial system (DESIGN.md, DESIGN-BRIEF.md). The grounds alternate for rhythm:
+// hero on Paper / #roles on Forest / #steps on Paper (a timeline that draws as you scroll) /
+// #settings on Night / #checks on Forest with grain (the word-highlight statement) / #openings on
+// Paper / footer on Night with grain. Headlines rise line by line, photographs settle in
+// (public/reveal.js). Every word comes from content/content.ts (pages.home).
+
+const c = pages.home;
+
+// The facility rows swap the photograph (the design kit's system.js does the swap). This keeps their
+// pressed state in step for screen readers and lets Enter and Space choose a row like a button.
+const PEEK_STATE = `(function(){var f=document.getElementById("settings-photo");if(!f)return;var rows=[].slice.call(document.querySelectorAll("[data-peek-to]"));function sync(){var on=f.querySelector("img:not([hidden])");var k=on&&on.getAttribute("data-peek-for");rows.forEach(function(r){r.setAttribute("aria-pressed",String(r.getAttribute("data-peek-to")===k))})}rows.forEach(function(r){r.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();r.click()}})});sync();new MutationObserver(sync).observe(f,{subtree:true,attributes:true,attributeFilter:["hidden"]})})();`;
+
+// a landscape photograph shown in a tall frame (cover) is drawn wider than its frame, so its sizes
+// say so and the browser fetches a file wide enough
+const FILL_SIZES = "(max-width: 639px) 400vw, (max-width: 1023px) 100vw, 70vw";
 
 export default function Home() {
+  const roleImg = pic(c.roles.image);
+  const openImg = pic(c.openings.image);
   return (
     <>
-      <section className="relative overflow-hidden bg-canvas">
-        <div className="mx-auto max-w-[1100px] px-5 pb-14 pt-36 text-center sm:px-8 lg:pb-20 lg:pt-52">
-          <h1 className="display step-in text-[clamp(2.75rem,7.2vw,6rem)] !leading-[1.04]">
-            Staffing healthcare <span className="text-gold-600">with a personal touch</span>
-          </h1>
-          <p
-            className="step-in mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-mut sm:text-xl"
-            style={{ animationDelay: "120ms" }}
-          >
-            A licensed Maryland agency connecting nurses and care professionals with hospitals,
-            nursing homes, rehab centers, assisted living, and home care.
-          </p>
-        </div>
+      <Header />
+      <main id="top">
+        <HeroEditorial
+          title={c.hero.title}
+          lines={[1, 2, 1]}
+          lead={c.hero.lead}
+          image={{ ...pic(c.hero.image), sizes: "(max-width: 639px) 130vw, (max-width: 1023px) 100vw, 86vw", pos: "34% 50%", posPhone: "40% 45%" }}
+          primary={actions.requestStaff}
+          secondary={actions.applyForWork}
+        />
 
-        <div className="step-in relative mx-auto max-w-[1360px] px-3 sm:px-6" style={{ animationDelay: "220ms" }}>
-          <div className="hero-curve relative h-[360px] overflow-hidden sm:h-[520px] lg:h-[620px]">
-            <Image
-              src="/images/hero-team.jpg"
-              alt="Three healthcare professionals in scrubs"
-              fill
-              priority
-              sizes="(min-width: 1360px) 1360px, 100vw"
-              className="object-cover object-[50%_30%]"
-            />
-            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-tr from-forest/55 via-transparent to-gold/45 mix-blend-multiply" />
-            <div aria-hidden="true" className="absolute -bottom-24 -left-16 h-80 w-[28rem] rotate-12 bg-gold/55 [clip-path:polygon(0_100%,100%_0,100%_100%)]" />
-            <div aria-hidden="true" className="absolute -right-10 -top-10 h-72 w-[26rem] -rotate-6 bg-forest/60 [clip-path:polygon(0_0,100%_0,100%_100%)]" />
-          </div>
-          <div className="float-slow absolute bottom-10 left-6 hidden rounded-md bg-white px-5 py-4 shadow-[0_24px_48px_-20px_rgba(23,26,38,0.4)] sm:block lg:left-16">
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-mut">Maryland licensed</p>
-            <p className="mt-1 font-bold">Health Care Staff Agency</p>
-            <p className="text-sm text-mut">License # {site.license}</p>
-          </div>
-        </div>
-
-        <div className="mx-auto max-w-[900px] px-5 pb-20 pt-16 text-center sm:px-8 lg:pb-28 lg:pt-24">
-          <Reveal>
-            <h2 className="display text-[clamp(2rem,4.6vw,3.75rem)] !font-semibold">
-              Filling shifts and careers across our service area
-            </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-mut">
-              We recruit, verify, and place RNs, LPNs, CNAs, home health aides, and more, then stay
-              in touch after the placement starts.
-            </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link href="/employers#request" className="sq-btn sq-btn-solid">
-                Request Staff
-              </Link>
-              <Link href="/job-seekers#apply" className="sq-btn sq-btn-line">
-                Explore Careers
-              </Link>
+        <section className="section tone-forest g2m" id="roles" aria-labelledby="roles-h">
+          <div className="wrap grid grid--top">
+            <div className="span-5">
+              <div className="section-head">
+                <h2 id="roles-h" data-reveal="lines">
+                  {c.roles.title}
+                </h2>
+              </div>
+              <ul className="rows rows--stagger" data-reveal="up">
+                {roles.map((r, i) => (
+                  <li key={r.name} style={{ "--i": i } as React.CSSProperties}>
+                    <span className="rows__name">{r.name}</span>
+                    {r.code && <span className="rows__value">{r.code}</span>}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <RoleMarquee />
-
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead
-            eyebrow="Our services"
-            title={"Staffing for healthcare facilities across Maryland."}
-            lead="We recruit nurses and care staff, verify their credentials, and place them where they are needed."
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {services.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.07}>
-                <article className={`card card-hover h-full border-transparent p-8 sm:p-10 ${tints[i]}`}>
-                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-forest shadow-sm">
-                    <Icon name={serviceIcons[i]} size={28} />
-                  </span>
-                  <h3 className="mt-7 text-[22px] font-bold leading-snug">{s.title}</h3>
-                  <p className="mt-3 text-[17px] leading-relaxed text-mut">{s.body}</p>
-                </article>
-              </Reveal>
-            ))}
+            <figure className="develop span-6 start-7" data-moment="picture-develops">
+              <img
+                src={roleImg.src}
+                srcSet={roleImg.srcSet}
+                sizes="(max-width: 1023px) 100vw, 50vw"
+                width={roleImg.width}
+                height={roleImg.height}
+                alt={roleImg.alt}
+                loading="lazy"
+                decoding="async"
+                data-source="stand-in"
+                data-subject={roleImg.subject}
+              />
+            </figure>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="Staff we place" title="The roles your facility needs filled." />
-          <Reveal className="mt-10">
-            <RolesExplorer />
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="bg-sand px-5 py-14 sm:px-8 lg:py-20">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="Where we place" title="Hospitals, nursing homes, and home care." />
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {settings.map((name, i) => (
-              <li key={name}>
-                <Reveal delay={i * 0.06}>
-                  <div className="card card-hover flex h-full min-h-[148px] flex-col justify-between p-6">
-                    <span className="text-forest">
-                      <Icon name={i % 2 ? "stethoscope" : "building"} size={30} />
-                    </span>
-                    <span className="mt-6 text-lg font-bold leading-snug">{name}</span>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="How it works" title="From request to first shift." />
-          <Reveal className="mt-10">
-            <ProcessTabs />
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="openings" className="px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="Open positions" title="Current openings." />
-          <div className="mt-10">
-            <JobList />
+        <section className="section tone-paper" id="steps" aria-labelledby="steps-h">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 id="steps-h" data-reveal="lines">
+                {c.steps.title}
+              </h2>
+            </div>
+            <div className="timeline">
+              <div className="timeline__rail" data-draw aria-hidden="true">
+                <span className="timeline__line" />
+              </div>
+              <ol className="timeline__steps">
+                {c.steps.items.map((step, i) => {
+                  const img = pic(step.image);
+                  // the square office photographs fill a third of the row; the wide one up to 40%
+                  const sizes = i === 1 ? "(max-width: 1023px) 100vw, 40vw" : "(max-width: 1023px) 100vw, 33vw";
+                  return (
+                    <li className="step" key={step.num} data-reveal="up" style={{ "--i": i } as React.CSSProperties}>
+                      <span className="step__num">{step.num}</span>
+                      <h3 className="step__title">{step.title}</h3>
+                      <p className="step__body">{step.body}</p>
+                      <div className="step__media" data-reveal="img">
+                        <img src={img.src} srcSet={img.srcSet} sizes={sizes} width={img.width} height={img.height} alt={img.alt} loading="lazy" decoding="async" data-source="stand-in" data-subject={img.subject} />
+                      </div>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <CtaBand />
+        <section className="section tone-night" id="settings" aria-labelledby="settings-h">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 id="settings-h" data-reveal="lines">
+                {c.settings.title}
+              </h2>
+              <p data-reveal="up">{c.settings.lead}</p>
+            </div>
+            <div className="grid grid--top fill" data-peek>
+              <ul className="rows span-5" role="group" aria-labelledby="settings-h">
+                {c.settings.items.map((s) => (
+                  <li data-peek-to={s.key} tabIndex={0} role="button" aria-controls="settings-photo" aria-pressed={s === c.settings.items[0]} key={s.key}>
+                    <span className="rows__name">{s.name}</span>
+                    <p>{s.body}</p>
+                  </li>
+                ))}
+              </ul>
+              <div className="frame frame--photo frame--fill span-6 start-7 settings__photo" id="settings-photo" aria-live="polite" data-reveal="img">
+                {c.settings.items.map((s, i) => {
+                  const img = photos[s.photo];
+                  return (
+                    <img
+                      className="frame__img"
+                      data-peek-for={s.key}
+                      src={img.src}
+                      srcSet={img.srcSet}
+                      sizes="(max-width: 639px) 200vw, (max-width: 1023px) 100vw, 60vw"
+                      loading="lazy"
+                      width={img.width}
+                      height={img.height}
+                      alt={img.alt}
+                      hidden={i > 0}
+                      decoding="async"
+                      data-source="stand-in"
+                      data-subject={s.name}
+                      key={s.key}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section statement tone-forest has-grain" id="checks" data-moment="word-highlight" aria-label={c.checks.sectionLabel}>
+          <div className="wrap">
+            <p className="t-label">{c.checks.label}</p>
+            <p className="mo-wh__text">
+              {c.checks.before}
+              <strong>{c.checks.strong}</strong>
+              {c.checks.after}
+            </p>
+          </div>
+        </section>
+
+        <section className="section tone-paper" id="openings" aria-labelledby="openings-h">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 id="openings-h" data-reveal="lines">
+                {c.openings.title}
+              </h2>
+              <p data-reveal="up">{c.openings.lead}</p>
+            </div>
+            <div className="grid grid--top fill">
+              <ul className="rows span-5 jobs" data-reveal="up">
+                {jobs.map((job) => (
+                  <li key={job.code}>
+                    <span className="rows__name">{job.title}</span>
+                    <span className="rows__value">{jobCopy.perHour(job.pay)}</span>
+                    <p>{jobShift(job)}.</p>
+                    <a className="link" href={jobCopy.applyHref(job.code)}>
+                      {jobCopy.applyJob(job.code)}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="frame frame--photo frame--fill span-6 start-7 openings__photo" data-reveal="img">
+                <img className="frame__img" src={openImg.src} srcSet={openImg.srcSet} sizes={FILL_SIZES} width={openImg.width} height={openImg.height} alt={openImg.alt} loading="lazy" decoding="async" data-source="stand-in" data-subject={openImg.subject} />
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Closing grain />
+      <script dangerouslySetInnerHTML={{ __html: PEEK_STATE }} />
     </>
   );
 }
