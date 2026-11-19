@@ -1,4 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/About.html", "destination": "/about/", "permanent": true },
+    { "source": "/Services.html", "destination": "/services/", "permanent": true },
+    { "source": "/RegisteredNurse.html", "destination": "/services/registered-nurses/", "permanent": true },
+    { "source": "/Employers.html", "destination": "/employers/", "permanent": true },
+    { "source": "/JobSeekers.html", "destination": "/job-seekers/", "permanent": true },
+    { "source": "/Resources.html", "destination": "/resources/", "permanent": true },
+    { "source": "/Contact.html", "destination": "/contact/", "permanent": true },
+    { "source": "/Referrals.html", "destination": "/referrals/", "permanent": true }
+  ]
 }

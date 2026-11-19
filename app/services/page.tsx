@@ -1,121 +1,88 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Button from "@/components/Button";
-import CtaBand from "@/components/CtaBand";
-import Faq from "@/components/Faq";
-import PageHero from "@/components/PageHero";
-import Reveal from "@/components/Reveal";
-import RolesExplorer from "@/components/RolesExplorer";
-import SectionHead from "@/components/SectionHead";
-import ServiceSteps from "@/components/ServiceSteps";
-import { site } from "@/lib/site";
+import Closing from "@/components/Closing";
+import Header from "@/components/Header";
+import { HeroSplit } from "@/components/Heroes";
+import { Faq } from "@/components/Blocks";
+import Rich from "@/components/Rich";
+import { actions, pages, pic, roles, type PhotoRef } from "@/content/content";
 
-export const metadata: Metadata = {
-  title: "Medical Staffing",
-  description:
-    "Medical staffing services from Eminent One LLC: recruitment, credentialing, and placement of RNs, LPNs, CNAs, HHAs, and other healthcare professionals across our service area.",
-};
+const c = pages.services;
 
-const link = "font-semibold text-forest underline underline-offset-4";
+export const metadata: Metadata = c.meta;
+
+// Plan: hero (split) / #roles the eight roles in two groups beside a photograph each (two screens) /
+// #faq / footer.closing
+
+function RoleRows({ from, to }: { from: number; to: number }) {
+  return (
+    <ul className="rows span-5">
+      {roles.slice(from, to).map((r) => (
+        <li key={r.name}>
+          <span className="rows__name">{r.name}</span>
+          {r.code && <span className="rows__value">{r.code}</span>}
+          <p>{r.body}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function FillPhoto({ image }: { image: PhotoRef }) {
+  const img = pic(image);
+  return (
+    <div className="frame frame--photo frame--fill span-6 start-7">
+      <img className="frame__img" src={img.src} srcSet={img.srcSet} sizes="(max-width: 1023px) 100vw, 50vw" width={img.width} height={img.height} alt={img.alt} loading="lazy" decoding="async" data-source="stand-in" data-subject={img.subject} />
+    </div>
+  );
+}
 
 export default function Services() {
   return (
     <>
-      <PageHero
-        eyebrow="Medical staffing"
-        title="Nurses and care staff for Maryland healthcare facilities."
-        lead="We staff nurses and other healthcare professionals on temporary, temp-to-perm, and permanent terms. Every candidate is screened and credentialed before placement."
-      >
-        <Button href="/employers#request">Request staff</Button>
-      </PageHero>
+      <Header current="services" />
+      <main id="top">
+        <HeroSplit
+          title={c.hero.title}
+          lead={c.hero.lead}
+          image={{ ...pic(c.hero.image), pos: "50% 50%" }}
+          primary={actions.requestStaff}
+          secondary={actions.applyForWork}
+        />
 
-      <ServiceSteps />
-
-      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead
-            eyebrow="Roles we place"
-            title="Healthcare professionals we supply."
-            lead="Need a role that is not listed? Tell us the role you need filled."
-          />
-          <Reveal className="mt-10">
-            <RolesExplorer />
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-[1200px] gap-5 md:grid-cols-2">
-          <Reveal>
-            <div className="h-full rounded-[28px] bg-forest p-9 text-white sm:p-12">
-              <h2 className="display text-4xl">For healthcare facilities</h2>
-              <p className="mb-9 mt-4 text-lg leading-relaxed text-white/75">
-                Tell us the roles, shifts, and start date. We recruit, verify, and place the staff.
-              </p>
-              <Button href="/employers#request" variant="light">
-                Request staff
-              </Button>
+        <section className="section g2" id="roles" aria-labelledby="roles-h">
+          <div className="wrap">
+            <div className="group">
+              <div className="section-head">
+                <h2 id="roles-h">{c.roles.title}</h2>
+                <p>{c.roles.lead}</p>
+              </div>
+              <div className="grid grid--top fill">
+                <RoleRows from={0} to={4} />
+                <FillPhoto image={c.roles.images[0]} />
+              </div>
             </div>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <div className="h-full rounded-[28px] bg-red p-9 text-white sm:p-12">
-              <h2 className="display text-4xl">For healthcare professionals</h2>
-              <p className="mb-9 mt-4 text-lg leading-relaxed text-white/85">
-                Apply once. We match you with facilities that fit your license and schedule.
-              </p>
-              <Button href="/job-seekers#apply" variant="light">
-                Apply for work
-              </Button>
+            <div className="grid grid--top fill">
+              <RoleRows from={4} to={8} />
+              <FillPhoto image={c.roles.images[1]} />
             </div>
-          </Reveal>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <section id="faq" className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[1fr_1.4fr]">
-          <SectionHead eyebrow="Questions" title="Frequently asked questions." />
-          <Reveal>
-            <Faq
-              items={[
-                {
-                  q: "What settings do you staff?",
-                  a: "Hospitals, nursing homes, rehabilitation centers, assisted living facilities, home care agencies, and other healthcare settings.",
-                },
-                {
-                  q: "Do you place professionals looking for work?",
-                  a: (
-                    <>
-                      Yes. Apply on the{" "}
-                      <Link href="/job-seekers" className={link}>
-                        For Job Seekers
-                      </Link>{" "}
-                      page and we will match you to openings that fit your license and availability.
-                    </>
-                  ),
-                },
-                {
-                  q: "Where do you operate?",
-                  a: "Our office is in Maryland. We staff facilities across our service area.",
-                },
-                {
-                  q: "How do we get started?",
-                  a: (
-                    <>
-                      Send a{" "}
-                      <Link href="/employers#request" className={link}>
-                        staffing request
-                      </Link>{" "}
-                      or call {site.phone}. Tell us the role, shift, and start date.
-                    </>
-                  ),
-                },
-              ]}
-            />
-          </Reveal>
-        </div>
-      </section>
-
-      <CtaBand />
+        <section className="section" id="faq" aria-labelledby="faq-h">
+          <div className="wrap grid grid--top">
+            <div className="span-5 stack-4">
+              <h2 id="faq-h">{c.faq.title}</h2>
+              <p>
+                <Rich value={c.faq.lead} />
+              </p>
+            </div>
+            <div className="span-6 start-7">
+              <Faq items={c.faq.items} />
+            </div>
+          </div>
+        </section>
+      </main>
+      <Closing />
     </>
   );
 }
