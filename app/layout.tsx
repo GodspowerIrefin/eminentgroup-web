@@ -45,6 +45,9 @@ const ROOT = `:root {
 // the hero's entrance and the moments' guard, set before the first paint (motion.md, moments.md)
 const ENTER =
   "document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)";
+// the header's top bar slides away once the page scrolls; the main bar stays (eo.css, nav--eo)
+const NAV_COMPACT =
+  "(function(){var h=document.documentElement;function m(){h.classList.toggle('nav-compact',window.scrollY>8)}m();window.addEventListener('scroll',m,{passive:true})})()";
 const MOMENTS =
   "document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)";
 
@@ -74,6 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         {children}
         <CookieConsent />
+        <script dangerouslySetInnerHTML={{ __html: NAV_COMPACT }} />
         <script type="module" src="/assets/system.js"></script>
         <script type="module" src="/assets/motion/motion.js"></script>
         <script type="module" src="/assets/layout/layout.js"></script>

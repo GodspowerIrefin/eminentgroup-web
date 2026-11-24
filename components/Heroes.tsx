@@ -258,8 +258,7 @@ export function HeroCover({
 
 // hero-dark (home, on the client's reference structure): night ground, the headline set large on
 // the left with one line in cobalt, the lead and the two actions at its foot; the photograph fills
-// the right of the page from the header down, in the chamfered EO frame, with a round badge carrying
-// the EO mark on its edge. Enters once on load (eo.css); rests under reduced motion.
+// the right of the page from the header down, in the chamfered EO frame. Enters once on load (eo.css); rests under reduced motion.
 export function HeroDark({
   title,
   lines,
@@ -318,13 +317,6 @@ export function HeroDark({
               data-source="stand-in"
               data-subject={image.subject}
             />
-            <span className="eo-badge" aria-hidden="true">
-              <svg className="eo-badge__ring" viewBox="0 0 120 120">
-                <circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 5" />
-                <path d="M38 24h44l22 36-22 36H38L16 60z" fill="none" stroke="currentColor" strokeWidth="1" opacity=".5" />
-              </svg>
-              <img className="eo-badge__mark" src="/images/eo-mark-120.png" alt="" width={120} height={85} />
-            </span>
           </div>
         </div>
       </div>

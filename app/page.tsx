@@ -7,13 +7,13 @@ import { actions, footer, pages, photos, pic, roles } from "@/content/content";
 
 // Home, in "The Shift Record" (DESIGN.md), laid out on the client's reference structure: a dark
 // hero with the photograph bled to the edge and a round badge; the facility list beside a light
-// panel; the credential statement beside a photograph; the roles as a three-column services
-// block (heading, list, detail); the steps as dark rows; the open jobs beside a tile grid; the
+// panel; the credential statement beside a photograph; the roles as cards beside a
+// photograph; the steps as dark rows; the open jobs beside a tile grid; the
 // close with three contact cards. Fonts, sizes and every word stay as they were
 // (content/content.ts). Each section is one full screen.
 //
 // deal: hero dark (night), #settings list + panel (paper, peek), #checks photo + statement (cobalt,
-// word-highlight moment), #roles services block (paper, peek, picture-develops moment), #steps dark
+// word-highlight moment), #roles role cards beside a photograph (paper, picture-develops moment), #steps dark
 // rows (night), #openings tiles (paper), close-type with contact cards (night).
 
 const c = pages.home;
@@ -22,9 +22,7 @@ const c = pages.home;
 // keeps each row's pressed state in step for screen readers and lets Enter and Space choose a row.
 const PEEK_STATE = `(function(){document.querySelectorAll("[data-peek]").forEach(function(root){var rows=[].slice.call(root.querySelectorAll("[data-peek-to]"));function sync(){var on=root.querySelector("[data-peek-for]:not([hidden])");var k=on&&on.getAttribute("data-peek-for");rows.forEach(function(r){r.setAttribute("aria-pressed",String(r.getAttribute("data-peek-to")===k))})}rows.forEach(function(r){r.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();r.click()}})});sync();new MutationObserver(sync).observe(root,{subtree:true,attributes:true,attributeFilter:["hidden"]})})})();`;
 
-const roleKey = (name: string) => name.toLowerCase().replace(/[^a-z]+/g, "-");
-const rolesLink = footer.columns[0].links[1]; // "Roles we place"
-const shiftsLink = footer.columns[2].links[0]; // "See open shifts"
+const shiftsLink = footer.seeShifts;
 
 export default function Home() {
   const roleImg = pic(c.roles.image);
@@ -110,49 +108,43 @@ export default function Home() {
           </div>
         </section>
 
-        {/* the roles as a services block: the heading, the list (one row chosen), the photograph and that role's line */}
+        {/* the roles as cards: each one's code, name and line; the photograph on the right */}
         <section className="section tone-paper eo-services" id="roles" aria-labelledby="roles-h">
-          <div className="wrap grid eo-split" data-peek>
-            <div className="span-4 eo-split__side">
+          <div className="wrap grid eo-split">
+            <div className="span-7 eo-split__side">
               <h2 id="roles-h">{c.roles.title}</h2>
-              <a className="link eo-more" href={rolesLink.href}>
-                {rolesLink.label}
-                <Arrow />
-              </a>
+              <ul className="eo-role-cards">
+                {roles.map((r) => (
+                  <li className="card eo-role-card" key={r.name}>
+                    <span className="eo-role-card__icon" aria-hidden="true">
+                      <svg viewBox="0 0 120 104">
+                        <path d="M30 3h60l27 49-27 49H30L3 52z" fill="currentColor" />
+                      </svg>
+                      {r.code && <span className="eo-role-card__abbr">{r.code.split(",")[0]}</span>}
+                    </span>
+                    <p className="eo-role-card__name">{r.name}</p>
+                    <p className="eo-role-card__body">
+                      {r.code && <span className="eo-role-card__code">{r.code} · </span>}
+                      {r.body}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="eo-roles-list span-4" role="group" aria-labelledby="roles-h">
-              {roles.map((r, i) => (
-                <li data-peek-to={roleKey(r.name)} tabIndex={0} role="button" aria-controls="role-detail" aria-pressed={i === 0} key={r.name}>
-                  <span className="eo-roles-list__name">{r.name}</span>
-                  {r.code && <span className="eo-roles-list__code">{r.code}</span>}
-                  <span className="eo-roles-list__go" aria-hidden="true">
-                    <Arrow />
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <div className="span-4 eo-services__detail" id="role-detail" aria-live="polite">
-              <figure className="develop eo-cut eo-services__photo" data-moment="picture-develops">
-                <img
-                  src={roleImg.src}
-                  srcSet={roleImg.srcSet}
-                  sizes="(max-width: 639px) 160vw, (max-width: 1023px) 100vw, 30vw"
-                  width={roleImg.width}
-                  height={roleImg.height}
-                  alt={roleImg.alt}
-                  loading="lazy"
-                  decoding="async"
-                  data-source="stand-in"
-                  data-subject={roleImg.subject}
-                />
-              </figure>
-              {roles.map((r, i) => (
-                <div className="eo-services__copy" data-peek-for={roleKey(r.name)} hidden={i > 0} key={r.name}>
-                  <p className="eo-services__name">{r.name}</p>
-                  <p>{r.body}</p>
-                </div>
-              ))}
-            </div>
+            <figure className="develop eo-cut span-5 start-8 eo-split__tall eo-services__photo" data-moment="picture-develops">
+              <img
+                src={roleImg.src}
+                srcSet={roleImg.srcSet}
+                sizes="(max-width: 639px) 160vw, (max-width: 1023px) 100vw, 40vw"
+                width={roleImg.width}
+                height={roleImg.height}
+                alt={roleImg.alt}
+                loading="lazy"
+                decoding="async"
+                data-source="stand-in"
+                data-subject={roleImg.subject}
+              />
+            </figure>
           </div>
         </section>
 
@@ -186,7 +178,6 @@ export default function Home() {
             <div className="span-7 eo-split__side">
               <div className="section-head">
                 <h2 id="openings-h">{c.openings.title}</h2>
-                <p>{c.openings.lead}</p>
               </div>
               <div className="eo-tickets">
                 <Tickets />

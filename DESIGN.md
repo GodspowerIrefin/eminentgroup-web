@@ -1,57 +1,63 @@
 ---
 name: Eminent One
-description: Editorial design system for a licensed Maryland healthcare staffing agency
+description: "The Shift Record": the design system of a licensed Maryland healthcare staffing agency
 colors:
-  credential-blue: "#1a4be0"
-  credential-blue-deep: "color-mix(in oklab, #1a4be0 86%, #16150f)"
-  paper: "#f5f2eb"
-  photo-mat: "#e6e0d3"
-  ink: "#16150f"
-  ink-soft: "#3d3a33"
-  hairline: "rgb(22 21 15 / 0.18)"
-  night: "#111111"
-  forest: "#12332b"
-  highlight-on-dark: "#a9bfff"
-  on-accent: "#ffffff"
-  error: "color-mix(in oklab, #d92d20 72%, #16150f)"
+  cobalt: "#2338d1"
+  cobalt-deep: "#1a2a9e"
+  sky: "#a9b6ff"
+  paper: "#f4f1ea"
+  paper-2: "#ebe6db"
+  ticket: "#fffdf8"
+  ink: "#101225"
+  ink-soft: "#3a3c4d"
+  muted: "#5b5d6b"
+  night: "#0b1030"
+  night-2: "#141a44"
+  on-dark: "#f4f1ea"
+  on-dark-soft: "#c9cbe0"
+  hairline: "rgb(16 18 37 / 0.14)"
+  hairline-dark: "rgb(244 241 234 / 0.14)"
 typography:
   display:
-    fontFamily: "Fraunces, Georgia, 'Times New Roman', serif"
-    fontSize: "clamp(56px, 5.6vw + 12px, 96px)"
-    fontWeight: 360
-    lineHeight: 1
-    letterSpacing: "-0.025em"
-    fontVariation: "'opsz' 72"
+    fontFamily: "Gloock, Georgia, 'Times New Roman', serif"
+    fontSize: "max(36px, calc(clamp(48px, min(10vw, 19svh), 150px) - 25px))"
+    fontWeight: 400
+    lineHeight: 0.92
+    letterSpacing: "-0.035em"
   headline:
-    fontFamily: "Fraunces, Georgia, 'Times New Roman', serif"
-    fontSize: "64px"
-    fontWeight: 360
-    lineHeight: 1.05
-    letterSpacing: "-0.02em"
-    fontVariation: "'opsz' 72"
-  title:
-    fontFamily: "Outfit, system-ui, sans-serif"
-    fontSize: "20px"
-    fontWeight: 500
-    lineHeight: 1.3
-    letterSpacing: "-0.01em"
+    fontFamily: "Gloock, Georgia, 'Times New Roman', serif"
+    fontSize: "max(28px, calc(clamp(40px, 3.2vw + 18px, 76px) - 25px))"
+    fontWeight: 400
+    lineHeight: 1.02
+    letterSpacing: "-0.015em"
+  close:
+    fontFamily: "Gloock, Georgia, 'Times New Roman', serif"
+    fontSize: "max(36px, min(84px, calc(clamp(52px, 8.4vw, 128px) - 25px)))"
+    fontWeight: 400
+    lineHeight: 0.9
+    letterSpacing: "-0.04em"
+  entry:
+    fontFamily: "Gloock, Georgia, 'Times New Roman', serif"
+    fontSize: "clamp(22px, 0.9vw + 14px, 30px)"
+    fontWeight: 400
+    lineHeight: 1.1
+    letterSpacing: "-0.015em"
   body:
-    fontFamily: "Outfit, system-ui, sans-serif"
+    fontFamily: "'Public Sans', system-ui, sans-serif"
     fontSize: "18px"
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "Outfit, system-ui, sans-serif"
-    fontSize: "13px"
+    fontFamily: "'IBM Plex Mono', ui-monospace, monospace"
+    fontSize: "12.5px"
     fontWeight: 500
-    lineHeight: 1.3
-    letterSpacing: "0.08em"
+    lineHeight: 1.4
+    letterSpacing: "0.06em"
 rounded:
-  control: "8px"
-  panel: "12px"
-  card: "20px"
-  mask-phone: "120px"
-  mask: "180px"
+  control: "2px"
+  photo-cut: "clamp(44px, 6vw, 112px)"
+  photo-cut-small: "clamp(28px, 3vw, 48px)"
+  circle: "50%"
 spacing:
   s-1: "4px"
   s-2: "8px"
@@ -62,165 +68,175 @@ spacing:
   s-7: "48px"
   s-8: "64px"
   s-9: "96px"
-  s-10: "128px"
+  section-top: "120px"
+  section-bottom: "72px"
 components:
   button-primary:
-    backgroundColor: "{colors.credential-blue}"
-    textColor: "{colors.on-accent}"
+    backgroundColor: "{colors.cobalt}"
+    textColor: "#ffffff"
     rounded: "{rounded.control}"
     padding: "0 24px"
     height: "44px"
   button-primary-hover:
-    backgroundColor: "{colors.credential-blue-deep}"
-    textColor: "{colors.on-accent}"
+    backgroundColor: "{colors.night}"
+    textColor: "#ffffff"
   button-secondary:
-    backgroundColor: "{colors.paper}"
+    backgroundColor: "transparent"
     textColor: "{colors.ink}"
     rounded: "{rounded.control}"
     padding: "0 24px"
     height: "44px"
-  input-field:
-    backgroundColor: "{colors.paper}"
+  photo-frame:
+    backgroundColor: "{colors.paper-2}"
+    rounded: "{rounded.photo-cut}"
+  shift-ticket:
+    backgroundColor: "{colors.cobalt}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.control}"
-    padding: "0 12px"
-    height: "44px"
-  hero-photo-mask:
-    backgroundColor: "{colors.photo-mat}"
-    rounded: "{rounded.mask}"
   closing-band:
     backgroundColor: "{colors.night}"
-    textColor: "{colors.on-accent}"
-    padding: "72px 0 40px"
+    textColor: "{colors.on-dark}"
 ---
 
 # Design System: Eminent One
 
 ## Overview
 
-**Creative North Star: "The Consultancy Brief"**
+**Creative North Star: "The Shift Record"**
 
-The site should read like a premium firm's printed brief: a serif headline set large on warm paper, a thin rule, a few plain sentences, one clear action, and a photograph given real room. Confidence comes from restraint and from facts the reader can check (the license number, the credential checks, the named owners), never from decoration. The visitor is usually a facility manager filling a gap in a schedule, so the page is calm, quick to scan and certain about what to do next.
+A staffing agency's world is the shift, the chart and the credential, so the site is set like a well-kept record: warm chart paper, ink, the cobalt of the EO logo as the only accent, and deep "night shift" navy sections between the day ones. Every photograph sits in a frame cut from the EO hexagon. Facts (role codes, shift times, numbers, labels) are set in a mono, like entries on a chart. Headlines are set very large in a sturdy, high-contrast serif.
 
-Density is low and deliberate. Generous margins, asymmetric halves and long horizontal hairlines do the structuring that boxes and cards did before. Rhythm across a page comes from alternating warm paper sections with deep near-black ones, and from photography cropped under large rounded masks. Motion is measured: headlines rise line by line, photographs settle into place, buttons answer in about 200ms, and nothing moves for its own sake.
+The home page follows the client's reference structure (a dark hero; a list beside a light panel; a statement beside a photograph; the role cards beside a photograph; dark rows; a tile grid; contact entries over the footer). Each home section is exactly one full screen on a desktop and one or two on a phone, composed as a spread: big type on one side, a tall photograph or the role list on the other.
 
-This system replaces the site's original look (pure white ground, Outfit headlines, kit cards on grey). The home hero is the first section built in it and is the reference for every section that follows; the rest of the site is legacy until it is moved over. The words never change: every visible string lives in `content/content.ts` and is locked by `content-lock.md`.
+The words never change: every visible string lives in `content/content.ts` and is recorded in `content-lock.md`. The reference's hero stats, logo strip and testimonials are left out because the agency has given no such figures, partners or reviews; they can be added when it does.
 
 **Key Characteristics:**
-- Warm paper ground (no pure white pages), alternating with near-black sections for rhythm.
-- Fraunces display headlines at large sizes against an Outfit body: big size contrast.
-- Credential Blue as the only accent, on actions and the focus ring.
-- Thin hairline dividers and small uppercase labels instead of boxes.
-- Full-bleed photographs under large rounded masks.
-- Transform-and-opacity motion only, still under reduced motion.
+- Paper (day) and night-navy (night) grounds alternating down the page, with one cobalt band.
+- Gloock set very large for headlines and list entries; Public Sans for reading; IBM Plex Mono for labels and facts.
+- The chamfered frame: two opposite corners of every photograph cut at the EO hexagon's angle.
+- Cobalt only on actions, the highlighted word and the chosen row.
+- Flat: no shadows, square controls; separation by ground, hairline and air.
+- Motion: the hero enters once; two dealt moments; hover answers. Nothing reveals on scroll.
 
 ## Colors
 
-A warm, papery neutral world with one assured blue for action.
+A paper-and-ink record with the logo's cobalt for action and a deep navy for the night sections.
 
 ### Primary
-- **Credential Blue** (#1a4be0): the filled primary button ("Request staff", "Apply for work", the form submits), the keyboard focus ring and any highlighted word. It deepens toward the ink on hover. Its scarcity is the point: on any screen it marks where the visitor acts.
+- **Cobalt** (#2338d1): the EO logo's blue. Every "Request staff" button (one look everywhere, the header included), the text links, the chosen row's arrow, the entry bar above each h2, the ticket stubs and the one cobalt band (#checks). White text on it is about 6.5:1.
+- **Sky** (#a9b6ff): cobalt lightened, for marks on navy only (the hero's third headline line, step numbers, footer column titles, contact icons), where cobalt itself would be too dark to read.
 
 ### Neutral
-- **Paper** (#f5f2eb): the ground of every light section and the face of secondary buttons and fields. Warm off-white, never pure white.
-- **Photo Mat** (#e6e0d3): the colour a photograph's mask shows before the image arrives; also a quiet tonal step on paper.
-- **Ink** (#16150f): headlines and body text on paper (about 15:1 on Paper).
-- **Soft Ink** (#3d3a33): lead paragraphs under a headline (about 9.5:1 on Paper). Never lighter than this for text people read.
-- **Hairline** (rgb(22 21 15 / 0.18)): the thin dividers and rules; the one line weight (1px).
-- **Night** (#111111 for the footer, #121210 for full sections): the near-black deep sections: the settings section and the footer.
-- **Forest** (#12332b): the deep green sections (the roles and the credential statement), with Paper text (about 12:1). Forest and Night alternate with Paper down the page.
-- **Highlight on Dark** (#a9bfff): a light tint of Credential Blue, used only on Forest and Night for the highlighted word and the selected row, where the full blue would be too dark to read.
-- **On Accent** (#ffffff): text on Credential Blue and on Night. White is a text colour here, never a page ground.
+- **Paper** (#f4f1ea): the day ground and the header. Never pure white.
+- **Paper 2** (#ebe6db): the light panel that holds the facility photograph; the fill a photograph shows before it loads.
+- **Ink** (#101225): headlines and text on paper.
+- **Soft Ink** (#3a3c4d): leads and paragraphs under a headline.
+- **Muted** (#5b5d6b): rows not chosen, mono labels on paper.
+- **Night** (#0b1030) and **Night 2** (#141a44): the night ground (the hero, #steps, the close and footer) and its raised surface.
+- **On dark** (#f4f1ea) and **On dark soft** (#c9cbe0): text on night.
 
 ### Named Rules
-**The One Accent Rule.** Credential Blue appears only where the visitor acts or where one word is highlighted. No blue backgrounds, panels, icons or decorative strokes.
+**The One Accent Rule.** Cobalt marks where the visitor acts or what is chosen. Sky stands in for it on navy. No other hue.
 
-**The Paper, Not White Rule.** No section ground is pure white (#ffffff). Light sections are Paper; deep sections are Night.
+**The Paper, Not White Rule.** No section ground is pure white. The ticket face (#fffdf8) is the only near-white, inside a ticket.
 
 ## Typography
 
-**Display Font:** Fraunces (with Georgia, Times New Roman, serif)
-**Body Font:** Outfit (with system-ui, sans-serif)
-
-**Character:** A soft, high-contrast serif with optical sizing, set large and slightly tight, against a clean geometric sans for everything a visitor reads or clicks. The serif carries the editorial voice; the sans keeps forms, buttons and facts plain and legible.
+**Display Font:** Gloock (with Georgia, serif). One weight (400).
+**Body Font:** Public Sans (with system-ui), the US government's typeface: civic and plain, right for a state-licensed agency.
+**Mono Font:** IBM Plex Mono, for labels, role codes, shift times and the legal line.
 
 ### Hierarchy
-- **Display** (Fraunces 360, clamp(56px, 5.6vw + 12px, 96px), line-height 1, optical size held at 72): page heroes only. Set line by line, each line its own reveal mask. On tablet and phone it steps down to clamp(42px, 6vw + 18px, 72px).
-- **Headline** (Fraunces 360, up to 64px on desktop, line-height 1.05): section headings, following the brief's 64 to 96px headline range. Not yet built; sections still use the legacy Outfit headline.
-- **Title** (Outfit 500, 20px, line-height 1.3): card and list-item titles, form section titles.
-- **Body** (Outfit 400, 18px desktop and 17px on phones, line-height 1.6, at most 44 to 65 characters a line): leads, paragraphs and answers.
-- **Label** (Outfit 500, 13px, letter-spacing 0.08em, uppercase): small section labels and field captions above a headline or a rule.
+- **Display** (Gloock 400, up to 125px on the home hero, line-height 0.92, tracking -0.035em): the h1, three lines with the third in sky or cobalt. Inner heroes up to 99px. Never under 36px (home) or 32px (inner) on a phone.
+- **Close** (Gloock, up to 84px, at least 36px, line-height 0.9, two balanced lines at most 11ch wide): "Request staff for your facility" across the close.
+- **Headline** (Gloock, up to 51px; 63px on inner pages; at least 28px): every h2, over a 40x4px cobalt entry bar that sits in the section's top padding.
+- **Entry** (Gloock, 22-34px): list names (facilities, roles, leaders, checks), step and ticket titles, the services detail name, FAQ questions, contact values.
+- **Body** (Public Sans 400, 18px, 17px on phones, line-height 1.6): leads and paragraphs; 15px for row descriptions.
+- **Label** (Plex Mono 500, 12.5px, uppercase, tracking 0.06em): section labels, field labels, role codes, ticket fact labels.
 
 ### Named Rules
-**The Size Contrast Rule.** A headline is at least three times its body text on desktop (96px over 18px in the hero). Middle sizes between 24px and 48px are avoided; contrast comes from the jump, not from many steps.
+**The Big Type Rule.** The client chose the large type: headlines stay large, and other pieces fit around them. Every display size was then taken down 25px at the client's request (10px, then 15px more: `calc(... - 25px)` in `public/eo.css`), with floors on a phone so no headline falls to body size. The step numbers came down with them (34px at most) so each heading still reads first.
 
-**The Optical Size Rule.** Fraunces keeps its optical size at 72 even at 96px, so its hairlines stay sturdy enough for a healthcare business rather than turning into fashion-magazine Didone.
+**One h3 Size.** Every h3 on a page shares one size, so the hierarchy reads by level.
 
 ## Layout
 
-A 12-column grid inside a centred container at most 1280px wide, with a 24px gutter (12px on phones) and side margins of 80px from 1024px up, 48px on tablets and 24px on phones. The fixed header is 72px tall (56px on phones).
+A 12-column grid in a container at most 1280px wide, 24px gutter (12px on phones), side margins of 80px from 1024px up, 48px on tablets and 24px on phones. The header is 72px (56px on phones).
 
-Compositions are asymmetric halves. The text takes the left half (six columns) and a photograph takes the right half, bled to the viewport's right edge rather than stopped at the container. Inside a text column, the headline sits at the top and the lead and actions sit under a hairline near the column's foot, leaving deliberate open space between them.
+**Spreads.** A home split puts its words on columns 1-7 and its picture on columns 8-12, so every split shares one column line (x 841 at 1440). Photographs stay inside the container's lines; nothing bleeds to the screen edge. A split's columns are top-aligned: headings use `text-box: trim-start cap alphabetic` so their capitals start on the photograph's top line.
 
-Sections are as tall as their content. Light sections are padded 72px top and bottom on desktop, 56px on tablets and 44px on phones; the hero alone fills the first screen. Below 1024px a split stacks: the photograph goes across the top under the header (about 42% of the screen's height, 46% on phones), and the words follow beneath it.
+**Screens.** On the home page every section is exactly one screen at desktop (`--padt` 120px, `--padb` 72px) and one or two on a phone (`--hm`), filled with content, not air. Inner pages keep sections as tall as their content, except the hero (one screen) and the close.
 
-Breakpoints: 640px (phone to tablet), 1024px (tablet to desktop), 1280px (wide).
+**Stacking.** Below 1024px a split stacks, words first, and each photograph takes a height of its own; the hero's photograph moves across the top under the header.
 
 ### Named Rules
-**The Half and Bleed Rule.** Pair a text half with a photograph that runs to the screen edge. Never centre a short block of text in an empty screen.
+**The Shared Line Rule.** Every split on a page starts its right column on the same grid line.
+
+**The Inside-the-Lines Rule.** Text starts on the container's left line or the shared split line; photographs end on the container's right line.
 
 ## Elevation & Depth
 
-The system is flat. Depth comes from tone (Paper against Night, Photo Mat behind a photograph) and from the masks photographs sit in, not from shadows. Surfaces carry no drop shadow at rest. The brief adds a subtle film-grain texture on deep sections only; it is not yet built.
-
-### Named Rules
-**The Flat Paper Rule.** No box-shadow on cards, panels or buttons in new sections. Separation is a hairline, a change of ground, or space.
+Flat. Depth comes from ground (paper against navy against cobalt), the light panel behind the facility photograph, and the chamfered cut. No shadows on cards, buttons or photographs.
 
 ## Shapes
 
-Controls have gently rounded corners (8px) on buttons and fields. Photographs take large, single-corner masks: the hero image's top-left corner is rounded at up to 180px on desktop (scaling with the viewport from 96px), and its bottom-left at up to 120px on phones, where it spans the full width. Legacy cards use 20px corners and panels 12px. Dividers are straight 1px hairlines. Shapes stay geometric and quiet: no pills except where a control already is one, no blobs, no angled cuts.
-
-### Named Rules
-**The One Big Corner Rule.** A masked photograph rounds one corner generously, the corner that faces the text; the other three stay square to the screen edges.
+- **Controls:** 2px corners: square, sure buttons and fields.
+- **The chamfered frame:** a photograph clips its top-left and bottom-right corners at 45 degrees (`clip-path`), 44-112px on large frames and 28-48px on small ones. The facility panel, the forms and the inner heroes' photo bands use the same cut.
+- **Circles:** only for the row arrows.
+- **The EO hexagon:** on the ticket stubs and as each role card's icon.
 
 ## Components
 
 ### Buttons
-Sure and plain: a filled blue action beside a quiet outlined one.
-- **Shape:** gently rounded (8px), 44px tall, 24px side padding, Outfit 500 at 16px.
-- **Primary:** Credential Blue with white text, carrying a small drawn arrow as its last element.
-- **Hover / Focus:** the fill deepens toward the ink and the arrow slides a few pixels right (about 150 to 200ms); a 2px Credential Blue focus ring offset by 2px appears at once on keyboard focus. A press nudges it down slightly.
-- **Secondary:** Paper face, ink text and a 1px ink outline at 20% strength; on hover the face darkens a step and the outline firms. On phones the secondary in a hero becomes an underlined text link under the full-width primary.
-
-### Inputs / Fields
-- **Style:** 44px tall, a 1px ink outline at 20% strength, 8px corners, 16px Outfit text, a visible label above in Outfit 500 at 14px.
-- **Focus:** the Credential Blue focus ring.
-- **Error:** a 2px Error-coloured border and the reason written under the field in Error colour; the first failed field takes focus.
+- **Primary:** cobalt, white text, 44px, 2px corners, a drawn arrow last. On hover a night fill slides in from the left (260ms) and the arrow moves; a press nudges it down. The same look in the header, the hero and the close.
+- **Secondary:** transparent with a 1px outline at 32% (paper on navy), ink text. Only the hero's "Apply for work" uses it on the home page; other second actions are text links ("Roles we place", "See open shifts").
 
 ### Navigation
-A fixed 72px bar (56px on phones): four words on the left ("Services" opens a full-width panel of link columns), the EO logo and name centred, the secondary action as a plain word and the primary as a button on the right. On phones it collapses to the logo, the primary button and a menu button opening a full-screen sheet. It is still on a white ground (legacy); under this system it moves to Paper.
+A fixed 72px paper bar with a hairline under it (the kit's nav--centre): the EO logo and name on the left line, the four words (Services, Employers, Careers, About) centred, and "Apply for work" (a plain word) with "Request staff" (the primary button) ending on the right line. From 1280px the two sides take equal room so the words sit on the true centre; between 1024 and 1279px they sit centred between the two sides. "Services" opens a full-width panel of link columns. Below 1024px the bar shows the logo, "Request staff" and the menu button, and the words move to a full-screen sheet. The current page's word carries a 2px cobalt underline.
 
-### Editorial Hero (signature)
-The reference section for the whole system. Paper ground; the Display headline on the left half, revealed line by line; a hairline, then the lead in Soft Ink and the two buttons; the photograph on the right half, bled to the edge under the one big corner, settling in from 1.08 scale. Motion: each headline line slides up from behind its mask over 850ms (cubic-bezier(0.16, 0.84, 0.24, 1)), starting 150ms after load and 120ms apart; the photograph fades and settles over 1200ms; the lead and buttons rise 16px and fade in over 700ms at 560ms. Under reduced motion all of it is simply in place.
+### Hero (home: dark)
+Night ground. The h1 on columns 1-7 with its third line in sky; under a rule, the lead and the two buttons. The photograph fills columns 8-12 from the header to the foot in the chamfered frame. Enters once: lines rise, the photograph settles from 1.12. (The reference's round badge was tried and removed at the client's request.)
 
-### Closing Band and Footer
-The page ends on Night: the closing headline, one line and the large primary action, then the link columns, the contact lines and the legal line in white and muted grey. It is the deep section that answers the paper sections above it.
+### Hero (inner pages: band)
+Paper. The h1 across the page (up to 99px), a ruled row with the lead (columns 1-6) and the buttons (7-12), and the photograph as a wide band in the chamfered frame. On Careers and About the band sits over the words.
+
+### List beside a panel (#settings)
+Facility rows in Gloock with their line under them and a 40px circle arrow at the right; the chosen row darkens and fills its arrow with cobalt. Choosing a row (pointer, Enter or Space) swaps the photograph in the light panel (system.js `data-peek`; `aria-pressed` kept in step).
+
+### Statement beside a photograph (#checks)
+The cobalt band: the mono label, then the credential sentence at up to 51px (20px on a phone), its words lighting from 42% to full white as it crosses the screen (the word-highlight moment). The photograph sits on columns 8-12.
+
+### Role cards (#roles)
+"The roles we place" over eight cards, two across on columns 1-7, beside the photograph (the picture-develops moment) on columns 8-12. Each card: a paper-white face (#fffdf8) with a hairline edge and the chamfered cut; the EO hexagon in cobalt as its icon with the role's first code on it; the name in Gloock; the codes in cobalt mono and the role's line in 14px. Hover draws a 3px cobalt line along the top. One column on a phone.
+
+### Dark rows (#steps)
+Night ground; three rows across the grid: the number in sky, the title in Gloock, the line, a small chamfered photograph.
+
+### Shift tickets (#openings)
+"Open nursing jobs" over two tickets that share the column's height, beside two stacked photographs. Each ticket is an open entry over a 2px ink rule: the job title in Gloock and the shift in mono on the left; on the right, torn off along a dashed perforation, a cobalt stub that is the link to apply ("Apply for the RN job"), its words at the top and an arrow at the foot. On hover the stub fills with night from the bottom and the arrow moves. No pay is shown anywhere for now (the client will add it later). On Careers the two tickets sit side by side with labelled Where and Shift facts; on a phone each ticket's stub becomes a full-width 44px bar under it.
+
+### Close and footer
+Night. The call across the page, its line ("Call 410-929-9388 or start online." by default) and the button under it on the left line. Then the directory, as on the agency's original site: Staffing Services (the eight roles), Careers, Who We Are (with Insights under it), For Employers, and Get in touch (the street and district, the phone in bold, "Email the office", "Get directions", then a rule and five quick links in bold). Column titles in Public Sans 600 on paper white, links in On dark soft. On a phone the groups sit two across and "Get in touch" runs the full width. The base row: the white EO mark with "EMINENT ONE" letter-spaced and "People. Care. Opportunities." on the left; "Maryland Health Care Staff Agency Licensed" and the copyright on the right. No photo credit line (removed at the client's request).
+
+## Motion
+
+- The hero enters once on load (`data-enter`, CSS); under reduced motion everything stands still.
+- Two dealt moments: **picture-develops** on the roles photograph and **word-highlight** on the credential sentence.
+- Hover: buttons fill and their arrows slide, links underline, rows darken, step photographs zoom 1.03 inside their frame.
+- No scroll reveals: `public/reveal.js` is no longer loaded (it broke the kit's one-screen rule). DESIGN-BRIEF.md asked for them; the file is kept so they can return.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** set every light section on Paper (#f5f2eb) and every deep section on Night (#111111).
-- **Do** keep Credential Blue (#1a4be0) for actions, the focus ring and one highlighted word, nothing else.
-- **Do** set headlines in Fraunces 360 with its optical size held at 72, and body text in Outfit at 17 to 18px.
-- **Do** separate content with 1px hairlines (rgb(22 21 15 / 0.18)) and space rather than boxes.
-- **Do** reveal headlines line by line behind masks (700 to 900ms, staggered) and let photographs settle from 1.08 to 1, animating only transform and opacity.
-- **Do** make every animation stand still and in place under prefers-reduced-motion.
-- **Do** keep the EO logo as supplied, in the header and the footer.
+- **Do** take every word from `content/content.ts` and record a change of reading order in `content-lock.md`.
+- **Do** set headlines in Gloock as large as the section allows.
+- **Do** cut every photograph with the chamfered frame and keep it inside the container's lines.
+- **Do** draw "Request staff" the same way everywhere: cobalt fill.
+- **Do** start every split's right column on the shared line (column 8 on the home page).
+- **Do** keep each home section exactly one screen on a desktop.
 
 ### Don't:
-- **Don't** change any visible text; copy comes only from `content/content.ts` and is locked by `content-lock.md`.
-- **Don't** use pure white (#ffffff) as a page or section ground.
-- **Don't** introduce a second accent colour, a gradient on interface elements, or blue used as decoration.
-- **Don't** animate width, height, top, left or colour for entrances; only transform and opacity.
-- **Don't** add drop shadows to new cards, panels or buttons.
-- **Don't** let Fraunces run at full optical size at display sizes; hold it at 72.
+- **Don't** invent figures, partners, reviews or quotes to fill a reference layout.
+- **Don't** add a second accent hue, a gradient or a shadow.
+- **Don't** bleed a photograph to the screen edge or put text over one.
+- **Don't** reveal sections, cards or headings on scroll.
+- **Don't** edit the design kit's files in `public/assets/`; page CSS goes in `public/eo.css`.

@@ -1,9 +1,9 @@
 gate: checking out/index.html (service); this takes a few minutes on a CPU Chrome
 gate: no open FAIL
-  WAIVED copy-headings div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-step: the three step titles are the client's locked copy (content-lock.md: do not change any text); they name the steps of a staffing request
-  WAIVED phone-number ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card > span.eo-contact__value : the client's own published office line (410-929-9388, on the existing site); facilities and nurses call the agency on it
-  WAIVED phone-number div.closing__links > ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card "tel: the tel: link of the client's own published office line, the phone the brief gives, not an invented one
+  WAIVED copy-headings h2#roles-h "The roles we place": the client's own wording: "The roles we place" is the heading the client asked for (changed from "The 8 roles we place"), and the three step titles are locked copy (content-lock.md: do not change any text); together they name the agency's roles and the steps of a staffing request
+  WAIVED phone-number div.wrap > div.closing__cta.close--type > div.section-head > p "410-929-9388": the client's own published office line (410-929-9388): the close line "Call 410-929-9388 or start online." is the wording the client asked for, and the footer's phone entry repeats the same real number; facilities and nurses call the agency on it
+  WAIVED phone-number div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2) > a.eo-f: the tel: link of the client's own published office line (410-929-9388), in the footer's Get in touch column as on the agency's original site, not an invented number
   WAIVED run-on h1#hero-h "Healthcare staffing in Maryland": one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md
-  WAIVED one-heading h2#roles-h "The 8 roles we place": the other "heading" the checker sees is the credential sentence on the cobalt band, set large by design as a statement (a paragraph, not a heading); the real section headings sit a screen apart
-  14 WARN (not blocking), first: scroll-reveal div#role-detail > figure.develop.eo-cut; scroll-reveal section#checks > div.wrap.grid > div.spa; no-visual section#steps "From request to first shi; heading-scale div.wrap > ol.eo-steps__rows.fill > li.e; section-gaps main#top > section.hero.eo-dark / sectio
+  waiver ignored (matches no open finding): one-heading "h2#roles-h"
+  20 WARN (not blocking), first: scroll-reveal section#roles > div.wrap.grid > figure.d; scroll-reveal section#checks > div.wrap.grid > div.spa; no-visual section#steps "From request to first shi; heading-scale div.wrap > ol.eo-steps__rows.fill > li.e; body-size div.span-7.eo-split__side > ul.eo-role-c
 GATE: PASS

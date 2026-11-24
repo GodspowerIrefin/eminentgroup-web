@@ -2,37 +2,34 @@ import Arrow from "@/components/Arrow";
 import Rich from "@/components/Rich";
 import { jobCopy, jobs, jobShift, mailto, roles, ui, type FormCopy, type Rich as RichValue } from "@/content/content";
 
-// The open shifts, one card each: the facts as given, pay per hour, one link to apply.
-export function JobCards({ span = "span-3" }: { span?: string }) {
+// The open shifts on Careers, in the same shift-ticket form as the home page: the title and the
+// facts (where, shift) on the left; the stub on the right, torn off along a perforation, is the
+// link to apply for that shift.
+export function JobCards({ span = "" }: { span?: string }) {
   return (
-    <>
+    <ul className={`eo-ticket-list eo-ticket-list--facts ${span}`.trim()}>
       {jobs.map((job) => (
-        <article className={`card job eo-ticket ${span}`} key={job.code}>
-          <span className="eo-ticket__stub" aria-hidden="true">
-            {job.code}
-          </span>
-          <h3 className="t-card">{job.title}</h3>
-          <dl className="job__facts">
-            <div>
-              <dt>{jobCopy.where}</dt>
-              <dd>{job.location}</dd>
-            </div>
-            <div>
-              <dt>{jobCopy.shift}</dt>
-              <dd>{jobShift(job)}</dd>
-            </div>
-            <div>
-              <dt>{jobCopy.pay}</dt>
-              <dd className="job__pay">{jobCopy.perHour(job.pay)}</dd>
-            </div>
-          </dl>
-          <a className="link job__apply" href={jobCopy.applyHref(job.code)}>
-            {jobCopy.applyShift(job.code)}
+        <li className="eo-ticket card" key={job.code}>
+          <div className="eo-ticket__body">
+            <h3 className="eo-ticket__title">{job.title}</h3>
+            <dl className="eo-ticket__facts">
+              <div className="eo-ticket__fact eo-ticket__fact--where">
+                <dt>{jobCopy.where}</dt>
+                <dd>{job.location}</dd>
+              </div>
+              <div className="eo-ticket__fact eo-ticket__fact--shift">
+                <dt>{jobCopy.shift}</dt>
+                <dd>{jobShift(job)}</dd>
+              </div>
+            </dl>
+          </div>
+          <a className="eo-ticket__stub eo-ticket__go" href={jobCopy.applyHref(job.code)}>
+            <span>{jobCopy.applyShift(job.code)}</span>
             <Arrow />
           </a>
-        </article>
+        </li>
       ))}
-    </>
+    </ul>
   );
 }
 
@@ -57,27 +54,21 @@ export function RoleWall() {
   );
 }
 
-// The open jobs as shift tickets (home #openings): a stub with the role code, then the title, the
-// pay set large, the shift and the link to apply, torn from the stub along a perforation.
+// The open jobs as shift tickets (home #openings): the title and the shift, and the stub torn off
+// along a perforation on the right is the link to apply for that job.
 export function Tickets() {
   return (
     <ul className="eo-ticket-list">
       {jobs.map((job) => (
         <li className="eo-ticket card" key={job.code}>
-          <span className="eo-ticket__stub eo-ticket__stub--mark" aria-hidden="true">
-            <svg viewBox="0 0 120 104">
-              <path d="M30 2h60l28 50-28 50H30L2 52z" fill="none" stroke="currentColor" strokeWidth="6" />
-            </svg>
-          </span>
           <div className="eo-ticket__body">
             <h3 className="eo-ticket__title">{job.title}</h3>
-            <p className="eo-ticket__pay">{jobCopy.perHour(job.pay)}</p>
             <p className="eo-ticket__shift">{jobShift(job)}.</p>
-            <a className="link eo-ticket__apply" href={jobCopy.applyHref(job.code)}>
-              {jobCopy.applyJob(job.code)}
-              <Arrow />
-            </a>
           </div>
+          <a className="eo-ticket__stub eo-ticket__go" href={jobCopy.applyHref(job.code)}>
+            <span>{jobCopy.applyJob(job.code)}</span>
+            <Arrow />
+          </a>
         </li>
       ))}
     </ul>

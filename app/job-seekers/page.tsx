@@ -12,10 +12,9 @@ export const metadata: Metadata = c.meta;
 // a link from a shift card (?position=RN) chooses that role in the form; the form works without it
 const PRESET = `(function(){var p=new URLSearchParams(location.search).get('position');var s=document.getElementById('apl-position');if(!p||!s)return;for(var o of s.options){if(o.value===p||o.text===p){s.value=o.value;break}}})();`;
 
-// Plan: hero (photo) / #openings the two shifts beside a photograph / #checks what we check before
+// Plan: hero (photo) / #openings the two shift tickets side by side / #checks what we check before
 // a first shift, beside a photograph / #apply the application / footer.closing
 export default function JobSeekers() {
-  const openImg = pic(c.openings.image);
   const checkImg = pic(c.checks.image);
   return (
     <>
@@ -36,13 +35,8 @@ export default function JobSeekers() {
               <h2 id="openings-h">{c.openings.title}</h2>
               <p>{c.openings.lead}</p>
             </div>
-            <div className="grid grid--top fill">
-              <div className="span-6 eo-tickets">
-                <JobCards span="" />
-              </div>
-              <div className="frame frame--photo frame--fill span-6 start-7">
-                <img className="frame__img" src={openImg.src} srcSet={openImg.srcSet} sizes="(max-width: 1023px) 100vw, 50vw" width={openImg.width} height={openImg.height} alt={openImg.alt} loading="lazy" decoding="async" data-source="stand-in" data-subject={openImg.subject} />
-              </div>
+            <div className="eo-tickets eo-tickets--wide">
+              <JobCards />
             </div>
           </div>
         </section>

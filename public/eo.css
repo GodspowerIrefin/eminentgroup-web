@@ -568,20 +568,8 @@ html footer.closing { --padb: 72px; }
   clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c)) !important;
 }
 .eo-dark__media > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--ly-pos, 50% 50%); }
-/* the round badge on the photograph's left edge: the EO mark inside a dotted ring and the hexagon */
-.eo-badge {
-  position: absolute; z-index: 2; width: 132px; height: 132px; border-radius: 50%;
-  left: calc((100% + var(--gutter)) * 7 / 12 - 66px); top: 62%;
-  display: grid; place-items: center; background: #f4f1ea; color: var(--eo-cobalt);
-  box-shadow: 0 0 0 8px var(--eo-night);
-}
-.eo-badge__ring { position: absolute; inset: 8px; width: calc(100% - 16px); height: auto; }
-.eo-badge__mark { width: 54px; height: auto; position: relative; }
 @media (prefers-reduced-motion: no-preference) {
-  .eo-badge__ring { transition: transform 1600ms cubic-bezier(.2,.7,.2,1); }
-  .eo-badge:hover .eo-badge__ring { transform: rotate(180deg); }
   .eo-dark__media > img { animation: eo-settle 1500ms cubic-bezier(0.2, 0.7, 0.2, 1) 80ms both; }
-  .eo-badge { animation: eo-soft 700ms cubic-bezier(0.2, 0.7, 0.2, 1) 700ms both; }
 }
 @media (max-width: 1023px) {
   .eo-dark { --photo: min(36svh, 58vw); }
@@ -590,14 +578,10 @@ html footer.closing { --padb: 72px; }
   .eo-dark .eo-dark__title { --fs: clamp(48px, 12.4vw, 112px); }
   .eo-dark__media { position: absolute; top: calc(-1 * (var(--photo) + var(--hgap))); left: 0; right: 0; height: var(--photo); --c: clamp(44px, 9vw, 88px); }
   .eo-dark__media > img { object-position: var(--ly-pos-phone, var(--ly-pos, 50% 50%)); }
-  .eo-badge { width: 96px; height: 96px; left: auto; right: 20px; top: calc(-1 * var(--hgap) - 48px); box-shadow: 0 0 0 6px var(--eo-night); }
-  .eo-badge__mark { width: 40px; }
 }
 @media (max-width: 639px) {
   .eo-dark { --photo: min(30svh, 64vw); }
   .eo-dark .eo-dark__title { --fs: clamp(42px, 12.6vw, 68px); }
-  .eo-badge { width: 80px; height: 80px; top: calc(-1 * var(--hgap) - 40px); right: 14px; }
-  .eo-badge__mark { width: 32px; }
 }
 
 /* ---- #settings: the numbered list beside a light panel ---- */
@@ -737,8 +721,6 @@ html footer.closing > .wrap { gap: var(--s-6); }
 
 /* ---- gate round 1 (reference structure) ---- */
 /* the badge sits inside the photograph, at its square lower-left corner */
-.eo-badge { left: 24px; top: auto; bottom: 24px; box-shadow: none; }
-@media (max-width: 1023px) { .eo-badge { left: auto; right: 16px; top: auto; bottom: 16px; } }
 /* the headline's capitals start on the photograph's top line */
 .eo-dark .eo-dark__title { margin-top: -0.09em; }
 /* plain photographs (not the kit's frame) for the statement and the tiles */
@@ -856,3 +838,307 @@ footer.closing .btn--primary:hover { color: var(--eo-night); }
 @media (max-width: 639px) { html #roles .eo-services__photo { height: 780px; } }
 .eo-ticket__stub--mark svg { width: 44%; max-width: 44px; height: auto; color: #fff; }
 @media (max-width: 639px) { html #roles .eo-services__photo { height: 660px; } .eo-tiles > .eo-photo { height: 380px; } }
+
+/* ---- the header: logo left, words centred, actions right (nav--centre) ---- */
+/* a wide screen: the two sides take equal room, so the words sit on the true centre */
+@media (min-width: 1280px) { .nav--centre .nav__bar { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); } }
+@media (min-width: 1024px) and (max-width: 1279px) { .nav--centre .nav__bar { grid-template-columns: auto minmax(0, 1fr) auto; } }
+
+/* ---- the big type, 25px smaller than the original sizes (client: -10px, then -15px more), with a
+   floor on phones so no headline drops to body size ---- */
+.eo-dark .eo-dark__title { font-size: max(36px, calc(var(--fs) - 25px)); }
+.eo-band .eo-band__title { font-size: max(32px, calc(clamp(48px, min(7.6vw, 13svh), 124px) - 25px)); }
+.closing__cta h2 { font-size: max(36px, calc(clamp(52px, 8.4vw, 128px) - 25px)); }
+.eo-promise .mo-wh__text { font-size: max(20px, calc(clamp(34px, 3.4vw + 14px, 76px) - 25px)); }
+:root { --t-h2: max(28px, calc(clamp(40px, 3.2vw + 18px, 76px) - 25px)); }
+main:not(.eo-home) .section-head > h2, main:not(.eo-home) .stack-4 > h2, main:not(.eo-home) .stack-5 > h2 { font-size: max(28px, calc(clamp(44px, 3.8vw + 16px, 88px) - 25px)); }
+@media (max-width: 1023px) {
+  .eo-band .eo-band__title { font-size: max(32px, calc(clamp(44px, 9.4vw, 88px) - 25px)); }
+}
+@media (max-width: 639px) {
+  .eo-band .eo-band__title { font-size: max(32px, calc(clamp(40px, 11.6vw, 60px) - 25px)); }
+  .eo-promise .mo-wh__text { font-size: 20px; }
+}
+@media (max-width: 639px) { .eo-steps__num { font-size: 26px; } }
+/* the step numbers stay under the smaller headings */
+.eo-steps__num { font-size: clamp(26px, 1.2vw + 14px, 34px); }
+@media (max-width: 639px) { .eo-steps__num { font-size: 24px; } }
+
+/* ---- #roles: the roles as cards, two across, beside the photograph ---- */
+.eo-role-cards { list-style: none; margin: 0; padding: 0; flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(0, 1fr); gap: var(--s-4); }
+.eo-role-card.card {
+  --c: 18px; position: relative; display: flex; flex-direction: column; gap: 6px; min-height: 0;
+  padding: clamp(14px, 1.3vw, 20px) clamp(16px, 1.5vw, 22px); background: #fffdf8; border: 0; border-radius: 0;
+  box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12);
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+  transition: box-shadow 250ms ease;
+}
+.eo-role-card.card:hover { transform: none; box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12), inset 0 3px 0 var(--eo-cobalt); }
+.eo-role-card__code { font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em; color: var(--eo-cobalt); }
+.eo-role-card__mark { width: 18px; height: auto; color: var(--eo-cobalt); }
+.eo-role-card__name { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 0.6vw + 14px, 24px); line-height: 1.1; letter-spacing: -0.01em; margin-top: auto; }
+.eo-role-card__body { font-size: 14px; line-height: 1.45; color: var(--ink-soft); }
+html body main.eo-home #roles .eo-services__photo { height: 100%; margin: 0; }
+@media (max-width: 1023px) {
+  .eo-role-cards { grid-auto-rows: auto; }
+  .eo-role-card.card { min-height: 140px; }
+  html body main.eo-home #roles .eo-services__photo { flex: none; height: clamp(300px, 52vw, 460px); }
+}
+@media (max-width: 639px) {
+  .eo-role-cards { grid-template-columns: minmax(0, 1fr); gap: var(--s-3); }
+  .eo-role-card.card { min-height: 0; }
+  .eo-role-card__name { margin-top: var(--s-2); }
+  html body main.eo-home #roles .eo-services__photo, html #roles .eo-services__photo { height: 420px; }
+}
+.eo-role-card.card > .eo-role-card__name { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 0.6vw + 14px, 24px); line-height: 1.1; letter-spacing: -0.01em; }
+.eo-role-card.card > .eo-role-card__body { font-size: 14px; line-height: 1.45; color: var(--ink-soft); max-width: none; }
+@media (max-width: 639px) { html body main.eo-home #roles .eo-services__photo, html #roles .eo-services__photo { height: 320px; } }
+/* each role card's icon: the EO hexagon in cobalt with the role's first code on it */
+.eo-role-card__icon { position: relative; display: grid; place-items: center; width: 44px; height: 38px; color: var(--eo-cobalt); flex: none; }
+.eo-role-card__icon > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.eo-role-card__abbr { position: relative; font: 500 11px/1 var(--font-mono); letter-spacing: 0.04em; color: #fff; }
+.eo-role-card.card > .eo-role-card__name { margin-top: auto; }
+.eo-role-card__code { font: 500 11.5px/1 var(--font-mono); letter-spacing: 0.06em; color: var(--eo-cobalt); }
+.eo-role-card.card { flex-direction: column; }
+@media (min-width: 1024px) {
+  .eo-role-card.card { display: grid; grid-template-columns: 44px minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: var(--s-4); row-gap: 4px; align-content: start; }
+  .eo-role-card__icon { grid-row: 1 / span 2; }
+  .eo-role-card.card > .eo-role-card__name { margin-top: 0; }
+}
+/* the icon beside the name at every width */
+.eo-role-card.card { display: grid; grid-template-columns: 44px minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: var(--s-4); row-gap: 4px; align-content: start; }
+.eo-role-card__icon { grid-row: 1 / span 2; }
+.eo-role-card.card > .eo-role-card__name { margin-top: 0; }
+@media (max-width: 639px) { html body main.eo-home #roles .eo-services__photo, html #roles .eo-services__photo { height: 300px; } }
+@media (max-width: 639px) { html body main.eo-home #roles .eo-services__photo, html #roles .eo-services__photo { height: 440px; } }
+
+/* ---- #openings: the tickets, the stub is the link to apply ---- */
+#openings .eo-ticket { --stub: clamp(170px, 15vw, 220px); grid-template-columns: minmax(0, 1fr) var(--stub); align-items: stretch; }
+#openings .eo-ticket__body { gap: var(--s-2); padding: var(--s-5) var(--s-5) var(--s-5) 0; align-content: center; }
+#openings .eo-ticket__title { font-size: clamp(26px, 1.2vw + 14px, 34px); }
+#openings .eo-ticket__shift { font-size: 14px; }
+#openings .eo-ticket__go {
+  grid-column: 2; grid-row: 1; position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: var(--s-4);
+  padding: var(--s-5); background: var(--eo-cobalt); color: #fff; text-decoration: none;
+  border-left: 2px dashed var(--eo-paper);
+  font: 600 16px/1.3 var(--font-text); letter-spacing: 0.005em;
+}
+#openings .eo-ticket__go::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--eo-night);
+  transform: scaleY(0); transform-origin: bottom; transition: transform 320ms cubic-bezier(.2,.7,.2,1);
+}
+#openings .eo-ticket__go:hover::before, #openings .eo-ticket__go:focus-visible::before { transform: none; }
+#openings .eo-ticket__go .m-arrow { width: 22px; height: 22px; align-self: flex-end; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; transition: transform 320ms cubic-bezier(.2,.7,.2,1); }
+#openings .eo-ticket__go:hover .m-arrow { transform: translateX(4px); }
+#openings .eo-ticket__go:focus-visible { outline: 2px solid var(--eo-night); outline-offset: 3px; }
+@media (max-width: 639px) {
+  #openings .eo-ticket { --stub: 132px; }
+  #openings .eo-ticket__go { padding: var(--s-4); font-size: 15px; }
+  #openings .eo-ticket__title { font-size: 24px; }
+}
+/* the two tickets share the column's height, so the spread has no empty half */
+#openings .eo-split__side > .eo-tickets { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+#openings .eo-ticket-list { flex: 1 1 auto; grid-auto-rows: minmax(0, 1fr); }
+#openings .eo-ticket__body { gap: var(--s-3); }
+#openings .eo-ticket__title { font-size: clamp(28px, 1.6vw + 12px, 40px); }
+#openings .eo-ticket__go { font-size: 17px; }
+#openings .eo-ticket__go .m-arrow { width: 28px; height: 28px; }
+@media (max-width: 1023px) { #openings .eo-ticket-list { grid-auto-rows: auto; } #openings .eo-ticket { min-height: 170px; } }
+#openings .eo-ticket__go > span { text-wrap: balance; max-width: 11ch; }
+#openings .eo-ticket__title { font-size: clamp(24px, 1vw + 16px, 34px); }
+
+/* ---- the close: the button under the line, on the left (client request) ---- */
+footer.closing .closing__cta.close--type > .btn--xl, footer.closing .closing__cta.close--type > .btn--xl:not(.btn--wide) { grid-column: 1 / -1; justify-self: start; align-self: start; }
+footer.closing .closing__cta .section-head { grid-column: 1 / -1; }
+footer.closing .closing__cta.close--type { row-gap: var(--s-5); }
+footer.closing .closing__cta.close--type { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-5); }
+footer.closing .closing__cta .section-head { width: 100%; }
+
+/* ---- the footer directory, as on the agency's original site ---- */
+.eo-foot { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-7); }
+.eo-foot__col { grid-column: span 2; display: flex; flex-direction: column; gap: var(--s-4); min-width: 0; }
+.eo-foot__col:first-child, .eo-foot__touch { grid-column: span 3; }
+.eo-foot__col h3 { font: 600 16px/1.3 var(--font-text); letter-spacing: 0; text-transform: none; color: #f4f1ea; }
+.eo-foot__col h3.eo-foot__then { margin-top: var(--s-5); }
+.eo-foot__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.eo-foot__col a { color: #c9cbe0; font-size: 15px; text-decoration: none; transition: color 200ms ease; }
+.eo-foot__col a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.eo-foot__address { color: #c9cbe0; font-size: 15px; line-height: 1.5; }
+.eo-foot__col a.eo-foot__phone { color: #fff; font-weight: 600; }
+.eo-foot__quick { padding-top: var(--s-5) !important; border-top: 1px solid rgb(244 241 234 / 0.14); }
+.eo-foot__quick a { color: #fff; font-weight: 600; }
+.eo-foot__base { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-5); margin-top: var(--s-7); padding-top: var(--s-6); border-top: 1px solid rgb(244 241 234 / 0.14); }
+.eo-foot__brand { display: inline-flex; align-items: center; gap: var(--s-4); color: #f4f1ea; text-decoration: none; }
+.eo-foot__brand img { width: 64px; height: auto; }
+.eo-foot__brand > span { display: grid; gap: 4px; }
+.eo-foot__name { font: 600 17px/1 var(--font-text); letter-spacing: 0.18em; text-transform: uppercase; }
+.eo-foot__tag { font: 500 12.5px/1.2 var(--font-text); letter-spacing: 0.06em; color: #c9cbe0; }
+.eo-foot__legal { display: grid; gap: 4px; text-align: right; font-size: 13px; color: #a7acc6; margin: 0; }
+@media (max-width: 1023px) {
+  .eo-foot__col, .eo-foot__col:first-child, .eo-foot__touch { grid-column: span 6; }
+}
+@media (max-width: 639px) {
+  .eo-foot { row-gap: var(--s-6); }
+  .eo-foot__col, .eo-foot__col:first-child, .eo-foot__touch { grid-column: 1 / -1; }
+  .eo-foot__base { flex-direction: column; align-items: flex-start; }
+  .eo-foot__legal { text-align: left; }
+}
+footer.closing .eo-foot__col h3 { font: 600 16px/1.3 var(--font-text); letter-spacing: 0; text-transform: none; color: #f4f1ea; }
+footer.closing .eo-foot__col ul { gap: 8px; }
+footer.closing .eo-foot__col { gap: 14px; }
+footer.closing .eo-foot__col h3.eo-foot__then { margin-top: var(--s-4); }
+footer.closing .eo-foot__quick { padding-top: var(--s-4) !important; }
+footer.closing .eo-foot__base { margin-top: var(--s-5); padding-top: var(--s-5); }
+@media (min-width: 1024px) { html footer.closing { --padt: 80px; } }
+@media (min-width: 1024px) { html footer.closing { --padt: 70px; } }
+/* the close: the call on two balanced lines, never running to the edge */
+footer.closing .closing__cta .section-head > h2 { max-width: 11ch; text-wrap: balance; }
+/* the two-line call still fits the footer's one screen */
+.closing__cta h2 { font-size: max(36px, min(90px, calc(clamp(52px, 8.4vw, 128px) - 25px))); }
+@media (min-width: 1024px) { html footer.closing { --padt: 56px; } }
+html footer.closing > .wrap { gap: var(--s-5); }
+footer.closing .closing__cta.close--type { gap: var(--s-4); }
+footer.closing .eo-foot__base { margin-top: var(--s-4); padding-top: var(--s-4); }
+footer.closing .eo-foot__col ul { gap: 5px; }
+footer.closing .eo-foot__col { gap: 12px; }
+footer.closing .eo-foot__quick { padding-top: var(--s-3) !important; }
+.closing__cta h2 { font-size: max(36px, min(84px, calc(clamp(52px, 8.4vw, 128px) - 25px))); }
+footer.closing .closing__links { width: 100%; align-self: stretch; }
+@media (max-width: 639px) {
+  .eo-foot__col, .eo-foot__col:first-child { grid-column: span 6; }
+  .eo-foot__touch { grid-column: 1 / -1; }
+  footer.closing .eo-foot__col a, .eo-foot__address { font-size: 14px; }
+  .eo-foot__touch > ul:first-of-type { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .eo-foot__quick { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); }
+}
+
+/* ---- Careers: the shift tickets with their facts (same ticket as the home page) ---- */
+.eo-ticket__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-5); margin: var(--s-2) 0 0; }
+.eo-ticket__fact { display: grid; gap: 4px; min-width: 0; }
+.eo-ticket__fact--shift { grid-column: 1 / -1; }
+.eo-ticket__fact dt { font: 500 11.5px/1.3 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.eo-ticket__fact dd { margin: 0; font-size: 15px; line-height: 1.45; color: var(--eo-ink); }
+.eo-ticket__fact--pay dd { font-family: var(--font-display); font-size: 22px; line-height: 1.1; letter-spacing: -0.01em; }
+.eo-ticket-list--facts .eo-ticket { grid-template-columns: minmax(0, 1fr) clamp(150px, 13vw, 190px); }
+@media (max-width: 639px) {
+  .eo-ticket-list--facts .eo-ticket { grid-template-columns: minmax(0, 1fr) 120px; }
+}
+/* phone: the stub becomes a full-width bar under the ticket, torn off along its top */
+@media (max-width: 639px) {
+  #openings .eo-ticket, .eo-ticket-list--facts .eo-ticket { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; }
+  #openings .eo-ticket__body { padding: var(--s-4) 0; }
+  #openings .eo-ticket__go { grid-column: 1; grid-row: 2; flex-direction: row; align-items: center; justify-content: space-between; min-height: 52px; padding: var(--s-3) var(--s-4); border-left: 0; border-top: 2px dashed var(--eo-paper); }
+  #openings .eo-ticket__go > span { max-width: none; }
+  #openings .eo-ticket__go .m-arrow { width: 20px; height: 20px; align-self: center; }
+}
+@media (max-width: 639px) {
+  #openings .eo-ticket__go { height: 44px; min-height: 44px; padding: 0 var(--s-4); font-size: 16px; line-height: 1; }
+  html body main.eo-home .eo-tiles > .eo-photo { height: 460px; }
+}
+
+/* ---- Careers: the two shift tickets side by side, no photograph ---- */
+.eo-tickets--wide > .eo-ticket-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); align-items: stretch; }
+.eo-tickets--wide .eo-ticket { grid-auto-rows: auto; }
+.eo-tickets--wide .eo-ticket__body { align-content: start; }
+/* the facts as labelled rows (stronger than any list default) */
+.eo-ticket-list--facts .eo-ticket__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-5); margin: var(--s-3) 0 0; padding: 0; }
+.eo-ticket-list--facts .eo-ticket__fact { display: grid; gap: 4px; margin: 0; }
+.eo-ticket-list--facts .eo-ticket__fact--shift { grid-column: 1 / -1; }
+.eo-ticket-list--facts .eo-ticket__fact dt { font: 500 11.5px/1.3 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.eo-ticket-list--facts .eo-ticket__fact dd { margin: 0; padding: 0; font-size: 15px; line-height: 1.45; color: var(--eo-ink); }
+.eo-ticket-list--facts .eo-ticket__fact--pay dd { font-family: var(--font-display); font-size: 22px; line-height: 1.1; }
+@media (max-width: 1023px) { .eo-tickets--wide > .eo-ticket-list { grid-template-columns: minmax(0, 1fr); } }
+#openings .eo-tickets--wide .eo-ticket__body { align-content: start; padding-top: var(--s-5); }
+
+/* ============================================================================================
+   HEADER (as on the agency's original site): a thin top bar over the main bar
+   ============================================================================================ */
+:root { --topbar: 0px; }
+@media (min-width: 1024px) { :root { --nav: 88px; --topbar: 40px; } }
+header.nav.nav--eo {
+  height: calc(var(--nav) + var(--topbar)); display: flex; flex-direction: column;
+  background: #f8f6f1; backdrop-filter: none; border-bottom: 1px solid rgb(16 18 37 / 0.08);
+  transition: transform 300ms cubic-bezier(.2,.7,.2,1);
+}
+html.nav-compact header.nav.nav--eo { transform: translateY(calc(-1 * var(--topbar))); }
+.nav--eo .nav__top { height: var(--topbar); flex: none; overflow: hidden; }
+.nav--eo .nav__top-bar { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--s-6); }
+.nav--eo .nav__licensed { margin: 0; font-size: 13px; color: #5b5d6b; }
+.nav--eo .nav__quick { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 28px; }
+.nav--eo .nav__quick a { font-size: 13.5px; color: var(--eo-ink); text-decoration: none; }
+.nav--eo .nav__quick a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.nav--eo .nav__quick .nav__phone { font-weight: 700; }
+.nav--eo .nav__bar { height: var(--nav); flex: none; display: flex; align-items: center; gap: var(--s-6); }
+.nav--eo .nav__brand { display: inline-flex; align-items: center; gap: var(--s-4); text-decoration: none; }
+.nav--eo .nav__brand .logo-mark { height: 60px; width: auto; }
+.nav--eo .nav__brand-text { display: grid; gap: 5px; }
+.nav--eo .nav__name { font: 700 17px/1 var(--font-text); letter-spacing: 0.16em; text-transform: uppercase; color: #1a2a8a; }
+.nav--eo .nav__tag { font: 400 12.5px/1 var(--font-text); letter-spacing: 0.06em; color: #5b5d6b; }
+.nav--eo .nav__links { flex: 1 1 auto; justify-content: flex-end; align-self: stretch; gap: 4px; }
+.nav--eo .nav__link { font-size: 16px; font-weight: 500; color: var(--eo-ink); padding: 0 16px; }
+.nav--eo .nav__link[aria-current="page"] { text-decoration: none; }
+.nav--eo .nav__link[aria-current="page"]::after { content: ""; position: absolute; left: 16px; right: 16px; bottom: -2px; height: 2px; background: var(--eo-cobalt); }
+.nav--eo .nav__actions { margin-left: var(--s-4); }
+.nav--eo .nav__cta { height: 44px; padding: 0 var(--s-5); background: #101225; color: #fff; font-weight: 600; border-radius: 2px; }
+.nav--eo .nav__cta::before { background: var(--eo-cobalt); }
+.nav--eo .nav__cta:hover { color: #fff; }
+/* the first screen starts under both bars */
+@media (min-width: 1024px) {
+  main > :is(.hero, .section--hero) { padding-top: calc(var(--nav) + var(--topbar) + var(--photo, 0px) + var(--hgap)); }
+  html { scroll-padding-top: calc(var(--nav) + var(--s-5)); }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .nav--eo .nav__link { padding: 0 10px; font-size: 15px; }
+  .nav--eo .nav__brand .logo-mark { height: 48px; }
+  .nav--eo .nav__quick { gap: 18px; }
+}
+@media (max-width: 1023px) {
+  .nav--eo .nav__top { display: none; }
+  .nav--eo .nav__brand .logo-mark { height: 36px; }
+  .nav--eo .nav__name { font-size: 14px; letter-spacing: 0.12em; }
+  .nav--eo .nav__tag { font-size: 10.5px; }
+}
+@media (max-width: 639px) {
+  .nav--eo .nav__brand .logo-mark { height: 28px; }
+  .nav--eo .nav__brand { gap: 8px; }
+  .nav--eo .nav__name { font-size: 12.5px; letter-spacing: 0.1em; }
+  .nav--eo .nav__tag { display: none; }
+}
+/* header fit: a small laptop drops the tagline and tightens the words; a phone keeps the kit's small button */
+.nav--eo .nav__links { flex: 0 1 auto; margin-left: auto; }
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .nav--eo .nav__tag { display: none; }
+  .nav--eo .nav__name { font-size: 15px; letter-spacing: 0.12em; }
+  .nav--eo .nav__link { padding: 0 8px; font-size: 14.5px; }
+  .nav--eo .nav__link[aria-current="page"]::after { left: 8px; right: 8px; }
+  .nav--eo .nav__cta { padding: 0 var(--s-4); }
+  .nav--eo .nav__bar { gap: var(--s-4); }
+}
+@media (max-width: 1023px) {
+  .nav--eo .nav__cta { padding: 0 var(--s-3); font-size: 14px; }
+  .nav--eo .nav__actions { margin-left: auto; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .nav--eo .nav__brand .logo-mark { height: 40px; }
+  .nav--eo .nav__brand { gap: 10px; }
+  .nav--eo .nav__name { font-size: 13px; letter-spacing: 0.1em; }
+  .nav--eo .nav__link { padding: 0 7px; font-size: 14px; }
+  .nav--eo .nav__links { margin-left: var(--s-5); }
+}
+@media (max-width: 639px) {
+  .nav--eo .nav__bar { gap: 8px; }
+  .nav--eo .nav__brand .logo-mark { height: 24px; }
+  .nav--eo .nav__brand { gap: 6px; }
+  .nav--eo .nav__name { font-size: 11px; letter-spacing: 0.08em; white-space: nowrap; }
+  .nav--eo .nav__cta { padding: 0 10px; font-size: 13px; }
+}
+/* the brand: the logo link (mark and name) with the tagline set under the name, outside the link */
+.nav--eo .nav__brand { display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; column-gap: var(--s-4); row-gap: 5px; align-items: center; }
+.nav--eo .nav__brand > .nav__logo { display: contents; }
+.nav--eo .nav__brand .logo-mark { grid-row: 1 / span 2; grid-column: 1; }
+.nav--eo .nav__name { grid-column: 2; grid-row: 1; align-self: end; }
+.nav--eo .nav__tag { grid-column: 2; grid-row: 2; align-self: start; }
+@media (min-width: 1024px) and (max-width: 1279px) { .nav--eo .nav__name { grid-row: 1 / span 2; align-self: center; } }
+@media (max-width: 1023px) { .nav--eo .nav__brand { column-gap: 8px; } .nav--eo .nav__tag { display: none; } .nav--eo .nav__name { grid-row: 1 / span 2; align-self: center; } }
+@media (max-width: 359px) { .nav--eo .nav__name { display: none; } }

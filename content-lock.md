@@ -33,26 +33,45 @@ On phones the menu button opens a full-screen sheet with the same links.
 
 ### Footer: directory and legal line
 
-- **Link:** Eminent One → /
-- **Image alt:** (decorative, no alt)
+- **Heading (h3):** Staffing Services
+- **Link:** Registered Nurses → /services/registered-nurses/
+- **Link:** Licensed Practical Nurses → /services/#roles
+- **Link:** Certified Nursing Assistants → /services/#roles
+- **Link:** Home Health Aides → /services/#roles
+- **Link:** Medical Assistants → /services/#roles
+- **Link:** Therapists → /services/#roles
+- **Link:** Social Workers → /services/#roles
+- **Link:** Caregivers → /services/#roles
+- **Heading (h3):** Careers
+- **Link:** Open Positions → /job-seekers/#openings
+- **Link:** Apply for Work → /job-seekers/#apply
+- **Link:** Registered Nurse Roles → /services/registered-nurses/#duties
+- **Heading (h3):** Who We Are
+- **Link:** About Eminent One → /about/
+- **Link:** Contact → /contact/
+- **Heading (h3):** Insights
+- **Link:** Resources → /resources/
+- **Heading (h3):** For Employers
+- **Link:** Request Staff → /employers/#request
+- **Link:** Employer Services → /employers/#expect
+- **Link:** Referrals → /referrals/
+- **Heading (h3):** Get in touch
+- **Text:** Liberty Road, Windsor Mill
 - **Link:** 410-929-9388 → tel:+14109299388
 - **Link:** Email the office → mailto:eminentonellc@gmail.com
-- **Link:** Liberty Road, Windsor Mill → https://www.openstreetmap.org/search?query=Liberty%20Road%20Windsor%20Mill%20Maryland
-- **Heading (h3):** Services
-- **Link:** Registered nurses → /services/registered-nurses/
-- **Link:** Roles we place → /services/#roles
-- **Heading (h3):** Employers
-- **Link:** Employer services → /employers/#expect
+- **Link:** Get directions → https://www.openstreetmap.org/search?query=Liberty%20Road%20Windsor%20Mill%20Maryland
+- **Link:** Request Staff → /employers/#request
+- **Link:** Open Positions → /job-seekers/#openings
+- **Link:** Apply for Work → /job-seekers/#apply
 - **Link:** Referrals → /referrals/
-- **Heading (h3):** Careers
-- **Link:** See open shifts → /job-seekers/#openings
-- **Link:** Apply for work → /job-seekers/#apply
-- **Heading (h3):** Company
-- **Link:** About → /about/
-- **Link:** Resources → /resources/
-- **Link:** Contact → /contact/
-- **Text:** © 2026 Eminent One LLC. Maryland Health Care Staff Agency license HCSA-01609.
-- **Link:** Photographs via Wikimedia Commons and Pexels → /credits/
+- **Link:** Contact Us → /contact/
+- **Link:** Eminent One — People. Care. Opportunities. → /
+- **Accessible name:** Eminent One, home
+- **Image alt:** (decorative, no alt)
+- **Text:** Maryland Health Care Staff Agency Licensed
+- **Text:** © 2026 Eminent One Group. All rights reserved.
+
+The photo credit line ("Photographs via Wikimedia Commons and Pexels") was removed at the client's request; the /credits/ page still exists but no page links to it.
 
 ## Home
 
@@ -65,24 +84,48 @@ URL: `/`
 
 ### Hero: Healthcare staffing in Maryland
 
-- **Image alt:** A nurse in teal scrubs measuring a dose of liquid medicine onto a spoon
 - **Heading (h1):** Healthcare staffing in Maryland
-- **Paragraph:** We recruit, credential and place nurses and care staff with Maryland facilities. State license HCSA-01609.
+- **Paragraph:** We recruit, credential and place nurses and care staff with Maryland facilities.
 - **Button:** Request staff → /employers/#request
 - **Button:** Apply for work → /job-seekers/#apply
+- **Image alt:** A nurse in teal scrubs measuring a dose of liquid medicine onto a spoon
 
-### Section #roles: The 8 roles we place
+### Section #settings: Facilities we staff in Maryland
 
-- **Heading (h2):** The 8 roles we place
-- **List item:** Registered nurses — RN
-- **List item:** Licensed practical nurses — LPN
-- **List item:** Certified nursing assistants — CNA, GNA
-- **List item:** Home health aides — HHA
-- **List item:** Medical assistants — MA
-- **List item:** Therapists — PT, OT, SLP
-- **List item:** Social workers — SW
-- **List item:** Caregivers
+- **Heading (h2):** Facilities we staff in Maryland
+- **Paragraph:** From hospital units to clients’ homes. Choose a row to see the setting.
+- **List item (button):** Hospitals — Nurses and nursing assistants for hospital units.
+- **List item (button):** Nursing homes — Nurses, CNAs and GNAs for residents' daily care.
+- **List item (button):** Rehabilitation centers — Therapists, nurses and aides for rehab patients.
+- **List item (button):** Assisted living facilities — Caregivers and CNAs for residents' daily living.
+- **List item (button):** Home care agencies — Home health aides and caregivers for clients at home.
+- **Image alt:** Two nurses in teal scrubs reading a chart in a hospital corridor
+- **Image alt:** A care worker pouring a hot drink for a woman resting in bed in a nursing home room
+- **Image alt:** A therapist guiding a patient's arm and hip through a stretch on a treatment table
+- **Image alt:** Three older residents playing chess over coffee in a bright lounge
+- **Image alt:** Two carers settling an older man into bed at home
+
+### Section #checks: Credential checks
+
+- **Section name (screen readers):** Credential checks
+- **Label:** Credential checks
+- **Paragraph:** Before anyone works a shift in your facility, we confirm their license or certification, their employment history and a background check.
+- **Image alt:** A hand holding a pen over printed forms on a wooden desk
+
+### Section #roles: The roles we place
+
+- **Heading (h2):** The roles we place
+- **List item (card):** Registered nurses — RN · Assessment, treatment and care coordination in clinical and residential settings.
+- **List item (card):** Licensed practical nurses — LPN · Nursing care and follow-up under the direction of RNs and physicians.
+- **List item (card):** Certified nursing assistants — CNA, GNA · Daily living support and comfort for patients and residents.
+- **List item (card):** Home health aides — HHA · Personal care and support for clients in their own homes.
+- **List item (card):** Medical assistants — MA · Clinical and administrative support in practices and clinics.
+- **List item (card):** Therapists — PT, OT, SLP · Physical, occupational and speech therapy for facilities and clinics.
+- **List item (card):** Social workers — SW · Support, planning and coordination for patients and families.
+- **List item (card):** Caregivers — Day-to-day care and companionship.
 - **Image alt:** Two nurses in teal scrubs preparing supplies at a clinic counter by a window
+
+Each card's hexagon icon (the role's first code on the EO hexagon) is decorative and hidden from screen readers.
 
 ### Section #steps: From request to first shift in 3 steps
 
@@ -100,41 +143,25 @@ URL: `/`
 - **Paragraph:** The professional starts on the agreed date. We call you after the first shift.
 - **Image alt:** A nurse with a tablet talking with a colleague at a nurses' station
 
-### Section #settings: Facilities we staff in Maryland
-
-- **Heading (h2):** Facilities we staff in Maryland
-- **Paragraph:** From hospital units to clients’ homes. Choose a row to see the setting.
-- **List item:** Hospitals — Nurses and nursing assistants for hospital units.
-- **List item:** Nursing homes — Nurses, CNAs and GNAs for residents' daily care.
-- **List item:** Rehabilitation centers — Therapists, nurses and aides for rehab patients.
-- **List item:** Assisted living facilities — Caregivers and CNAs for residents' daily living.
-- **List item:** Home care agencies — Home health aides and caregivers for clients at home.
-- **Image alt:** Two nurses in teal scrubs reading a chart in a hospital corridor
-- **Image alt:** A care worker pouring a hot drink for a woman resting in bed in a nursing home room
-- **Image alt:** A therapist guiding a patient's arm and hip through a stretch on a treatment table
-- **Image alt:** Three older residents playing chess over coffee in a bright lounge
-- **Image alt:** Two carers settling an older man into bed at home
-
-### Section #checks: Credential checks
-
-- **Section name (screen readers):** Credential checks
-- **Label:** Credential checks
-- **Paragraph:** Before anyone works a shift in your facility, we confirm their license or certification, their employment history and a background check.
-
 ### Section #openings: Open nursing jobs
 
 - **Heading (h2):** Open nursing jobs
-- **Paragraph:** In Owings Mills, MD. Pay is per hour, and one application covers every opening.
-- **List item:** Registered Nurse (RN) — $37 to $41 an hour — Nights, 11:00pm to 7:00am, shift differential.
+- **Heading (h3):** Registered Nurse (RN)
+- **Paragraph:** Nights, 11:00pm to 7:00am, shift differential.
 - **Link:** Apply for the RN job → /job-seekers/?position=RN#apply
-- **List item:** Licensed Practical Nurse (LPN) — $27 to $35 an hour — Days 6:00am to 2:30pm, or evenings 2:00pm to 10:30pm.
+- **Heading (h3):** Licensed Practical Nurse (LPN)
+- **Paragraph:** Days 6:00am to 2:30pm, or evenings 2:00pm to 10:30pm.
 - **Link:** Apply for the LPN job → /job-seekers/?position=LPN#apply
+- **Link:** See open shifts → /job-seekers/#openings
 - **Image alt:** A nurse on a break with a phone and a cup of coffee
+- **Image alt:** A nurse holding the hand of a woman resting in a hospital bed
+
+The home page no longer shows the line under the heading. Pay is not shown anywhere on the site for now (the client will add it later).
 
 ### Closing call to action (top of the footer)
 
 - **Heading (h2):** Request staff for your facility
-- **Paragraph:** Send the role, the shift and the start date. The office replies by phone or email.
+- **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → /employers/#request
 
 ## Services
@@ -189,7 +216,7 @@ Nav word highlighted on this page: **Services**
 ### Closing call to action (top of the footer)
 
 - **Heading (h2):** Request staff for your facility
-- **Paragraph:** Send the role, the shift and the start date. The office replies by phone or email.
+- **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → /employers/#request
 
 ## Registered nurses
@@ -287,7 +314,7 @@ Nav word highlighted on this page: **Employers**
 ### Closing call to action (top of the footer)
 
 - **Heading (h2):** Request staff for your facility
-- **Paragraph:** Send the role, the shift and the start date. The office replies by phone or email.
+- **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → #request
 
 ## Job seekers
@@ -308,33 +335,28 @@ Nav word highlighted on this page: **Careers**
 
 ### Hero: Healthcare jobs in Maryland
 
-- **Image alt:** A nurse on a break with a phone and a cup of coffee
 - **Heading (h1):** Healthcare jobs in Maryland
 - **Paragraph:** We place RNs, LPNs, CNAs, home health aides and other care staff with Maryland facilities. Apply once and we match you to shifts that fit your license.
 - **Button:** Apply for work → #apply
 - **Button:** See open shifts → #openings
+- **Image alt:** A nurse on a break with a phone and a cup of coffee
 
 ### Section #openings: Open shifts in Owings Mills
 
 - **Heading (h2):** Open shifts in Owings Mills
-- **Paragraph:** Pay is per hour. Apply for a shift, or send one application for any role.
+- **Paragraph:** Apply for a shift, or send one application for any role.
 - **Heading (h3):** Registered Nurse (RN)
 - **Term:** Where
 - **Value:** Owings Mills, MD
 - **Term:** Shift
 - **Value:** Nights, 11:00pm to 7:00am, shift differential
-- **Term:** Pay
-- **Value:** $37 to $41 an hour
 - **Link:** Apply for the RN shift → /job-seekers/?position=RN#apply
 - **Heading (h3):** Licensed Practical Nurse (LPN)
 - **Term:** Where
 - **Value:** Owings Mills, MD
 - **Term:** Shift
 - **Value:** Days 6:00am to 2:30pm, or evenings 2:00pm to 10:30pm
-- **Term:** Pay
-- **Value:** $27 to $35 an hour
 - **Link:** Apply for the LPN shift → /job-seekers/?position=LPN#apply
-- **Image alt:** Two carers settling an older man into bed at home
 
 ### Section #checks: What we check before your first shift
 
@@ -399,11 +421,11 @@ Nav word highlighted on this page: **About**
 
 ### Hero: Care staffing agency in Maryland
 
-- **Image alt:** A nurse in scrubs writing notes beside an open laptop
 - **Heading (h1):** Care staffing agency in Maryland
 - **Paragraph:** Maryland Health Care Staff Agency license HCSA-01609. We place nurses and care staff across the state.
 - **Button:** Request staff → /employers/#request
 - **Button:** Apply for work → /job-seekers/#apply
+- **Image alt:** A nurse in scrubs writing notes beside an open laptop
 
 ### Section #agency: Run from Windsor Mill by the Irefins
 
@@ -431,7 +453,7 @@ Nav word highlighted on this page: **About**
 ### Closing call to action (top of the footer)
 
 - **Heading (h2):** Request staff for your facility
-- **Paragraph:** Send the role, the shift and the start date. The office replies by phone or email.
+- **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → /employers/#request
 
 ## Resources
@@ -481,7 +503,7 @@ URL: `/resources/`
 ### Closing call to action (top of the footer)
 
 - **Heading (h2):** Request staff for your facility
-- **Paragraph:** Send the role, the shift and the start date. The office replies by phone or email.
+- **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → /employers/#request
 
 ## Contact
@@ -535,7 +557,7 @@ URL: `/contact/`
 ### Closing call to action (top of the footer)
 
 - **Heading (h2):** Request staff for your facility
-- **Paragraph:** Send the role, the shift and the start date. The office replies by phone or email.
+- **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → /employers/#request
 
 ## Referrals
@@ -615,7 +637,7 @@ URL: `/credits/`
 ### Closing call to action (top of the footer)
 
 - **Heading (h2):** Request staff for your facility
-- **Paragraph:** Send the role, the shift and the start date. The office replies by phone or email.
+- **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → /employers/#request
 
 ## Page not found (404)
@@ -638,5 +660,5 @@ URL: `any missing URL`
 ### Closing call to action (top of the footer)
 
 - **Heading (h2):** Request staff for your facility
-- **Paragraph:** Send the role, the shift and the start date. The office replies by phone or email.
+- **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → /employers/#request

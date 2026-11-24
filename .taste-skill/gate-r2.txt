@@ -1,22 +1,9 @@
 gate: checking out/index.html (service); this takes a few minutes on a CPU Chrome
-gate: 4 FAIL open
-  FAIL phone-number     ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card > span.eo-contact__value "410-929-9  [1440]
-       a US phone number: "410-929-9388"; a visitor can dial it and reach a stranger
-       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
-  FAIL phone-number     div.closing__links > ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card "tel:+14109299  [1440]
-       a tel: link calls a number in a real dialable format: "tel:+14109299388"; a visitor can dial it and reach a stranger
-       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
-  FAIL screen-height    #roles section.section.tone-paper "The 8 roles we placeRoles we pla"  [390]
-       1801px, 2.13 screens; a section is exactly one or two (--h), or on a phone at least one that its content fills
-       fix: make the section exactly one or two screens (--h: 1 or 2)
-  FAIL screen-height    #openings section.section.tone-paper "Open nursing jobsIn Owings Mills"  [390]
-       1723px, 2.04 screens; a section is exactly one or two (--h), or on a phone at least one that its content fills
-       fix: make the section exactly one or two screens (--h: 1 or 2)
-  WAIVED copy-headings div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-step: the three step titles are the client's locked copy (content-lock.md: do not change any text); they name the steps of a staffing request
+gate: no open FAIL
+  WAIVED copy-headings h2#roles-h "The roles we place": the client's own wording: "The roles we place" is the heading the client asked for (changed from "The 8 roles we place"), and the three step titles are locked copy (content-lock.md: do not change any text); together they name the agency's roles and the steps of a staffing request
+  WAIVED phone-number div.wrap > div.closing__cta.close--type > div.section-head > p "410-929-9388": the client's own published office line (410-929-9388): the close line "Call 410-929-9388 or start online." is the wording the client asked for, and the footer's phone entry repeats the same real number; facilities and nurses call the agency on it
+  WAIVED phone-number div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2) > a.eo-f: the tel: link of the client's own published office line (410-929-9388), in the footer's Get in touch column as on the agency's original site, not an invented number
   WAIVED run-on h1#hero-h "Healthcare staffing in Maryland": one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md
-  WAIVED one-heading h2#roles-h "The 8 roles we place": the other "heading" the checker sees is the credential sentence on the cobalt band, set large by design as a statement (a paragraph, not a heading); the real section headings sit a screen apart
-  waiver ignored (target matches 2 findings; name one (more of its where)): phone-number "ul.eo-contact > li:nth-of-type(1)"
-  waiver ignored (target matches 2 findings; name one (more of its where)): phone-number "li:nth-of-type(1) > a.eo-contact__card"
-  15 WARN (not blocking), first: scroll-reveal div#role-detail > figure.develop.eo-cut; scroll-reveal section#checks > div.wrap.grid > div.spa; no-visual section#steps "From request to first shi; heading-scale div.wrap > ol.eo-steps__rows.fill > li.e; section-gaps main#top > section.hero.eo-dark / sectio
-A FAIL you judge false: add {"check": "<id>", "target": "<its where, enough to name that one finding>", "reason": "<why, 12+ characters>"} to .taste-skill/waivers.json (one finding each, 5 at most, never for kit-edited or checker-gaming); it goes in your report. Never edit the kit's files or hide the page from the checker.
-GATE: FAIL 4 (round 2 of 3)
+  waiver ignored (matches no open finding): one-heading "h2#roles-h"
+  20 WARN (not blocking), first: scroll-reveal section#checks > div.wrap.grid > div.spa; scroll-reveal section#roles > div.wrap.grid > figure.d; no-visual section#steps "From request to first shi; heading-scale div.wrap > ol.eo-steps__rows.fill > li.e; body-size div.span-7.eo-split__side > ul.eo-role-c
+GATE: PASS

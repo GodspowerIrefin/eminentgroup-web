@@ -68,7 +68,6 @@ export const jobs = [
     location: "Owings Mills, MD",
     shift: "Nights, 11:00pm to 7:00am",
     extra: "Shift differential",
-    pay: "$37 to $41",
   },
   {
     code: "LPN",
@@ -76,7 +75,6 @@ export const jobs = [
     location: "Owings Mills, MD",
     shift: "Days 6:00am to 2:30pm, or evenings 2:00pm to 10:30pm",
     extra: "",
-    pay: "$27 to $35",
   },
 ];
 
@@ -86,8 +84,6 @@ export const jobShift = (job: (typeof jobs)[number]) => `${job.shift}${job.extra
 export const jobCopy = {
   where: "Where",
   shift: "Shift",
-  pay: "Pay",
-  perHour: (pay: string) => `${pay} an hour`,
   applyShift: (code: string) => `Apply for the ${code} shift`,
   applyJob: (code: string) => `Apply for the ${code} job`,
   applyHref: (code: string) => `/job-seekers/?position=${code}#apply`,
@@ -186,78 +182,91 @@ export const ui = {
 };
 
 export const nav = {
+  // the main bar's words, as on the agency's original site
   words: [
-    { key: "services", href: "/services/", label: "Services" },
-    { key: "employers", href: "/employers/", label: "Employers" },
+    { key: "services", href: "/services/", label: "Staffing Services" },
+    { key: "employers", href: "/employers/", label: "For Employers" },
     { key: "careers", href: "/job-seekers/", label: "Careers" },
-    { key: "about", href: "/about/", label: "About" },
+    { key: "about", href: "/about/", label: "Who We Are" },
+    { key: "insights", href: "/resources/", label: "Insights" },
   ] as const,
-  // the panel under "Services": columns of links, each with one grey line
-  menu: [
-    {
-      group: "Staff we place",
-      links: [
-        { href: "/services/registered-nurses/", label: "Registered nurses", line: "RNs in five kinds of facility" },
-        { href: "/services/#roles", label: "Roles we place", line: "Eight roles, RNs to caregivers" },
-      ],
-    },
-    {
-      group: "Facilities",
-      links: [
-        { href: "/employers/#expect", label: "Employer services", line: "Temporary to permanent" },
-        { href: "/referrals/", label: "Referrals", line: "Tell us who to contact" },
-      ],
-    },
-    {
-      group: "Help",
-      links: [
-        { href: "/resources/", label: "Resources", line: "Licensing and industry links" },
-        { href: "/contact/", label: "Contact", line: "Call or email the office" },
-      ],
-    },
-  ],
+  // the thin bar above it: the licence on the left, quick links and the phone on the right
+  top: {
+    licensed: "Maryland Health Care Staff Agency Licensed",
+    links: [
+      { href: "/job-seekers/#openings", label: "Open Positions" },
+      { href: "/employers/#request", label: "Request Staff" },
+      { href: "/referrals/", label: "Referrals" },
+      { href: "/contact/", label: "Contact Us" },
+    ],
+  },
+  tagline: "People. Care. Opportunities.",
 };
 
 export const footer = {
   // the close at the top of the footer, unless a page sets its own
   close: {
     title: "Request staff for your facility",
-    line: "Send the role, the shift and the start date. The office replies by phone or email.",
+    line: `Call ${phone} or start online.`,
   },
-  columns: [
+  // the directory, as on the agency's original site: four link groups and "Get in touch"
+  groups: [
     {
-      title: "Services",
+      title: "Staffing Services",
       links: [
-        { href: "/services/registered-nurses/", label: "Registered nurses" },
-        { href: "/services/#roles", label: "Roles we place" },
-      ],
-    },
-    {
-      title: "Employers",
-      links: [
-        { href: "/employers/#expect", label: "Employer services" },
-        { href: "/referrals/", label: "Referrals" },
+        { href: "/services/registered-nurses/", label: "Registered Nurses" },
+        { href: "/services/#roles", label: "Licensed Practical Nurses" },
+        { href: "/services/#roles", label: "Certified Nursing Assistants" },
+        { href: "/services/#roles", label: "Home Health Aides" },
+        { href: "/services/#roles", label: "Medical Assistants" },
+        { href: "/services/#roles", label: "Therapists" },
+        { href: "/services/#roles", label: "Social Workers" },
+        { href: "/services/#roles", label: "Caregivers" },
       ],
     },
     {
       title: "Careers",
       links: [
-        { href: "/job-seekers/#openings", label: "See open shifts" },
-        { href: "/job-seekers/#apply", label: "Apply for work" },
+        { href: "/job-seekers/#openings", label: "Open Positions" },
+        { href: "/job-seekers/#apply", label: "Apply for Work" },
+        { href: "/services/registered-nurses/#duties", label: "Registered Nurse Roles" },
       ],
     },
     {
-      title: "Company",
+      title: "Who We Are",
       links: [
-        { href: "/about/", label: "About" },
-        { href: "/resources/", label: "Resources" },
+        { href: "/about/", label: "About Eminent One" },
         { href: "/contact/", label: "Contact" },
       ],
+      // a second, smaller group under the first in the same column
+      then: { title: "Insights", links: [{ href: "/resources/", label: "Resources" }] },
     },
-  ],
+    {
+      title: "For Employers",
+      links: [
+        { href: "/employers/#request", label: "Request Staff" },
+        { href: "/employers/#expect", label: "Employer Services" },
+        { href: "/referrals/", label: "Referrals" },
+      ],
+    },
+  ] as { title: string; links: Link[]; then?: { title: string; links: Link[] } }[],
+  touch: {
+    title: "Get in touch",
+    directions: "Get directions",
+    quick: [
+      { href: "/employers/#request", label: "Request Staff" },
+      { href: "/job-seekers/#openings", label: "Open Positions" },
+      { href: "/job-seekers/#apply", label: "Apply for Work" },
+      { href: "/referrals/", label: "Referrals" },
+      { href: "/contact/", label: "Contact Us" },
+    ],
+  },
   emailLink: "Email the office",
-  legal: `© ${site.year} ${site.name}. Maryland Health Care Staff Agency license ${license}.`,
-  credits: { label: "Photographs via Wikimedia Commons and Pexels", href: "/credits/" },
+  seeShifts: { label: "See open shifts", href: "/job-seekers/#openings" },
+  wordmark: "Eminent One",
+  tagline: "People. Care. Opportunities.",
+  licensed: "Maryland Health Care Staff Agency Licensed",
+  legal: `© ${site.year} Eminent One Group. All rights reserved.`,
 };
 
 // ---------------------------------------------------------------- cookie consent banner
@@ -349,11 +358,11 @@ export const pages = {
   home: {
     hero: {
       title: "Healthcare staffing in Maryland",
-      lead: `We recruit, credential and place nurses and care staff with Maryland facilities. State license ${license}.`,
+      lead: "We recruit, credential and place nurses and care staff with Maryland facilities.",
       image: { photo: "medicineHero", subject: "nurse giving medicine" } as PhotoRef,
     },
     roles: {
-      title: "The 8 roles we place",
+      title: "The roles we place",
       image: { photo: "supplies", subject: "nurses at work" } as PhotoRef,
     },
     steps: {
@@ -400,7 +409,6 @@ export const pages = {
     },
     openings: {
       title: "Open nursing jobs",
-      lead: "In Owings Mills, MD. Pay is per hour, and one application covers every opening.",
       image: { photo: "onBreak", subject: "nurse between shifts" } as PhotoRef,
     },
   },
@@ -522,7 +530,7 @@ export const pages = {
     },
     openings: {
       title: "Open shifts in Owings Mills",
-      lead: "Pay is per hour. Apply for a shift, or send one application for any role.",
+      lead: "Apply for a shift, or send one application for any role.",
       image: { photo: "homeCare", subject: "carers at work" } as PhotoRef,
     },
     checks: {
