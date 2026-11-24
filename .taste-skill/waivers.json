@@ -1,12 +1,27 @@
 [
   {
     "check": "phone-number",
-    "target": "div.grid > div.span-4.stack-4 > ul.footer__contact > li:nth-of-type(1)",
+    "target": "ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card > span.eo-contact__value",
     "reason": "the client's own published office line (410-929-9388, on the existing site); facilities and nurses call the agency on it"
   },
   {
     "check": "phone-number",
-    "target": "li:nth-of-type(1) > a",
+    "target": "div.closing__links > ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card",
     "reason": "the tel: link of the client's own published office line, the phone the brief gives, not an invented one"
+  },
+  {
+    "check": "run-on",
+    "target": "h1#hero-h",
+    "reason": "one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md"
+  },
+  {
+    "check": "copy-headings",
+    "target": "h3.eo-steps__title",
+    "reason": "the three step titles are the client's locked copy (content-lock.md: do not change any text); they name the steps of a staffing request"
+  },
+  {
+    "check": "one-heading",
+    "target": "h2#roles-h",
+    "reason": "the other \"heading\" the checker sees is the credential sentence on the cobalt band, set large by design as a statement (a paragraph, not a heading); the real section headings sit a screen apart"
   }
 ]

@@ -5,8 +5,9 @@
 // It also writes the build's deal as a comment at the top of <body> (the design kit asks for it).
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const OUT = new URL("../out/", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1");
+const OUT = fileURLToPath(new URL("../out/", import.meta.url));
 
 const DEAL = `<!-- type: service (site-kind other)
      deal: hero photo (home, job seekers, about), split (inner pages); nav-split; close-type; footer-dark;

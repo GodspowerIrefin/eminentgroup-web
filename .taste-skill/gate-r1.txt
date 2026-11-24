@@ -1,0 +1,145 @@
+gate: checking out/index.html (service); this takes a few minutes on a CPU Chrome
+gate: 45 FAIL open
+  FAIL spill            section.hero.eo-dark > div.wrap > div.hero-text.eo-dark__grid > span.eo-badge  [1440, 390]
+       runs 66px past the left edge of the panel it sits on (section.hero.eo-dark > div.wrap > div.hero-text.eo-dark__grid > div.hero__media.eo-dark__media)
+       fix: keep the box inside the panel it starts on: shrink it, or grow the panel to hold it
+  FAIL card-layout      section#settings  [1440]
+       one layout (.frame--photo) in 3 sections: section#settings, section#checks, section#openings; a card layout at most twice
+       fix: a card layout at most twice on a page: build the other sections another way
+  FAIL button-styles    (one screen)  [1440, 390]
+       3 button styles on one screen: square, fill #2338d1 ("Request staff"); square, fill #f4f1ea ("Request staff"); slanted (cut by clip-path), fill #141a44 ("Email the office"); the odd one out: "Email the office"
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL button-styles    (the page)  [1440, 390]
+       5 button styles on the page: square, fill #2338d1 x2 ("Request staff"); square, outline #f4f1ea x1 ("Apply for work"); square, fill #ffffff x2 ("Request staff"); square, outline #101225 x1 ("Roles we place"); slanted (cu
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL button-shape     div.wrap > ul.eo-contact > li:nth-of-type(2) > a.eo-contact__card "Email the office"  [1440, 390]
+       cut by clip-path button (2 like it: "Email the office", "Liberty Road, Windsor Mill")
+       fix: square the button up: no skew, rotation or clip-path
+  FAIL same-action      header.nav.nav--split > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary "Request  [1440, 390]
+       "Request staff" appears 4 times in different looks: square, fill #2338d1 and square, fill #f4f1ea
+       fix: draw one action the same way everywhere (only the nav copy may be one size smaller)
+  FAIL copy-headings    div#role-detail > div.eo-services__copy:nth-of-type(1) > h3 "Registered nurses"  [1440]
+       "Registered nurses" names no product, part, place or section (4 headings like it; at most one brand line per page) (and 3 more like it: "Send the role and shift", "We check every credentia", "Staff report for the shi")
+       fix: name the thing in every heading: the product, a part, the place or a section noun
+  FAIL off-grid         div.wrap > ul.eo-contact > li:nth-of-type(3) > a.eo-contact__card "Liberty Road, Windsor M  [1440]
+       left edge at 941.5px, 8.5px off a common edge of its section at 950px (4 elements, like a.btn.btn--primary)
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL photo-upscale    div.wrap > div.hero-text.eo-dark__grid > div.hero__media.eo-dark__media > img "img: A nurs  [1440]
+       photo-f186239770-960.jpg: 720x479 shown at 519x716, blown up 1.49x
+       fix: use a source at least as wide as the picture is shown (twice that for sharp screens)
+  FAIL photo-upscale    div.wrap.grid > div.eo-tiles.span-6 > div.frame.frame--photo:nth-of-type(1) > img.frame__i  [1440, 390]
+       photo-f186239784-960.jpg: 432x287 shown at 323x708, blown up 2.47x
+       fix: use a source at least as wide as the picture is shown (twice that for sharp screens)
+  FAIL photo-upscale    div.wrap.grid > div.eo-tiles.span-6 > div.frame.frame--photo:nth-of-type(2) > img.frame__i  [1440]
+       follow-up.jpg: 432x432 shown at 281x708, blown up 1.64x
+       fix: use a source at least as wide as the picture is shown (twice that for sharp screens)
+  FAIL phone-number     ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card > span.eo-contact__value "410-929-9  [1440]
+       a US phone number: "410-929-9388"; a visitor can dial it and reach a stranger
+       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
+  FAIL phone-number     div.wrap > ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card "tel:+14109299388"  [1440]
+       a tel: link calls a number in a real dialable format: "tel:+14109299388"; a visitor can dial it and reach a stranger
+       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
+  FAIL section-air      section#steps > div.wrap > ol.eo-steps__rows.fill "1Send the role and shiftThe role, the n  [1440]
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL one-heading      h2#roles-h "The 8 roles we place"  [1440]
+       headings of two sections show whole on one screen at 19 of 109 scroll positions (17.4%; at scroll 2050, 2100, 2150, 2200px), here with "shift": at most 3% on a desktop (SR-5)
+       fix: make the sections one screen tall so their headings sit a screen apart and two never share one
+  FAIL container-edges  footer#contact > div.wrap "Request staff for your facilitySend the "  [1440]
+       footer.closing > .wrap holds 3 children: exactly two (the call, then the legal row) (SR-6)
+       fix: build the page as header.nav, a main of sections (each one in-flow .wrap plus background layers) and footer.closing
+  FAIL container-edges  div.wrap.grid > div.span-5.eo-split__side > ul.rows.eo-list > li:nth-of-type(1) "Hospitals  [1440]
+       5 text blocks start on a left line at x 572, 492px from the container's left: text starts on the container's left, or on one split line (x 623, 732, 841) (also "Nursing homesNurses, CNAs and GN", "Rehabilitation centersT
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL split-pair       section#checks > div.wrap.grid "Credential checksBefore anyone works a s"  [1440]
+       the two columns of the split start 116px apart at the top (centred on each other): a split's columns are top-aligned, 8px either way (SR-8)
+       fix: top-align both columns of the split (align-items: start)
+  FAIL split-pair       main#top > section.hero.eo-dark > div.wrap > div.hero-text.eo-dark__grid "Healthcare staff  [1440]
+       the two columns of the split start 13px apart at the top (centred on each other): a split's columns are top-aligned, 8px either way (SR-8)
+       fix: top-align both columns of the split (align-items: start)
+  FAIL split-pair       section#settings > div.wrap.grid "Facilities we staff in MarylandFrom hosp"  [1440]
+       the split's columns are off the page's one pair of lines: its right column starts at x 623, the first split's at 841 (SR-8)
+       fix: start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it
+  FAIL split-pair       section#openings > div.wrap.grid "Open nursing jobsIn Owings Mills, MD. Pa"  [1440]
+       the split's columns are off the page's one pair of lines: its right column starts at x 732, the first split's at 841 (SR-8)
+       fix: start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it
+  FAIL row-gap          footer#contact > div.wrap > div.closing__cta.close--type > a.btn.btn--primary "Request sta  [390]
+       fills 50% of its grid row and leaves 50% of it empty on the right
+       fix: fill the row at this width: span the columns, or stack the split
+  FAIL heading-scale    h2#steps-h "From request to first shift in 3 steps"  [390]
+       the text under this h2 reads larger: its letters are 20.0px tall (x-height, 40px) against the heading's 20.0px (x-height, 40px)
+       fix: set the heading larger than the text under it, or that text smaller: the heading reads first
+  FAIL off-grid         section#checks > div.wrap.grid > div.frame.frame--photo  [390]
+       left edge at 19px, 5px off the page margin at 24px (41 elements); 3 more in this section off the grid too (p.t-label.eo-stamp at 19px, a.btn.btn--primary at 19px, p.mo-wh__text at 19px)
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid         div.wrap.grid > ul.eo-roles-list.span-4 > li:nth-of-type(2) > span.eo-roles-list__name "Li  [390]
+       left edge at 38px, 14px off the page margin at 24px (41 elements, like li:nth-of-type(1)); 6 more in this section off the grid too (span.eo-roles-list__name at 38px, span.eo-roles-list__name at 38px, span.eo-roles-list__
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL right-edge       section#checks > div.wrap.grid > div.frame.frame--photo  [390]
+       its right edge runs 5px past the content's right edge (366px, where 13 boxes end)
+       fix: end it on the content's right edge, like the other blocks of its section
+  FAIL section-gaps     section#roles / section#steps  [390]
+       502px between these sections, +182% against the median 178px of gaps at a change of ground
+       fix: use one gap between sections (all within 25% of each other)
+  FAIL photo-upscale    div#settings-photo > img.frame__img:nth-of-type(1) "img: Two nurses in teal scrubs reading  [390]
+       hospitals-600.jpg: 390x325 shown at 310x568, blown up 1.75x
+       fix: use a source at least as wide as the picture is shown (twice that for sharp screens)
+  FAIL photo-upscale    ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > div.eo-steps__photo.eo-cut > im  [390]
+       recruitment-400.jpg: 156x156 shown at 286x220, blown up 1.83x
+       fix: use a source at least as wide as the picture is shown (twice that for sharp screens)
+  FAIL photo-upscale    ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(2) > div.eo-steps__photo.eo-cut > im  [390]
+       photo-f191778236-500.jpg: 156x104 shown at 286x220, blown up 2.12x
+       fix: use a source at least as wide as the picture is shown (twice that for sharp screens)
+  FAIL photo-upscale    ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(3) > div.eo-steps__photo.eo-cut > im  [390]
+       staffing-400.jpg: 156x156 shown at 286x220, blown up 1.83x
+       fix: use a source at least as wide as the picture is shown (twice that for sharp screens)
+  FAIL empty-area       section#checks "CREDENTIAL CHECKS Before anyone works a "  [390]
+       55% of the section is empty: 848px under its last (div.span-6.start-7), in its 1552px of rows (WARN over 35%, FAIL over 50%)
+       fix: fill the section: a picture or a second column beside the words, or more of its own content; the section stays one or two screens tall (T-height)
+  FAIL edge-right       #checks div.frame.frame--photo  [1440]
+       ends at x 704; the right line is 1360
+       fix: end it on the .wrap right line
+  FAIL edge-left        #checks div.span-6.start-7 "Credential checksBefore anyone w"  [1440]
+       starts at x 736; the lines are 80 and the column starts
+       fix: start it on the .wrap left line
+  FAIL edge-left        #checks p.t-label.eo-stamp "Credential checks"  [1440]
+       starts at x 736; the lines are 80 and the column starts
+       fix: start it on the .wrap left line
+  FAIL edge-left        #checks p.mo-wh__text "Before anyone works a shift in y"  [1440]
+       starts at x 736; the lines are 80 and the column starts
+       fix: start it on the .wrap left line
+  FAIL edge-left        #checks div.btn-row "Request staff"  [1440]
+       starts at x 736; the lines are 80 and the column starts
+       fix: start it on the .wrap left line
+  FAIL edge-right       #openings div.frame.frame--photo  [1440]
+       ends at x 1055.1; the right line is 1360
+       fix: end it on the .wrap right line
+  FAIL edge-left        #openings div.frame.frame--photo  [1440]
+       starts at x 1079.1; the lines are 80 and the column starts
+       fix: start it on the .wrap left line
+  FAIL one-sided        #checks section.section.tone-cobalt "Credential checksBefore anyone w"  [1440]
+       its visuals end at x 704, short of the right line 1360
+       fix: let the row reach both .wrap edges
+  FAIL spill            #checks div.frame.frame--photo  [390]
+       x 19 to 371, the page runs 24 to 366
+       fix: keep it inside the .wrap; nothing past the right edge
+  FAIL spill            #checks div.span-6.start-7 "Credential checksBefore anyone w"  [390]
+       x 19 to 371, the page runs 24 to 366
+       fix: keep it inside the .wrap; nothing past the right edge
+  FAIL spill            #checks p.t-label.eo-stamp "Credential checks"  [390]
+       x 19 to 213.3, the page runs 24 to 366
+       fix: keep it inside the .wrap; nothing past the right edge
+  FAIL spill            #checks p.mo-wh__text "Before anyone works a shift in y"  [390]
+       x 19 to 371, the page runs 24 to 366
+       fix: keep it inside the .wrap; nothing past the right edge
+  FAIL spill            #checks div.btn-row "Request staff"  [390]
+       x 19 to 371, the page runs 24 to 366
+       fix: keep it inside the .wrap; nothing past the right edge
+  WAIVED run-on h1#hero-h "Healthcare staffing in Maryland": one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md
+  waiver ignored (matches no open finding): phone-number "div.grid > div.span-4.stack-4 > ul.footer__contact > li:nth-of-type(1)"
+  waiver ignored (target matches 2 findings; name one (more of its where)): phone-number "li:nth-of-type(1) > a"
+  waiver ignored (matches no open finding): copy-headings "li.step"
+  waiver ignored (matches no open finding): one-heading "h2#steps-h"
+  27 WARN (not blocking), first: scroll-reveal div#role-detail > figure.develop.eo-cut; scroll-reveal section#checks > div.wrap.grid > div.spa; no-visual section#steps "From request to first shi; copy-headings ul.eo-ticket-list > li.eo-ticket:nth-of-; copy-buttons div.wrap.grid > div.span-4.eo-split__sid
+A FAIL you judge false: add {"check": "<id>", "target": "<its where, enough to name that one finding>", "reason": "<why, 12+ characters>"} to .taste-skill/waivers.json (one finding each, 5 at most, never for kit-edited or checker-gaming); it goes in your report. Never edit the kit's files or hide the page from the checker.
+GATE: FAIL 45 (round 1 of 3)

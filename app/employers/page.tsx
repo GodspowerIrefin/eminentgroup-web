@@ -26,7 +26,7 @@ export default function Employers() {
           secondary={actions.callOffice}
         />
 
-        <section className="section" id="expect" style={{ "--hm": 2 } as React.CSSProperties} aria-labelledby="expect-h">
+        <section className="section tone-night" id="expect" style={{ "--hm": 2 } as React.CSSProperties} aria-labelledby="expect-h">
           <div className="wrap">
             <div className="section-head">
               <h2 id="expect-h">{c.expect.title}</h2>

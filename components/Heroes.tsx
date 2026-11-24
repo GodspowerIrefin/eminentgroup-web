@@ -35,12 +35,63 @@ function Buttons({ primary, secondary }: { primary: Action; secondary?: Action }
   );
 }
 
-// hero-photo: the photograph over the whole first screen, the words in a solid box on its calm side
+// hero-band (inner pages, "The Shift Record"): the headline set across the page in the display face,
+// a ruled row with the lead and the two actions, and the photograph as a wide band in the chamfered
+// EO frame, all inside the page's margins. `top` puts the band over the words (the photo pages),
+// otherwise it runs under them. Both enter once on load and rest under reduced motion.
+function HeroBand({
+  title,
+  lead,
+  image,
+  primary,
+  secondary,
+  top = false,
+}: {
+  title: ReactNode;
+  lead: ReactNode;
+  image: Img;
+  primary: Action;
+  secondary?: Action;
+  top?: boolean;
+}) {
+  const style = { "--ly-pos": image.pos ?? "50% 50%", "--ly-pos-phone": image.posPhone ?? image.pos ?? "50% 50%" } as React.CSSProperties;
+  return (
+    <section className={`hero eo-band${top ? " eo-band--top" : ""}`} data-enter aria-labelledby="hero-h">
+      <div className="wrap">
+        <div className="hero-text eo-band__text">
+          <h1 id="hero-h" className="eo-band__title">
+            {title}
+          </h1>
+          <div className="eo-band__foot">
+            <p className="hero__lead eo-band__lead">{lead}</p>
+            <Buttons primary={primary} secondary={secondary} />
+          </div>
+          <div className="hero__media eo-band__media">
+            <img
+              src={image.src}
+              srcSet={image.srcSet}
+              sizes={image.sizes ?? "(max-width: 1023px) 100vw, 90vw"}
+              width={image.width}
+              height={image.height}
+              alt={image.alt}
+              style={style}
+              fetchPriority="high"
+              decoding="async"
+              data-source="stand-in"
+              data-subject={image.subject}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// hero-photo: the band hero with the photograph over the words
 export function HeroPhoto({
   title,
   lead,
   image,
-  calm = "left",
   primary,
   secondary,
 }: {
@@ -51,34 +102,7 @@ export function HeroPhoto({
   primary: Action;
   secondary?: Action;
 }) {
-  const style = { "--ly-pos": image.pos ?? "50% 50%", "--ly-pos-phone": image.posPhone ?? image.pos ?? "50% 50%" } as React.CSSProperties;
-  return (
-    <section className="hero hero--photo" data-enter data-calm={calm} aria-labelledby="hero-h">
-      <img
-        className="hero__bg"
-        src={image.src}
-        srcSet={image.srcSet}
-        sizes={image.sizes ?? "(max-width: 639px) 188vw, 100vw"}
-        width={image.width}
-        height={image.height}
-        alt={image.alt}
-        style={style}
-        fetchPriority="high"
-        decoding="async"
-        data-source="stand-in"
-        data-subject={image.subject}
-      />
-      <div className="wrap">
-        <div className="hero-text">
-          <div className="hero__text">
-            <h1 id="hero-h">{title}</h1>
-            <p className="hero__lead">{lead}</p>
-            <Buttons primary={primary} secondary={secondary} />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <HeroBand title={title} lead={lead} image={image} primary={primary} secondary={secondary} top />;
 }
 
 // hero-editorial (DESIGN-BRIEF.md): warm off-white ground, a serif headline that rises line by line,
@@ -147,7 +171,7 @@ export function HeroEditorial({
   );
 }
 
-// hero-split: the words on span-5, the photograph on span-6 start-7, as tall as the hero's box
+// hero-split: the band hero with the photograph under the words
 export function HeroSplit({
   title,
   lead,
@@ -161,21 +185,61 @@ export function HeroSplit({
   primary: Action;
   secondary?: Action;
 }) {
+  return <HeroBand title={title} lead={lead} image={image} primary={primary} secondary={secondary} />;
+}
+
+// hero-cover (home, "The Shift Record"): the headline set as large as a magazine cover on Paper,
+// one line in the brand's cobalt; the photograph, in the chamfered EO frame, locks into the space
+// the shorter second and third lines leave on the right, inside the page's margins; the lead and the
+// two actions under a rule at the foot. It enters once on load (CSS, eo.css); under
+// reduced motion it stands still.
+export function HeroCover({
+  title,
+  lines,
+  accentLine,
+  lead,
+  image,
+  primary,
+  secondary,
+}: {
+  title: string;
+  lines: number[];
+  accentLine?: number;
+  lead: ReactNode;
+  image: Img;
+  primary: Action;
+  secondary?: Action;
+}) {
+  const words = title.split(" ");
+  const rows: string[] = [];
+  let at = 0;
+  for (const n of lines) {
+    rows.push(words.slice(at, at + n).join(" "));
+    at += n;
+  }
+  if (at < words.length) rows.push(words.slice(at).join(" "));
   const style = { "--ly-pos": image.pos ?? "50% 50%", "--ly-pos-phone": image.posPhone ?? image.pos ?? "50% 50%" } as React.CSSProperties;
   return (
-    <section className="hero hero--split" data-enter aria-labelledby="hero-h">
+    <section className="hero eo-hero" data-enter aria-labelledby="hero-h">
       <div className="wrap">
-        <div className="hero-text grid hero__grid">
-          <div className="hero__text span-5">
-            <h1 id="hero-h">{title}</h1>
-            <p className="hero__lead">{lead}</p>
+        <div className="hero-text eo-hero__text">
+          <h1 id="hero-h" className="eo-hero__title">
+            {rows.map((row, i) => (
+              <span className={`eo-hero__line${i === accentLine ? " is-accent" : ""}`} key={i} style={{ "--i": i } as React.CSSProperties}>
+                <span>{row}</span>
+                {i < rows.length - 1 ? " " : null}
+              </span>
+            ))}
+          </h1>
+          <div className="eo-hero__foot">
+            <p className="eo-hero__lead">{lead}</p>
             <Buttons primary={primary} secondary={secondary} />
           </div>
-          <div className="hero__media span-6 start-7">
+          <figure className="eo-hero__media">
             <img
               src={image.src}
               srcSet={image.srcSet}
-              sizes={image.sizes ?? "(max-width: 1023px) 100vw, 50vw"}
+              sizes={image.sizes}
               width={image.width}
               height={image.height}
               alt={image.alt}
@@ -185,6 +249,82 @@ export function HeroSplit({
               data-source="stand-in"
               data-subject={image.subject}
             />
+          </figure>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// hero-dark (home, on the client's reference structure): night ground, the headline set large on
+// the left with one line in cobalt, the lead and the two actions at its foot; the photograph fills
+// the right of the page from the header down, in the chamfered EO frame, with a round badge carrying
+// the EO mark on its edge. Enters once on load (eo.css); rests under reduced motion.
+export function HeroDark({
+  title,
+  lines,
+  accentLine,
+  lead,
+  image,
+  primary,
+  secondary,
+}: {
+  title: string;
+  lines: number[];
+  accentLine?: number;
+  lead: ReactNode;
+  image: Img;
+  primary: Action;
+  secondary?: Action;
+}) {
+  const words = title.split(" ");
+  const rows: string[] = [];
+  let at = 0;
+  for (const n of lines) {
+    rows.push(words.slice(at, at + n).join(" "));
+    at += n;
+  }
+  if (at < words.length) rows.push(words.slice(at).join(" "));
+  const style = { "--ly-pos": image.pos ?? "50% 50%", "--ly-pos-phone": image.posPhone ?? image.pos ?? "50% 50%" } as React.CSSProperties;
+  return (
+    <section className="hero eo-dark tone-night" data-enter aria-labelledby="hero-h">
+      <div className="wrap">
+        <div className="hero-text eo-dark__grid">
+          <div className="eo-dark__text">
+            <h1 id="hero-h" className="eo-hero__title eo-dark__title">
+              {rows.map((row, i) => (
+                <span className={`eo-hero__line${i === accentLine ? " is-accent" : ""}`} key={i} style={{ "--i": i } as React.CSSProperties}>
+                  <span>{row}</span>
+                  {i < rows.length - 1 ? " " : null}
+                </span>
+              ))}
+            </h1>
+            <div className="eo-hero__foot eo-dark__foot">
+              <p className="eo-hero__lead">{lead}</p>
+              <Buttons primary={primary} secondary={secondary} />
+            </div>
+          </div>
+          <div className="hero__media eo-dark__media">
+            <img
+              src={image.src}
+              srcSet={image.srcSet}
+              sizes={image.sizes}
+              width={image.width}
+              height={image.height}
+              alt={image.alt}
+              style={style}
+              fetchPriority="high"
+              decoding="async"
+              data-source="stand-in"
+              data-subject={image.subject}
+            />
+            <span className="eo-badge" aria-hidden="true">
+              <svg className="eo-badge__ring" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="2 5" />
+                <path d="M38 24h44l22 36-22 36H38L16 60z" fill="none" stroke="currentColor" strokeWidth="1" opacity=".5" />
+              </svg>
+              <img className="eo-badge__mark" src="/images/eo-mark-120.png" alt="" width={120} height={85} />
+            </span>
           </div>
         </div>
       </div>

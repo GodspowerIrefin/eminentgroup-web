@@ -3,9 +3,9 @@
  "url": null,
  "root": "out",
  "kind": "service",
- "category": "healthcare staffing for Maryland facilities",
+ "category": "healthcare staffing",
  "primary": "Request staff",
  "rounds": 3,
- "start": "2026-11-18T16:43:38.306Z",
+ "start": "2026-11-24T02:43:10.443Z",
  "by": "gate.mjs --start"
 }

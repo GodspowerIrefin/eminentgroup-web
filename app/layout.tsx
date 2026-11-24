@@ -26,28 +26,25 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#ffffff",
+  themeColor: "#f4f1ea",
 };
 
 const ROOT = `:root {
-  --p-bg: #ffffff; --p-surface: #f4f4f4; --p-ink: #111111; --p-muted: #6b6b6b;
-  --p-accent: #1a4be0; --p-accent-ink: #ffffff; --p-action: #1a4be0; --p-action-ink: #ffffff;
-  --p-inv-bg: #111111; --p-inv-surface: #1e1e1e; --p-inv-ink: #ffffff; --p-inv-muted: #9a9a9a;
-  --p-inv-accent: #ffffff; --p-inv-accent-ink: #111111; --p-inv-action: #ffffff; --p-inv-action-ink: #111111;
-  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
-  --font-text: "Outfit", system-ui, sans-serif;
-  --display-weight: 360;
-  --display-tracking: -0.02em;
-  --display-tracking-xl: -0.04em;
+  --p-bg: #f4f1ea; --p-surface: #ebe6db; --p-ink: #101225; --p-muted: #5b5d6b;
+  --p-accent: #2338d1; --p-accent-ink: #ffffff; --p-action: #2338d1; --p-action-ink: #ffffff;
+  --p-inv-bg: #0b1030; --p-inv-surface: #151b42; --p-inv-ink: #f4f1ea; --p-inv-muted: #a7acc6;
+  --p-inv-accent: #f4f1ea; --p-inv-accent-ink: #0b1030; --p-inv-action: #f4f1ea; --p-inv-action-ink: #0b1030;
+  --font-display: "Gloock", Georgia, "Times New Roman", serif;
+  --font-text: "Public Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --display-weight: 400;
+  --display-tracking: -0.015em;
+  --display-tracking-xl: -0.03em;
 }`;
 
 // the hero's entrance and the moments' guard, set before the first paint (motion.md, moments.md)
 const ENTER =
   "document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)";
-// scroll reveals (public/reveal.js): hide only when motion is allowed and the observer exists; the timer
-// shows everything if reveal.js never runs
-const REVEAL =
-  "if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('rv');setTimeout(()=>{if(!window.__rvReady)document.documentElement.classList.add('rv-done')},4000)}";
 const MOMENTS =
   "document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)";
 
@@ -61,16 +58,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* <link rel="canonical" href="https://<the client's domain>/" /> once the domain is confirmed */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@72,360&family=Outfit:wght@400..700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Gloock&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400..700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="/assets/system.css" />
         <link rel="stylesheet" href="/assets/ui/cards.css" />
         <link rel="stylesheet" href="/assets/motion/motion.css" />
         <link rel="stylesheet" href="/assets/layout/layout.css" />
         <style dangerouslySetInnerHTML={{ __html: ROOT }} />
         <link rel="stylesheet" href="/site.css" />
+        <link rel="stylesheet" href="/eo.css" />
         <script dangerouslySetInnerHTML={{ __html: ENTER }} />
         <script dangerouslySetInnerHTML={{ __html: MOMENTS }} />
-        <script dangerouslySetInnerHTML={{ __html: REVEAL }} />
         <link rel="modulepreload" href="/assets/moments/moments.js" />
         <link rel="modulepreload" href="/assets/moments/lib.js" />
       </head>
@@ -80,7 +77,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script type="module" src="/assets/system.js"></script>
         <script type="module" src="/assets/motion/motion.js"></script>
         <script type="module" src="/assets/layout/layout.js"></script>
-        <script src="/reveal.js" defer></script>
       </body>
     </html>
   );

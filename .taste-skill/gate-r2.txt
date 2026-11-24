@@ -1,0 +1,22 @@
+gate: checking out/index.html (service); this takes a few minutes on a CPU Chrome
+gate: 4 FAIL open
+  FAIL phone-number     ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card > span.eo-contact__value "410-929-9  [1440]
+       a US phone number: "410-929-9388"; a visitor can dial it and reach a stranger
+       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
+  FAIL phone-number     div.closing__links > ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card "tel:+14109299  [1440]
+       a tel: link calls a number in a real dialable format: "tel:+14109299388"; a visitor can dial it and reach a stranger
+       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
+  FAIL screen-height    #roles section.section.tone-paper "The 8 roles we placeRoles we pla"  [390]
+       1801px, 2.13 screens; a section is exactly one or two (--h), or on a phone at least one that its content fills
+       fix: make the section exactly one or two screens (--h: 1 or 2)
+  FAIL screen-height    #openings section.section.tone-paper "Open nursing jobsIn Owings Mills"  [390]
+       1723px, 2.04 screens; a section is exactly one or two (--h), or on a phone at least one that its content fills
+       fix: make the section exactly one or two screens (--h: 1 or 2)
+  WAIVED copy-headings div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-step: the three step titles are the client's locked copy (content-lock.md: do not change any text); they name the steps of a staffing request
+  WAIVED run-on h1#hero-h "Healthcare staffing in Maryland": one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md
+  WAIVED one-heading h2#roles-h "The 8 roles we place": the other "heading" the checker sees is the credential sentence on the cobalt band, set large by design as a statement (a paragraph, not a heading); the real section headings sit a screen apart
+  waiver ignored (target matches 2 findings; name one (more of its where)): phone-number "ul.eo-contact > li:nth-of-type(1)"
+  waiver ignored (target matches 2 findings; name one (more of its where)): phone-number "li:nth-of-type(1) > a.eo-contact__card"
+  15 WARN (not blocking), first: scroll-reveal div#role-detail > figure.develop.eo-cut; scroll-reveal section#checks > div.wrap.grid > div.spa; no-visual section#steps "From request to first shi; heading-scale div.wrap > ol.eo-steps__rows.fill > li.e; section-gaps main#top > section.hero.eo-dark / sectio
+A FAIL you judge false: add {"check": "<id>", "target": "<its where, enough to name that one finding>", "reason": "<why, 12+ characters>"} to .taste-skill/waivers.json (one finding each, 5 at most, never for kit-edited or checker-gaming); it goes in your report. Never edit the kit's files or hide the page from the checker.
+GATE: FAIL 4 (round 2 of 3)

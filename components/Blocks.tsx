@@ -1,13 +1,16 @@
 import Arrow from "@/components/Arrow";
 import Rich from "@/components/Rich";
-import { jobCopy, jobs, jobShift, mailto, ui, type FormCopy, type Rich as RichValue } from "@/content/content";
+import { jobCopy, jobs, jobShift, mailto, roles, ui, type FormCopy, type Rich as RichValue } from "@/content/content";
 
 // The open shifts, one card each: the facts as given, pay per hour, one link to apply.
 export function JobCards({ span = "span-3" }: { span?: string }) {
   return (
     <>
       {jobs.map((job) => (
-        <article className={`card job ${span}`} key={job.code}>
+        <article className={`card job eo-ticket ${span}`} key={job.code}>
+          <span className="eo-ticket__stub" aria-hidden="true">
+            {job.code}
+          </span>
           <h3 className="t-card">{job.title}</h3>
           <dl className="job__facts">
             <div>
@@ -30,6 +33,54 @@ export function JobCards({ span = "span-3" }: { span?: string }) {
         </article>
       ))}
     </>
+  );
+}
+
+// The role wall (home #roles): each role's code set large in the display face, its name under it
+// in the text face. Caregivers have no code, so their tile carries the EO hexagon instead.
+export function RoleWall() {
+  return (
+    <ul className="eo-wall">
+      {roles.map((r, i) => (
+        <li className="eo-wall__tile" key={r.name} style={{ "--i": i } as React.CSSProperties}>
+          {r.code ? (
+            <span className={`eo-wall__code${r.code.length > 4 ? " eo-wall__code--long" : ""}`}>{r.code}</span>
+          ) : (
+            <svg className="eo-wall__hex" viewBox="0 0 120 104" aria-hidden="true">
+              <path d="M30 2h60l28 50-28 50H30L2 52z" fill="none" stroke="currentColor" strokeWidth="3" />
+            </svg>
+          )}
+          <span className="eo-wall__name">{r.name}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// The open jobs as shift tickets (home #openings): a stub with the role code, then the title, the
+// pay set large, the shift and the link to apply, torn from the stub along a perforation.
+export function Tickets() {
+  return (
+    <ul className="eo-ticket-list">
+      {jobs.map((job) => (
+        <li className="eo-ticket card" key={job.code}>
+          <span className="eo-ticket__stub eo-ticket__stub--mark" aria-hidden="true">
+            <svg viewBox="0 0 120 104">
+              <path d="M30 2h60l28 50-28 50H30L2 52z" fill="none" stroke="currentColor" strokeWidth="6" />
+            </svg>
+          </span>
+          <div className="eo-ticket__body">
+            <h3 className="eo-ticket__title">{job.title}</h3>
+            <p className="eo-ticket__pay">{jobCopy.perHour(job.pay)}</p>
+            <p className="eo-ticket__shift">{jobShift(job)}.</p>
+            <a className="link eo-ticket__apply" href={jobCopy.applyHref(job.code)}>
+              {jobCopy.applyJob(job.code)}
+              <Arrow />
+            </a>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
 

@@ -49,7 +49,7 @@ export default function Services() {
           secondary={actions.applyForWork}
         />
 
-        <section className="section g2" id="roles" aria-labelledby="roles-h">
+        <section className="section g2 tone-night" id="roles" aria-labelledby="roles-h">
           <div className="wrap">
             <div className="group">
               <div className="section-head">

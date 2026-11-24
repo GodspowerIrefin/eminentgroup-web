@@ -1,0 +1,9 @@
+gate: checking out/index.html (service); this takes a few minutes on a CPU Chrome
+gate: no open FAIL
+  WAIVED copy-headings div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-step: the three step titles are the client's locked copy (content-lock.md: do not change any text); they name the steps of a staffing request
+  WAIVED phone-number ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card > span.eo-contact__value : the client's own published office line (410-929-9388, on the existing site); facilities and nurses call the agency on it
+  WAIVED phone-number div.closing__links > ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card "tel: the tel: link of the client's own published office line, the phone the brief gives, not an invented one
+  WAIVED run-on h1#hero-h "Healthcare staffing in Maryland": one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md
+  WAIVED one-heading h2#roles-h "The 8 roles we place": the other "heading" the checker sees is the credential sentence on the cobalt band, set large by design as a statement (a paragraph, not a heading); the real section headings sit a screen apart
+  14 WARN (not blocking), first: scroll-reveal div#role-detail > figure.develop.eo-cut; scroll-reveal section#checks > div.wrap.grid > div.spa; no-visual section#steps "From request to first shi; heading-scale div.wrap > ol.eo-steps__rows.fill > li.e; section-gaps main#top > section.hero.eo-dark / sectio
+GATE: PASS

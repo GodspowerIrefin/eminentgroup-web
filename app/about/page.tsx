@@ -25,7 +25,7 @@ export default function About() {
           secondary={actions.applyForWork}
         />
 
-        <section className="section" id="agency" aria-labelledby="agency-h">
+        <section className="section tone-night" id="agency" aria-labelledby="agency-h">
           <div className="wrap">
             <div className="section-head">
               <h2 id="agency-h">{c.agency.title}</h2>

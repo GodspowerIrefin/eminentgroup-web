@@ -1,47 +1,36 @@
 {
- "start": "2026-11-18T16:43:38.306Z",
+ "start": "2026-11-24T02:43:10.443Z",
  "round": 2,
  "idle": 0,
  "errors": 0,
  "status": "pass",
  "history": [
   {
-   "at": "2026-11-18T17:55:58.390Z",
+   "at": "2026-11-24T02:45:17.755Z",
    "mode": "manual",
    "status": "fail",
-   "fails": 1,
+   "fails": 45,
    "round": 1,
    "reused": false,
    "stopHookActive": false
   },
   {
-   "at": "2026-11-18T18:59:42.109Z",
-   "mode": "hook",
-   "host": "claude",
+   "at": "2026-11-24T03:22:55.340Z",
+   "mode": "manual",
    "status": "fail",
-   "fails": 1,
+   "fails": 4,
    "round": 2,
    "reused": false,
-   "stopHookActive": false,
-   "decision": "block",
-   "reason": "round 2 of 3: 1 FAIL remain:"
+   "stopHookActive": false
   },
   {
-   "at": "2026-11-18T19:02:06.208Z",
+   "at": "2026-11-24T03:27:56.373Z",
    "mode": "manual",
    "status": "pass",
    "fails": 0,
    "round": 2,
    "reused": false,
    "stopHookActive": false
-  },
-  {
-   "at": "2026-11-18T19:02:11.374Z",
-   "mode": "hook",
-   "host": "claude",
-   "decision": "allow",
-   "reason": "no build is active here",
-   "stopHookActive": true
   }
  ],
  "max": 3,
@@ -50,24 +39,40 @@
   "url": null,
   "root": "out",
   "kind": "service",
-  "category": "healthcare staffing for Maryland facilities",
+  "category": "healthcare staffing",
   "primary": "Request staff",
   "rounds": 3,
-  "start": "2026-11-18T16:43:38.306Z",
+  "start": "2026-11-24T02:43:10.443Z",
   "by": "gate.mjs --start"
  },
  "manual": true,
- "roundKey": "07b2a1070a5e23bd:b77d9fd2",
+ "roundKey": "d61574f21a63d6de:7841529a",
  "roundFree": false,
  "idleFree": false,
- "blockKey": "07b2a1070a5e23bd:b77d9fd2",
- "fp": "1678f5770fe1adc9",
+ "blockKey": null,
+ "fp": "1b1cfb3018a12743",
  "page": "out/index.html",
  "found": {
   "fails": [
    {
+    "check": "copy-headings",
+    "where": "div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-steps__title \"Send the role and shift\"",
+    "msg": "\"Send the role and shift\" names no product, part, place or section (5 headings like it; at most one brand line per page) (and 4 more like it: \"We check every credentia\", \"Staff report for the shi\", \"Registered Nurse (RN)\", \"Licensed Practical Nurse\")",
+    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "copy-headings"
+    ],
+    "wheres": [
+     "div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-steps__title \"Send the role and shift\""
+    ]
+   },
+   {
     "check": "phone-number",
-    "where": "div.grid > div.span-4.stack-4 > ul.footer__contact > li:nth-of-type(1) \"410-929-9388\"",
+    "where": "ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card > span.eo-contact__value \"410-929-9388\"",
     "msg": "a US phone number: \"410-929-9388\"; a visitor can dial it and reach a stranger",
     "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
     "widths": [
@@ -78,12 +83,12 @@
      "phone-number"
     ],
     "wheres": [
-     "div.grid > div.span-4.stack-4 > ul.footer__contact > li:nth-of-type(1) \"410-929-9388\""
+     "ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card > span.eo-contact__value \"410-929-9388\""
     ]
    },
    {
     "check": "phone-number",
-    "where": "div.span-4.stack-4 > ul.footer__contact > li:nth-of-type(1) > a \"tel:+14109299388\"",
+    "where": "div.closing__links > ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card \"tel:+14109299388\"",
     "msg": "a tel: link calls a number in a real dialable format: \"tel:+14109299388\"; a visitor can dial it and reach a stranger",
     "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
     "widths": [
@@ -94,15 +99,47 @@
      "phone-number"
     ],
     "wheres": [
-     "div.span-4.stack-4 > ul.footer__contact > li:nth-of-type(1) > a \"tel:+14109299388\""
+     "div.closing__links > ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card \"tel:+14109299388\""
+    ]
+   },
+   {
+    "check": "run-on",
+    "where": "h1#hero-h \"Healthcare staffing in Maryland\"",
+    "msg": "\"staffing in | Maryland\": the heading runs its first sentence into the grey second one with no stop",
+    "fix": "end the heading's first sentence with a full stop before its grey second one (\"Rooms and prices. Breakfast included.\")",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "run-on"
+    ],
+    "wheres": [
+     "h1#hero-h \"Healthcare staffing in Maryland\""
+    ]
+   },
+   {
+    "check": "one-heading",
+    "where": "h2#roles-h \"The 8 roles we place\"",
+    "msg": "headings of two sections show whole on one screen at 13 of 109 scroll positions (11.9%; at scroll 2050, 2100, 2150, 2200px), here with \"certification\": at most 3% on a desktop (SR-5)",
+    "fix": "make the sections one screen tall so their headings sit a screen apart and two never share one",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "one-heading"
+    ],
+    "wheres": [
+     "h2#roles-h \"The 8 roles we place\""
     ]
    }
   ],
   "warns": [
    {
     "check": "scroll-reveal",
-    "where": "section#roles > div.wrap.grid > figure.develop.span-6",
-    "msg": "starts an animation (1.6 s) the moment it is scrolled into view (an IntersectionObserver) on img (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "where": "div#role-detail > figure.develop.eo-cut",
+    "msg": "starts \"transform\" (0.9 s) the moment it is scrolled into view (an IntersectionObserver) on img (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
     "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
     "widths": [
      1440,
@@ -112,8 +149,8 @@
    },
    {
     "check": "scroll-reveal",
-    "where": "section#checks > div.wrap > p.mo-wh__text \"Before anyone works a shift in your faci\"",
-    "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "where": "section#checks > div.wrap.grid > div.span-7.eo-promise__text > p.mo-wh__text.mo-wh \"Before anyone works a shift in your faci\"",
+    "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(11) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
     "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
     "widths": [
      1440,
@@ -122,10 +159,20 @@
     "from": "consistency"
    },
    {
-    "check": "copy-headings",
-    "where": "div.wrap > div.grid.fill > article.card.card--row:nth-of-type(1) > h3 \"Send the role and shift\"",
-    "msg": "the card title \"Send the role and shift\" names no product, part, place or section (3 card titles like it) (and 2 more like it: \"We check every credentia\", \"Staff report for the shi\")",
-    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "check": "no-visual",
+    "where": "section#steps \"From request to first shift in 3 steps\"",
+    "msg": "pictures, effects and mocks cover 15% of this section; a feature section needs a visual (about 25% or more)",
+    "fix": "give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "heading-scale",
+    "where": "div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-steps__title \"Send the role and shift\"",
+    "msg": "h3 headings in 2 sizes, 25.5px (\"Registered Nurse (RN)\") to 30.4px (x1.19)",
+    "fix": "size headings by level: the h1 largest, one size per level, each level below the one above",
     "widths": [
      1440
     ],
@@ -133,18 +180,8 @@
    },
    {
     "check": "section-gaps",
-    "where": "main#top > section.hero.hero--photo / section#roles",
-    "msg": "116px between these sections, -38% against the median 188px",
-    "fix": "use one gap between sections (all within 25% of each other)",
-    "widths": [
-     1440
-    ],
-    "from": "consistency"
-   },
-   {
-    "check": "section-gaps",
-    "where": "section#roles / section#steps",
-    "msg": "276px between these sections, +47% against the median 188px",
+    "where": "main#top > section.hero.eo-dark / section#settings",
+    "msg": "uneven space at the edge of a band: 106px outside its edge, 64px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
     "fix": "use one gap between sections (all within 25% of each other)",
     "widths": [
      1440
@@ -153,8 +190,8 @@
    },
    {
     "check": "photo-set",
-    "where": "section#roles > div.wrap.grid > figure.develop.span-6 > img \"photo-f198191936-960.jpg\"",
-    "msg": "3 photographs in more than one look: warm and cool photographs mixed (b* -5 to +6); the odd one out is photo-f198191936-960.jpg",
+    "where": "div.wrap > div.hero-text.eo-dark__grid > div.hero__media.eo-dark__media > img \"photo-f186239770-1280.jpg\"",
+    "msg": "6 photographs in more than one look: saturation from 0.17 to 0.61; warm and cool photographs mixed (b* -11 to +9); the odd one out is photo-f186239770-1280.jpg",
     "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
     "widths": [
      1440
@@ -203,7 +240,7 @@
    },
    {
     "check": "cta",
-    "where": "section#roles \"The 8 roles we place\"",
+    "where": "section#settings \"Facilities we staff in Maryland\"",
     "msg": "a section over 1.5 screens long with no link or button in it",
     "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
     "widths": [
@@ -222,19 +259,9 @@
     "from": "consistency"
    },
    {
-    "check": "section-gaps",
-    "where": "section#openings / footer#contact",
-    "msg": "uneven space at the edge of a band: 48px outside its edge, 93px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
-    "fix": "use one gap between sections (all within 25% of each other)",
-    "widths": [
-     390
-    ],
-    "from": "consistency"
-   },
-   {
     "check": "photo-set",
-    "where": "div.wrap > div.grid.grid--top > div.frame.frame--photo > img.frame__img:nth-of-type(1) \"hospitals.jpg\"",
-    "msg": "5 photographs in more than one look: saturation from 0.16 to 0.54; warm and cool photographs mixed (b* -10 to +9); the odd one out is hospitals.jpg",
+    "where": "section#checks > div.wrap.grid > div.frame.frame--photo > img.frame__img \"credentialing-400.jpg\"",
+    "msg": "7 photographs in more than one look: saturation from 0.15 to 0.51; warm and cool photographs mixed (b* -7 to +17); the odd one out is credentialing-400.jpg",
     "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
     "widths": [
      390
@@ -242,27 +269,44 @@
     "from": "consistency"
    },
    {
-    "check": "empty-area",
-    "where": "footer#contact \"Request staff for your facility\"",
-    "msg": "37% of the section is empty: 576px of empty rows between its content, in its 1544px of rows (WARN over 35%, FAIL over 50%)",
-    "fix": "fill the section: a picture or a second column beside the words, or more of its own content; the section stays one or two screens tall (T-height)",
+    "check": "fold-cut",
+    "where": "div.eo-dark__text > div.eo-hero__foot.eo-dark__foot > div.btn-row > a.btn.btn--secondary \"Apply for work\"",
+    "msg": "the hero's button \"Apply for work\" is cut by the bottom of the first screen (29px of its 44px below the fold)",
+    "fix": "size the hero so the heading ends above the fold, or starts below it",
     "widths": [
-     390
+     320
     ],
     "from": "consistency"
    }
   ],
   "crashed": [],
   "seconds": {
-   "consistency": 107,
-   "layout": 6
+   "consistency": 112,
+   "layout": 5
   }
  },
  "open": [],
  "waived": [
   {
+   "check": "copy-headings",
+   "where": "div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-steps__title \"Send the role and shift\"",
+   "msg": "\"Send the role and shift\" names no product, part, place or section (5 headings like it; at most one brand line per page) (and 4 more like it: \"We check every credentia\", \"Staff report for the shi\", \"Registered Nurse (RN)\", \"Licensed Practical Nurse\")",
+   "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "copy-headings"
+   ],
+   "wheres": [
+    "div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-steps__title \"Send the role and shift\""
+   ],
+   "reason": "the three step titles are the client's locked copy (content-lock.md: do not change any text); they name the steps of a staffing request"
+  },
+  {
    "check": "phone-number",
-   "where": "div.grid > div.span-4.stack-4 > ul.footer__contact > li:nth-of-type(1) \"410-929-9388\"",
+   "where": "ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card > span.eo-contact__value \"410-929-9388\"",
    "msg": "a US phone number: \"410-929-9388\"; a visitor can dial it and reach a stranger",
    "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
    "widths": [
@@ -273,13 +317,13 @@
     "phone-number"
    ],
    "wheres": [
-    "div.grid > div.span-4.stack-4 > ul.footer__contact > li:nth-of-type(1) \"410-929-9388\""
+    "ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card > span.eo-contact__value \"410-929-9388\""
    ],
    "reason": "the client's own published office line (410-929-9388, on the existing site); facilities and nurses call the agency on it"
   },
   {
    "check": "phone-number",
-   "where": "div.span-4.stack-4 > ul.footer__contact > li:nth-of-type(1) > a \"tel:+14109299388\"",
+   "where": "div.closing__links > ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card \"tel:+14109299388\"",
    "msg": "a tel: link calls a number in a real dialable format: \"tel:+14109299388\"; a visitor can dial it and reach a stranger",
    "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
    "widths": [
@@ -290,13 +334,45 @@
     "phone-number"
    ],
    "wheres": [
-    "div.span-4.stack-4 > ul.footer__contact > li:nth-of-type(1) > a \"tel:+14109299388\""
+    "div.closing__links > ul.eo-contact > li:nth-of-type(1) > a.eo-contact__card \"tel:+14109299388\""
    ],
    "reason": "the tel: link of the client's own published office line, the phone the brief gives, not an invented one"
+  },
+  {
+   "check": "run-on",
+   "where": "h1#hero-h \"Healthcare staffing in Maryland\"",
+   "msg": "\"staffing in | Maryland\": the heading runs its first sentence into the grey second one with no stop",
+   "fix": "end the heading's first sentence with a full stop before its grey second one (\"Rooms and prices. Breakfast included.\")",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "run-on"
+   ],
+   "wheres": [
+    "h1#hero-h \"Healthcare staffing in Maryland\""
+   ],
+   "reason": "one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md"
+  },
+  {
+   "check": "one-heading",
+   "where": "h2#roles-h \"The 8 roles we place\"",
+   "msg": "headings of two sections show whole on one screen at 13 of 109 scroll positions (11.9%; at scroll 2050, 2100, 2150, 2200px), here with \"certification\": at most 3% on a desktop (SR-5)",
+   "fix": "make the sections one screen tall so their headings sit a screen apart and two never share one",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "one-heading"
+   ],
+   "wheres": [
+    "h2#roles-h \"The 8 roles we place\""
+   ],
+   "reason": "the other \"heading\" the checker sees is the credential sentence on the cobalt band, set large by design as a statement (a paragraph, not a heading); the real section headings sit a screen apart"
   }
  ],
- "warnCount": 15,
- "at": "2026-11-18T19:02:06.209Z",
- "note": "the checks ran past 9.5 minutes",
- "session": "47651bdb-eb7b-4643-a070-bbbd43eae49f"
+ "warnCount": 14,
+ "at": "2026-11-24T03:27:56.374Z"
 }

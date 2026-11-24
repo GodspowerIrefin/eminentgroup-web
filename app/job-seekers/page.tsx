@@ -37,7 +37,9 @@ export default function JobSeekers() {
               <p>{c.openings.lead}</p>
             </div>
             <div className="grid grid--top fill">
-              <JobCards span="span-3" />
+              <div className="span-6 eo-tickets">
+                <JobCards span="" />
+              </div>
               <div className="frame frame--photo frame--fill span-6 start-7">
                 <img className="frame__img" src={openImg.src} srcSet={openImg.srcSet} sizes="(max-width: 1023px) 100vw, 50vw" width={openImg.width} height={openImg.height} alt={openImg.alt} loading="lazy" decoding="async" data-source="stand-in" data-subject={openImg.subject} />
               </div>
@@ -45,7 +47,7 @@ export default function JobSeekers() {
           </div>
         </section>
 
-        <section className="section" id="checks" aria-labelledby="checks-h">
+        <section className="section tone-night" id="checks" aria-labelledby="checks-h">
           <div className="wrap">
             <div className="section-head">
               <h2 id="checks-h">{c.checks.title}</h2>
