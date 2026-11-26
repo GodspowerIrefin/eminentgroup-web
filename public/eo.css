@@ -1152,7 +1152,6 @@ html.nav-compact header.nav.nav--eo { transform: translateY(calc(-1 * var(--topb
   .eo-slides > .eo-slide.is-on { animation: eo-drift 3600ms linear both; }
 }
 @keyframes eo-drift { from { transform: scale(1.08); } to { transform: scale(1); } }
-.eo-slides > .eo-slide[data-slide="0"] { object-position: 42% 50%; }
 /* the pause button: a small round control on the photograph's square corner */
 .eo-slides__pause {
   position: absolute; z-index: 2; left: 16px; bottom: 16px; width: 44px; height: 44px; border-radius: 50%; border: 0;
@@ -1391,3 +1390,235 @@ main #audiences { padding-bottom: 0; }
 @media (max-width: 639px) { .eo-people, .eo-points { grid-template-columns: minmax(0, 1fr); } }
 #work .tile__head:has(.eo-tile__num) { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 4px; }
 main #work { padding-bottom: 0; }
+
+/* ============================================================================================
+   Client round, 26 Nov: header swap, Portal sign-in, the credential statement, the footer
+   ============================================================================================ */
+/* the top bar's licence line in capitals; the main bar's button is Request Staff, in the brand cobalt */
+.nav--eo .nav__licensed { text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px; font-weight: 600; }
+.nav--eo .nav__cta { background: var(--eo-cobalt); }
+.nav--eo .nav__cta::before { background: #101225; }
+/* Portal sits in the phone menu after the five words (the top bar is hidden there) */
+@media (min-width: 1024px) { .nav--eo .nav__portal-m { display: none !important; } }
+
+/* the credential statement: larger words, centred in the column so no empty block sits under them */
+.eo-promise__text { justify-content: center; }
+.eo-promise .mo-wh__text { font-size: clamp(36px, 3.4vw + 16px, 84px); line-height: 1.03; max-width: none; }
+@media (max-width: 1023px) {
+  html body main.eo-home #checks { min-height: 0; }
+  .eo-promise .mo-wh__text { font-size: clamp(34px, 5.6vw + 8px, 56px); }
+}
+@media (max-width: 639px) {
+  .eo-promise .mo-wh__text { font-size: clamp(30px, 8.4vw, 40px); line-height: 1.06; }
+  html body main.eo-home #checks { --hm: 1; }
+}
+
+/* the footer directory, spaced as the client's reference: five columns, airy link rows */
+footer.closing .eo-foot { grid-template-columns: minmax(0, 1.12fr) repeat(3, minmax(0, 1fr)) minmax(0, 1.12fr); column-gap: clamp(24px, 3vw, 48px); row-gap: var(--s-7); }
+footer.closing .eo-foot__col, footer.closing .eo-foot__col:first-child, footer.closing .eo-foot__touch { grid-column: auto; gap: 22px; }
+footer.closing .eo-foot__col h3 { font-size: 17px; }
+footer.closing .eo-foot__col ul { gap: 13px; }
+footer.closing .eo-foot__col a, footer.closing .eo-foot__address { font-size: 15.5px; line-height: 1.5; }
+footer.closing .eo-foot__col h3.eo-foot__then { margin-top: 26px; }
+.eo-foot__address { display: grid; }
+footer.closing .eo-foot__touch > ul:first-of-type { gap: 10px; }
+footer.closing .eo-foot__quick { margin-top: 10px; padding-top: 26px !important; gap: 13px; }
+footer.closing .eo-foot__base { margin-top: var(--s-7); padding-top: 28px; }
+.eo-foot__legal { gap: 6px; font-size: 13.5px; }
+.eo-foot__legal > span:first-child { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; color: #c9cbe0; }
+@media (max-width: 1023px) {
+  footer.closing .eo-foot { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--s-6); }
+  footer.closing .eo-foot__touch { grid-column: 1 / -1; }
+}
+@media (max-width: 639px) {
+  footer.closing .eo-foot { column-gap: var(--s-5); row-gap: var(--s-6); }
+  footer.closing .eo-foot__col { gap: 16px; }
+  footer.closing .eo-foot__col ul { gap: 11px; }
+  footer.closing .eo-foot__col a, footer.closing .eo-foot__address { font-size: 15px; }
+  footer.closing .eo-foot__touch > ul:first-of-type { display: grid; grid-template-columns: minmax(0, 1fr); }
+  footer.closing .eo-foot__quick { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-5); }
+}
+
+/* the Portal sign-in page */
+.eo-signin .wrap.grid { align-items: center; }
+.eo-signin__head h1 { font-size: max(36px, calc(clamp(48px, min(7.6vw, 13svh), 124px) - 25px)); line-height: 1.02; margin: 0; }
+.eo-signin__help a { color: var(--eo-cobalt); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.eo-signin__panel .form { grid-template-columns: minmax(0, 1fr); }
+.eo-signin__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3) var(--s-5); font-size: 15px; }
+.eo-signin__check { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+.eo-signin__check input { width: 18px; height: 18px; accent-color: var(--eo-cobalt); margin: 0; }
+.eo-signin__submit { width: 100%; justify-content: center; }
+@media (max-width: 1023px) { .eo-signin .form-panel { grid-column: 1 / -1; margin-top: var(--s-6); } .eo-signin__head { grid-column: 1 / -1; } }
+footer.closing .eo-foot__col, footer.closing .eo-foot__col:first-child, footer.closing .eo-foot__touch { gap: 16px; }
+.eo-foot__address > span { display: block; }
+@media (max-width: 639px) {
+  footer.closing .eo-foot__col ul, footer.closing .eo-foot__touch > ul:first-of-type, footer.closing .eo-foot__quick { row-gap: 0; }
+  footer.closing .eo-foot__col { gap: 8px; }
+  footer.closing .eo-foot__address { padding-block: 6px; }
+}
+.eo-signin .eo-signin__check { font: 400 15px/1.3 var(--font-text); letter-spacing: 0; text-transform: none; color: var(--eo-ink); }
+footer.closing .eo-foot__address { display: flex !important; flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start; }
+footer.closing .eo-foot__col h3 { margin: 0; }
+@media (max-width: 639px) {
+  footer.closing .eo-foot__base { margin-top: var(--s-5); padding-top: var(--s-5); }
+  footer.closing .closing__links { gap: var(--s-5); }
+}
+
+/* ---- the footer directory spaced as the client's reference (26 Nov); the close, colours and
+   ground stay as before ---- */
+footer.closing .eo-foot__base { margin-top: 56px; padding-top: 24px; }
+@media (max-width: 639px) { footer.closing .eo-foot__base { margin-top: var(--s-6); padding-top: var(--s-5); } }
+/* the client's hospital photograph: keep the doctor and the patient's face in the tall panel */
+.eo-slides > .eo-slide[data-subject="Hospitals"] { object-position: 34% 50%; }
+@media (max-width: 639px) { .eo-slides > .eo-slide[data-subject="Hospitals"] { object-position: 20% 50%; } }
+/* the directory keeps the reference's own gaps: no stretched space between the links and the base row */
+footer.closing .closing__links { display: block; flex: none; }
+/* the directory's rhythm, scaled from the client's reference: a wider gap under each heading, the
+   address set apart from the phone, more air over the quick links and over the base row */
+footer.closing .eo-foot__col, footer.closing .eo-foot__col:first-child, footer.closing .eo-foot__touch { gap: 26px; }
+footer.closing .eo-foot__touch > ul:first-of-type > li.eo-foot__address { margin-bottom: 6px; }
+footer.closing .eo-foot__quick { margin-top: 6px; padding-top: 30px !important; }
+footer.closing .eo-foot__base { margin-top: 64px; }
+@media (max-width: 639px) {
+  footer.closing .eo-foot__col, footer.closing .eo-foot__col:first-child, footer.closing .eo-foot__touch { gap: 14px; }
+  footer.closing .eo-foot__base { margin-top: var(--s-6); }
+}
+/* the footer keeps the page's column, so its button lines up under the header's Request staff (client, 26 Nov) */
+/* the close's button on its own row under the phone line, at the footer's right edge (client, 26 Nov) */
+@media (min-width: 640px) {
+  html footer.closing .closing__cta.close--type > .btn--xl, html footer.closing .closing__cta.close--type > .btn--xl:not(.btn--wide) { align-self: flex-end; justify-self: end; }
+}
+/* the close's button beside the heading, level with its last line, so no empty row sits under the
+   phone line (client, 26 Nov) */
+@media (min-width: 640px) {
+  html footer.closing .closing__cta.close--type { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-6); row-gap: 0; align-items: end; }
+  html footer.closing .closing__cta.close--type > .section-head { display: contents; }
+  html footer.closing .closing__cta .section-head > h2 { grid-column: 1; grid-row: 1; }
+  html footer.closing .closing__cta .section-head > p { grid-column: 1; grid-row: 2; margin-top: var(--s-4); }
+  html footer.closing .closing__cta.close--type > .btn--xl, html footer.closing .closing__cta.close--type > .btn--xl:not(.btn--wide) { grid-column: 2; grid-row: 1; align-self: end; justify-self: end; margin-bottom: 0.6em; }
+}
+/* the licence line in title case, not capitals (client, 26 Nov) */
+.nav--eo .nav__licensed, .eo-foot__legal > span:first-child { text-transform: none; letter-spacing: 0; }
+.nav--eo .nav__licensed { font-size: 13px; font-weight: 500; }
+.eo-foot__legal > span:first-child { font-size: 13.5px; }
+
+/* ---- home on a phone (client, 26 Nov): no hero photograph and a larger headline; each section only
+   as tall as its content; the step cards no taller than their words; no photographs beside the open
+   jobs ---- */
+@media (max-width: 639px) {
+  html body main.eo-home .eo-dark { --photo: 0px; }
+  html body main.eo-home .eo-dark__media { display: none; }
+  html body main.eo-home .eo-dark .eo-dark__title { font-size: clamp(54px, 17vw, 84px); line-height: 0.98; }
+  html body main.eo-home .eo-dark__text { justify-content: space-between; }
+  html body main.eo-home > section.section:not(.hero) { min-height: 0; --padt: 64px; --padb: 56px; }
+  html body main.eo-home .eo-split__tall, html body main.eo-home .eo-services__photo { flex: none; }
+  html body main.eo-home .eo-step-cards { grid-auto-rows: auto; align-items: start; flex: none; }
+  html body main.eo-home .eo-step-card.card { height: auto; padding-bottom: var(--s-5); }
+  html body main.eo-home #openings .eo-tiles { display: none; }
+}
+@media (max-width: 639px) {
+  html body main.eo-home > section.section:not(.hero), html body main.eo-home > section.section:not(.hero) > .wrap { height: auto !important; max-height: none !important; }
+  html body main.eo-home .eo-dark.hero { min-height: 0; height: auto; --padb: 56px; }
+  html body main.eo-home .eo-dark__text { height: auto; justify-content: flex-start; gap: var(--s-7); }
+}
+@media (max-width: 639px) {
+  html body main.eo-home #steps .eo-step-cards { flex: none; min-height: auto; }
+}
+@media (max-width: 639px) {
+  /* the roles photograph is hidden on a phone too (client, 26 Nov) */
+  html body main.eo-home #roles .eo-services__photo { display: none; }
+}
+@media (max-width: 639px) {
+  /* the hero photograph as the hero's background, under a dark overlay (client, 26 Nov) */
+  html body main.eo-home .eo-dark.hero {
+    background-color: var(--eo-night);
+    background-image: linear-gradient(180deg, rgb(10 12 36 / 0.66) 0%, rgb(10 12 36 / 0.58) 45%, rgb(10 12 36 / 0.84) 100%), var(--hero-bg);
+    background-size: cover; background-position: 38% 50%; background-repeat: no-repeat;
+  }
+  html body main.eo-home .eo-dark__media { display: none !important; }
+}
+
+/* ============================================================================================
+   PHONE MENU (below 1024px, client reference, 26 Nov): a card over the page, the logo and a cross,
+   the five words as an accordion with their pages, Portal, then Request staff and the phone
+   ============================================================================================ */
+.eo-mnav__open, .eo-mnav { display: none; }
+@media (max-width: 1023px) {
+  .nav--eo .nav__toggle { display: none !important; }
+  .eo-mnav__open {
+    display: inline-grid; place-items: center; flex: none; width: 44px; height: 44px; margin-left: var(--s-2);
+    border: 1px solid rgb(16 18 37 / 0.18); border-radius: 4px; background: transparent; color: var(--eo-ink); cursor: pointer;
+  }
+  .eo-mnav:not([hidden]) {
+    display: block; position: fixed; inset: 0; z-index: 1000; padding: 6px;
+    background: rgb(10 12 36 / 0.45);
+  }
+  html.eo-mnav-on, html.eo-mnav-on body { overflow: hidden; }
+  .eo-mnav__panel {
+    height: 100%; display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain;
+    background: #f8f6f1; color: var(--eo-ink); border-radius: 12px; padding: 18px 24px 24px;
+    box-shadow: 0 20px 60px rgb(10 12 36 / 0.35);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .eo-mnav:not([hidden]) .eo-mnav__panel { animation: eo-mnav-in 260ms cubic-bezier(.2,.7,.2,1) both; }
+  }
+  .eo-mnav__head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); padding-bottom: 28px; }
+  .eo-mnav__logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+  .eo-mnav__logo img { height: 48px; width: auto; }
+  .eo-mnav__logo > span { display: grid; gap: 5px; }
+  .eo-mnav__name { font: 700 17px/1 var(--font-text); letter-spacing: 0.16em; text-transform: uppercase; color: #1a2a8a; }
+  .eo-mnav__tag { font: 400 11.5px/1 var(--font-text); letter-spacing: 0.06em; color: #5b5d6b; }
+  .eo-mnav__close { display: grid; place-items: center; width: 44px; height: 44px; margin-right: -10px; border: 0; background: none; color: var(--eo-ink); cursor: pointer; }
+  .eo-mnav__list { display: flex; flex-direction: column; }
+  .eo-mnav__group { border-bottom: 1px solid rgb(16 18 37 / 0.1); }
+  .eo-mnav__group summary {
+    list-style: none; display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+    min-height: 66px; cursor: pointer; font: 600 21px/1.2 var(--font-text); letter-spacing: -0.005em; color: var(--eo-ink);
+  }
+  .eo-mnav__group summary::-webkit-details-marker { display: none; }
+  .eo-mnav__group summary:focus-visible { outline: 2px solid var(--eo-cobalt); outline-offset: 2px; }
+  .eo-mnav__plus { position: relative; width: 14px; height: 14px; flex: none; }
+  .eo-mnav__plus::before, .eo-mnav__plus::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: currentColor; border-radius: 1px; transition: transform 200ms ease; }
+  .eo-mnav__plus::after { transform: rotate(90deg); }
+  .eo-mnav__group[open] .eo-mnav__plus::after { transform: rotate(0deg); }
+  .eo-mnav__group[open] summary { color: var(--eo-cobalt); min-height: 58px; }
+  .eo-mnav__group ul { list-style: none; margin: 0; padding: 2px 0 20px; display: grid; gap: 4px; }
+  .eo-mnav__group ul a { display: block; padding: 7px 0; font: 400 17px/1.3 var(--font-display); letter-spacing: 0; color: #5b5d6b; text-decoration: none; }
+  .eo-mnav__group ul a:hover, .eo-mnav__group ul a:focus-visible { color: var(--eo-cobalt); }
+  .eo-mnav__row { display: flex; align-items: center; min-height: 66px; border-bottom: 1px solid rgb(16 18 37 / 0.1); font: 600 21px/1.2 var(--font-text); color: var(--eo-ink); text-decoration: none; }
+  .eo-mnav__actions { margin-top: auto; padding-top: 32px; display: grid; gap: 12px; }
+  .eo-mnav__btn { display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 2px; font: 600 16px/1 var(--font-text); text-decoration: none; }
+  .eo-mnav__btn--primary { background: var(--eo-cobalt); color: #fff; }
+  .eo-mnav__btn--primary:hover { background: #1b2bb8; }
+  .eo-mnav__btn--line { border: 1px solid var(--eo-ink); color: var(--eo-ink); font-weight: 500; }
+}
+@keyframes eo-mnav-in { from { opacity: 0; transform: translateY(-8px) scale(0.985); } to { opacity: 1; transform: none; } }
+
+/* ---- type scale on a phone (client, 26 Nov): one clear step from section heading to lead to item.
+   Section h2 36px, lead 16px, list and card names 21-22px, body 15px; the heading block sits 32px
+   above what follows ---- */
+@media (max-width: 639px) {
+  :root { --t-h2: 36px; --head-gap: 32px; }
+  html main .section-head > h2, html main .stack-4 > h2, html main .stack-5 > h2, html main .eo-split h2, html main #steps h2 {
+    font-size: 36px; line-height: 1.04; letter-spacing: -0.02em; max-width: none;
+  }
+  html main .section-head { gap: 12px; margin-bottom: 32px; }
+  html main .section-head p, html main .stack-4 > h2 + p { font-size: 16px; line-height: 1.55; color: var(--ink-soft, #3d3f52); }
+  html main.eo-home .eo-split__side { gap: 0; }
+  html main.eo-home .eo-list { margin-top: 0; }
+  html main.eo-home .eo-list > li { padding-block: 16px; }
+  html main.eo-home .eo-list .rows__name { font-size: 22px; line-height: 1.15; margin-bottom: 4px; }
+  html main.eo-home .eo-list > li > p { font-size: 15px; line-height: 1.45; }
+  html main.eo-home #roles h2 { margin-bottom: 28px; }
+  html main.eo-home .eo-role-card h3, html main.eo-home .eo-role-card .eo-role-card__name { font-size: 21px; }
+  html main.eo-home .eo-step-card.card > .eo-step-card__title { font-size: 24px; }
+  html main.eo-home #openings .section-head { margin-bottom: 24px; }
+  html main.eo-home .eo-promise .mo-wh__text { font-size: 32px; line-height: 1.08; }
+}
+@media (max-width: 639px) {
+  html main.eo-home #settings .section-head { margin-bottom: 16px !important; }
+  html main.eo-home #settings .eo-list { margin-top: 0 !important; padding-top: 0 !important; }
+  html main.eo-home #roles .eo-split__side { gap: 24px !important; }
+  html main.eo-home #roles h2 { margin-bottom: 0 !important; }
+  html main.eo-home #roles .eo-role-cards { margin-top: 0 !important; }
+}

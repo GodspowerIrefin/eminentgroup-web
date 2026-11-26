@@ -59,14 +59,18 @@ export default function Closing({ title = footer.close.title, line = footer.clos
             <div className="eo-foot__col eo-foot__touch">
               <h3>{footer.touch.title}</h3>
               <ul>
-                <li className="eo-foot__address">{site.address}</li>
+                <li className="eo-foot__address">
+                  {footer.address.map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </li>
                 <li>
                   <a className="eo-foot__phone" href={site.phoneHref}>
                     {site.phone}
                   </a>
                 </li>
                 <li>
-                  <a href={site.emailHref}>{footer.emailLink}</a>
+                  <a href={site.emailHref}>{site.email}</a>
                 </li>
                 <li>
                   <a href={site.mapsUrl} rel="noopener">

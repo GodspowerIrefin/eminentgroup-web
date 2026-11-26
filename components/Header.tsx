@@ -1,4 +1,4 @@
-import { nav, site, ui, type Link } from "@/content/content";
+import { actions, nav, site, ui, type Link } from "@/content/content";
 
 // The header, as on the agency's original site: a thin top bar (the licence on the left; Open
 // Positions, Request Staff, Referrals, Contact Us and the phone on the right), then the main bar
@@ -9,8 +9,13 @@ import { nav, site, ui, type Link } from "@/content/content";
 
 type Current = (typeof nav.words)[number]["key"];
 
-// The bar's one button is "Portal" on every page (content: nav.portal). `action` and `second` are
-// kept for the pages that still pass them; the bar no longer shows either.
+// the phone menu: open and close (the button, the cross, Escape, a link, a tap outside the card),
+// focus kept inside while open, the page held still behind it
+const MNAV = `(function(){var m=document.getElementById("eo-mnav"),o=document.querySelector(".eo-mnav__open");if(!m||!o)return;var c=m.querySelector(".eo-mnav__close"),h=document.documentElement;function set(v){m.hidden=!v;o.setAttribute("aria-expanded",String(v));h.classList.toggle("eo-mnav-on",v);if(v)c.focus();else o.focus()}o.addEventListener("click",function(){set(true)});c.addEventListener("click",function(){set(false)});m.addEventListener("click",function(e){if(e.target===m)set(false);else if(e.target.closest("a[href]"))set(false)});document.addEventListener("keydown",function(e){if(m.hidden)return;if(e.key==="Escape"){set(false);return}if(e.key==="Tab"){var f=[].slice.call(m.querySelectorAll("a[href],button,summary")).filter(function(x){return x.offsetParent!==null});var a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}})})();`;
+
+// The bar's one button is "Request Staff" on every page; "Portal" (the sign-in page) is a link in the
+// top bar, and in the phone menu after the five words. `action` and `second` are kept for the pages
+// that still pass them; the bar no longer shows either.
 export default function Header({
   current,
 }: {
@@ -19,6 +24,7 @@ export default function Header({
   second?: Link;
 }) {
   return (
+    <>
     <header className="nav nav--eo">
       <div className="nav__top">
         <div className="wrap nav__top-bar">
@@ -68,16 +74,67 @@ export default function Header({
           ))}
         </nav>
         <div className="nav__actions">
-          <a className="btn btn--primary nav__cta" href={nav.portal.href}>
-            {nav.portal.label}
+          <a className="btn btn--primary nav__cta" href={actions.requestStaff.href}>
+            {actions.requestStaff.label}
           </a>
         </div>
-        <button className="nav__toggle" type="button" aria-expanded="false" aria-label={ui.menuButtonLabel}>
+        <button className="eo-mnav__open" type="button" aria-expanded="false" aria-controls="eo-mnav" aria-label={ui.menuButtonLabel}>
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
             <path d="M2 5h14M2 13h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
           </svg>
         </button>
       </div>
     </header>
+    {/* the phone menu (below 1024px): a card over the page with the logo and a close button, the five
+        words as an accordion (one open at a time) with their pages, Portal, then Request staff and
+        the phone. It sits outside the header, whose slide on scroll would otherwise carry it. */}
+    <div className="eo-mnav" id="eo-mnav" role="dialog" aria-modal="true" aria-label={ui.menuButtonLabel} hidden>
+      <div className="eo-mnav__panel">
+        <div className="eo-mnav__head">
+          <a className="eo-mnav__logo" href="/" aria-label={ui.logoHomeLabel}>
+            <img src="/images/eo-mark-120.png" alt="" width={120} height={85} />
+            <span>
+              <span className="eo-mnav__name">{ui.logoName}</span>
+              <span className="eo-mnav__tag">{nav.tagline}</span>
+            </span>
+          </a>
+          <button className="eo-mnav__close" type="button" aria-label={nav.mobile.close}>
+            <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+              <path d="M4 4l14 14M18 4L4 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+        <nav className="eo-mnav__list" aria-label={ui.mainNavLabel}>
+          {nav.words.map((w, i) => (
+            <details className="eo-mnav__group" name="eo-mnav" key={w.key} open={current ? current === w.key : i === 0}>
+              <summary>
+                <span>{w.label}</span>
+                <span className="eo-mnav__plus" aria-hidden="true" />
+              </summary>
+              <ul>
+                {w.menu.map((l) => (
+                  <li key={l.href + l.label}>
+                    <a href={l.href}>{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ))}
+          <a className="eo-mnav__row" href={nav.portal.href}>
+            {nav.portal.label}
+          </a>
+        </nav>
+        <div className="eo-mnav__actions">
+          <a className="eo-mnav__btn eo-mnav__btn--primary" href={actions.requestStaff.href}>
+            {actions.requestStaff.label}
+          </a>
+          <a className="eo-mnav__btn eo-mnav__btn--line" href={site.phoneHref}>
+            {nav.mobile.call} {site.phone}
+          </a>
+        </div>
+      </div>
+    </div>
+    <script dangerouslySetInnerHTML={{ __html: MNAV }} />
+    </>
   );
 }

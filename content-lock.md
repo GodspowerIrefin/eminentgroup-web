@@ -741,3 +741,12 @@ Each reuses the words of the pages above; only the hero (title and line) and the
 - **/job-seekers/open-positions/ (Open positions):** hero "Open positions" — "Apply for a shift, or send one application for any role."; the shift tickets; What we check before your first shift.
 - **/job-seekers/apply/ (Apply for work):** hero "Apply for nursing and care work" — "Apply once and we match you to shifts that fit your license."; the application form.
 - **/job-seekers/registered-nurse-roles/ (Registered nurse roles):** hero "Registered nurse roles" — "RN shifts in hospitals, nursing homes, rehab centers, assisted living and home care across Maryland."; What our RNs do on a shift; the shift tickets.
+
+## Client round, 26 Nov 2026
+
+- Top bar and footer licence line: "Licensed Maryland Health Care Staffing Agency", in title case as written (not all capitals).
+- Header: Request Staff is now the main bar's button; Portal moved to the top bar (and the phone menu) and opens the new sign-in page, /portal/.
+- /portal/: "Portal" / "Sign in to your account." / "For Eminent One staff and client facilities." with Email, Password, "Keep me signed in", "Forgot your password?" and "Sign in". There is no sign-in service yet; a valid submit shows "Online sign-in is not open yet. Call the office at 410-929-9388."
+- Home #openings heading: "Open nursing jobs" changed to "Explore Opportunities".
+- "See open shifts" changed to "See Open Roles" (home, Careers, Open Positions, RN Roles).
+- Footer "Get in touch": the address now reads "8310 Liberty Rd / Windsor Mill, MD 21244" and the email address is printed in place of "Email the office".

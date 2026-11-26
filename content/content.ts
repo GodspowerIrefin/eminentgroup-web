@@ -137,6 +137,7 @@ const ALT = {
   credentialing: "A hand holding a pen over printed forms on a wooden desk",
   hospitals: "Two nurses in teal scrubs reading a chart in a hospital corridor",
   hospitalWard: "A nurse in a protective gown and mask reaching for a monitor beside a patient's bed in a hospital room",
+  hospitalDoctor: "A doctor holding a tablet talks with a woman resting in a hospital bed",
   nursingHomes: "A care worker pouring a hot drink for a woman resting in bed in a nursing home room",
   rehabilitation: "A therapist guiding a patient's arm and hip through a stretch on a treatment table",
   assistedLiving: "Three older residents playing chess over coffee in a bright lounge",
@@ -170,6 +171,14 @@ export const photos = {
     height: 914,
     alt: ALT.hospitalWard,
   },
+  // supplied by the client (26 Nov): the first photograph of the home page's facility slideshow
+  hospitalDoctor: {
+    src: "/assets/img/photo-hospital-doctor.webp",
+    srcSet: "/assets/img/photo-hospital-doctor-500.webp 500w, /assets/img/photo-hospital-doctor-960.webp 960w, /assets/img/photo-hospital-doctor.webp 1000w",
+    width: 1000,
+    height: 667,
+    alt: ALT.hospitalDoctor,
+  },
   nursingHomes: settingPhoto("nursing-homes", ALT.nursingHomes),
   rehabilitation: settingPhoto("rehabilitation", ALT.rehabilitation),
   assistedLiving: settingPhoto("assisted-living", ALT.assistedLiving),
@@ -186,6 +195,7 @@ export const ui = {
   skipLink: "Skip to content",
   logoName: "Eminent One",
   logoHomeLabel: "Eminent One, home",
+  footerLabel: "Site footer",
   mainNavLabel: "Main",
   menuButtonLabel: "Menu",
   selectPrompt: "Choose one",
@@ -242,17 +252,19 @@ export const nav = {
   ] as const,
   // the thin bar above it: the licence on the left, quick links and the phone on the right
   top: {
-    licensed: "Licensed Maryland health care staff",
+    licensed: "Licensed Maryland Health Care Staffing Agency",
     links: [
       { href: "/job-seekers/#openings", label: "Open Positions" },
-      { href: "/employers/#request", label: "Request Staff" },
+      { href: "/portal/", label: "Portal" },
       { href: "/referrals/", label: "Referrals" },
       { href: "/contact/", label: "Contact Us" },
     ],
   },
   tagline: "People. Care. Opportunities.",
-  // the main bar's button. TODO: the portal's address is not known yet; replace href when the client gives it
-  portal: { label: "Portal", href: "/contact/" },
+  // the sign-in page (app/portal). Its link sits in the top bar; the main bar's button is Request Staff
+  portal: { label: "Portal", href: "/portal/" },
+  // the phone menu's words
+  mobile: { close: "Close menu", call: "Call" },
 };
 
 export const footer = {
@@ -314,10 +326,12 @@ export const footer = {
     ],
   },
   emailLink: "Email the office",
-  seeShifts: { label: "See open shifts", href: "/job-seekers/#openings" },
+  seeShifts: { label: "See Open Roles", href: "/job-seekers/#openings" },
   wordmark: "Eminent One",
   tagline: "People. Care. Opportunities.",
-  licensed: "Licensed Maryland health care staff",
+  licensed: "Licensed Maryland Health Care Staffing Agency",
+  // the office address as printed in the footer, on two lines
+  address: ["8310 Liberty Rd", "Windsor Mill, MD 21244"],
   legal: `© ${site.year} Eminent One Group. All rights reserved.`,
 };
 
@@ -469,7 +483,7 @@ export const pages = {
       // the slideshow's pause button (screen readers; it shows as a pause or play icon)
       pauseLabel: "Pause the photographs",
       items: [
-        { key: "hospitals", name: "Hospitals", body: "Nurses and nursing assistants for hospital units.", photo: "hospitalWard" as PhotoKey },
+        { key: "hospitals", name: "Hospitals", body: "Nurses and nursing assistants for hospital units.", photo: "hospitalDoctor" as PhotoKey },
         { key: "nursing", name: "Nursing homes", body: "Nurses, CNAs and GNAs for residents' daily care.", photo: "nursingHomes" as PhotoKey },
         { key: "rehab", name: "Rehabilitation centers", body: "Therapists, nurses and aides for rehab patients.", photo: "rehabilitation" as PhotoKey },
         { key: "assisted", name: "Assisted living facilities", body: "Caregivers and CNAs for residents' daily living.", photo: "assistedLiving" as PhotoKey },
@@ -485,7 +499,7 @@ export const pages = {
       after: ", their employment history and a background check.",
     },
     openings: {
-      title: "Open nursing jobs",
+      title: "Explore Opportunities",
       image: { photo: "onBreak", subject: "nurse between shifts" } as PhotoRef,
     },
   },
@@ -749,7 +763,7 @@ export const pages = {
         "Apply to work with Eminent One LLC: RN, LPN, CNA, home health aide and other care roles in Maryland facilities, full-time, part-time or per diem.",
     },
     action: { label: "Apply for work", href: "#apply" } as Link,
-    seeShifts: { label: "See open shifts", href: "#openings" } as Link,
+    seeShifts: { label: "See Open Roles", href: "#openings" } as Link,
     hero: {
       title: "Healthcare jobs in Maryland",
       lead: "We place RNs, LPNs, CNAs, home health aides and other care staff with Maryland facilities. Apply once and we match you to shifts that fit your license.",
@@ -893,6 +907,31 @@ export const pages = {
         areaValue: `Facilities across ${state}`,
       },
     },
+  },
+
+  // the Portal button's sign-in page. TODO: there is no sign-in service yet; the form checks the two
+  // fields and then shows `pending` instead of signing in. Point it at the portal when the client has one.
+  portal: {
+    meta: {
+      title: "Portal sign in",
+      description: "Sign in to the Eminent One portal.",
+    },
+    eyebrow: "Portal",
+    title: "Sign in to your account.",
+    lead: "For Eminent One staff and client facilities.",
+    help: `Trouble signing in? Call the office at ${phone}.`,
+    form: {
+      subject: "Portal sign in",
+      submit: "Sign in",
+      note: "Use the email address the office has on file for you.",
+      fields: {
+        email: { label: "Email", error: emailError },
+        password: { label: "Password", error: "Enter your password." },
+      },
+    },
+    remember: "Keep me signed in",
+    forgot: { label: "Forgot your password?", href: "/contact/" } as Link,
+    pending: `Online sign-in is not open yet. Call the office at ${phone}.`,
   },
 
   // word for word from the original eminentonegroup.com/referrals page

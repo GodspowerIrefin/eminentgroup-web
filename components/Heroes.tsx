@@ -293,7 +293,8 @@ export function HeroDark({
   if (at < words.length) rows.push(words.slice(at).join(" "));
   const style = { "--ly-pos": image.pos ?? "50% 50%", "--ly-pos-phone": image.posPhone ?? image.pos ?? "50% 50%" } as React.CSSProperties;
   return (
-    <section className="hero eo-dark tone-night" data-enter aria-labelledby="hero-h">
+    // --hero-bg: the photograph as the hero's background on a phone (eo.css), under a dark overlay
+    <section className="hero eo-dark tone-night" data-enter aria-labelledby="hero-h" style={{ "--hero-bg": `url("${image.src}")` } as React.CSSProperties}>
       <div className="wrap">
         <div className="hero-text eo-dark__grid">
           <div className="eo-dark__text">
