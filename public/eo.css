@@ -1142,3 +1142,252 @@ html.nav-compact header.nav.nav--eo { transform: translateY(calc(-1 * var(--topb
 @media (min-width: 1024px) and (max-width: 1279px) { .nav--eo .nav__name { grid-row: 1 / span 2; align-self: center; } }
 @media (max-width: 1023px) { .nav--eo .nav__brand { column-gap: 8px; } .nav--eo .nav__tag { display: none; } .nav--eo .nav__name { grid-row: 1 / span 2; align-self: center; } }
 @media (max-width: 359px) { .nav--eo .nav__name { display: none; } }
+
+/* ---- #settings: the photographs as a slideshow (client request), the list right under its lead ---- */
+#settings .eo-split__side > .eo-list { margin-top: 0; }
+.eo-slides { position: relative; overflow: hidden; background: var(--surface); flex: 1 1 auto; min-height: 0; }
+.eo-slides > .eo-slide { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: 0; transition: opacity 900ms ease; }
+.eo-slides > .eo-slide.is-on { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .eo-slides > .eo-slide.is-on { animation: eo-drift 3600ms linear both; }
+}
+@keyframes eo-drift { from { transform: scale(1.08); } to { transform: scale(1); } }
+.eo-slides > .eo-slide[data-slide="0"] { object-position: 42% 50%; }
+/* the pause button: a small round control on the photograph's square corner */
+.eo-slides__pause {
+  position: absolute; z-index: 2; left: 16px; bottom: 16px; width: 44px; height: 44px; border-radius: 50%; border: 0;
+  display: grid; place-items: center; background: rgb(11 16 48 / 0.72); color: #fff; cursor: pointer;
+}
+.eo-slides__pause:hover { background: var(--eo-cobalt); }
+.eo-slides__pause svg { width: 14px; height: 14px; fill: currentColor; }
+.eo-slides__pause .eo-slides__icon-play { display: none; }
+.eo-slides__pause[aria-pressed="true"] .eo-slides__icon-play { display: inline; }
+.eo-slides__pause[aria-pressed="true"] .eo-slides__icon-pause { display: none; }
+.eo-slides__pause:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+/* the row on show: a line under it fills over the 3 seconds */
+#settings .eo-list > li::before { display: block !important; content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--eo-cobalt); transform: scaleX(0); transform-origin: left; opacity: 1; width: auto; top: auto; }
+#settings .eo-list > li.is-on::before { transform: scaleX(1); }
+#settings .eo-list > li.is-run::before { animation: eo-fill 3000ms linear both; }
+@keyframes eo-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { #settings .eo-list > li.is-run::before { animation: none; } }
+
+/* ---- #roles: the cards with their names only, capitalised (client request) ---- */
+.eo-role-card.card { display: flex; flex-direction: column; gap: var(--s-2); }
+.eo-role-card.card > .eo-role-card__name { text-transform: capitalize; margin-top: 0; }
+#settings .eo-split__side { gap: var(--s-6); justify-content: flex-start; }
+#settings .eo-split__side > .eo-list { margin-top: 0 !important; }
+#settings .eo-list > li { padding-block: 18px; }
+#settings .eo-list > li:first-child { padding-top: 0; }
+
+/* ---- #steps: three cards on the night ground (client reference), no numbers ---- */
+.eo-step-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); flex: 1 1 auto; min-height: 0; }
+.eo-step-card.card {
+  --c: 22px; position: relative; display: flex; flex-direction: column; gap: 10px; min-height: 0; padding: 0 0 clamp(20px, 2vw, 28px);
+  background: #fffdf8; color: var(--eo-ink); border: 0; border-radius: 0; box-shadow: none;
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+}
+.eo-step-card.card:hover { transform: none; box-shadow: none; }
+.eo-step-card__media { position: relative; flex: 1 1 0; min-height: 170px; overflow: hidden; background: var(--eo-paper-2); margin-bottom: 18px; }
+.eo-step-card__media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) {
+  .eo-step-card__media > img { transition: transform 900ms cubic-bezier(.2,.7,.2,1); }
+  .eo-step-card:hover .eo-step-card__media > img { transform: scale(1.03); }
+}
+.eo-step-card__icon {
+  position: absolute; left: clamp(20px, 2vw, 28px); width: 52px; height: 52px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--eo-cobalt); color: #fff; box-shadow: 0 0 0 5px #fffdf8;
+  top: auto; margin-top: -44px; position: relative; flex: none;
+}
+.eo-step-card__icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.eo-step-card.card > .eo-step-card__title, .eo-step-card.card > .eo-step-card__body { padding-inline: clamp(20px, 2vw, 28px); }
+.eo-step-card.card > .eo-step-card__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 1vw + 16px, 34px); line-height: 1.1; letter-spacing: -0.015em; color: var(--eo-ink); }
+.eo-step-card.card > .eo-step-card__body { font-size: 15px; line-height: 1.55; color: var(--eo-ink-soft); max-width: 36ch; }
+@media (max-width: 1023px) {
+  .eo-step-cards { grid-template-columns: minmax(0, 1fr); }
+  .eo-step-card__media { flex: none; height: clamp(200px, 40vw, 300px); }
+}
+@media (min-width: 1024px) { .eo-step-card__media { flex: none; height: clamp(240px, 24vw, 340px); } }
+@media (min-width: 1024px) { .eo-step-card__media { height: clamp(240px, 29vw, 420px); } .eo-step-cards { align-items: start; } }
+@media (min-width: 1024px) { .eo-step-cards { align-items: stretch; align-content: start; grid-auto-rows: auto; } }
+
+/* ---- Employers #how: two tabs, three numbered step cards (client screenshot, in the site's system) ---- */
+.eo-how__tabs { display: inline-flex; gap: 0; padding: 4px; background: #fffdf8; box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.14); margin-bottom: var(--s-6); }
+.eo-how__tab {
+  height: 44px; padding: 0 var(--s-5); border: 0; border-radius: 2px; background: transparent; color: var(--eo-ink);
+  font: 600 15px/1 var(--font-text); cursor: pointer; transition: background-color 200ms ease, color 200ms ease;
+}
+.eo-how__tab:hover { background: var(--eo-paper-2); }
+.eo-how__tab[aria-selected="true"] { background: var(--eo-cobalt); color: #fff; }
+.eo-how__tab:focus-visible { outline: 2px solid var(--eo-cobalt); outline-offset: 2px; }
+.eo-how__cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
+.eo-how__card.card {
+  --c: 22px; display: flex; flex-direction: column; gap: var(--s-3); padding: clamp(24px, 2.4vw, 36px);
+  background: #fffdf8; border: 0; border-radius: 0; box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12);
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+}
+.eo-how__card.card:hover { transform: none; box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12), inset 0 3px 0 var(--eo-cobalt); }
+.eo-how__num { font-family: var(--font-display); font-size: clamp(40px, 2vw + 20px, 56px); line-height: 1; color: rgb(16 18 37 / 0.22); margin-bottom: var(--s-4); }
+.eo-how__card.card > .eo-how__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 0.8vw + 14px, 28px); line-height: 1.15; letter-spacing: -0.01em; }
+.eo-how__card.card > .eo-how__body { font-size: 15px; line-height: 1.55; color: var(--eo-ink-soft); }
+@media (max-width: 1023px) { .eo-how__cards { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 639px) { .eo-how__tabs { display: flex; } .eo-how__tab { flex: 1 1 0; padding: 0 var(--s-3); } }
+@media (min-width: 640px) { .eo-how__tabs { align-self: flex-start; width: fit-content; } }
+
+/* ---- header dropdowns: each word's pages, on hover or keyboard focus ---- */
+.nav--eo .eo-drop-item { position: relative; }
+.nav--eo .eo-drop__chev { width: 12px; height: 12px; margin-left: 4px; transition: transform 200ms ease; }
+.nav--eo .eo-drop {
+  position: absolute; top: calc(100% - 14px); left: 4px; z-index: 60; min-width: 250px; list-style: none; margin: 0; padding: 8px;
+  background: #fffdf8; box-shadow: 0 0 0 1px rgb(16 18 37 / 0.1), 0 18px 40px rgb(16 18 37 / 0.14); border-top: 3px solid var(--eo-cobalt);
+  opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity 180ms ease, transform 180ms ease, visibility 0s 180ms;
+}
+.nav--eo .eo-drop a { display: flex; align-items: center; min-height: 44px; padding: 0 14px; font: 500 15px/1.3 var(--font-text); color: var(--eo-ink); text-decoration: none; border-radius: 2px; }
+.nav--eo .eo-drop a:hover, .nav--eo .eo-drop a:focus-visible { background: var(--eo-paper-2); color: var(--eo-cobalt); }
+@media (min-width: 1024px) {
+  .nav--eo .eo-drop-item:is(:hover, :focus-within) > .eo-drop { opacity: 1; visibility: visible; transform: none; transition: opacity 180ms ease, transform 180ms ease, visibility 0s; }
+  .nav--eo .eo-drop-item:is(:hover, :focus-within) .eo-drop__chev { transform: rotate(180deg); }
+  .nav--eo .eo-drop-item:last-child > .eo-drop { left: auto; right: 4px; }
+}
+/* tablet and phone: the dropdowns show as indented lists inside the menu sheet */
+@media (max-width: 1023px) {
+  .nav--eo .eo-drop__chev { display: none; }
+  .nav--eo .eo-drop { display: none; }
+  .nav.nav--eo.is-open .eo-drop { display: block; position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border-top: 0; background: none; padding: 0 0 var(--s-3) var(--s-4); min-width: 0; }
+  .nav.nav--eo.is-open .eo-drop a { font-size: 16px; color: var(--eo-ink-soft); }
+  .nav.nav--eo.is-open .eo-drop-item { display: block; height: auto; }
+}
+
+/* ---- the All roles page: the role cards four across ---- */
+.eo-role-cards--wide { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: auto; flex: none; }
+.eo-role-cards--wide .eo-role-card.card { min-height: 170px; }
+@media (max-width: 1023px) { .eo-role-cards--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 639px) { .eo-role-cards--wide { grid-template-columns: minmax(0, 1fr); } }
+.nav--eo .eo-drop { min-width: 0; width: max-content; }
+.nav--eo .eo-drop a { white-space: nowrap; }
+
+/* ---------- Registered nurses: the original page's numbered duties, settings and role links ---------- */
+.eo-intro { font-size: clamp(18px, 0.4vw + 15px, 22px); line-height: 1.55; max-width: 62ch; margin: 0 0 clamp(24px, 3vw, 40px); }
+.eo-duties { list-style: none; margin: 0; padding: 0; counter-reset: eo-duty; border-top: 1px solid var(--line); }
+.eo-duties > li {
+  counter-increment: eo-duty; display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: baseline;
+  padding: 28px 0; border-bottom: 1px solid var(--line); font-size: 18px; line-height: 1.75;
+}
+.eo-duties > li::before {
+  content: counter(eo-duty, decimal-leading-zero);
+  font: 400 clamp(24px, 1vw + 16px, 30px)/1 var(--font-display); color: color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.eo-places { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+.eo-places > li {
+  padding: 14px 22px; border: 1px solid var(--line); font-size: 18px; line-height: 1.3;
+}
+.eo-places--links > li { padding: 0; }
+.eo-places--links a { display: block; padding: 14px 22px; color: inherit; text-decoration: none; transition: background-color .2s, color .2s; }
+.eo-places--links a:hover, .eo-places--links a:focus-visible { background: var(--accent); color: #fff; }
+.eo-how__cards--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.eo-how__cards--two .btn { width: auto; align-self: flex-start; justify-self: start; margin-top: 8px; }
+main #next { padding-bottom: 0; }
+@media (max-width: 1023px) { .eo-how__cards--two { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- All roles we place (/services/roles/): the original /services page in the site's system ---------- */
+.eo-eyebrow { font: 500 12px/1.4 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent, var(--eo-cobalt)); margin: 0 0 12px; }
+.tone-night .eo-eyebrow { color: #9fb0ff; }
+.eo-how__cards--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1279px) { .eo-how__cards--four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 639px) { .eo-how__cards--four { grid-template-columns: minmax(0, 1fr); } }
+.eo-how__card.card > h2.eo-how__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 1vw + 16px, 34px); line-height: 1.15; letter-spacing: -0.01em; }
+
+.eo-rolepick { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 96px); align-items: start; }
+.eo-rolepick__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgb(255 255 255 / 0.16); }
+.eo-rolepick__list > li { border-bottom: 1px solid rgb(255 255 255 / 0.16); }
+.eo-rolepick__list button {
+  display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 0; border: 0; background: none; color: rgb(255 255 255 / 0.55); text-align: left; cursor: pointer;
+  transition: color 250ms ease, padding 250ms ease;
+}
+.eo-rolepick__list button:hover, .eo-rolepick__list button[aria-pressed="true"] { color: #fff; }
+.eo-rolepick__list button[aria-pressed="true"] { padding-left: 14px; box-shadow: inset 3px 0 0 var(--eo-cobalt); }
+.eo-rolepick__list button:focus-visible { outline: 2px solid #9fb0ff; outline-offset: 2px; }
+.eo-rolepick__name { font-family: var(--font-display); font-size: clamp(22px, 1.2vw + 12px, 30px); line-height: 1.15; }
+.eo-rolepick__short {
+  flex: none; padding: 5px 12px; border: 1px solid currentColor; border-radius: 999px;
+  font: 600 11px/1 var(--font-mono); letter-spacing: 0.12em;
+}
+.eo-rolepick__list button[aria-pressed="true"] .eo-rolepick__short { background: var(--eo-cobalt); border-color: var(--eo-cobalt); color: #fff; }
+.eo-rolepick__cards { display: grid; gap: var(--gutter); }
+@media (min-width: 1024px) { .rolepick-on .eo-rolepick__cards { position: sticky; top: calc(var(--nav, 88px) + 32px); } }
+.eo-rolepick__card.card { color: var(--eo-ink); gap: var(--s-3); }
+.eo-rolepick__card.card .eo-eyebrow { color: var(--eo-cobalt); margin: 0; }
+.eo-rolepick__card.card > .eo-how__title { font-size: clamp(30px, 1.6vw + 16px, 44px); }
+.eo-rolepick__card.card > .eo-how__body { font-size: 18px; }
+.eo-rolepick__card.card > .eo-rolepick__label { margin-top: var(--s-4); color: var(--eo-ink-soft); }
+.eo-places--small > li { padding: 9px 14px; font-size: 15px; }
+.eo-rolepick__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--s-4); }
+.eo-rolepick__card[hidden] { display: none; }
+@media (max-width: 1023px) { .eo-rolepick { grid-template-columns: minmax(0, 1fr); } }
+/* the role card sits on the night section but reads as paper: reset the tone's words, lines and buttons */
+.tone-night .eo-rolepick__card.card {
+  --ink: var(--eo-ink); --ink-soft: var(--eo-ink-soft); --muted: var(--eo-ink-soft);
+  --line: rgb(16 18 37 / 0.14); --line-strong: rgb(16 18 37 / 0.32);
+  --accent: var(--eo-cobalt); --action: var(--eo-cobalt); --action-ink: #fff;
+  color: var(--eo-ink);
+}
+.tone-night .eo-rolepick__card.card > .eo-how__title { color: var(--eo-ink); }
+.tone-night .eo-rolepick__card .btn--primary { background: var(--eo-cobalt); color: #fff; border-color: var(--eo-cobalt); }
+.tone-night .eo-rolepick__card .btn--secondary { color: var(--eo-ink); border-color: rgb(16 18 37 / 0.32); }
+.tone-night .eo-rolepick__card .btn--secondary:hover { border-color: var(--eo-ink); }
+.eo-how__card.card > h2.eo-how__title::before { display: none; }
+main #audiences { padding-bottom: 0; }
+
+/* ---------- FAQ accordion (/services/roles/): a question opens its answer; a plus turns to a minus ---------- */
+.eo-accordion { border-top: 1px solid var(--line); }
+.eo-accordion__item { border-bottom: 1px solid var(--line); }
+.eo-accordion__item > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 26px 0; cursor: pointer; list-style: none;
+}
+.eo-accordion__item > summary::-webkit-details-marker { display: none; }
+.eo-accordion__item > summary:focus-visible { outline: 2px solid var(--eo-cobalt); outline-offset: 4px; }
+.eo-accordion .eo-accordion__q { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 1vw + 14px, 28px); line-height: 1.2; letter-spacing: -0.01em; transition: color 200ms ease; }
+.eo-accordion__q::before { display: none !important; }
+.eo-accordion__item > summary:hover .eo-accordion__q { color: var(--eo-cobalt); }
+.eo-accordion__icon { position: relative; flex: none; width: 40px; height: 40px; border: 1px solid var(--line-strong); border-radius: 50%; transition: background-color 200ms ease, border-color 200ms ease; }
+.eo-accordion__icon::before, .eo-accordion__icon::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 1.5px; background: currentColor;
+  transform: translate(-50%, -50%); transition: transform 250ms ease;
+}
+.eo-accordion__icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+.eo-accordion__item[open] .eo-accordion__icon { background: var(--eo-cobalt); border-color: var(--eo-cobalt); color: #fff; }
+.eo-accordion__item[open] .eo-accordion__icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+.eo-accordion .eo-accordion__a { margin: 0; padding: 0 64px 28px 0; max-width: 72ch; font-size: 17px; line-height: 1.65; color: var(--ink-soft, var(--ink)); }
+@media (prefers-reduced-motion: no-preference) {
+  .eo-accordion__item[open] .eo-accordion__a { animation: eo-acc-in 300ms ease both; }
+}
+@keyframes eo-acc-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+/* Request staff: the "What to expect" list beside the form, and the required-field star */
+.eo-duties--tight > li { padding: 20px 0; font-size: 17px; line-height: 1.6; grid-template-columns: 60px minmax(0, 1fr); }
+.field__star { color: var(--eo-cobalt); }
+
+/* ---------- About (/about/): the original page's copy in the site's system ---------- */
+.tone-cobalt .eo-eyebrow { color: #fff; opacity: 0.8; }
+.eo-about__side { display: grid; gap: clamp(28px, 3vw, 44px); align-content: start; }
+.eo-people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }
+.eo-people > li { display: flex; align-items: center; gap: 16px; }
+.eo-people__avatar {
+  flex: none; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%;
+  background: var(--eo-cobalt); color: #fff; font: 600 15px/1 var(--font-mono); letter-spacing: 0.08em;
+}
+.eo-people__avatar--lg { width: 72px; height: 72px; font-size: 18px; margin-bottom: var(--s-2); }
+.eo-people__name { display: block; font-family: var(--font-display); font-size: clamp(22px, 0.8vw + 14px, 28px); line-height: 1.15; }
+.eo-people__title { display: block; margin-top: 4px; font-size: 15px; color: var(--muted); }
+.eo-points { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--gutter); border-top: 1px solid var(--line); }
+.eo-points > div { padding: 22px 0; border-bottom: 1px solid var(--line); }
+.eo-points dt { font-weight: 600; font-size: 17px; margin-bottom: 6px; }
+.eo-points dd { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
+.eo-statement__license { font-weight: 600; font-size: 18px; }
+.eo-statement__mission { margin: 0; font-family: var(--font-display); font-size: clamp(30px, 2.4vw + 12px, 52px); line-height: 1.12; letter-spacing: -0.015em; }
+.eo-tile__num { display: block; font-family: var(--font-display); font-size: 28px; line-height: 1; color: color-mix(in srgb, var(--ink) 35%, transparent); margin-bottom: 8px; }
+.eo-leader.card { align-items: flex-start; }
+@media (max-width: 639px) { .eo-people, .eo-points { grid-template-columns: minmax(0, 1fr); } }
+#work .tile__head:has(.eo-tile__num) { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 4px; }
+main #work { padding-bottom: 0; }

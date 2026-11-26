@@ -1,31 +1,16 @@
 gate: checking out/index.html (service); this takes a few minutes on a CPU Chrome
-gate: 7 FAIL open
-  FAIL nav              header.nav.nav--eo > div.wrap.nav__bar > a.nav__logo.nav__brand "EMINENT ONE People. Care.  [1440]
-       nav link wraps to a second line
-       fix: make the nav one bar from the content's left edge to its right edge, with every link and action inside it
+gate: 2 FAIL open
   FAIL button-styles    (one screen)  [1440, 390]
-       3 button styles on one screen: square, fill #2338d1 ("Request staff"); square, fill #101225 ("Request staff"); square, outline #f4f1ea ("Apply for work"); the odd one out: "Apply for work"
+       3 button styles on one screen: square, fill #2338d1 ("Request staff"); square, fill #101225 ("Portal"); square, outline #f4f1ea ("Apply for work"); the odd one out: "Apply for work"
        fix: one primary and one secondary button: one shape, one height per size, one label size
   FAIL button-styles    (the page)  [1440, 390]
-       3 button styles on the page: square, fill #101225 x1 ("Request staff"); square, fill #2338d1 x2 ("Request staff"); square, outline #f4f1ea x1 ("Apply for work")
+       3 button styles on the page: square, fill #101225 x1 ("Portal"); square, fill #2338d1 x2 ("Request staff"); square, outline #f4f1ea x1 ("Apply for work")
        fix: one primary and one secondary button: one shape, one height per size, one label size
-  FAIL phone-number     header.nav.nav--eo > div.nav__top > div.wrap.nav__top-bar > ul.nav__quick "410-929-9388"  [1440]
-       a US phone number: "410-929-9388"; a visitor can dial it and reach a stranger (and 2 more like it: div.wrap > div.closing__cta.close--type > div.section-head > p, div.eo-foot > div.eo-foot__col.eo-foot__touch > ul:nth-of
-       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
-  FAIL phone-number     div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(5) > a.nav__phone "tel:+14109299388  [1440]
-       a tel: link calls a number in a real dialable format: "tel:+14109299388"; a visitor can dial it and reach a stranger (and 1 more like it: div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2) > a.eo-foo
-       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
-  FAIL action-repeat    div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(2) > a "request staff"  [1440]
-       "request staff" shows 3 times on the first screen at 1440px (nav, nav, hero): three copies of one action on a screen read as clutter
-       fix: show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once
-  FAIL off-viewport     header.nav.nav--eo > div.wrap.nav__bar > button.nav__toggle  [320]
-       at 320px wide it runs 8px past the screen's right edge (cut there: the page clips what runs past it)
-       fix: keep it inside the screen at this width: let it shrink, wrap or stack
+  WAIVED card-visual section#roles > div.wrap.grid > div.span-7.eo-split__side > ul.eo-role-cards "Re: the client asked to remove the hexagon icons and the role codes from the role cards; each card is the role name and its one line, beside the section photograph
   WAIVED copy-headings h2#roles-h "The roles we place": the client's own wording: "The roles we place" is the heading the client asked for (changed from "The 8 roles we place"), and the three step titles are locked copy (content-lock.md: do not change any text); together they name the agency's roles and the steps of a staffing request
+  WAIVED phone-number header.nav.nav--eo > div.nav__top > div.wrap.nav__top-bar > ul.nav__quick "410-9: the client's own published office line (410-929-9388), shown where the agency's original site shows it: the header's top bar, the close line the client asked for ("Call 410-929-9388 or start online.") and the footer's Get in touch column
+  WAIVED phone-number div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(5) > a.nav__phone "tel:+1: the tel: links of the client's own published office line (410-929-9388), in the header's top bar and the footer as on the agency's original site, not an invented number
   WAIVED run-on h1#hero-h "Healthcare staffing in Maryland": one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md
-  waiver ignored (matches no open finding): phone-number "div.wrap > div.closing__cta.close--type > div.section-head > p"
-  waiver ignored (matches no open finding): phone-number "div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2) > a.eo-foot__phone"
-  waiver ignored (matches no open finding): one-heading "h2#roles-h"
-  20 WARN (not blocking), first: scroll-reveal section#roles > div.wrap.grid > figure.d; scroll-reveal section#checks > div.wrap.grid > div.spa; no-visual section#steps "From request to first shi; heading-scale div.wrap > ol.eo-steps__rows.fill > li.e; body-size div.span-7.eo-split__side > ul.eo-role-c
+  21 WARN (not blocking), first: scroll-reveal section#checks > div.wrap.grid > div.spa; scroll-reveal section#roles > div.wrap.grid > figure.d; copy-headings div.wrap > ul.eo-step-cards.fill > li.ca; copy-buttons header.nav.nav--eo > div.wrap.nav__bar >; heading-scale div.wrap > ul.eo-step-cards.fill > li.ca
 A FAIL you judge false: add {"check": "<id>", "target": "<its where, enough to name that one finding>", "reason": "<why, 12+ characters>"} to .taste-skill/waivers.json (one finding each, 5 at most, never for kit-edited or checker-gaming); it goes in your report. Never edit the kit's files or hide the page from the checker.
-GATE: FAIL 7 (round 1 of 3)
+GATE: FAIL 2 (round 1 of 3)

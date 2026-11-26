@@ -1,19 +1,18 @@
-import { actions, nav, site, ui, type Link } from "@/content/content";
+import { nav, site, ui, type Link } from "@/content/content";
 
 // The header, as on the agency's original site: a thin top bar (the licence on the left; Open
 // Positions, Request Staff, Referrals, Contact Us and the phone on the right), then the main bar
 // (the EO mark with "EMINENT ONE" and the tagline on the left, the five words and the page's one
-// filled button on the right). On scroll the top bar slides away and the main bar stays (eo.css,
+// filled button on the right). Each word opens a dropdown of its pages on hover or keyboard focus. On scroll the top bar slides away and the main bar stays (eo.css,
 // the script in app/layout.tsx). Below 1024px the top bar is hidden and the bar shows the logo, the
 // button and the menu; system.js turns the words into a full-screen sheet and flips aria-expanded.
 
 type Current = (typeof nav.words)[number]["key"];
 
-// action: the page's one filled button (the same words as its hero and close). `second` is kept
-// for the pages that still pass it; the bar no longer shows a second word.
+// The bar's one button is "Portal" on every page (content: nav.portal). `action` and `second` are
+// kept for the pages that still pass them; the bar no longer shows either.
 export default function Header({
   current,
-  action = actions.requestStaff,
 }: {
   current?: Current;
   action?: Link;
@@ -51,16 +50,26 @@ export default function Header({
         </div>
         <nav className="nav__links" aria-label={ui.mainNavLabel}>
           {nav.words.map((w) => (
-            <div className="nav__item" key={w.key}>
+            <div className="nav__item eo-drop-item" key={w.key}>
               <a className="nav__link" href={w.href} aria-current={current === w.key ? "page" : undefined}>
                 {w.label}
+                <svg className="eo-drop__chev" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </a>
+              <ul className="eo-drop">
+                {w.menu.map((l) => (
+                  <li key={l.href + l.label}>
+                    <a href={l.href}>{l.label}</a>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </nav>
         <div className="nav__actions">
-          <a className="btn btn--primary nav__cta" href={action.href}>
-            {action.label}
+          <a className="btn btn--primary nav__cta" href={nav.portal.href}>
+            {nav.portal.label}
           </a>
         </div>
         <button className="nav__toggle" type="button" aria-expanded="false" aria-label={ui.menuButtonLabel}>

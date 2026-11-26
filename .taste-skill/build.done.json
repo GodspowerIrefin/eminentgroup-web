@@ -6,6 +6,6 @@
  "category": "healthcare staffing",
  "primary": "Request staff",
  "rounds": 3,
- "start": "2026-11-24T22:30:50.328Z",
+ "start": "2026-11-26T12:28:03.072Z",
  "by": "gate.mjs --start"
 }

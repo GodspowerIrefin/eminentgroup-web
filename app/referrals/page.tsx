@@ -9,15 +9,16 @@ const c = pages.referrals;
 
 export const metadata: Metadata = c.meta;
 
-// Plan: hero (split) / #refer the referral form / footer.closing
+// Word for word from the original /referrals page: hero (label, h1, lead) / #refer the referral
+// form / footer.closing
 export default function Referrals() {
   return (
     <>
-      <Header action={c.action} second={actions.requestStaff} />
+      <Header current="employers" />
       <main id="top">
-        <HeroSplit title={c.hero.title} lead={c.hero.lead} image={{ ...pic(c.hero.image), pos: "50% 50%" }} primary={c.action} />
+        <HeroSplit eyebrow={c.hero.eyebrow} title={c.hero.title} lead={c.hero.lead} image={{ ...pic(c.hero.image), pos: "50% 50%" }} primary={c.action} />
 
-        <section className="section" id="refer" aria-labelledby="refer-h">
+        <section className="section tone-paper" id="refer" aria-labelledby="refer-h">
           <div className="wrap grid grid--top">
             <div className="span-5 stack-4">
               <h2 id="refer-h">{c.refer.title}</h2>
@@ -31,7 +32,7 @@ export default function Referrals() {
                   { name: "name", autoComplete: "name", required: true },
                   { name: "email", type: "email", autoComplete: "email", required: true },
                   { name: "referred", required: true },
-                  { name: "contact", required: true },
+                  { name: "theirContact", required: true },
                   { name: "type", type: "select", full: true },
                   { name: "notes", type: "textarea" },
                 ]}
@@ -40,7 +41,7 @@ export default function Referrals() {
           </div>
         </section>
       </main>
-      <Closing title={c.close.title} line={c.close.line} action={c.action} />
+      <Closing title={c.close.title} line={c.close.line} action={actions.requestStaff} />
     </>
   );
 }

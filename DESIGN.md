@@ -182,7 +182,7 @@ Flat. Depth comes from ground (paper against navy against cobalt), the light pan
 - **Controls:** 2px corners: square, sure buttons and fields.
 - **The chamfered frame:** a photograph clips its top-left and bottom-right corners at 45 degrees (`clip-path`), 44-112px on large frames and 28-48px on small ones. The facility panel, the forms and the inner heroes' photo bands use the same cut.
 - **Circles:** only for the row arrows.
-- **The EO hexagon:** on the ticket stubs and as each role card's icon.
+- **The EO hexagon:** in the logo only.
 
 ## Components
 
@@ -191,7 +191,7 @@ Flat. Depth comes from ground (paper against navy against cobalt), the light pan
 - **Secondary:** transparent with a 1px outline at 32% (paper on navy), ink text. Only the hero's "Apply for work" uses it on the home page; other second actions are text links ("Roles we place", "See open shifts").
 
 ### Navigation
-A fixed 72px paper bar with a hairline under it (the kit's nav--centre): the EO logo and name on the left line, the four words (Services, Employers, Careers, About) centred, and "Apply for work" (a plain word) with "Request staff" (the primary button) ending on the right line. From 1280px the two sides take equal room so the words sit on the true centre; between 1024 and 1279px they sit centred between the two sides. "Services" opens a full-width panel of link columns. Below 1024px the bar shows the logo, "Request staff" and the menu button, and the words move to a full-screen sheet. The current page's word carries a 2px cobalt underline.
+Two rows, as on the agency's original site. A 40px top bar (from 1024px): "Licensed Maryland health care staff" on the left; Open Positions, Request Staff, Referrals, Contact Us and the phone in bold on the right. An 88px main bar: the EO mark with "EMINENT ONE" (letter-spaced, deep cobalt) and "People. Care. Opportunities." on the left; Staffing Services, For Employers, Careers, Who We Are and Insights; then a dark "Portal" button (the portal's address is still to come; it points at /contact/ for now). On scroll the top bar slides away and the main bar stays. Below 1024px: the mark and name, "Portal" and the menu button; the words move to a full-screen sheet.
 
 ### Hero (home: dark)
 Night ground. The h1 on columns 1-7 with its third line in sky; under a rule, the lead and the two buttons. The photograph fills columns 8-12 from the header to the foot in the chamfered frame. Enters once: lines rise, the photograph settles from 1.12. (The reference's round badge was tried and removed at the client's request.)
@@ -199,23 +199,23 @@ Night ground. The h1 on columns 1-7 with its third line in sky; under a rule, th
 ### Hero (inner pages: band)
 Paper. The h1 across the page (up to 99px), a ruled row with the lead (columns 1-6) and the buttons (7-12), and the photograph as a wide band in the chamfered frame. On Careers and About the band sits over the words.
 
-### List beside a panel (#settings)
-Facility rows in Gloock with their line under them and a 40px circle arrow at the right; the chosen row darkens and fills its arrow with cobalt. Choosing a row (pointer, Enter or Space) swaps the photograph in the light panel (system.js `data-peek`; `aria-pressed` kept in step).
+### Facility slideshow (#settings)
+The five facility rows sit right under the intro; beside them, in the light panel, the five photographs change on their own every 3 seconds (a cross-fade with a slow 1.08 to 1 zoom), and the row on show darkens, fills its arrow with cobalt and draws a 2px cobalt line under itself over the 3 seconds. A row's click (or Enter, Space) jumps to it. It pauses under the pointer, in a hidden tab and with its round pause button on the photograph; under reduced motion it waits paused until the button starts it.
 
 ### Statement beside a photograph (#checks)
 The cobalt band: the mono label, then the credential sentence at up to 51px (20px on a phone), its words lighting from 42% to full white as it crosses the screen (the word-highlight moment). The photograph sits on columns 8-12.
 
 ### Role cards (#roles)
-"The roles we place" over eight cards, two across on columns 1-7, beside the photograph (the picture-develops moment) on columns 8-12. Each card: a paper-white face (#fffdf8) with a hairline edge and the chamfered cut; the EO hexagon in cobalt as its icon with the role's first code on it; the name in Gloock; the codes in cobalt mono and the role's line in 14px. Hover draws a 3px cobalt line along the top. One column on a phone.
+"The roles we place" over eight cards, two across on columns 1-7, beside the photograph (the picture-develops moment) on columns 8-12. Each card: a paper-white face (#fffdf8) with a hairline edge and the chamfered cut; the role name in Gloock, shown in title case; the role's line in 14px. No icon and no codes (removed at the client's request). Hover draws a 3px cobalt line along the top. One column on a phone.
 
-### Dark rows (#steps)
-Night ground; three rows across the grid: the number in sky, the title in Gloock, the line, a small chamfered photograph.
+### Step cards (#steps)
+Night ground; the heading over three cards, side by side (one column below 1024px), in the role cards' face (#fffdf8, chamfered cut). Each card: the step's photograph across the top at one height for all three; a 52px cobalt disc with a line icon (send, a shield with a tick, a calendar with a tick) overlapping the photograph's bottom edge; the title in Gloock; the line in 15px. No step numbers (client request). The photograph zooms 1.03 inside its frame on hover.
 
 ### Shift tickets (#openings)
 "Open nursing jobs" over two tickets that share the column's height, beside two stacked photographs. Each ticket is an open entry over a 2px ink rule: the job title in Gloock and the shift in mono on the left; on the right, torn off along a dashed perforation, a cobalt stub that is the link to apply ("Apply for the RN job"), its words at the top and an arrow at the foot. On hover the stub fills with night from the bottom and the arrow moves. No pay is shown anywhere for now (the client will add it later). On Careers the two tickets sit side by side with labelled Where and Shift facts; on a phone each ticket's stub becomes a full-width 44px bar under it.
 
 ### Close and footer
-Night. The call across the page, its line ("Call 410-929-9388 or start online." by default) and the button under it on the left line. Then the directory, as on the agency's original site: Staffing Services (the eight roles), Careers, Who We Are (with Insights under it), For Employers, and Get in touch (the street and district, the phone in bold, "Email the office", "Get directions", then a rule and five quick links in bold). Column titles in Public Sans 600 on paper white, links in On dark soft. On a phone the groups sit two across and "Get in touch" runs the full width. The base row: the white EO mark with "EMINENT ONE" letter-spaced and "People. Care. Opportunities." on the left; "Maryland Health Care Staff Agency Licensed" and the copyright on the right. No photo credit line (removed at the client's request).
+Night. The call across the page, its line ("Call 410-929-9388 or start online." by default) and the button under it on the left line. Then the directory, as on the agency's original site: Staffing Services (the eight roles), Careers, Who We Are (with Insights under it), For Employers, and Get in touch (the street and district, the phone in bold, "Email the office", "Get directions", then a rule and five quick links in bold). Column titles in Public Sans 600 on paper white, links in On dark soft. On a phone the groups sit two across and "Get in touch" runs the full width. The base row: the white EO mark with "EMINENT ONE" letter-spaced and "People. Care. Opportunities." on the left; "Licensed Maryland health care staff" (as in the top bar) and the copyright on the right. No photo credit line (removed at the client's request).
 
 ## Motion
 

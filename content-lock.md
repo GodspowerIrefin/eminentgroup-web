@@ -9,27 +9,25 @@ Arrows (`→`) show where a link or button goes; they are not part of the visibl
 ### Header (navigation)
 
 - **Skip link (shown on Tab):** Skip to content → #top
+- **Text (top bar):** Licensed Maryland health care staff
+- **Link:** Open Positions → /job-seekers/#openings
+- **Link:** Request Staff → /employers/#request
+- **Link:** Referrals → /referrals/
+- **Link:** Contact Us → /contact/
+- **Link:** 410-929-9388 → tel:+14109299388
 - **Link:** Eminent One → /
 - **Accessible name:** Eminent One, home
 - **Image alt:** (decorative, no alt)
-- **Link:** Services → /services/
-- **Label:** Staff we place
-- **Link:** Registered nurses — RNs in five kinds of facility → /services/registered-nurses/
-- **Link:** Roles we place — Eight roles, RNs to caregivers → /services/#roles
-- **Label:** Facilities
-- **Link:** Employer services — Temporary to permanent → /employers/#expect
-- **Link:** Referrals — Tell us who to contact → /referrals/
-- **Label:** Help
-- **Link:** Resources — Licensing and industry links → /resources/
-- **Link:** Contact — Call or email the office → /contact/
-- **Link:** Employers → /employers/
-- **Link:** Careers → /job-seekers/
-- **Link:** About → /about/
-- **Link:** Apply for work → /job-seekers/#apply
-- **Button:** Request staff → /employers/#request
+- **Text:** People. Care. Opportunities.
+- **Link:** Staffing Services → /services/ (dropdown: Registered Nurses → /services/registered-nurses/; All Roles We Place → /services/roles/; Temporary and Permanent Staffing → /services/temporary-and-permanent/)
+- **Link:** For Employers → /employers/ (dropdown: Request Staff → /employers/request-staff/; Employer Services → /employers/services/; Referrals → /referrals/)
+- **Link:** Careers → /job-seekers/ (dropdown: Open Positions → /job-seekers/open-positions/; Apply for Work → /job-seekers/apply/; Registered Nurse Roles → /job-seekers/registered-nurse-roles/)
+- **Link:** Who We Are → /about/ (dropdown: About Eminent One → /about/; Contact → /contact/)
+- **Link:** Insights → /resources/ (dropdown: Resources → /resources/)
+- **Button:** Portal → /contact/ (placeholder until the portal's address is known)
 - **Button (accessible name):** Menu
 
-On phones the menu button opens a full-screen sheet with the same links.
+The top bar shows from 1024px wide. On phones the menu button opens a full-screen sheet with the five links.
 
 ### Footer: directory and legal line
 
@@ -68,7 +66,7 @@ On phones the menu button opens a full-screen sheet with the same links.
 - **Link:** Eminent One — People. Care. Opportunities. → /
 - **Accessible name:** Eminent One, home
 - **Image alt:** (decorative, no alt)
-- **Text:** Maryland Health Care Staff Agency Licensed
+- **Text:** Licensed Maryland health care staff
 - **Text:** © 2026 Eminent One Group. All rights reserved.
 
 The photo credit line ("Photographs via Wikimedia Commons and Pexels") was removed at the client's request; the /credits/ page still exists but no page links to it.
@@ -99,11 +97,14 @@ URL: `/`
 - **List item (button):** Rehabilitation centers — Therapists, nurses and aides for rehab patients.
 - **List item (button):** Assisted living facilities — Caregivers and CNAs for residents' daily living.
 - **List item (button):** Home care agencies — Home health aides and caregivers for clients at home.
-- **Image alt:** Two nurses in teal scrubs reading a chart in a hospital corridor
+- **Image alt:** A nurse in a protective gown and mask reaching for a monitor beside a patient's bed in a hospital room
 - **Image alt:** A care worker pouring a hot drink for a woman resting in bed in a nursing home room
 - **Image alt:** A therapist guiding a patient's arm and hip through a stretch on a treatment table
 - **Image alt:** Three older residents playing chess over coffee in a bright lounge
 - **Image alt:** Two carers settling an older man into bed at home
+- **Button (accessible name):** Pause the photographs
+
+The five photographs change on their own every 3 seconds (the row on show is marked); a row's click jumps to it.
 
 ### Section #checks: Credential checks
 
@@ -115,43 +116,42 @@ URL: `/`
 ### Section #roles: The roles we place
 
 - **Heading (h2):** The roles we place
-- **List item (card):** Registered nurses — RN · Assessment, treatment and care coordination in clinical and residential settings.
-- **List item (card):** Licensed practical nurses — LPN · Nursing care and follow-up under the direction of RNs and physicians.
-- **List item (card):** Certified nursing assistants — CNA, GNA · Daily living support and comfort for patients and residents.
-- **List item (card):** Home health aides — HHA · Personal care and support for clients in their own homes.
-- **List item (card):** Medical assistants — MA · Clinical and administrative support in practices and clinics.
-- **List item (card):** Therapists — PT, OT, SLP · Physical, occupational and speech therapy for facilities and clinics.
-- **List item (card):** Social workers — SW · Support, planning and coordination for patients and families.
+- **List item (card):** Registered Nurses — Assessment, treatment and care coordination in clinical and residential settings.
+- **List item (card):** Licensed Practical Nurses — Nursing care and follow-up under the direction of RNs and physicians.
+- **List item (card):** Certified Nursing Assistants — Daily living support and comfort for patients and residents.
+- **List item (card):** Home Health Aides — Personal care and support for clients in their own homes.
+- **List item (card):** Medical Assistants — Clinical and administrative support in practices and clinics.
+- **List item (card):** Therapists — Physical, occupational and speech therapy for facilities and clinics.
+- **List item (card):** Social Workers — Support, planning and coordination for patients and families.
 - **List item (card):** Caregivers — Day-to-day care and companionship.
 - **Image alt:** Two nurses in teal scrubs preparing supplies at a clinic counter by a window
 
-Each card's hexagon icon (the role's first code on the EO hexagon) is decorative and hidden from screen readers.
+The role names show in title case on the cards (set by CSS; the words in `content/content.ts` are unchanged).
 
-### Section #steps: From request to first shift in 3 steps
+### Section #steps: From request to first shift
 
-- **Heading (h2):** From request to first shift in 3 steps
-- **Step number:** 1
+- **Heading (h2):** From request to first shift
+- **Image alt:** A recruiter in a suit reading a clipboard across a table from a candidate
 - **Heading (h3):** Send the role and shift
 - **Paragraph:** The role, the number of staff, the shift times and the start date.
-- **Image alt:** A recruiter in a suit reading a clipboard across a table from a candidate
-- **Step number:** 2
+- **Image alt:** A nurse in scrubs writing notes beside an open laptop
 - **Heading (h3):** We check every credential
 - **Paragraph:** We match the candidate to your role and confirm their papers before placement.
-- **Image alt:** A nurse in scrubs writing notes beside an open laptop
-- **Step number:** 3
+- **Image alt:** A nurse with a tablet talking with a colleague at a nurses' station
 - **Heading (h3):** Staff report for the shift
 - **Paragraph:** The professional starts on the agreed date. We call you after the first shift.
-- **Image alt:** A nurse with a tablet talking with a colleague at a nurses' station
+
+Each step is a card (photograph, icon, title, line); the step numbers are not shown.
 
 ### Section #openings: Open nursing jobs
 
 - **Heading (h2):** Open nursing jobs
 - **Heading (h3):** Registered Nurse (RN)
 - **Paragraph:** Nights, 11:00pm to 7:00am, shift differential.
-- **Link:** Apply for the RN job → /job-seekers/?position=RN#apply
+- **Link:** Apply → /job-seekers/?position=RN#apply (accessible name: Apply for the RN job)
 - **Heading (h3):** Licensed Practical Nurse (LPN)
 - **Paragraph:** Days 6:00am to 2:30pm, or evenings 2:00pm to 10:30pm.
-- **Link:** Apply for the LPN job → /job-seekers/?position=LPN#apply
+- **Link:** Apply → /job-seekers/?position=LPN#apply (accessible name: Apply for the LPN job)
 - **Link:** See open shifts → /job-seekers/#openings
 - **Image alt:** A nurse on a break with a phone and a cup of coffee
 - **Image alt:** A nurse holding the hand of a woman resting in a hospital bed
@@ -225,33 +225,56 @@ URL: `/services/registered-nurses/`
 
 ### Browser tab and search listing
 
-- **Page title:** Registered nurse staffing | Eminent One
+- **Page title:** Registered Nurses | Eminent One
 - **Meta description:** Registered nurses placed by Eminent One LLC in Maryland hospitals, nursing homes, rehab centers, assisted living and home care.
 
 Nav word highlighted on this page: **Services**
 
-### Hero: Registered nurse staffing in Maryland
+Copy taken word for word from the original page, eminentonegroup.com/services/registered-nurses.
 
-- **Heading (h1):** Registered nurse staffing in Maryland
-- **Paragraph:** RNs for hospitals, nursing homes, rehab centers, assisted living and home care. Duties differ by facility, so we match each nurse to the setting and the shift.
+### Hero: Registered nurses
+
+- **Heading (h1):** Registered nurses
+- **Paragraph:** Registered nurses for clinical, hospital, home, and residential settings.
 - **Button:** Request staff → /employers/#request
 - **Button:** Apply for work → /job-seekers/#apply
 - **Image alt:** A nurse with a tablet talking with a colleague at a nurses' station
 
-### Section #duties: What our RNs do on a shift
+### Section #duties: What RNs do
 
-- **Heading (h2):** What our RNs do on a shift
-- **Paragraph:** They monitor patient health, give treatments and medications as planned and keep doctors informed of changes.
-- **List item:** Assess and plan care — Assess, plan and deliver nursing care to accepted standards.
-- **List item:** Give treatments and medications — Give treatments and medications and watch how each patient responds.
-- **List item:** Keep the records — Keep detailed records of each patient's progress.
-- **List item:** Coordinate the care team — Work with other health professionals and answer patient and family questions.
+- **Paragraph (above the heading):** Registered nurses monitor patient health, make sure treatments and medications are given as planned, and keep doctors informed of changes. Duties differ by facility. We match each RN to the setting.
+- **Heading (h2):** What RNs do
+- **Numbered item 01:** Assess, plan, and deliver nursing care to accepted standards.
+- **Numbered item 02:** Give treatments and medications and monitor how patients respond.
+- **Numbered item 03:** Keep detailed records of patient progress.
+- **Numbered item 04:** Coordinate care with other health professionals and answer patient and family questions.
 - **Image alt:** A care worker pouring a hot drink for a woman resting in bed in a nursing home room
+
+### Section #where: Where we place RNs
+
+- **Heading (h2):** Where we place RNs
+- **List:** Hospitals · Nursing homes · Rehabilitation centers · Assisted living facilities · Home care agencies
+
+### Section #next: two cards
+
+- **Card heading (h3):** Request an RN
+- **Paragraph:** Tell us the shift and start date.
+- **Button:** Request staff → /employers/#request
+- **Card heading (h3):** RNs: apply for work
+- **Paragraph:** Apply for RN openings with our client facilities.
+- **Button:** Apply for work → /job-seekers/apply/?position=RN
+- **Line:** Or call 410-929-9388 (tel link)
+
+### Section #others: Other roles
+
+- **Heading (h2):** Other roles
+- **Paragraph:** Other professionals we place.
+- **Links (each → /services/roles/):** Licensed Practical Nurses · Certified Nursing Assistants · Home Health Aides · Medical Assistants · Therapists · Social Workers · Caregivers
 
 ### Closing call to action (top of the footer)
 
-- **Heading (h2):** Request a registered nurse
-- **Paragraph:** Send the shift and the start date. The office replies by phone or email.
+- **Heading (h2):** Request staff or apply for work.
+- **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → /employers/#request
 
 ## Employers
@@ -272,6 +295,14 @@ Nav word highlighted on this page: **Employers**
 - **Button:** Request staff → #request
 - **Button:** Call the office → tel:+14109299388
 - **Image alt:** A recruiter in a suit reading a clipboard across a table from a candidate
+
+### Section #how: How it works
+
+- **Heading (h2):** How it works (drafted; to confirm)
+- **Tab:** For facilities
+- **Tab:** For professionals
+- **Panel "For facilities":** 01 Tell us what you need — Roles, shifts, and start date. / 02 We match and verify — Licenses, work history, and background checks confirmed. / 03 Staff report for the shift — We follow up with you after the first shift.
+- **Panel "For professionals" (drafted from the site's wording; to confirm):** 01 Send one application — Apply once and we match you to shifts that fit your license. / 02 We check your papers — License or certification, work history, and a background check. / 03 Start your shift — The office keeps in touch once you start.
 
 ### Section #expect: What follows a staffing request
 
@@ -350,13 +381,13 @@ Nav word highlighted on this page: **Careers**
 - **Value:** Owings Mills, MD
 - **Term:** Shift
 - **Value:** Nights, 11:00pm to 7:00am, shift differential
-- **Link:** Apply for the RN shift → /job-seekers/?position=RN#apply
+- **Link:** Apply → /job-seekers/?position=RN#apply (accessible name: Apply for the RN shift)
 - **Heading (h3):** Licensed Practical Nurse (LPN)
 - **Term:** Where
 - **Value:** Owings Mills, MD
 - **Term:** Shift
 - **Value:** Days 6:00am to 2:30pm, or evenings 2:00pm to 10:30pm
-- **Link:** Apply for the LPN shift → /job-seekers/?position=LPN#apply
+- **Link:** Apply → /job-seekers/?position=LPN#apply (accessible name: Apply for the LPN shift)
 
 ### Section #checks: What we check before your first shift
 
@@ -410,49 +441,58 @@ Nav word highlighted on this page: **Careers**
 
 ## About
 
-URL: `/about/`
+URL: `/about/`. Copy taken word for word from the original page, eminentonegroup.com/about.
 
 ### Browser tab and search listing
 
-- **Page title:** About Eminent One LLC | Eminent One
+- **Page title:** About Us | Eminent One
 - **Meta description:** Eminent One LLC is a Maryland healthcare staffing agency, license HCSA-01609, run by Percy and Janet Irefin.
 
-Nav word highlighted on this page: **About**
+Nav word highlighted on this page: **Who We Are**
 
-### Hero: Care staffing agency in Maryland
+### Hero
 
-- **Heading (h1):** Care staffing agency in Maryland
-- **Paragraph:** Maryland Health Care Staff Agency license HCSA-01609. We place nurses and care staff across the state.
-- **Button:** Request staff → /employers/#request
-- **Button:** Apply for work → /job-seekers/#apply
-- **Image alt:** A nurse in scrubs writing notes beside an open laptop
+- **Label:** Who we are
+- **Heading (h1):** A licensed healthcare staffing agency in Maryland.
+- **Paragraph:** Eminent One LLC places nurses and care staff with hospitals, nursing homes, rehabilitation centers, assisted living facilities, and home care agencies across our service area.
+- **Buttons:** Request staff → /employers/#request; Apply for work → /job-seekers/#apply
 
-### Section #agency: Run from Windsor Mill by the Irefins
+### Section #agency: About us
 
-- **Heading (h2):** Run from Windsor Mill by the Irefins
-- **Paragraph:** Facilities come to us for temporary cover, temp-to-perm arrangements and permanent hires. Nurses and caregivers come to us for work that fits their license and schedule.
-- **List item:** Percy Irefin — Chief Executive Officer
-- **List item:** Janet Irefin — Director
-- **List item:** Office — Liberty Road, Windsor Mill
-- **List item:** License — HCSA-01609
+- **Label:** About us
+- **Heading (h2):** A licensed Maryland healthcare staffing agency.
+- **Paragraph:** Eminent One LLC is a Maryland agency and holds Maryland Health Care Staff Agency license HCSA-01609. We place nurses and care staff with facilities across our service area.
+- **People:** PI Percy Irefin, Chief Executive Officer · JI Janet Irefin, Director
+- **Verified credentials:** Licenses, certifications, and background checks confirmed before placement.
+- **Flexible terms:** Temporary, temp-to-perm, or permanent placements.
+- **Follow-up:** We stay in touch with facilities and professionals after the placement.
+- **Local Maryland team:** Based in Maryland and serving our service area.
 - **Image alt:** A care worker pouring a hot drink for a woman resting in bed in a nursing home room
 
-### Section #work: What every placement includes
+### Section #statement (cobalt)
 
-- **Heading (h2):** What every placement includes
-- **Image alt:** A hand holding a pen over printed forms on a wooden desk
-- **Heading (h3):** Checks credentials first
-- **Paragraph:** Licenses, certifications, employment history and background checks, before anyone starts.
-- **Image alt:** Three older residents playing chess over coffee in a bright lounge
-- **Heading (h3):** Matches each person to the setting
-- **Paragraph:** We place by license, experience and the shift the facility needs.
-- **Image alt:** A nurse holding the hand of a woman resting in a hospital bed
-- **Heading (h3):** Follows up after the start
-- **Paragraph:** We stay in contact with the facility and the professional once a placement begins.
+- **Paragraph:** We operate under Maryland Health Care Staff Agency license HCSA-01609.
+- **Paragraph:** Facilities come to us for temporary coverage, temp-to-perm arrangements, and permanent hires. Nurses and caregivers come to us for work that fits their license and schedule.
+- **Label:** Our mission
+- **Statement:** To connect qualified healthcare professionals with the Maryland facilities that need them.
+
+### Section #work: How we work
+
+- **Label:** How we work
+- **Heading (h2):** What every placement includes.
+- **01 Credentials first:** We verify licenses, certifications, employment history, and background checks before anyone starts.
+- **02 Matched to the setting:** We place each professional by license, experience, and the shift the facility needs.
+- **03 Follow-up:** We stay in contact with the facility and the professional after the placement starts.
+
+### Section #leadership: Leadership
+
+- **Label:** Leadership
+- **Heading (h2):** The people behind Eminent One.
+- **Cards:** PI Percy Irefin, Chief Executive Officer · JI Janet Irefin, Director
 
 ### Closing call to action (top of the footer)
 
-- **Heading (h2):** Request staff for your facility
+- **Heading (h2):** Request staff or apply for work.
 - **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → /employers/#request
 
@@ -562,50 +602,35 @@ URL: `/contact/`
 
 ## Referrals
 
-URL: `/referrals/`
+URL: `/referrals/`. Copy taken word for word from the original page, eminentonegroup.com/referrals.
 
 ### Browser tab and search listing
 
-- **Page title:** Refer a nurse or a facility | Eminent One
+- **Page title:** Referrals | Eminent One
 - **Meta description:** Refer a healthcare professional or a facility to Eminent One LLC. We follow up with them directly.
 
-### Header actions on this page
+Nav word highlighted on this page: **For Employers**
 
-- **Link:** Request staff → /employers/#request
-- **Button:** Send a referral → #refer
+### Hero
 
-### Hero: Refer a nurse or a facility to us
+- **Label:** Referrals
+- **Heading (h1):** Refer a facility or a healthcare professional.
+- **Paragraph:** Give us their contact details and we will follow up with them directly.
+- **Button:** Send referral → #refer
 
-- **Heading (h1):** Refer a nurse or a facility to us
-- **Paragraph:** Give us the details of a nurse who wants work or a facility that needs staff, and the office follows up with them directly.
-- **Button:** Send a referral → #refer
-- **Image alt:** Three older residents playing chess over coffee in a bright lounge
+### Section #refer: Refer someone
 
-### Section #refer: Who to contact
-
-- **Heading (h2):** Who to contact
-- **Paragraph:** Tell us who they are, how to reach them and whether they need staff or are looking for work.
-- **Form label:** Your name
-- **Error message (shown when the field fails on submit):** Write your name.
-- **Form label:** Your email
-- **Error message (shown when the field fails on submit):** Write an email address with an @, like name@example.com.
-- **Form label:** Their name
-- **Error message (shown when the field fails on submit):** Write the name of the person or facility.
-- **Form label:** Their email or phone
-- **Error message (shown when the field fails on submit):** Write how we can reach them.
-- **Form label:** They are
-- **Select prompt:** Choose one
-- **Option:** A healthcare facility
-- **Option:** A healthcare professional
-- **Form label:** Notes
-- **Button:** Send a referral
-- **Paragraph:** The form opens your email app with the referral filled in.
+- **Heading (h2):** Refer someone
+- **Paragraph:** Tell us who to contact and whether they need staff or are looking for work.
+- **Form fields (* required):** Your name * · Your email * · Who are you referring? * · Their email or phone * · They are a (Select / Healthcare facility / Healthcare professional) · Notes
+- **Button:** Send referral
+- **Note:** Opens your email app with the details filled in.
 
 ### Closing call to action (top of the footer)
 
-- **Heading (h2):** Send a referral
-- **Paragraph:** Give us their details and the office follows up with them directly.
-- **Button:** Send a referral → #refer
+- **Heading (h2):** Request staff or apply for work.
+- **Paragraph:** Call 410-929-9388 or start online.
+- **Button:** Request staff → /employers/#request
 
 ## Photograph credits
 
@@ -662,3 +687,57 @@ URL: `any missing URL`
 - **Heading (h2):** Request staff for your facility
 - **Paragraph:** Call 410-929-9388 or start online.
 - **Button:** Request staff → /employers/#request
+
+## Pages opened from the header dropdowns
+
+Each reuses the words of the pages above; only the hero (title and line) and the schedule lines are new, drafted from the site's own wording for the client to confirm.
+
+- **/services/roles/ (All roles we place).** Word for word from the original page, eminentonegroup.com/services. Page title: Medical Staffing.
+  - Hero: label "Medical staffing"; h1 "Nurses and care staff for Maryland healthcare facilities."; "We staff nurses and other healthcare professionals on temporary, temp-to-perm, and permanent terms. Every candidate is screened and credentialed before placement."; button Request staff.
+  - #what: label "What we do"; h2 "How we staff your facility."; four numbered cards:
+    - 01 Recruitment and placement: "We recruit, screen, and place healthcare professionals in hospitals, nursing homes, rehab centers, assisted living facilities, and home care agencies."
+    - 02 Credentialing and compliance: "We verify licenses, certifications, employment history, and background checks on every candidate before placement."
+    - 03 Temporary, temp-to-perm, and permanent staffing: "Short-term coverage, a longer contract, or a permanent hire."
+    - 04 Follow-up after placement: "We stay in contact with the facility and the professional once the placement starts."
+  - #roles: label "Roles we place"; h2 "Healthcare professionals we supply."; "Need a role that is not listed? Tell us the role you need filled."
+    - The role list picks the detail card beside it. Each card shows the abbreviation, the name, the line and Request staff (the "Settings we staff" list is removed at the client's request). Registered Nurses also has "About this role" → /services/registered-nurses/.
+    - RN Registered Nurses: "Assessment, treatment, and care coordination in clinical and residential settings."
+    - LPN Licensed Practical Nurses: "Basic nursing care and follow-up under the direction of RNs and physicians."
+    - CNA Certified Nursing Assistants: "Daily living support and comfort for patients and residents."
+    - HHA Home Health Aides: "Personal care and support for clients in their homes."
+    - MA Medical Assistants: "Clinical and administrative support in practices and clinics."
+    - PT · OT · SLP Therapists: "Rehabilitation and therapy professionals for facilities and clinics."
+    - SW Social Workers: "Support, planning, and coordination for patients and families."
+    - CG Caregivers: "Day-to-day care and companionship."
+  - #audiences, two cards:
+    - "For healthcare facilities": "Tell us the roles, shifts, and start date. We recruit, verify, and place the staff." Button Request staff.
+    - "For healthcare professionals": "Apply once. We match you with facilities that fit your license and schedule." Button Apply for work.
+  - #faq: label "Questions"; h2 "Frequently asked questions."
+    - What settings do you staff? "Hospitals, nursing homes, rehabilitation centers, assisted living facilities, home care agencies, and other healthcare settings."
+    - Do you place professionals looking for work? "Yes. Apply on the [For Job Seekers] page and we will match you to openings that fit your license and availability."
+    - Where do you operate? "Our office is in Maryland. We staff facilities across our service area."
+    - How do we get started? "Send a [staffing request] or call [410-929-9388]. Tell us the role, shift, and start date."
+  - Closing: "Request staff or apply for work." / "Call 410-929-9388 or start online." / Request staff.
+- **/services/temporary-and-permanent/ (Temporary and permanent staffing):** hero "Temporary and permanent staffing" — "Facilities come to us for temporary cover, temp-to-perm arrangements and permanent hires."; "The terms you choose": Temporary — Covers a short gap. / Temp-to-perm — Starts as a contract you can turn into a hire. / Permanent — A direct hire to your staff.; "Schedules" (drafted): Full-time — Regular shifts every week. / Part-time — Fewer shifts, on a set pattern. / Per diem — Shift by shift, as you need cover.
+- **/employers/request-staff/ (Request staff).** Word for word from the original page, eminentonegroup.com/employers#request. Page title: For Employers.
+  - Hero: label "For employers"; h1 "Leave the recruiting to us."; "We recruit, screen, and place healthcare professionals for your facility. We handle the credentialing, so every placement meets regulatory and facility requirements."; button Request staff → #request.
+  - #request, left: label "What to expect"; numbered:
+    - 01 A reply from our office by phone or email.
+    - 02 A match based on the role, shift, and facility requirements you give us.
+    - 03 Credentialed professionals, with documents checked before they start.
+    - 04 Temporary, temp-to-perm, or permanent terms.
+    - 05 Follow-up from us after the first shift.
+  - #request, right: h2 "Request staff"; "Tell us the role, shift, and start date. Our office will contact you."
+  - Form fields (* required):
+    - Facility name *, Contact name *, Email *, Phone *
+    - Role needed (Select / RN / LPN / CNA / GNA / HHA / Medical Assistant / Therapist / Social Worker / Caregiver / Other)
+    - Number of staff
+    - Type of staffing (Select / Temporary / Temp-to-perm / Permanent)
+    - Start date
+    - Shift and details
+  - Button "Send request"; note "Opens your email app with the details filled in."
+  - Closing: "Request staff or apply for work." / "Call 410-929-9388 or start online." / Request staff → #request.
+- **/employers/services/ (Employer services):** hero "Employer services" — the Employers hero line; How it works (tabs); What follows a staffing request.
+- **/job-seekers/open-positions/ (Open positions):** hero "Open positions" — "Apply for a shift, or send one application for any role."; the shift tickets; What we check before your first shift.
+- **/job-seekers/apply/ (Apply for work):** hero "Apply for nursing and care work" — "Apply once and we match you to shifts that fit your license."; the application form.
+- **/job-seekers/registered-nurse-roles/ (Registered nurse roles):** hero "Registered nurse roles" — "RN shifts in hospitals, nursing homes, rehab centers, assisted living and home care across Maryland."; What our RNs do on a shift; the shift tickets.

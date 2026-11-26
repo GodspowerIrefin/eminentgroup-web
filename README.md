@@ -60,6 +60,13 @@ longer loaded.
   footer directory as on the agency's original site (four link groups and "Get in touch" with quick
   links), the logo with its tagline, and the licence and copyright lines.
 
+### Pages
+
+Home, Services (with Registered nurses, All roles we place, Temporary and permanent staffing),
+Employers (with Request staff, Employer services), Careers at `/job-seekers/` (with Open positions,
+Apply for work, Registered nurse roles), Referrals, About, Contact, Resources and Credits. The header's
+five words each open a dropdown of their pages (`nav.words[].menu` in `content/content.ts`).
+
 ### The home page
 
 `app/page.tsx` follows the client's reference structure, one full screen per section on a desktop:

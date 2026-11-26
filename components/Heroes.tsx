@@ -46,6 +46,7 @@ function HeroBand({
   primary,
   secondary,
   top = false,
+  eyebrow,
 }: {
   title: ReactNode;
   lead: ReactNode;
@@ -53,12 +54,14 @@ function HeroBand({
   primary: Action;
   secondary?: Action;
   top?: boolean;
+  eyebrow?: string;
 }) {
   const style = { "--ly-pos": image.pos ?? "50% 50%", "--ly-pos-phone": image.posPhone ?? image.pos ?? "50% 50%" } as React.CSSProperties;
   return (
     <section className={`hero eo-band${top ? " eo-band--top" : ""}`} data-enter aria-labelledby="hero-h">
       <div className="wrap">
         <div className="hero-text eo-band__text">
+          {eyebrow ? <p className="eo-eyebrow eo-band__eyebrow">{eyebrow}</p> : null}
           <h1 id="hero-h" className="eo-band__title">
             {title}
           </h1>
@@ -94,6 +97,7 @@ export function HeroPhoto({
   image,
   primary,
   secondary,
+  eyebrow,
 }: {
   title: ReactNode;
   lead: ReactNode;
@@ -101,8 +105,9 @@ export function HeroPhoto({
   calm?: "left" | "right";
   primary: Action;
   secondary?: Action;
+  eyebrow?: string;
 }) {
-  return <HeroBand title={title} lead={lead} image={image} primary={primary} secondary={secondary} top />;
+  return <HeroBand title={title} lead={lead} image={image} primary={primary} secondary={secondary} eyebrow={eyebrow} top />;
 }
 
 // hero-editorial (DESIGN-BRIEF.md): warm off-white ground, a serif headline that rises line by line,
@@ -178,14 +183,16 @@ export function HeroSplit({
   image,
   primary,
   secondary,
+  eyebrow,
 }: {
   title: ReactNode;
   lead: ReactNode;
   image: Img;
   primary: Action;
   secondary?: Action;
+  eyebrow?: string;
 }) {
-  return <HeroBand title={title} lead={lead} image={image} primary={primary} secondary={secondary} />;
+  return <HeroBand title={title} lead={lead} image={image} primary={primary} secondary={secondary} eyebrow={eyebrow} />;
 }
 
 // hero-cover (home, "The Shift Record"): the headline set as large as a magazine cover on Paper,

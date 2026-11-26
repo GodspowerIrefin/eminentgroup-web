@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Closing from "@/components/Closing";
 import Header from "@/components/Header";
 import { HeroSplit } from "@/components/Heroes";
-import { Form } from "@/components/Blocks";
+import { Form, HowItWorks } from "@/components/Blocks";
 import Rich from "@/components/Rich";
 import { actions, forms, pages, pic } from "@/content/content";
 
@@ -10,8 +10,9 @@ const c = pages.employers;
 
 export const metadata: Metadata = c.meta;
 
-// Plan: hero (split) / #expect what follows a request, beside a photograph / #request the form /
+// Plan: hero (split) / #how two tabs of three step cards / #expect what follows a request, beside a photograph / #request the form /
 // footer.closing
+
 export default function Employers() {
   const img = pic(c.expect.image);
   return (
@@ -25,6 +26,8 @@ export default function Employers() {
           primary={c.action}
           secondary={actions.callOffice}
         />
+
+        <HowItWorks />
 
         <section className="section tone-night" id="expect" style={{ "--hm": 2 } as React.CSSProperties} aria-labelledby="expect-h">
           <div className="wrap">

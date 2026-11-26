@@ -84,6 +84,7 @@ export const jobShift = (job: (typeof jobs)[number]) => `${job.shift}${job.extra
 export const jobCopy = {
   where: "Where",
   shift: "Shift",
+  apply: "Apply",
   applyShift: (code: string) => `Apply for the ${code} shift`,
   applyJob: (code: string) => `Apply for the ${code} job`,
   applyHref: (code: string) => `/job-seekers/?position=${code}#apply`,
@@ -135,6 +136,7 @@ const ALT = {
   followUp: "A nurse holding the hand of a woman resting in a hospital bed",
   credentialing: "A hand holding a pen over printed forms on a wooden desk",
   hospitals: "Two nurses in teal scrubs reading a chart in a hospital corridor",
+  hospitalWard: "A nurse in a protective gown and mask reaching for a monitor beside a patient's bed in a hospital room",
   nursingHomes: "A care worker pouring a hot drink for a woman resting in bed in a nursing home room",
   rehabilitation: "A therapist guiding a patient's arm and hip through a stretch on a treatment table",
   assistedLiving: "Three older residents playing chess over coffee in a bright lounge",
@@ -160,6 +162,14 @@ export const photos = {
   followUp: services("follow-up", ALT.followUp),
   credentialing: services("credentialing", ALT.credentialing),
   hospitals: settingPhoto("hospitals", ALT.hospitals),
+  // public domain (U.S. Navy Medicine, Wikimedia Commons), no credit required
+  hospitalWard: {
+    src: "/assets/img/photo-f116782956.webp",
+    srcSet: "/assets/img/photo-f116782956-500.webp 500w, /assets/img/photo-f116782956-960.webp 960w, /assets/img/photo-f116782956.webp 1280w",
+    width: 1280,
+    height: 914,
+    alt: ALT.hospitalWard,
+  },
   nursingHomes: settingPhoto("nursing-homes", ALT.nursingHomes),
   rehabilitation: settingPhoto("rehabilitation", ALT.rehabilitation),
   assistedLiving: settingPhoto("assisted-living", ALT.assistedLiving),
@@ -184,15 +194,55 @@ export const ui = {
 export const nav = {
   // the main bar's words, as on the agency's original site
   words: [
-    { key: "services", href: "/services/", label: "Staffing Services" },
-    { key: "employers", href: "/employers/", label: "For Employers" },
-    { key: "careers", href: "/job-seekers/", label: "Careers" },
-    { key: "about", href: "/about/", label: "Who We Are" },
-    { key: "insights", href: "/resources/", label: "Insights" },
+    {
+      key: "services",
+      href: "/services/",
+      label: "Staffing Services",
+      menu: [
+        { href: "/services/registered-nurses/", label: "Registered Nurses" },
+        { href: "/services/roles/", label: "All Roles We Place" },
+        { href: "/services/temporary-and-permanent/", label: "Temporary and Permanent Staffing" },
+      ],
+    },
+    {
+      key: "employers",
+      href: "/employers/",
+      label: "For Employers",
+      menu: [
+        { href: "/employers/request-staff/", label: "Request Staff" },
+        { href: "/employers/services/", label: "Employer Services" },
+        { href: "/referrals/", label: "Referrals" },
+      ],
+    },
+    {
+      key: "careers",
+      href: "/job-seekers/",
+      label: "Careers",
+      menu: [
+        { href: "/job-seekers/open-positions/", label: "Open Positions" },
+        { href: "/job-seekers/apply/", label: "Apply for Work" },
+        { href: "/job-seekers/registered-nurse-roles/", label: "Registered Nurse Roles" },
+      ],
+    },
+    {
+      key: "about",
+      href: "/about/",
+      label: "Who We Are",
+      menu: [
+        { href: "/about/", label: "About Eminent One" },
+        { href: "/contact/", label: "Contact" },
+      ],
+    },
+    {
+      key: "insights",
+      href: "/resources/",
+      label: "Insights",
+      menu: [{ href: "/resources/", label: "Resources" }],
+    },
   ] as const,
   // the thin bar above it: the licence on the left, quick links and the phone on the right
   top: {
-    licensed: "Maryland Health Care Staff Agency Licensed",
+    licensed: "Licensed Maryland health care staff",
     links: [
       { href: "/job-seekers/#openings", label: "Open Positions" },
       { href: "/employers/#request", label: "Request Staff" },
@@ -201,6 +251,8 @@ export const nav = {
     ],
   },
   tagline: "People. Care. Opportunities.",
+  // the main bar's button. TODO: the portal's address is not known yet; replace href when the client gives it
+  portal: { label: "Portal", href: "/contact/" },
 };
 
 export const footer = {
@@ -265,7 +317,7 @@ export const footer = {
   seeShifts: { label: "See open shifts", href: "/job-seekers/#openings" },
   wordmark: "Eminent One",
   tagline: "People. Care. Opportunities.",
-  licensed: "Maryland Health Care Staff Agency Licensed",
+  licensed: "Licensed Maryland health care staff",
   legal: `© ${site.year} Eminent One Group. All rights reserved.`,
 };
 
@@ -303,6 +355,25 @@ export const forms = {
       details: { label: "Shift, start date and number of staff" },
     },
   },
+  // word for word from the original eminentonegroup.com/employers#request form
+  requestExact: {
+    subject: "Staffing request",
+    submit: "Send request",
+    note: "Opens your email app with the details filled in.",
+    prompt: "Select",
+    star: true,
+    fields: {
+      facility: { label: "Facility name", error: "Write the name of your facility." },
+      contact: { label: "Contact name", error: "Write the name we should ask for." },
+      email: { label: "Email", error: emailError },
+      phone: { label: "Phone", error: "Write a phone number the office can call." },
+      role: { label: "Role needed", options: ["RN", "LPN", "CNA / GNA", "HHA", "Medical Assistant", "Therapist", "Social Worker", "Caregiver", "Other"] },
+      count: { label: "Number of staff" },
+      terms: { label: "Type of staffing", options: ["Temporary", "Temp-to-perm", "Permanent"] },
+      start: { label: "Start date" },
+      details: { label: "Shift and details" },
+    },
+  },
   apply: {
     subject: "Job application",
     submit: "Apply for work",
@@ -328,23 +399,27 @@ export const forms = {
       message: { label: "Message", error: "Write what you would like to ask." },
     },
   },
+  // word for word from the original eminentonegroup.com/referrals form
   referral: {
     subject: "Referral",
-    submit: "Send a referral",
-    note: "The form opens your email app with the referral filled in.",
+    submit: "Send referral",
+    note: "Opens your email app with the details filled in.",
+    prompt: "Select",
+    star: true,
     fields: {
       name: { label: "Your name", error: "Write your name." },
       email: { label: "Your email", error: emailError },
-      referred: { label: "Their name", error: "Write the name of the person or facility." },
-      contact: { label: "Their email or phone", error: "Write how we can reach them." },
-      type: { label: "They are", options: ["A healthcare facility", "A healthcare professional"] },
+      referred: { label: "Who are you referring?", error: "Write the name of the person or facility." },
+      theirContact: { label: "Their email or phone", error: "Write how we can reach them." },
+      type: { label: "They are a", options: ["Healthcare facility", "Healthcare professional"] },
       notes: { label: "Notes" },
     },
   },
 };
 
 export type FieldCopy = { label: string; error?: string; options?: string[] };
-export type FormCopy = { subject: string; submit: string; note: string; fields: Record<string, FieldCopy> };
+// `prompt`: the empty first choice in each select (ui.selectPrompt when absent); `star`: show " *" after required labels
+export type FormCopy = { subject: string; submit: string; note: string; fields: Record<string, FieldCopy>; prompt?: string; star?: boolean };
 
 // ---------------------------------------------------------------- pages
 
@@ -366,7 +441,7 @@ export const pages = {
       image: { photo: "supplies", subject: "nurses at work" } as PhotoRef,
     },
     steps: {
-      title: "From request to first shift in 3 steps",
+      title: "From request to first shift",
       items: [
         {
           num: "1",
@@ -391,8 +466,10 @@ export const pages = {
     settings: {
       title: "Facilities we staff in Maryland",
       lead: "From hospital units to clients’ homes. Choose a row to see the setting.",
+      // the slideshow's pause button (screen readers; it shows as a pause or play icon)
+      pauseLabel: "Pause the photographs",
       items: [
-        { key: "hospitals", name: "Hospitals", body: "Nurses and nursing assistants for hospital units.", photo: "hospitals" as PhotoKey },
+        { key: "hospitals", name: "Hospitals", body: "Nurses and nursing assistants for hospital units.", photo: "hospitalWard" as PhotoKey },
         { key: "nursing", name: "Nursing homes", body: "Nurses, CNAs and GNAs for residents' daily care.", photo: "nursingHomes" as PhotoKey },
         { key: "rehab", name: "Rehabilitation centers", body: "Therapists, nurses and aides for rehab patients.", photo: "rehabilitation" as PhotoKey },
         { key: "assisted", name: "Assisted living facilities", body: "Caregivers and CNAs for residents' daily living.", photo: "assistedLiving" as PhotoKey },
@@ -458,29 +535,154 @@ export const pages = {
 
   registeredNurses: {
     meta: {
-      title: "Registered nurse staffing",
+      title: "Registered Nurses",
       description: "Registered nurses placed by Eminent One LLC in Maryland hospitals, nursing homes, rehab centers, assisted living and home care.",
     },
+    // word for word from eminentonegroup.com/services/registered-nurses
     hero: {
-      title: "Registered nurse staffing in Maryland",
-      lead: "RNs for hospitals, nursing homes, rehab centers, assisted living and home care. Duties differ by facility, so we match each nurse to the setting and the shift.",
+      title: "Registered nurses",
+      tagline: "Registered nurses for clinical, hospital, home, and residential settings.",
+      lead: "Registered nurses monitor patient health, make sure treatments and medications are given as planned, and keep doctors informed of changes. Duties differ by facility. We match each RN to the setting.",
       image: { photo: "staffing", subject: "nurses on shift" } as PhotoRef,
     },
     duties: {
-      title: "What our RNs do on a shift",
-      lead: "They monitor patient health, give treatments and medications as planned and keep doctors informed of changes.",
+      title: "What RNs do",
       items: [
-        { name: "Assess and plan care", body: "Assess, plan and deliver nursing care to accepted standards." },
-        { name: "Give treatments and medications", body: "Give treatments and medications and watch how each patient responds." },
-        { name: "Keep the records", body: "Keep detailed records of each patient's progress." },
-        { name: "Coordinate the care team", body: "Work with other health professionals and answer patient and family questions." },
+        "Assess, plan, and deliver nursing care to accepted standards.",
+        "Give treatments and medications and monitor how patients respond.",
+        "Keep detailed records of patient progress.",
+        "Coordinate care with other health professionals and answer patient and family questions.",
       ],
       image: { photo: "nursingHomes", subject: "care in a nursing home" } as PhotoRef,
     },
-    close: {
-      title: "Request a registered nurse",
-      line: "Send the shift and the start date. The office replies by phone or email.",
+    settings: {
+      title: "Where we place RNs",
+      items: ["Hospitals", "Nursing homes", "Rehabilitation centers", "Assisted living facilities", "Home care agencies"],
     },
+    request: { title: "Request an RN", body: "Tell us the shift and start date.", action: { label: "Request staff", href: "/employers/#request" } as Link },
+    apply: { title: "RNs: apply for work", body: "Apply for RN openings with our client facilities.", action: { label: "Apply for work", href: "/job-seekers/apply/?position=RN" } as Link, call: "Or call" },
+    others: {
+      title: "Other roles",
+      lead: "Other professionals we place.",
+      items: ["Licensed Practical Nurses", "Certified Nursing Assistants", "Home Health Aides", "Medical Assistants", "Therapists", "Social Workers", "Caregivers"],
+      href: "/services/roles/",
+    },
+    close: {
+      title: "Request staff or apply for work.",
+      line: "Call 410-929-9388 or start online.",
+    },
+  },
+
+  // the pages each dropdown item opens. Their sections reuse the words of the pages above; the
+  // heroes are drafted from the site's own wording, for the client to confirm.
+  // word for word from eminentonegroup.com/services (the original "Medical staffing" page)
+  roles: {
+    meta: { title: "Medical Staffing", description: "RNs, LPNs, CNAs, home health aides, medical assistants, therapists, social workers and caregivers for Maryland facilities." },
+    hero: {
+      eyebrow: "Medical staffing",
+      title: "Nurses and care staff for Maryland healthcare facilities.",
+      lead: "We staff nurses and other healthcare professionals on temporary, temp-to-perm, and permanent terms. Every candidate is screened and credentialed before placement.",
+      image: { photo: "supplies", subject: "nurses at work" } as PhotoRef,
+    },
+    what: {
+      eyebrow: "What we do",
+      title: "How we staff your facility.",
+      items: [
+        { name: "Recruitment and placement", body: "We recruit, screen, and place healthcare professionals in hospitals, nursing homes, rehab centers, assisted living facilities, and home care agencies." },
+        { name: "Credentialing and compliance", body: "We verify licenses, certifications, employment history, and background checks on every candidate before placement." },
+        { name: "Temporary, temp-to-perm, and permanent staffing", body: "Short-term coverage, a longer contract, or a permanent hire." },
+        { name: "Follow-up after placement", body: "We stay in contact with the facility and the professional once the placement starts." },
+      ],
+    },
+    list: {
+      eyebrow: "Roles we place",
+      title: "Healthcare professionals we supply.",
+      lead: "Need a role that is not listed? Tell us the role you need filled.",
+      more: { label: "About this role" },
+      items: [
+        { short: "RN", name: "Registered Nurses", body: "Assessment, treatment, and care coordination in clinical and residential settings.", href: "/services/registered-nurses/" },
+        { short: "LPN", name: "Licensed Practical Nurses", body: "Basic nursing care and follow-up under the direction of RNs and physicians." },
+        { short: "CNA", name: "Certified Nursing Assistants", body: "Daily living support and comfort for patients and residents." },
+        { short: "HHA", name: "Home Health Aides", body: "Personal care and support for clients in their homes." },
+        { short: "MA", name: "Medical Assistants", body: "Clinical and administrative support in practices and clinics." },
+        { short: "PT · OT · SLP", name: "Therapists", body: "Rehabilitation and therapy professionals for facilities and clinics." },
+        { short: "SW", name: "Social Workers", body: "Support, planning, and coordination for patients and families." },
+        { short: "CG", name: "Caregivers", body: "Day-to-day care and companionship." },
+      ] as { short: string; name: string; body: string; href?: string }[],
+    },
+    audiences: [
+      { title: "For healthcare facilities", body: "Tell us the roles, shifts, and start date. We recruit, verify, and place the staff.", action: { label: "Request staff", href: "/employers/#request" } as Link },
+      { title: "For healthcare professionals", body: "Apply once. We match you with facilities that fit your license and schedule.", action: { label: "Apply for work", href: "/job-seekers/apply/" } as Link },
+    ],
+    faq: {
+      eyebrow: "Questions",
+      title: "Frequently asked questions.",
+      items: [
+        { q: "What settings do you staff?", a: "Hospitals, nursing homes, rehabilitation centers, assisted living facilities, home care agencies, and other healthcare settings." },
+        { q: "Do you place professionals looking for work?", a: ["Yes. Apply on the ", { text: "For Job Seekers", href: "/job-seekers/" }, " page and we will match you to openings that fit your license and availability."] },
+        { q: "Where do you operate?", a: "Our office is in Maryland. We staff facilities across our service area." },
+        { q: "How do we get started?", a: ["Send a ", { text: "staffing request", href: "/employers/#request" }, " or call ", { text: phone, href: phoneHref }, ". Tell us the role, shift, and start date."] },
+      ] as { q: string; a: Rich }[],
+    },
+    close: { title: "Request staff or apply for work.", line: `Call ${phone} or start online.` },
+  },
+  terms: {
+    meta: { title: "Temporary and permanent staffing", description: "Temporary cover, temp-to-perm arrangements and permanent hires for Maryland facilities, full-time, part-time or per diem." },
+    hero: { title: "Temporary and permanent staffing", lead: "Facilities come to us for temporary cover, temp-to-perm arrangements and permanent hires.", image: { photo: "followUp", subject: "nurse at a bedside" } as PhotoRef },
+    options: {
+      title: "The terms you choose",
+      items: [
+        { name: "Temporary", body: "Covers a short gap." },
+        { name: "Temp-to-perm", body: "Starts as a contract you can turn into a hire." },
+        { name: "Permanent", body: "A direct hire to your staff." },
+      ],
+    },
+    schedules: {
+      title: "Schedules",
+      items: [
+        { name: "Full-time", body: "Regular shifts every week." },
+        { name: "Part-time", body: "Fewer shifts, on a set pattern." },
+        { name: "Per diem", body: "Shift by shift, as you need cover." },
+      ],
+    },
+  },
+  requestStaff: {
+    meta: { title: "For Employers", description: "Send a staffing request to Eminent One: the role, the shift and the start date." },
+    // word for word from the original eminentonegroup.com/employers page
+    hero: {
+      eyebrow: "For employers",
+      title: "Leave the recruiting to us.",
+      lead: "We recruit, screen, and place healthcare professionals for your facility. We handle the credentialing, so every placement meets regulatory and facility requirements.",
+      image: { photo: "recruitment", subject: "staffing request" } as PhotoRef,
+    },
+    expect: {
+      eyebrow: "What to expect",
+      items: [
+        "A reply from our office by phone or email.",
+        "A match based on the role, shift, and facility requirements you give us.",
+        "Credentialed professionals, with documents checked before they start.",
+        "Temporary, temp-to-perm, or permanent terms.",
+        "Follow-up from us after the first shift.",
+      ],
+    },
+    form: { title: "Request staff", lead: "Tell us the role, shift, and start date. Our office will contact you." },
+    close: { title: "Request staff or apply for work.", line: `Call ${phone} or start online.` },
+  },
+  employerServices: {
+    meta: { title: "Employer services", description: "How Eminent One works with Maryland facilities, from the staffing request to the call after the first shift." },
+    hero: { title: "Employer services", lead: "We recruit, screen and place healthcare professionals, and handle the credentialing, so each placement meets your facility's requirements.", image: { photo: "notesWide", subject: "credential checks" } as PhotoRef },
+  },
+  openPositions: {
+    meta: { title: "Open positions", description: "Open nursing shifts in Owings Mills, MD. One application covers every opening." },
+    hero: { title: "Open positions", lead: "Apply for a shift, or send one application for any role.", image: { photo: "onBreakHero", subject: "nurse between shifts" } as PhotoRef },
+  },
+  applyForWork: {
+    meta: { title: "Apply for work", description: "Apply to Eminent One for nursing and care work in Maryland. One application covers every opening." },
+    hero: { title: "Apply for nursing and care work", lead: "Apply once and we match you to shifts that fit your license.", image: { photo: "staffing", subject: "nurses on shift" } as PhotoRef },
+  },
+  rnRoles: {
+    meta: { title: "Registered nurse roles", description: "Registered nurse shifts with Eminent One in Maryland hospitals, nursing homes, rehab centers, assisted living and home care." },
+    hero: { title: "Registered nurse roles", lead: "RN shifts in hospitals, nursing homes, rehab centers, assisted living and home care across Maryland.", image: { photo: "hospitalWard", subject: "nurse on a ward" } as PhotoRef },
   },
 
   employers: {
@@ -493,6 +695,31 @@ export const pages = {
       title: "Staffing for Maryland care facilities",
       lead: "We recruit, screen and place healthcare professionals, and handle the credentialing, so each placement meets your facility's requirements.",
       image: { photo: "recruitment", subject: "recruiting interview" } as PhotoRef,
+    },
+    // three steps under two tabs (client screenshot). The heading and the professionals' steps are
+    // drafted from the site's own wording, for the client to confirm.
+    how: {
+      title: "How it works",
+      tabs: [
+        {
+          key: "facilities",
+          label: "For facilities",
+          steps: [
+            { title: "Tell us what you need", body: "Roles, shifts, and start date." },
+            { title: "We match and verify", body: "Licenses, work history, and background checks confirmed." },
+            { title: "Staff report for the shift", body: "We follow up with you after the first shift." },
+          ],
+        },
+        {
+          key: "professionals",
+          label: "For professionals",
+          steps: [
+            { title: "Send one application", body: "Apply once and we match you to shifts that fit your license." },
+            { title: "We check your papers", body: "License or certification, work history, and a background check." },
+            { title: "Start your shift", body: "The office keeps in touch once you start." },
+          ],
+        },
+      ],
     },
     expect: {
       title: "What follows a staffing request",
@@ -558,43 +785,47 @@ export const pages = {
     },
   },
 
+  // word for word from the original eminentonegroup.com/about page
   about: {
     meta: {
-      title: "About Eminent One LLC",
+      title: "About Us",
       description: `Eminent One LLC is a Maryland healthcare staffing agency, license ${license}, run by Percy and Janet Irefin.`,
     },
     hero: {
-      title: "Care staffing agency in Maryland",
-      lead: `Maryland Health Care Staff Agency license ${license}. We place nurses and care staff across the state.`,
+      eyebrow: "Who we are",
+      title: "A licensed healthcare staffing agency in Maryland.",
+      lead: "Eminent One LLC places nurses and care staff with hospitals, nursing homes, rehabilitation centers, assisted living facilities, and home care agencies across our service area.",
       image: { photo: "notesHero", subject: "nurse at a desk" } as PhotoRef,
     },
     agency: {
-      title: "Run from Windsor Mill by the Irefins",
-      lead: "Facilities come to us for temporary cover, temp-to-perm arrangements and permanent hires. Nurses and caregivers come to us for work that fits their license and schedule.",
-      officeLabel: "Office",
-      licenseLabel: "License",
+      eyebrow: "About us",
+      title: "A licensed Maryland healthcare staffing agency.",
+      lead: `Eminent One LLC is a Maryland agency and holds Maryland Health Care Staff Agency license ${license}. We place nurses and care staff with facilities across our service area.`,
+      points: [
+        { name: "Verified credentials", body: "Licenses, certifications, and background checks confirmed before placement." },
+        { name: "Flexible terms", body: "Temporary, temp-to-perm, or permanent placements." },
+        { name: "Follow-up", body: "We stay in touch with facilities and professionals after the placement." },
+        { name: "Local Maryland team", body: "Based in Maryland and serving our service area." },
+      ],
       image: { photo: "nursingHomes", subject: "care in a nursing home" } as PhotoRef,
     },
+    statement: {
+      license: `We operate under Maryland Health Care Staff Agency license ${license}.`,
+      body: "Facilities come to us for temporary coverage, temp-to-perm arrangements, and permanent hires. Nurses and caregivers come to us for work that fits their license and schedule.",
+      missionLabel: "Our mission",
+      mission: "To connect qualified healthcare professionals with the Maryland facilities that need them.",
+    },
     work: {
-      title: "What every placement includes",
+      eyebrow: "How we work",
+      title: "What every placement includes.",
       items: [
-        {
-          title: "Checks credentials first",
-          body: "Licenses, certifications, employment history and background checks, before anyone starts.",
-          photo: "credentialing" as PhotoKey,
-        },
-        {
-          title: "Matches each person to the setting",
-          body: "We place by license, experience and the shift the facility needs.",
-          photo: "assistedLiving" as PhotoKey,
-        },
-        {
-          title: "Follows up after the start",
-          body: "We stay in contact with the facility and the professional once a placement begins.",
-          photo: "followUp" as PhotoKey,
-        },
+        { title: "Credentials first", body: "We verify licenses, certifications, employment history, and background checks before anyone starts.", photo: "credentialing" as PhotoKey },
+        { title: "Matched to the setting", body: "We place each professional by license, experience, and the shift the facility needs.", photo: "assistedLiving" as PhotoKey },
+        { title: "Follow-up", body: "We stay in contact with the facility and the professional after the placement starts.", photo: "followUp" as PhotoKey },
       ],
     },
+    leadership: { eyebrow: "Leadership", title: "The people behind Eminent One." },
+    close: { title: "Request staff or apply for work.", line: `Call ${phone} or start online.` },
   },
 
   resources: {
@@ -664,24 +895,26 @@ export const pages = {
     },
   },
 
+  // word for word from the original eminentonegroup.com/referrals page
   referrals: {
     meta: {
-      title: "Refer a nurse or a facility",
+      title: "Referrals",
       description: "Refer a healthcare professional or a facility to Eminent One LLC. We follow up with them directly.",
     },
-    action: { label: "Send a referral", href: "#refer" } as Link,
+    action: { label: "Send referral", href: "#refer" } as Link,
     hero: {
-      title: "Refer a nurse or a facility to us",
-      lead: "Give us the details of a nurse who wants work or a facility that needs staff, and the office follows up with them directly.",
+      eyebrow: "Referrals",
+      title: "Refer a facility or a healthcare professional.",
+      lead: "Give us their contact details and we will follow up with them directly.",
       image: { photo: "assistedLiving", subject: "residents in assisted living" } as PhotoRef,
     },
     refer: {
-      title: "Who to contact",
-      lead: "Tell us who they are, how to reach them and whether they need staff or are looking for work.",
+      title: "Refer someone",
+      lead: "Tell us who to contact and whether they need staff or are looking for work.",
     },
     close: {
-      title: "Send a referral",
-      line: "Give us their details and the office follows up with them directly.",
+      title: "Request staff or apply for work.",
+      line: `Call ${phone} or start online.`,
     },
   },
 

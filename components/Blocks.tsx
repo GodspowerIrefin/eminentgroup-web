@@ -1,6 +1,6 @@
 import Arrow from "@/components/Arrow";
 import Rich from "@/components/Rich";
-import { jobCopy, jobs, jobShift, mailto, roles, ui, type FormCopy, type Rich as RichValue } from "@/content/content";
+import { jobCopy, jobs, jobShift, mailto, pages, roles, ui, type FormCopy, type Rich as RichValue } from "@/content/content";
 
 // The open shifts on Careers, in the same shift-ticket form as the home page: the title and the
 // facts (where, shift) on the left; the stub on the right, torn off along a perforation, is the
@@ -23,8 +23,8 @@ export function JobCards({ span = "" }: { span?: string }) {
               </div>
             </dl>
           </div>
-          <a className="eo-ticket__stub eo-ticket__go" href={jobCopy.applyHref(job.code)}>
-            <span>{jobCopy.applyShift(job.code)}</span>
+          <a className="eo-ticket__stub eo-ticket__go" href={jobCopy.applyHref(job.code)} aria-label={jobCopy.applyShift(job.code)}>
+            <span>{jobCopy.apply}</span>
             <Arrow />
           </a>
         </li>
@@ -65,8 +65,8 @@ export function Tickets() {
             <h3 className="eo-ticket__title">{job.title}</h3>
             <p className="eo-ticket__shift">{jobShift(job)}.</p>
           </div>
-          <a className="eo-ticket__stub eo-ticket__go" href={jobCopy.applyHref(job.code)}>
-            <span>{jobCopy.applyJob(job.code)}</span>
+          <a className="eo-ticket__stub eo-ticket__go" href={jobCopy.applyHref(job.code)} aria-label={jobCopy.applyJob(job.code)}>
+            <span>{jobCopy.apply}</span>
             <Arrow />
           </a>
         </li>
@@ -76,7 +76,24 @@ export function Tickets() {
 }
 
 // FAQ: every answer open (no accordion)
-export function Faq({ items }: { items: { q: string; a: RichValue }[] }) {
+// `accordion`: each question opens its answer (details/summary, no script); the first starts closed.
+export function Faq({ items, accordion = false }: { items: { q: string; a: RichValue }[]; accordion?: boolean }) {
+  if (accordion)
+    return (
+      <div className="eo-accordion">
+        {items.map((item) => (
+          <details className="eo-accordion__item" key={item.q}>
+            <summary>
+              <h3 className="eo-accordion__q">{item.q}</h3>
+              <span className="eo-accordion__icon" aria-hidden="true" />
+            </summary>
+            <p className="eo-accordion__a">
+              <Rich value={item.a} />
+            </p>
+          </details>
+        ))}
+      </div>
+    );
   return (
     <div className="faq">
       {items.map((item) => (
@@ -97,7 +114,7 @@ export function Faq({ items }: { items: { q: string; a: RichValue }[] }) {
 // `copy` holds the words (content/content.ts, forms); `fields` the order, types and widths.
 export type Field = {
   name: string;
-  type?: "text" | "email" | "tel" | "select" | "textarea";
+  type?: "text" | "email" | "tel" | "select" | "textarea" | "number" | "date";
   autoComplete?: string;
   required?: boolean;
   full?: boolean;
@@ -118,11 +135,14 @@ export function Form({ id, copy, fields }: { id: string; copy: FormCopy; fields:
         };
         return (
           <div className={`field${f.full || f.type === "textarea" ? " field--full" : ""}`} key={f.name}>
-            <label htmlFor={fid}>{words.label}</label>
+            <label htmlFor={fid}>
+              {words.label}
+              {copy.star && f.required ? <span className="field__star" aria-hidden="true"> *</span> : null}
+            </label>
             {f.type === "select" ? (
               <select {...common} defaultValue="">
                 <option value="" disabled>
-                  {ui.selectPrompt}
+                  {copy.prompt ?? ui.selectPrompt}
                 </option>
                 {words.options?.map((o) => (
                   <option key={o}>{o}</option>
@@ -135,7 +155,8 @@ export function Form({ id, copy, fields }: { id: string; copy: FormCopy; fields:
                 {...common}
                 type={f.type ?? "text"}
                 autoComplete={f.autoComplete ?? "off"}
-                inputMode={f.type === "email" ? "email" : f.type === "tel" ? "tel" : undefined}
+                inputMode={f.type === "email" ? "email" : f.type === "tel" ? "tel" : f.type === "number" ? "numeric" : undefined}
+                min={f.type === "number" ? 1 : undefined}
               />
             )}
             {f.required && (
@@ -155,5 +176,57 @@ export function Form({ id, copy, fields }: { id: string; copy: FormCopy; fields:
       <p className="form__status" role="status" data-form-status></p>
       <p className="t-small muted">{copy.note}</p>
     </form>
+  );
+}
+
+// The roles as cards (home #roles, the All roles page): each card the role's name and its line.
+export function RoleCards({ wide = false }: { wide?: boolean }) {
+  return (
+    <ul className={`eo-role-cards${wide ? " eo-role-cards--wide" : ""}`}>
+      {roles.map((r) => (
+        <li className="card eo-role-card" key={r.name}>
+          <p className="eo-role-card__name">{r.name}</p>
+          <p className="eo-role-card__body">{r.body}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// How it works (Employers, Employer services): two tabs, three numbered step cards under each.
+// A click or the arrow keys choose a tab; Home and End jump to the ends (WAI-ARIA tabs).
+const HOW_TABS = `(function(){var list=document.querySelector(".eo-how__tabs");if(!list)return;var tabs=[].slice.call(list.querySelectorAll("[role=tab]"));function pick(t,focus){tabs.forEach(function(x){var on=x===t;x.setAttribute("aria-selected",String(on));x.tabIndex=on?0:-1;var p=document.getElementById(x.getAttribute("aria-controls"));if(p)p.hidden=!on});if(focus)t.focus()}tabs.forEach(function(t,i){t.addEventListener("click",function(){pick(t)});t.addEventListener("keydown",function(e){var k=e.key,j=-1;if(k==="ArrowRight")j=(i+1)%tabs.length;else if(k==="ArrowLeft")j=(i-1+tabs.length)%tabs.length;else if(k==="Home")j=0;else if(k==="End")j=tabs.length-1;if(j>-1){e.preventDefault();pick(tabs[j],true)}})})})();`;
+
+export function HowItWorks() {
+  const c = pages.employers.how;
+  return (
+    <section className="section tone-paper eo-how" id="how" aria-labelledby="how-h">
+      <div className="wrap">
+        <div className="section-head">
+          <h2 id="how-h">{c.title}</h2>
+        </div>
+        <div className="eo-how__tabs" role="tablist" aria-labelledby="how-h">
+          {c.tabs.map((t, i) => (
+            <button className="eo-how__tab" type="button" role="tab" id={`how-tab-${t.key}`} aria-controls={`how-panel-${t.key}`} aria-selected={i === 0} tabIndex={i === 0 ? 0 : -1} key={t.key}>
+              {t.label}
+            </button>
+          ))}
+        </div>
+        {c.tabs.map((t, i) => (
+          <div className="eo-how__panel" role="tabpanel" id={`how-panel-${t.key}`} aria-labelledby={`how-tab-${t.key}`} hidden={i > 0} key={t.key}>
+            <ol className="eo-how__cards">
+              {t.steps.map((st, k) => (
+                <li className="card eo-how__card" key={st.title}>
+                  <span className="eo-how__num" aria-hidden="true">{String(k + 1).padStart(2, "0")}</span>
+                  <h3 className="eo-how__title">{st.title}</h3>
+                  <p className="eo-how__body">{st.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
+      </div>
+      <script dangerouslySetInnerHTML={{ __html: HOW_TABS }} />
+    </section>
   );
 }

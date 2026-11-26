@@ -20,8 +20,8 @@
     "reason": "the client's own wording: \"The roles we place\" is the heading the client asked for (changed from \"The 8 roles we place\"), and the three step titles are locked copy (content-lock.md: do not change any text); together they name the agency's roles and the steps of a staffing request"
   },
   {
-    "check": "one-heading",
-    "target": "h2#roles-h",
-    "reason": "the other \"heading\" the checker sees is the credential sentence on the cobalt band, set large by design as a statement (a paragraph, not a heading); the real section headings sit a screen apart"
+    "check": "card-visual",
+    "target": "section#roles > div.wrap.grid > div.span-7.eo-split__side > ul.eo-role-cards",
+    "reason": "the client asked to remove the hexagon icons and the role codes from the role cards; each card is the role name and its one line, beside the section photograph"
   }
 ]
