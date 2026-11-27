@@ -1,0 +1,505 @@
+{
+ "start": "2026-11-26T12:51:36.699Z",
+ "round": 1,
+ "idle": 0,
+ "errors": 0,
+ "status": "fail",
+ "history": [
+  {
+   "at": "2026-11-26T12:53:57.422Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 2,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  }
+ ],
+ "max": 3,
+ "marker": {
+  "page": "out/index.html",
+  "url": null,
+  "root": "out",
+  "kind": "service",
+  "category": "healthcare staffing",
+  "primary": "Request staff",
+  "rounds": 3,
+  "start": "2026-11-26T12:51:36.699Z",
+  "by": "gate.mjs --start"
+ },
+ "manual": true,
+ "roundKey": "3da10732e3ec4b29:d75b484e",
+ "roundFree": false,
+ "idleFree": false,
+ "blockKey": null,
+ "fp": "3da10732e3ec4b29",
+ "page": "out/index.html",
+ "found": {
+  "fails": [
+   {
+    "check": "card-visual",
+    "where": "section#roles > div.wrap.grid > div.span-7.eo-split__side > ul.eo-role-cards \"Registered Nurses Assessment, treatment \"",
+    "msg": "8 cards hold only text: no picture, icon, UI fragment or effect in any of them",
+    "fix": "give the cards a visual: an inset panel with a UI fragment, a photograph or real icons",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "card-visual"
+    ],
+    "wheres": [
+     "section#roles > div.wrap.grid > div.span-7.eo-split__side > ul.eo-role-cards \"Registered Nurses Assessment, treatment \""
+    ]
+   },
+   {
+    "check": "button-styles",
+    "where": "(one screen)",
+    "msg": "3 button styles on one screen: square, fill #2338d1 (\"Request staff\"); square, fill #101225 (\"Portal\"); square, outline #f4f1ea (\"Apply for work\"); the odd one out: \"Apply for work\"",
+    "fix": "one primary and one secondary button: one shape, one height per size, one label size",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "button-styles"
+    ],
+    "wheres": [
+     "(one screen)"
+    ]
+   },
+   {
+    "check": "button-styles",
+    "where": "(the page)",
+    "msg": "3 button styles on the page: square, fill #101225 x1 (\"Portal\"); square, fill #2338d1 x2 (\"Request staff\"); square, outline #f4f1ea x1 (\"Apply for work\")",
+    "fix": "one primary and one secondary button: one shape, one height per size, one label size",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "button-styles"
+    ],
+    "wheres": [
+     "(the page)"
+    ]
+   },
+   {
+    "check": "copy-headings",
+    "where": "h2#roles-h \"The roles we place\"",
+    "msg": "\"The roles we place\" names no product, part, place or section (4 headings like it; at most one brand line per page) (and 3 more like it: \"From request to first sh\", \"Registered Nurse (RN)\", \"Licensed Practical Nurse\")",
+    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "copy-headings"
+    ],
+    "wheres": [
+     "h2#roles-h \"The roles we place\""
+    ]
+   },
+   {
+    "check": "phone-number",
+    "where": "header.nav.nav--eo > div.nav__top > div.wrap.nav__top-bar > ul.nav__quick \"410-929-9388\"",
+    "msg": "a US phone number: \"410-929-9388\"; a visitor can dial it and reach a stranger (and 2 more like it: div.wrap > div.closing__cta.close--type > div.section-head > p, div.eo-foot > div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2))",
+    "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "phone-number"
+    ],
+    "wheres": [
+     "header.nav.nav--eo > div.nav__top > div.wrap.nav__top-bar > ul.nav__quick \"410-929-9388\""
+    ]
+   },
+   {
+    "check": "phone-number",
+    "where": "div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(5) > a.nav__phone \"tel:+14109299388\"",
+    "msg": "a tel: link calls a number in a real dialable format: \"tel:+14109299388\"; a visitor can dial it and reach a stranger (and 1 more like it: div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2) > a.eo-foot__phone)",
+    "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "phone-number"
+    ],
+    "wheres": [
+     "div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(5) > a.nav__phone \"tel:+14109299388\""
+    ]
+   },
+   {
+    "check": "run-on",
+    "where": "h1#hero-h \"Healthcare staffing in Maryland\"",
+    "msg": "\"staffing in | Maryland\": the heading runs its first sentence into the grey second one with no stop",
+    "fix": "end the heading's first sentence with a full stop before its grey second one (\"Rooms and prices. Breakfast included.\")",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "run-on"
+    ],
+    "wheres": [
+     "h1#hero-h \"Healthcare staffing in Maryland\""
+    ]
+   }
+  ],
+  "warns": [
+   {
+    "check": "scroll-reveal",
+    "where": "section#checks > div.wrap.grid > div.span-7.eo-promise__text > p.mo-wh__text.mo-wh \"Before anyone works a shift in your faci\"",
+    "msg": "starts \"color\" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "scroll-reveal",
+    "where": "section#roles > div.wrap.grid > figure.develop.eo-cut",
+    "msg": "starts \"transform\" (0.9 s) the moment it is scrolled into view (an IntersectionObserver) on img (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-headings",
+    "where": "div.wrap > ul.eo-step-cards.fill > li.card.eo-step-card:nth-of-type(1) > h3.eo-step-card__title \"Send the role and shift\"",
+    "msg": "the card title \"Send the role and shift\" names no product, part, place or section (3 card titles like it) (and 2 more like it: \"We check every credentia\", \"Staff report for the shi\")",
+    "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "copy-buttons",
+    "where": "header.nav.nav--eo > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"Portal\"",
+    "msg": "\"Portal\" does not start with a verb (book, buy, try, start, get, see...)",
+    "fix": "label buttons with a verb and what the visitor gets (\"Book a room\", \"Start free trial\")",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "heading-scale",
+    "where": "div.wrap > ul.eo-step-cards.fill > li.card.eo-step-card:nth-of-type(1) > h3.eo-step-card__title \"Send the role and shift\"",
+    "msg": "the h3s (30.4px) are only 1.29x smaller than the h2s (39.1px): one level a clear step (1.3x or more) below the other",
+    "fix": "size headings by level: the h1 largest, one size per level, each level below the one above",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "body-size",
+    "where": "div.wrap > ul.eo-step-cards.fill > li.card.eo-step-card:nth-of-type(1) > p.eo-step-card__body \"The role, the number of staff, the shift\"",
+    "msg": "3 of 5 paragraphs of running text are set under 16px (15px)",
+    "fix": "set running text at 16px or more",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#openings / footer#contact",
+    "msg": "109px between these sections, -39% against the median 179px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#top > section.hero.eo-dark / section#settings",
+    "msg": "uneven space at the edge of a band: 111px outside its edge, 64px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#roles / section#steps",
+    "msg": "uneven space at the edge of a band: 72px outside its edge, 111px inside it (the space on either side of a change of ground reads as one gap only when the two match)",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-family",
+    "where": "header.nav.nav--eo",
+    "msg": "the nav's links come in 2 sizes (14, 16px)",
+    "fix": "keep one nav on every screen: the same bar, fill, links and type",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "link-styles",
+    "where": "section#openings > div.wrap.grid > div.span-7.eo-split__side > a.link.eo-more \"See open shifts\"",
+    "msg": "text links in 3 looks: no line, bold (7, like \"Apply\"); underline, bold (1, like \"See open shifts\"); no line, regular (19, like \"Registered Nurses\")",
+    "fix": "give text links one look wherever they sit: one underline, one weight",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "action-count",
+    "where": "footer#contact > div.wrap > div.closing__cta.close--type > a.btn.btn--primary",
+    "msg": "the main action \"Request staff\" is on 5 buttons and links: the nav, the hero and the closing call carry it; elsewhere a section has its own action",
+    "fix": "the main action in the nav, the hero and the closing call; give the other sections their own action",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "skip-link",
+    "where": "div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(1) > a \"Open Positions\"",
+    "msg": "the first Tab stop is \"Open Positions\", not a skip link: a keyboard user tabs through the whole nav on every visit",
+    "fix": "add the starter's skip link as the header's first child: <a class=\"skip-link\" href=\"#top\">Skip to content</a>",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "action-repeat",
+    "where": "div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(2) > a \"request staff\"",
+    "msg": "\"request staff\" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it",
+    "fix": "show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cta",
+    "where": "section#roles \"The roles we place\"",
+    "msg": "a section over 1.5 screens long with no link or button in it",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "cta",
+    "where": "section#steps \"From request to first shift\"",
+    "msg": "a section over 1.5 screens long with no link or button in it",
+    "fix": "add the action: a button in the hero, one on every priced item, one in the closing section",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "off-grid",
+    "where": "div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2) > a.eo-foot__phone \"410-929-9388\"",
+    "msg": "two common left edges of one section 3px apart: 198px (4 elements, like this one) and 201px (8)",
+    "fix": "move it onto the page margin, or the column edge its section uses",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#steps / section#openings",
+    "msg": "130px between these sections, -33% against the median 195px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-set",
+    "where": "section#roles > div.wrap.grid > figure.develop.eo-cut > img \"photo-f198191936-960.jpg\"",
+    "msg": "7 photographs in more than one look: saturation from 0.15 to 0.53; warm and cool photographs mixed (b* -11 to +17); the odd one out is photo-f198191936-960.jpg",
+    "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "grounds",
+    "where": "section#checks \"CREDENTIAL CHECKS Before anyone works a \"",
+    "msg": "4 flat grounds across the page (#0b1030 section x3, #f4f1ea section x3, #2338d1 section, #fffdf8 band x3): three at most (the base, a surface, an inverse)",
+    "fix": "three flat grounds at most (the base, one surface, one inverse): lay the other bands on one of them",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "fold-cut",
+    "where": "div.eo-dark__text > div.eo-hero__foot.eo-dark__foot > div.btn-row > a.btn.btn--secondary \"Apply for work\"",
+    "msg": "the hero's button \"Apply for work\" is cut by the bottom of the first screen (9px of its 44px below the fold)",
+    "fix": "size the hero so the heading ends above the fold, or starts below it",
+    "widths": [
+     320
+    ],
+    "from": "consistency"
+   }
+  ],
+  "crashed": [],
+  "seconds": {
+   "consistency": 131,
+   "layout": 8
+  }
+ },
+ "open": [
+  {
+   "check": "button-styles",
+   "where": "(one screen)",
+   "msg": "3 button styles on one screen: square, fill #2338d1 (\"Request staff\"); square, fill #101225 (\"Portal\"); square, outline #f4f1ea (\"Apply for work\"); the odd one out: \"Apply for work\"",
+   "fix": "one primary and one secondary button: one shape, one height per size, one label size",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "button-styles"
+   ],
+   "wheres": [
+    "(one screen)"
+   ]
+  },
+  {
+   "check": "button-styles",
+   "where": "(the page)",
+   "msg": "3 button styles on the page: square, fill #101225 x1 (\"Portal\"); square, fill #2338d1 x2 (\"Request staff\"); square, outline #f4f1ea x1 (\"Apply for work\")",
+   "fix": "one primary and one secondary button: one shape, one height per size, one label size",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "button-styles"
+   ],
+   "wheres": [
+    "(the page)"
+   ]
+  }
+ ],
+ "waived": [
+  {
+   "check": "card-visual",
+   "where": "section#roles > div.wrap.grid > div.span-7.eo-split__side > ul.eo-role-cards \"Registered Nurses Assessment, treatment \"",
+   "msg": "8 cards hold only text: no picture, icon, UI fragment or effect in any of them",
+   "fix": "give the cards a visual: an inset panel with a UI fragment, a photograph or real icons",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "card-visual"
+   ],
+   "wheres": [
+    "section#roles > div.wrap.grid > div.span-7.eo-split__side > ul.eo-role-cards \"Registered Nurses Assessment, treatment \""
+   ],
+   "reason": "the client asked to remove the hexagon icons and the role codes from the role cards; each card is the role name and its one line, beside the section photograph"
+  },
+  {
+   "check": "copy-headings",
+   "where": "h2#roles-h \"The roles we place\"",
+   "msg": "\"The roles we place\" names no product, part, place or section (4 headings like it; at most one brand line per page) (and 3 more like it: \"From request to first sh\", \"Registered Nurse (RN)\", \"Licensed Practical Nurse\")",
+   "fix": "name the thing in every heading: the product, a part, the place or a section noun",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "copy-headings"
+   ],
+   "wheres": [
+    "h2#roles-h \"The roles we place\""
+   ],
+   "reason": "the client's own wording: \"The roles we place\" is the heading the client asked for (changed from \"The 8 roles we place\"), and the three step titles are locked copy (content-lock.md: do not change any text); together they name the agency's roles and the steps of a staffing request"
+  },
+  {
+   "check": "phone-number",
+   "where": "header.nav.nav--eo > div.nav__top > div.wrap.nav__top-bar > ul.nav__quick \"410-929-9388\"",
+   "msg": "a US phone number: \"410-929-9388\"; a visitor can dial it and reach a stranger (and 2 more like it: div.wrap > div.closing__cta.close--type > div.section-head > p, div.eo-foot > div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2))",
+   "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "phone-number"
+   ],
+   "wheres": [
+    "header.nav.nav--eo > div.nav__top > div.wrap.nav__top-bar > ul.nav__quick \"410-929-9388\""
+   ],
+   "reason": "the client's own published office line (410-929-9388), shown where the agency's original site shows it: the header's top bar, the close line the client asked for (\"Call 410-929-9388 or start online.\") and the footer's Get in touch column"
+  },
+  {
+   "check": "phone-number",
+   "where": "div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(5) > a.nav__phone \"tel:+14109299388\"",
+   "msg": "a tel: link calls a number in a real dialable format: \"tel:+14109299388\"; a visitor can dial it and reach a stranger (and 1 more like it: div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2) > a.eo-foot__phone)",
+   "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "phone-number"
+   ],
+   "wheres": [
+    "div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(5) > a.nav__phone \"tel:+14109299388\""
+   ],
+   "reason": "the tel: links of the client's own published office line (410-929-9388), in the header's top bar and the footer as on the agency's original site, not an invented number"
+  },
+  {
+   "check": "run-on",
+   "where": "h1#hero-h \"Healthcare staffing in Maryland\"",
+   "msg": "\"staffing in | Maryland\": the heading runs its first sentence into the grey second one with no stop",
+   "fix": "end the heading's first sentence with a full stop before its grey second one (\"Rooms and prices. Breakfast included.\")",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "run-on"
+   ],
+   "wheres": [
+    "h1#hero-h \"Healthcare staffing in Maryland\""
+   ],
+   "reason": "one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md"
+  }
+ ],
+ "warnCount": 21,
+ "at": "2026-11-26T12:53:57.425Z"
+}

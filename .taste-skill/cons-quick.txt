@@ -1,0 +1,171 @@
+consistency  C:\Users\David Waza\Desktop\Personal-project\eminentgroup-web\eminentgroup-web\out\index.html
+--quick: not checked: scroll-linked (stepping), scroll-reveal (the reveal walk; IntersectionObserver reveals are read), hover-spill, hidden-visual, loop-pause, forms, reduced-motion, the dead-IntersectionObserver walk (hidden content is read with scripts off and under reduced motion), hover-move. Still told: IntersectionObserver reveals (scroll-reveal), held sections (pinned) and CSS scroll timelines (scroll-linked); faults inside held or [data-big-scene] sections are WARNs
+
+1440x900  9 screens  7 FAIL  15 WARN
+  FAIL button-styles   (one screen)
+       3 button styles on one screen: square, fill #2338d1 ("Request staff"); square, fill #101225 ("Request staff"); square, outline #f4f1ea ("Apply for work"); the odd one out: "Apply for work"  [1440-01-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL button-styles   (the page)
+       3 button styles on the page: square, fill #101225 x1 ("Request staff"); square, fill #2338d1 x2 ("Request staff"); square, outline #f4f1ea x1 ("Apply for work")  [1440-02-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL copy-headings   h2#roles-h  "The roles we place"
+       "The roles we place" names no product, part, place or section (6 headings like it; at most one brand line per page) (and 5 more like it: "Send the role and shift", "We check every credentia", "Staff report for the shi", "Registered Nurse (RN)", ...)  [1440-11-copy-headings.jpg]
+       fix: name the thing in every heading: the product, a part, the place or a section noun
+  FAIL phone-number    header.nav.nav--eo > div.nav__top > div.wrap.nav__top-bar > ul.nav__quick  "410-929-9388"
+       a US phone number: "410-929-9388"; a visitor can dial it and reach a stranger (and 2 more like it: div.wrap > div.closing__cta.close--type > div.section-head > p, div.eo-foot > div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2))  [1440-03-phone-number.jpg]
+       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
+  FAIL phone-number    div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(5) > a.nav__phone  "tel:+14109299388"
+       a tel: link calls a number in a real dialable format: "tel:+14109299388"; a visitor can dial it and reach a stranger (and 1 more like it: div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2) > a.eo-foot__phone)  [1440-04-phone-number.jpg]
+       fix: drop the number and its tel: link (a "Request a call" form may stand in), unless the brief gives the number
+  FAIL action-repeat   div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(2) > a  "request staff"
+       "request staff" shows 3 times on the first screen at 1440px (nav, nav, hero): three copies of one action on a screen read as clutter  [1440-21-action-repeat.jpg]
+       fix: show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once
+  FAIL run-on          h1#hero-h  "Healthcare staffing in Maryland"
+       "staffing in | Maryland": the heading runs its first sentence into the grey second one with no stop  [1440-05-run-on.jpg]
+       fix: end the heading's first sentence with a full stop before its grey second one ("Rooms and prices. Breakfast included.")
+  WARN scroll-reveal   section#roles > div.wrap.grid > figure.develop.eo-cut
+       starts an animation (1.6 s) the moment it is scrolled into view (an IntersectionObserver) on img (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [1440-13-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN scroll-reveal   section#checks > div.wrap.grid > div.span-7.eo-promise__text > p.mo-wh__text.mo-wh  "Before anyone works a shift in your faci"
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(2) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [1440-10-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN no-visual       section#steps  "From request to first shift in 3 steps"
+       pictures, effects and mocks cover 18% of this section; a feature section needs a visual (about 25% or more)  [1440-16-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN heading-scale   div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-steps__title  "Send the role and shift"
+       the h3s (30.4px) are only 1.29x smaller than the h2s (39.1px): one level a clear step (1.3x or more) below the other  [1440-14-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  WARN body-size       div.span-7.eo-split__side > ul.eo-role-cards > li.card.eo-role-card:nth-of-type(1) > p.eo-role-card__body  "RN · Assessment, treatment and care coor"
+       5 of 10 paragraphs of running text are set under 16px (14px)  [1440-12-body-size.jpg]
+       fix: set running text at 16px or more
+  WARN section-gaps    section#openings / footer#contact
+       109px between these sections, -39% against the median 179px of gaps at a change of ground  [1440-17-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    main#top > section.hero.eo-dark / section#settings
+       uneven space at the edge of a band: 111px outside its edge, 64px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [1440-08-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#roles / section#steps
+       uneven space at the edge of a band: 72px outside its edge, 111px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [1440-15-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#openings / footer#contact
+       uneven space at the edge of a band: 72px outside its edge, 37px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [1440-18-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN photo-set       div.wrap > div.hero-text.eo-dark__grid > div.hero__media.eo-dark__media > img  "photo-f186239770-1280.jpg"
+       5 photographs in more than one look: warm and cool photographs mixed (b* -11 to +8); the odd one out is photo-f186239770-1280.jpg  [1440-06-photo-set.jpg]
+       fix: grade the photographs to one look (light, colour, warmth), or replace the odd one out
+  WARN nav-family      header.nav.nav--eo
+       the nav's links come in 2 sizes (14, 16px)  [1440-07-nav-family.jpg]
+       fix: keep one nav on every screen: the same bar, fill, links and type
+  WARN nav-family      header.nav.nav--eo
+       the nav changes form as the page scrolls: its links change from 10 to 5  [1440-09-nav-family.jpg]
+       fix: keep one nav on every screen: the same bar, fill, links and type
+  WARN link-styles     section#openings > div.wrap.grid > div.span-7.eo-split__side > a.link.eo-more  "See open shifts"
+       text links in 3 looks: no line, bold (7, like "Apply for the RN job"); underline, bold (1, like "See open shifts"); no line, regular (19, like "Registered Nurses")  [1440-19-link-styles.jpg]
+       fix: give text links one look wherever they sit: one underline, one weight
+  WARN action-count    footer#contact > div.wrap > div.closing__cta.close--type > a.btn.btn--primary
+       the main action "Request staff" is on 6 buttons and links: the nav, the hero and the closing call carry it; elsewhere a section has its own action  [1440-20-action-count.jpg]
+       fix: the main action in the nav, the hero and the closing call; give the other sections their own action
+  WARN skip-link       div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(1) > a  "Open Positions"
+       the first Tab stop is "Open Positions", not a skip link: a keyboard user tabs through the whole nav on every visit
+       fix: add the starter's skip link as the header's first child: <a class="skip-link" href="#top">Skip to content</a>
+
+390x844  14 screens  2 FAIL  11 WARN
+  FAIL button-styles   (one screen)
+       3 button styles on one screen: square, fill #2338d1 ("Request staff"); square, fill #101225 ("Request staff"); square, outline #f4f1ea ("Apply for work"); the odd one out: "Apply for work"  [390-01-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL button-styles   (the page)
+       3 button styles on the page: square, fill #101225 x1 ("Request staff"); square, fill #2338d1 x4 ("Request staff"); square, outline #f4f1ea x1 ("Apply for work")  [390-02-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  WARN scroll-reveal   section#checks > div.wrap.grid > div.span-7.eo-promise__text > p.mo-wh__text.mo-wh  "Before anyone works a shift in your faci"
+       starts "color" (0.2 s) the moment it is scrolled into view (an IntersectionObserver) on span.mo-w:nth-of-type(1) (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [390-04-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN scroll-reveal   section#roles > div.wrap.grid > figure.develop.eo-cut
+       starts "transform" (0.9 s) the moment it is scrolled into view (an IntersectionObserver) on img (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)  [390-07-scroll-reveal.jpg]
+       fix: show it at rest: no fade, rise or unmask when it is scrolled into view
+  WARN cta             section#settings  "Facilities we staff in Maryland"
+       a section over 1.5 screens long with no link or button in it  [390-03-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#roles  "The roles we place"
+       a section over 1.5 screens long with no link or button in it  [390-06-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#steps  "From request to first shift in 3 steps"
+       a section over 1.5 screens long with no link or button in it  [390-10-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN heading-scale   div.wrap > ol.eo-steps__rows.fill > li.eo-steps__row:nth-of-type(1) > h3.eo-steps__title  "Send the role and shift"
+       the h3s (24px) are only 1.17x smaller than the h2s (28px): one level a clear step (1.3x or more) below the other  [390-09-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  WARN off-grid        div.eo-foot__col.eo-foot__touch > ul:nth-of-type(1) > li:nth-of-type(2) > a.eo-foot__phone  "410-929-9388"
+       two common left edges of one section 3px apart: 198px (4 elements, like this one) and 201px (8)  [390-12-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  WARN body-size       div.span-7.eo-split__side > ul.eo-role-cards > li.card.eo-role-card:nth-of-type(1) > p.eo-role-card__body  "RN · Assessment, treatment and care coor"
+       5 of 10 paragraphs of running text are set under 16px (14px)  [390-05-body-size.jpg]
+       fix: set running text at 16px or more
+  WARN section-gaps    main#top > section.hero.eo-dark / section#settings
+       228px between these sections, +26% against the median 181px of gaps at a change of ground  [390-13-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN photo-set       section#roles > div.wrap.grid > figure.develop.eo-cut > img  "photo-f198191936-960.jpg"
+       8 photographs in more than one look: lightness from 0.34 to 0.74; saturation from 0.15 to 0.53; warm and cool photographs mixed (b* -8 to +17); the odd one out is photo-f198191936-960.jpg  [390-08-photo-set.jpg]
+       fix: grade the photographs to one look (light, colour, warmth), or replace the odd one out
+  WARN link-styles     section#openings > div.wrap.grid > div.span-7.eo-split__side > a.link.eo-more  "See open shifts"
+       text links in 3 looks: underline, bold (1, like "See open shifts"); no line, regular (19, like "Registered Nurses"); no line, bold (5, like "Request Staff")  [390-11-link-styles.jpg]
+       fix: give text links one look wherever they sit: one underline, one weight
+
+first screen at 1280, 1152, 1024, 896, 768  0 FAIL  0 WARN
+
+the page at 320x640, walked for what runs past the screen's edge  0 FAIL
+  WARN fold-cut        [320] div.eo-dark__text > div.eo-hero__foot.eo-dark__foot > div.btn-row > a.btn.btn--secondary  "Apply for work"
+       the hero's button "Apply for work" is cut by the bottom of the first screen (9px of its 44px below the fold)  [narrow-320-01-fold-cut.jpg]
+       fix: size the hero so the heading ends above the fold, or starts below it
+
+checks
+  PASS assets                 PASS shader-lint            PASS gl-fallback            
+  PASS empty-visual           PASS hero-fill              PASS flush                  
+  PASS placeholder            PASS sample-label           PASS caption                
+  PASS credit-wall            PASS nav                    PASS nav-covers             
+  PASS spill                  PASS off-viewport           PASS fold-card              
+  SKIP hover-spill            PASS overlap-text           PASS collide                
+  PASS tap-size               PASS row-gap                PASS cut-text               
+  WARN fold-cut               PASS marquee                SKIP scroll-linked          
+  WARN scroll-reveal          PASS pinned                 SKIP loop-pause             
+  SKIP reduced-motion         PASS hidden-content         PASS webgl                  
+  WARN no-visual              PASS text-only              PASS card-visual            
+  SKIP hidden-visual          PASS card-family            PASS card-layout            
+  PASS nesting                PASS effect-repeat          PASS ui-fit                 
+  PASS ui-centre              PASS dark-ground            FAIL button-styles          
+  PASS button-shape           PASS same-action            PASS button-picture         
+  WARN cta                    PASS pricing-tiers          PASS copy-headline          
+  PASS copy-fact              FAIL copy-headings          PASS copy-buttons           
+  PASS copy-actions           WARN heading-scale          PASS stagger                
+  PASS top-stagger            WARN off-grid               PASS col-edge               
+  PASS right-edge             PASS centre-axis            PASS tilt                   
+  PASS contrast               PASS text-contrast          WARN body-size              
+  PASS busy-ground            WARN section-gaps           PASS proximity              
+  PASS hole                   PASS links                  SKIP forms                  
+  PASS photo-upscale          WARN photo-set              PASS photo-credit           
+  WARN nav-family             PASS nav-labels             WARN link-styles            
+  PASS heading-align          PASS label-centre           PASS fake-button            
+  PASS stranded-action        PASS orphan                 PASS unit-break             
+  PASS tab-wrap               PASS effects-fit            PASS fade-cut               
+  PASS photo-weight           PASS copy-length            PASS nav-current            
+  PASS progress-bar           PASS photo-repeat           PASS button-contrast        
+  PASS photo-print            PASS grounds                PASS split-align            
+  PASS fact-agree             PASS fold-action            WARN action-count           
+  PASS one-screen             SKIP hover                  SKIP hover-move             
+  PASS product-shown          PASS same-object            PASS font-load              
+  PASS visual-caption         PASS visual-empty           PASS effect-kind            
+  PASS hero-enter             PASS moment-none            PASS street-number          
+  PASS postcode               PASS coordinates            PASS company-number         
+  FAIL phone-number           PASS hero-screen            PASS section-height         
+  PASS section-air            PASS one-section            PASS one-heading            
+  PASS container-edges        PASS row-lines              PASS split-pair             
+  PASS motion-layer           PASS count-text             PASS loop-cycle             
+  PASS section-tile           PASS empty-area             PASS a11y-name              
+  PASS img-alt                PASS field-label            PASS heading-order          
+  PASS tabindex               PASS focus-ring             PASS focus-visible          
+  PASS focus-hidden           WARN skip-link              PASS menu-toggle            
+  PASS lang                   PASS page-meta              PASS share-meta             
+  FAIL action-repeat          PASS map-link               PASS open-now               
+  PASS assumed                FAIL run-on                 PASS form-fields            
+  PASS form-send              
+
+total  9 FAIL  27 WARN  (crops and report.json in C:\Users\David Waza\Desktop\Personal-project\eminentgroup-web\eminentgroup-web\out\.taste-skill\consistency)

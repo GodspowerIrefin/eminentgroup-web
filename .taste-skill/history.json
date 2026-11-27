@@ -1,0 +1,25 @@
+{
+  "moments": [
+    {
+      "id": "picture-develops",
+      "at": "2026-11-18T16:43:44.976Z",
+      "seed": "95742df5"
+    },
+    {
+      "id": "word-highlight",
+      "at": "2026-11-18T16:43:44.976Z",
+      "seed": "95742df5"
+    }
+  ],
+  "palettes": [
+    "white-link-blue"
+  ],
+  "types": [
+    "outfit"
+  ],
+  "dealt": [
+    "outfit",
+    "newsreader",
+    "host"
+  ]
+}

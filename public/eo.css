@@ -1,0 +1,1658 @@
+/* ============================================================================================
+   THE SHIFT RECORD: the Eminent One design layer (DESIGN.md)
+   Loaded after the kit and site.css. The idea: a staffing agency's world is the shift, the chart
+   and the credential. So the pages are set like a well-kept record: warm chart paper, ink, the
+   EO logo's own cobalt as the one accent, and "night shift" navy sections between the day ones.
+   Every photograph sits in the chamfered frame cut from the EO hexagon (two corners sliced at the
+   logo's angle). Facts (codes, pay, numbers, labels) are set in a mono, like entries on a chart.
+   Motion stays transform and opacity; everything rests under reduced motion.
+   ============================================================================================ */
+
+:root {
+  --eo-paper: #f4f1ea;
+  --eo-paper-2: #ebe6db;
+  --eo-ink: #101225;
+  --eo-ink-soft: #3a3c4d;
+  --eo-cobalt: #2338d1;
+  --eo-cobalt-deep: #1a2a9e;
+  --eo-night: #0b1030;
+  --eo-night-2: #141a44;
+  --eo-sky: #a9b6ff;          /* the cobalt lightened, for marks on navy only */
+  --eo-cut: clamp(44px, 6vw, 112px);
+  --t-h2: clamp(40px, 3.2vw + 18px, 76px);
+  --t-h1: clamp(52px, 6.4vw + 10px, 128px);
+  --ly-h1-xl: clamp(52px, 5vw + 16px, 104px);
+  --r-sm: 2px; --r-md: 2px; --r-lg: 2px; --r-btn: 2px;
+}
+html, body { background: var(--eo-paper); }
+body { color: var(--eo-ink); font-feature-settings: "ss01", "tnum" 0; }
+::selection { background: rgb(35 56 209 / 0.22); }
+
+/* ---------- grounds: day (paper), night (navy), cobalt (the one brand band) ---------- */
+.tone-paper, main > section.section:not([class*="tone-"]):not(.hero) {
+  --bg: var(--eo-paper); --surface: var(--eo-paper-2); --card: var(--eo-paper-2);
+  --ink: var(--eo-ink); --muted: #5b5d6b; --ink-soft: var(--eo-ink-soft);
+  --line: rgb(16 18 37 / 0.14); --line-strong: rgb(16 18 37 / 0.32);
+  --accent: var(--eo-cobalt); --action: var(--eo-cobalt); --action-ink: #fff;
+  background: var(--bg); color: var(--ink);
+}
+.tone-night {
+  --bg: var(--eo-night); --surface: var(--eo-night-2); --card: var(--eo-night-2);
+  --ink: #f4f1ea; --muted: #a7acc6; --ink-soft: #d6d8e6;
+  --line: rgb(244 241 234 / 0.14); --line-strong: rgb(244 241 234 / 0.32);
+  --accent: var(--eo-sky); --action: #f4f1ea; --action-ink: var(--eo-night);
+}
+.tone-cobalt {
+  --bg: var(--eo-cobalt); --surface: var(--eo-cobalt-deep); --card: var(--eo-cobalt-deep);
+  --ink: #ffffff; --muted: #c9d0ff; --ink-soft: #e4e8ff;
+  --line: rgb(255 255 255 / 0.22); --line-strong: rgb(255 255 255 / 0.45);
+  --accent: #ffffff; --action: #ffffff; --action-ink: var(--eo-cobalt);
+}
+:is(.tone-night, .tone-cobalt) { background: var(--bg); color: var(--ink); }
+:is(.tone-night, .tone-cobalt) ::selection { background: rgb(255 255 255 / 0.25); }
+
+/* ---------- type ---------- */
+h1, h2, .t-h1, .t-h2 {
+  font-family: var(--font-display); font-weight: 400; font-variation-settings: normal;
+  letter-spacing: -0.015em; line-height: 1.02;
+}
+h2 { font-size: var(--t-h2); text-wrap: balance; }
+h3 { letter-spacing: -0.005em; }
+.section-head { gap: var(--s-5); }
+.section-head > p, main .stack-4 > p, main .stack-5 > p { font-size: 18px; line-height: 1.6; color: var(--ink-soft, var(--ink)); max-width: 46ch; }
+.t-label, .rows__value, .footer__col h3, .menu-col .t-label {
+  font-family: var(--font-mono); font-weight: 500; font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.rows__value { color: var(--muted); font-size: 13px; }
+.rows__value.link { text-transform: none; letter-spacing: 0; font-family: var(--font-text); font-size: inherit; color: var(--action); }
+
+/* every h2 on a section sits over a short cobalt rule: the "entry line" of the record */
+main > section:not(.hero, .statement) h2::before {
+  content: ""; display: block; width: 40px; height: 4px; margin-bottom: 0.55em; background: var(--accent);
+}
+main > section:not(.hero, .statement) h2 { text-wrap: balance; }
+
+/* ---------- buttons and links: square, sure, the fill slides in from the left ---------- */
+.btn { border-radius: 2px; font-family: var(--font-text); font-weight: 600; letter-spacing: 0.005em; }
+.btn--primary { position: relative; isolation: isolate; overflow: hidden; }
+.btn--primary::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--eo-night);
+  transform: scaleX(0); transform-origin: left center; transition: transform 260ms cubic-bezier(.2,.7,.2,1);
+}
+.btn--primary:hover { background: var(--action); }
+.btn--primary:hover::before { transform: scaleX(1); }
+:is(.tone-night, .tone-cobalt, .ground-inverse) .btn--primary::before { background: var(--eo-cobalt); }
+:is(.tone-night, .tone-cobalt, .ground-inverse) .btn--primary:hover { color: #fff; }
+.btn--secondary { background: transparent; border-color: var(--line-strong); }
+.btn--secondary:hover { background: transparent; border-color: var(--ink); }
+.link, main p a { text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+/* ---------- the header: paper, a hairline, the logo centred ---------- */
+header.nav { background: color-mix(in oklab, var(--eo-paper) 92%, transparent); backdrop-filter: saturate(1.2) blur(10px); border-bottom: 1px solid rgb(16 18 37 / 0.1); }
+header.nav.is-scrolled { box-shadow: none; }
+.nav { --bg: var(--eo-paper); --ink: var(--eo-ink); }
+.nav .nav__link { font-weight: 500; }
+.nav .nav__link[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--eo-cobalt); text-decoration-thickness: 2px; text-underline-offset: 8px; }
+.nav__logo { font-family: var(--font-display); letter-spacing: -0.01em; }
+.nav__menu { background: var(--eo-paper); border-bottom: 1px solid rgb(16 18 37 / 0.12); }
+
+/* ---------- the chamfered frame: the EO hexagon's cut on two opposite corners ---------- */
+.eo-cut, main .frame--photo, main .tile__media, main .hero__media, main .develop, .eo-hero__media {
+  --c: var(--eo-cut);
+  border-radius: 0 !important;
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+}
+.eo-cut--sm, main .tile__media, .step__media { --c: clamp(28px, 3vw, 48px); }
+main .frame--photo, main .tile__media, main .develop { background: var(--surface); }
+@media (prefers-reduced-motion: no-preference) {
+  main :is(.frame--photo, .tile__media, .develop, .step__media) img { transition: transform 900ms cubic-bezier(.2,.7,.2,1), opacity 1000ms cubic-bezier(.2,.7,.2,1); }
+  main :is(.frame--photo, .tile__media, .develop, .step__media):hover img { transform: scale(1.03); }
+}
+
+/* ---------- rows: the record's lines ---------- */
+.rows > li { border-bottom-color: var(--line); }
+.rows__name { font-size: 18px; font-weight: 600; letter-spacing: -0.005em; }
+.rows > li > p { color: var(--ink-soft, var(--ink)); }
+ol.rows { counter-reset: eo-row; }
+ol.rows > li { counter-increment: eo-row; grid-template-columns: 44px minmax(0, 1fr) auto; }
+ol.rows > li::before {
+  content: counter(eo-row, decimal-leading-zero); grid-row: 1 / span 2; grid-column: 1;
+  font: 500 13px/1.9 var(--font-mono); color: var(--accent); letter-spacing: 0.04em;
+}
+ol.rows > li > :is(.rows__name, p) { grid-column: 2; }
+@media (prefers-reduced-motion: no-preference) {
+  .rows > li:hover { transform: none; }
+  .rows > li { position: relative; }
+  .rows > li::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--ink);
+    transform: scaleX(0); transform-origin: left; transition: transform 420ms cubic-bezier(.2,.7,.2,1);
+  }
+  .rows > li:hover::after { transform: scaleX(1); }
+}
+
+/* ============================================================================================
+   HOME HERO (cover): the headline set as large as the screen allows; the photograph locks into
+   the space the shorter second and third lines leave, inside the page's margins.
+   ============================================================================================ */
+.eo-hero { --bg: var(--eo-paper); --ink: var(--eo-ink); background: var(--eo-paper); color: var(--eo-ink); overflow: clip; }
+.eo-hero__text {
+  --fs: clamp(64px, min(12.6vw, 21svh), 196px);
+  position: relative; height: 100%;
+  display: flex; flex-direction: column; justify-content: space-between; gap: var(--s-6);
+}
+.eo-hero .eo-hero__title {
+  font-family: var(--font-display); font-weight: 400; font-size: var(--fs);
+  line-height: 0.92; letter-spacing: -0.035em; margin: 0; max-width: none; text-wrap: initial;
+  text-box: trim-start cap alphabetic;
+}
+.eo-hero__line { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.eo-hero__line > span { display: inline-block; }
+.eo-hero__line.is-accent { color: var(--eo-cobalt); }
+/* the foot: a rule, the lead, the two actions, all in the left columns beside the photograph */
+.eo-hero__foot { display: grid; gap: var(--s-5); width: min(100%, 470px); padding-top: var(--s-5); border-top: 2px solid var(--eo-ink); }
+.eo-hero .eo-hero__lead { font-size: 18px; line-height: 1.55; color: var(--eo-ink-soft); max-width: 40ch; margin: 0; }
+/* the photograph: from under the first line to the foot's last line, right of the longest short line */
+.eo-hero__media {
+  --c: clamp(56px, 6vw, 112px);
+  position: absolute; z-index: 0; margin: 0; right: 0; bottom: 0;
+  top: calc(var(--fs) * 0.82);
+  width: calc(100% - var(--fs) * 4.3 - 48px);
+  background: var(--eo-paper-2);
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+}
+.eo-hero__media > img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--ly-pos, 50% 50%); }
+/* the logo's stroke: one cobalt bar up the photograph's left edge */
+.eo-hero__media::after { content: ""; position: absolute; left: 0; bottom: 0; width: 10px; height: 42%; background: var(--eo-cobalt); }
+
+/* tablet and phone: the photograph across the top under the header (the kit's --photo makes room), the words under it */
+@media (max-width: 1023px) {
+  .eo-hero { --photo: min(36svh, 58vw); }
+  .eo-hero__text { position: static; --fs: clamp(48px, 12.4vw, 112px); justify-content: flex-start; gap: var(--s-6); }
+  .eo-hero__media { top: calc(-1 * (var(--photo) + var(--hgap))); left: 0; right: 0; bottom: auto; width: auto; height: var(--photo); --c: clamp(44px, 9vw, 88px); }
+  .eo-hero__media > img { object-position: var(--ly-pos-phone, var(--ly-pos, 50% 50%)); }
+  .eo-hero__foot { width: min(100%, 560px); }
+}
+@media (max-width: 639px) {
+  .eo-hero { --photo: min(30svh, 64vw); }
+  .eo-hero__text { --fs: clamp(42px, 12.6vw, 68px); }
+  .eo-hero .eo-hero__lead { font-size: 17px; }
+  .eo-hero .btn-row .btn { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .eo-hero__line > span { animation: eo-rise 900ms cubic-bezier(0.16, 0.84, 0.24, 1) both; animation-delay: calc(120ms + var(--i, 0) * 110ms); }
+  .eo-hero__media { animation: eo-wipe 1100ms cubic-bezier(0.7, 0, 0.2, 1) 80ms both; }
+  .eo-hero__media > img { animation: eo-settle 1500ms cubic-bezier(0.2, 0.7, 0.2, 1) 80ms both; }
+  .eo-hero__media::after { animation: eo-grow 700ms cubic-bezier(0.2, 0.7, 0.2, 1) 900ms both; transform-origin: bottom; }
+  .eo-hero__foot { animation: eo-soft 700ms cubic-bezier(0.2, 0.7, 0.2, 1) 560ms both; }
+}
+@keyframes eo-rise { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes eo-settle { from { transform: scale(1.12); } to { transform: none; } }
+@keyframes eo-wipe { from { opacity: 0; transform: translateY(4%); } to { opacity: 1; transform: none; } }
+@keyframes eo-grow { from { transform: scaleY(0); } to { transform: none; } }
+@keyframes eo-soft { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* ============================================================================================
+   HOME: every section one full screen (the kit's rhythm), each composed as a spread
+   ============================================================================================ */
+html body main.eo-home > section.section:not(.hero) { --padt: 120px; --padb: 72px; height: calc(var(--h, 1) * 100vh); height: calc(var(--h, 1) * 100svh); min-height: 0; }
+html body main.eo-home > section.section:not(.hero) > .wrap { height: 100%; flex: 1 1 auto; min-height: 0; }
+html body main.eo-home > section.section:not(.hero) > .wrap > .fill { flex: 1 1 0; min-height: 0; }
+@media (min-width: 640px) and (max-width: 1279px) {
+  html body main.eo-home > section.section:not(.hero) { --padt: 104px; --padb: 56px; height: auto; min-height: calc(var(--h, 1) * 100svh); }
+}
+@media (max-width: 639px) {
+  html body main.eo-home > section.section:not(.hero) { --padt: 88px; --padb: 48px; height: auto; min-height: calc(var(--hm, var(--h, 1)) * 100lvh); }
+}
+/* a split spread: the columns share the screen's content box, top-aligned */
+.eo-split { align-items: stretch; align-content: stretch; grid-template-rows: minmax(0, 1fr); }
+.eo-split__side { display: flex; flex-direction: column; gap: var(--head-gap); min-height: 0; }
+.eo-split__side > h2, .eo-split__side > .section-head > h2 { text-box: trim-start cap alphabetic; }
+.eo-split__side > h2::before, .eo-split__side > .section-head > h2::before { margin-top: 0; }
+.eo-split__fill { flex: 1 1 0; min-height: 220px; }
+html .eo-split__fill.develop { height: auto; margin: 0; }
+.eo-split__tall { height: 100%; min-height: 0; }
+html .eo-split__tall.frame--photo { min-height: 0; }
+.eo-split__main { display: flex; flex-direction: column; min-height: 0; }
+@media (max-width: 1023px) {
+  .eo-split { grid-template-rows: none; row-gap: var(--s-7); }
+  .eo-split__tall { height: auto; min-height: 340px; flex: 1 1 auto; }
+}
+
+/* ============================================================================================
+   INNER HEROES (band): the headline across the page, a ruled row with the lead and the actions,
+   the photograph as a wide band in the chamfered frame; --top puts the band over the words
+   ============================================================================================ */
+.eo-band { --bg: var(--eo-paper); --ink: var(--eo-ink); background: var(--eo-paper); color: var(--eo-ink); }
+.eo-band__text { height: 100%; display: flex; flex-direction: column; gap: clamp(20px, 3svh, 36px); }
+.eo-band .eo-band__title {
+  font-family: var(--font-display); font-weight: 400; font-size: clamp(48px, min(7.6vw, 13svh), 124px);
+  line-height: 0.92; letter-spacing: -0.035em; max-width: 15ch; margin: 0; text-wrap: balance;
+  text-box: trim-start cap alphabetic;
+}
+.eo-band__foot {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-4); align-items: end;
+  padding-top: var(--s-5); border-top: 2px solid var(--eo-ink);
+}
+.eo-band .eo-band__lead { grid-column: 1 / span 6; font-size: 18px; line-height: 1.55; color: var(--eo-ink-soft); max-width: 46ch; margin: 0; padding: 0; border: 0; }
+.eo-band__foot > .btn-row { grid-column: 7 / -1; justify-content: flex-end; }
+.eo-band__media {
+  --c: clamp(48px, 6vw, 104px);
+  position: relative; flex: 1 1 0; min-height: 160px; overflow: hidden; background: var(--eo-paper-2);
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c)) !important;
+}
+.eo-band__media > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--ly-pos, 50% 50%); }
+.eo-band__media::after { content: ""; position: absolute; left: 0; bottom: 0; width: 10px; height: 46%; background: var(--eo-cobalt); }
+.eo-band--top .eo-band__media { order: -1; }
+@media (max-width: 1023px) {
+  .eo-band .eo-band__title { font-size: clamp(44px, 9.4vw, 88px); }
+  .eo-band__foot { grid-template-columns: minmax(0, 1fr); }
+  .eo-band .eo-band__lead, .eo-band__foot > .btn-row { grid-column: 1; justify-content: flex-start; }
+  .eo-band__media { min-height: 200px; }
+}
+@media (max-width: 639px) {
+  .eo-band .eo-band__title { font-size: clamp(40px, 11.6vw, 60px); }
+  .eo-band .btn-row .btn { width: 100%; justify-content: center; }
+  .eo-band__media { min-height: 180px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .eo-band__title { animation: eo-soft 800ms cubic-bezier(0.16, 0.84, 0.24, 1) 100ms both; }
+  .eo-band__foot { animation: eo-soft 700ms cubic-bezier(0.2, 0.7, 0.2, 1) 380ms both; }
+  .eo-band__media > img { animation: eo-settle 1500ms cubic-bezier(0.2, 0.7, 0.2, 1) 80ms both; }
+  .eo-band__media::after { animation: eo-grow 700ms cubic-bezier(0.2, 0.7, 0.2, 1) 800ms both; transform-origin: bottom; }
+}
+
+/* ---- inner pages: the record's entries in the display face ---- */
+main:not(.eo-home) .rows .rows__name { font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 0.9vw + 14px, 30px); line-height: 1.12; letter-spacing: -0.015em; }
+main:not(.eo-home) .rows > li { padding-block: var(--s-5); }
+main:not(.eo-home) .rows > li:first-child { padding-top: 0; }
+main:not(.eo-home) .rows .rows__value { align-self: center; }
+main:not(.eo-home) ol.rows > li::before { font-size: 13px; line-height: 2.4; }
+/* services: the roles as an index, each code set large in the margin */
+main:not(.eo-home) #roles .rows > li { grid-template-columns: clamp(96px, 9vw, 140px) minmax(0, 1fr); }
+main:not(.eo-home) #roles .rows .rows__value {
+  grid-column: 1; grid-row: 1 / span 2; align-self: start; justify-self: start; text-align: left; white-space: normal;
+  font-family: var(--font-display); font-size: clamp(28px, 1.6vw + 12px, 42px); line-height: 0.95; letter-spacing: -0.02em; text-transform: none; color: var(--eo-sky); max-width: 4.2ch;
+}
+main:not(.eo-home) #roles .rows > li > :is(.rows__name, p) { grid-column: 2; }
+.tile__head h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 1vw + 14px, 32px); line-height: 1.1; letter-spacing: -0.015em; }
+main:not(.eo-home) .section-head > h2, main:not(.eo-home) .stack-4 > h2, main:not(.eo-home) .stack-5 > h2 { font-size: clamp(44px, 3.8vw + 16px, 88px); line-height: 0.96; letter-spacing: -0.03em; }
+
+/* ============================================================================================
+   HOME #roles: the role wall, two across and four down, filling the right of the spread
+   ============================================================================================ */
+.eo-roles .develop > img { object-position: 50% 35%; }
+.eo-wall {
+  list-style: none; margin: 0; padding: 0; flex: 1 1 auto; min-height: 0;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(0, 1fr);
+  border-top: 1px solid var(--line-strong); border-left: 1px solid var(--line);
+}
+.eo-wall__tile {
+  container-type: inline-size; position: relative; isolation: isolate; overflow: hidden;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s-5);
+  min-height: 0; padding: clamp(16px, 1.6vw, 26px) clamp(18px, 1.8vw, 28px);
+  border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.eo-wall__code {
+  font-family: var(--font-display); font-size: min(34cqi, 124px); line-height: 0.82; letter-spacing: -0.035em; color: var(--ink);
+}
+.eo-wall__code--long { font-size: min(19cqi, 70px); line-height: 0.9; }
+.eo-wall__hex { width: min(26cqi, 96px); height: auto; color: var(--eo-sky); }
+.eo-wall__name { font: 500 12px/1.4 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: right; max-width: 14ch; align-self: flex-start; }
+.eo-wall__tile::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--eo-cobalt);
+  transform: translateY(101%); transition: transform 420ms cubic-bezier(.2,.7,.2,1);
+}
+@media (hover: hover) and (pointer: fine) {
+  .eo-wall__tile:hover::before { transform: none; }
+  .eo-wall__tile:hover .eo-wall__name, .eo-wall__tile:hover .eo-wall__hex { color: #fff; }
+}
+@media (max-width: 1023px) {
+  .eo-roles { --h: 2; }
+  .eo-wall__tile { min-height: 168px; }
+  html .eo-roles .eo-split__fill { min-height: 320px; }
+}
+@media (max-width: 639px) {
+  .eo-roles { --hm: 2; }
+  .eo-wall__tile { min-height: 150px; flex-direction: column-reverse; align-items: flex-start; }
+  .eo-wall__name { text-align: left; font-size: 11px; align-self: auto; }
+}
+
+/* ============================================================================================
+   HOME #steps: the shift rail, each step's photograph running to the screen's foot
+   ============================================================================================ */
+.timeline.fill { display: flex; flex-direction: column; }
+.timeline__rail { top: 0.62em; font-size: clamp(48px, 2.4vw + 20px, 58px); height: 2px; background: var(--line); }
+.timeline__line { background: var(--eo-cobalt); }
+.timeline__steps { flex: 1 1 auto; min-height: 0; grid-template-rows: minmax(0, 1fr); }
+.step { gap: var(--s-3); min-height: 0; }
+.step__num {
+  width: max-content; height: auto; border: 0; border-radius: 0; display: block;
+  background: linear-gradient(var(--bg), var(--bg)) no-repeat left center / 100% 70%;
+  padding-right: 0.18em; justify-self: start; align-self: start;
+  font-family: var(--font-display); font-size: clamp(48px, 2.4vw + 20px, 58px); line-height: 1.2; color: var(--ink);
+  font-variation-settings: normal; margin: 0;
+}
+.step__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 1vw + 14px, 32px); line-height: 1.1; letter-spacing: -0.015em; }
+.step__media { border-radius: 0 !important; aspect-ratio: auto; flex: 1 1 0; min-height: 180px; margin-top: var(--s-3); }
+@media (max-width: 1023px) { #steps { --h: 1; } .step__media { min-height: 220px; } }
+@media (max-width: 639px) {
+  #steps { --hm: 2; }
+  .timeline__steps { grid-template-rows: none; }
+  .step__media { flex: none; height: 220px; }
+}
+
+/* ============================================================================================
+   HOME #settings: the facility board, names set large; the photograph the spread's full height
+   ============================================================================================ */
+.eo-board__rows > li { padding-block: var(--s-4); cursor: pointer; position: relative; }
+.eo-board__rows .rows__name {
+  font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 1.6vw + 12px, 40px); line-height: 1.05; letter-spacing: -0.015em;
+  color: var(--muted); transition: color 250ms ease; display: inline-block;
+}
+.eo-board__rows > li > p { color: var(--muted); }
+.eo-board__rows > li:is(.is-on, [aria-pressed="true"]) .rows__name, .eo-board__rows > li:hover .rows__name { color: var(--ink); }
+.eo-board__rows > li:is(.is-on, [aria-pressed="true"]) > p { color: var(--ink-soft); }
+.eo-board__rows > li::before { content: ""; position: absolute; left: calc(-1 * clamp(14px, 1.6vw, 28px)); top: calc(var(--s-4) + 0.3em); width: 4px; height: 0.9em; background: var(--eo-sky); opacity: 0; transition: opacity 250ms ease; }
+.eo-board__rows > li:first-child::before { top: 0.3em; }
+.eo-board__rows > li:is(.is-on, [aria-pressed="true"])::before { opacity: 1; }
+.eo-board [data-peek-to] .rows__name::after { display: none; }
+@media (max-width: 1279px) { .eo-board__rows > li > p { display: none; } }
+@media (max-width: 639px) { .eo-board__rows > li::before { display: none; } }
+
+/* ============================================================================================
+   HOME #checks: the credential band on cobalt, the sentence the size of the screen
+   ============================================================================================ */
+#checks.tone-cobalt { position: relative; overflow: hidden; }
+#checks.tone-cobalt > .wrap { justify-content: center; gap: var(--s-6); }
+.tone-cobalt .mo-wh__text, .tone-cobalt .mo-wh__text * { color: inherit; }
+.tone-cobalt .mo-wh__text { font-size: clamp(38px, 5.2vw + 10px, 100px); line-height: 1.02; letter-spacing: -0.03em; max-width: 21ch; margin: 0; }
+.tone-cobalt.mo-wh .mo-w { color: rgb(255 255 255 / 0.42); }
+.tone-cobalt.mo-wh .mo-w.is-on { color: #fff; }
+.tone-cobalt strong { text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.12em; text-decoration-color: rgb(255 255 255 / 0.85); }
+.eo-stamp {
+  display: inline-flex; width: fit-content; justify-self: start; align-items: center; gap: 10px; color: #fff !important;
+  padding: 8px 14px; border: 1.5px solid rgb(255 255 255 / 0.7);
+}
+.eo-stamp::before { content: ""; width: 14px; height: 8px; border-left: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg) translate(1px, -2px); }
+/* the EO hexagon as a giant outline, bleeding off the band's right edge */
+#checks.tone-cobalt::after {
+  content: ""; position: absolute; right: -8vw; top: 50%; width: min(62vw, 880px); aspect-ratio: 120 / 104; translate: 0 -50%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 104'%3E%3Cpath d='M30 1h60l29 51-29 51H30L1 52z' fill='none' stroke='%23ffffff' stroke-opacity='.16' stroke-width='.6'/%3E%3Cpath d='M38 15h44l21 37-21 37H38L17 52z' fill='none' stroke='%23ffffff' stroke-opacity='.1' stroke-width='.6'/%3E%3C/svg%3E") center / contain no-repeat;
+  pointer-events: none;
+}
+#checks > .wrap { position: relative; z-index: 1; }
+
+/* ============================================================================================
+   SHIFT TICKETS (home #openings, job seekers #openings)
+   ============================================================================================ */
+.eo-ticket-list, .eo-tickets { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-5); align-content: start; }
+.eo-tickets > .eo-ticket-list { gap: var(--s-5); }
+.eo-ticket {
+  --notch: 14px; --stub: clamp(92px, 9vw, 132px);
+  position: relative; display: grid; grid-template-columns: var(--stub) minmax(0, 1fr);
+  background: #fffdf8; color: var(--eo-ink); border: 0;
+  /* two half-circle notches where the stub is torn off, top and bottom */
+  -webkit-mask: radial-gradient(circle var(--notch) at var(--stub) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+                radial-gradient(circle var(--notch) at var(--stub) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+  mask: radial-gradient(circle var(--notch) at var(--stub) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+        radial-gradient(circle var(--notch) at var(--stub) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+  box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12);
+  transition: transform 300ms cubic-bezier(.2,.7,.2,1);
+}
+article.eo-ticket.job { display: grid; padding: 0; border-radius: 0; align-content: start; }
+.eo-ticket:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12); }
+.eo-ticket__stub {
+  grid-row: 1 / -1; grid-column: 1; display: grid; place-items: center;
+  background: var(--eo-cobalt); color: #fff;
+  font-family: var(--font-display); font-size: clamp(34px, 3vw, 52px); letter-spacing: -0.02em;
+  border-right: 2px dashed var(--eo-paper);
+}
+.eo-ticket__body { display: grid; gap: var(--s-2); padding: clamp(20px, 2vw, 32px) clamp(20px, 2.4vw, 36px); }
+.eo-ticket__title { font: 600 17px/1.35 var(--font-text); }
+.eo-ticket__pay { font-family: var(--font-display); font-size: clamp(32px, 2.4vw + 8px, 48px); line-height: 1.05; letter-spacing: -0.02em; color: var(--eo-ink); }
+.eo-ticket__shift { font: 400 14px/1.55 var(--font-mono); color: var(--eo-ink-soft); }
+.eo-ticket__apply { margin-top: var(--s-3); justify-self: start; display: inline-flex; align-items: center; gap: var(--s-2); font-weight: 600; color: var(--eo-cobalt); }
+/* the card version (JobCards) keeps its label rows inside the ticket body */
+article.eo-ticket .eo-ticket__stub { grid-row: 1 / span 3; }
+article.eo-ticket > :not(.eo-ticket__stub) { grid-column: 2; padding-inline: clamp(20px, 2.4vw, 36px); }
+article.eo-ticket > h3 { padding-top: clamp(20px, 2vw, 32px); font: 600 18px/1.35 var(--font-text); }
+article.eo-ticket > .job__apply { padding-bottom: clamp(20px, 2vw, 32px); color: var(--eo-cobalt); font-weight: 600; }
+article.eo-ticket .job__facts { grid-template-columns: repeat(3, auto); justify-content: start; column-gap: var(--s-6); }
+article.eo-ticket .job__facts dt { font: 500 11.5px/1.4 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+article.eo-ticket .job__pay { font-family: var(--font-display); font-size: 26px; line-height: 1.1; }
+article.eo-ticket { gap: var(--s-4) 0; }
+@media (max-width: 1279px) { article.eo-ticket .job__facts { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 639px) {
+  .eo-ticket { --stub: 72px; }
+  .eo-ticket__stub { font-size: 28px; }
+}
+@media (max-width: 1023px) { #openings { --hm: 2; } }
+
+/* ============================================================================================
+   INNER PAGES: tiles, faq, forms
+   ============================================================================================ */
+.tile__head h3 { font: 600 20px/1.3 var(--font-text); }
+.tile > p { color: var(--ink-soft, var(--ink)); }
+.faq :is(.faq__item > h3, summary) { font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 1vw + 14px, 28px); line-height: 1.2; letter-spacing: -0.01em; }
+.faq__item p { color: var(--ink-soft, var(--ink)); }
+.form-panel {
+  --c: 40px; background: #fffdf8; border-radius: 0; box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12);
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+  border-top: 4px solid var(--eo-cobalt);
+}
+.form label { font: 500 12.5px/1.4 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--eo-ink-soft); }
+.form :is(input, select, textarea) { border-radius: 2px; background: var(--eo-paper); border-color: rgb(16 18 37 / 0.22); }
+.form :is(input, select, textarea):focus { border-color: var(--eo-cobalt); }
+
+/* ============================================================================================
+   THE CLOSE AND FOOTER: night, the call set huge
+   ============================================================================================ */
+footer.closing { --p-inv-bg: var(--eo-night); background: var(--eo-night); }
+footer.closing.ground-inverse { --bg: var(--eo-night); --surface: var(--eo-night-2); --ink: #f4f1ea; --muted: #a7acc6; --line: rgb(244 241 234 / 0.14); --line-strong: rgb(244 241 234 / 0.3); --action: #f4f1ea; --action-ink: var(--eo-night); }
+/* the close: exactly one screen; the call set across the page's full width, then the line and the
+   button, then the directory */
+html footer.closing { --padt: 120px; --padb: 40px; height: auto; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; }
+html footer.closing > .wrap { flex: 1 0 auto; height: auto; display: flex; flex-direction: column; justify-content: space-between; gap: var(--s-8); }
+html footer.closing .closing__links { margin-top: 0; }
+.closing__cta { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+.closing__cta .section-head { gap: var(--s-5); }
+.closing__cta h2 { font-size: clamp(52px, 11.6vw, 176px); line-height: 0.9; letter-spacing: -0.04em; max-width: none; text-box: trim-start cap alphabetic; }
+.closing__cta h2::before { display: none; }
+.closing__cta .section-head > p { color: #c9cbe0; font-size: 18px; max-width: 46ch; }
+footer.closing .closing__cta.close--type > .btn--xl, footer.closing .closing__cta.close--type > .btn--xl:not(.btn--wide) { width: auto; justify-self: start; align-self: start; border-radius: 2px; height: var(--btn-h); padding: 0 var(--s-5); font: 600 16px/1 var(--font-text); letter-spacing: 0.005em; }
+.closing__cta .btn--xl .m-arrow { width: 12px; height: 12px; stroke-width: 1.6; }
+@media (max-width: 639px) {
+  html footer.closing { --padt: 88px; }
+  footer.closing .closing__cta.close--type > .btn--xl { width: 100%; justify-content: center; }
+}
+.footer__col h3 { color: var(--eo-sky); }
+.footer__legal { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.02em; }
+
+/* the narrowest phones: the serif name a size down so the bar's button and menu stay on screen */
+@media (max-width: 359px) {
+  .nav .nav__logo { font-size: 15px; gap: 5px; }
+  .nav .logo-mark { height: 16px; }
+  .nav .nav__actions .btn { padding: 0 var(--s-3); font-size: 14px; }
+}
+@media (max-width: 639px) { .step__num { font-size: 36px; } .timeline__rail { font-size: 36px; } }
+
+/* the close's call runs the page's full width (the kit caps a section head's measure) */
+footer.closing .closing__cta .section-head, footer.closing .closing__cta .section-head > h2 { max-width: none; width: 100%; }
+/* the facility board fits its screen: tighter rows, names a size down */
+.eo-board__rows > li { padding-block: 12px; }
+.eo-board__rows > li::before { top: calc(12px + 0.3em); }
+.eo-board__rows .rows__name { font-size: clamp(24px, 1.2vw + 12px, 34px); }
+.eo-board .eo-split__side { gap: var(--s-6); }
+.eo-split__side > .section-head { margin-bottom: 0; }
+.eo-split__side > .eo-board__rows { margin-top: auto; }
+
+/* tablet and phone: the spreads stack, and their photographs keep a height of their own */
+@media (max-width: 1023px) {
+  html body main.eo-home .eo-split > .eo-split__tall { flex: none; height: clamp(320px, 56vw, 500px); min-height: 0; }
+  html body main.eo-home .eo-split .eo-split__fill.develop { flex: none; height: clamp(260px, 40vw, 340px); min-height: 0; }
+  html body main.eo-home .eo-roles { --h: 1; }
+  html body main.eo-home .eo-wall__tile { min-height: 136px; }
+  html body main.eo-home .eo-split__side { gap: var(--s-6); }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  #openings .eo-ticket-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #openings .eo-ticket { --stub: 72px; }
+  #openings .eo-ticket__stub { font-size: 30px; }
+}
+@media (max-width: 639px) {
+  html body main.eo-home #settings { --hm: 2; }
+  html body main.eo-home .eo-split > .eo-split__tall { height: 420px; }
+  html body main.eo-home .eo-wall__tile { min-height: 150px; }
+}
+
+/* ---- gate round 2 ---- */
+/* the hero's lines are masks for the rise: room above for the ascenders, so none is clipped */
+.eo-hero__line { padding-top: 0.16em; margin-top: -0.16em; }
+/* the cobalt entry bar sits above a heading, in the section's top padding, so the heading's capitals
+   start on the column's top line beside a photograph */
+main > section:not(.hero, .statement) h2 { position: relative; }
+main > section:not(.hero, .statement) h2::before { position: absolute; left: 0; top: calc(-1 * (0.32em + 4px)); margin: 0; }
+.eo-split .section-head > h2, .eo-split h2, #steps h2 { text-box: trim-start cap alphabetic; }
+/* the role wall under its heading, filling the left of the spread; the photograph the right */
+.eo-roles .eo-split__side > .eo-wall { flex: 1 1 auto; min-height: 0; }
+html .eo-roles .eo-split__tall.develop { height: 100%; margin: 0; }
+.eo-roles .eo-wall__code { font-size: min(28cqi, 104px); }
+.eo-roles .eo-wall__code--long { font-size: min(17cqi, 60px); }
+/* the facility board and the tickets fit their screens */
+.eo-board__rows > li { padding-block: 9px; }
+.eo-board__rows > li::before { top: calc(9px + 0.3em); }
+.eo-board__rows > li > p { font-size: 15px; }
+.eo-ticket__body { padding: 18px clamp(20px, 2.2vw, 32px); gap: 6px; }
+.eo-tickets .eo-ticket-list { gap: var(--s-4); }
+/* one size for every h3 on the page: the step titles and the ticket titles */
+.eo-ticket__title, .step__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 0.8vw + 14px, 28px); line-height: 1.1; letter-spacing: -0.015em; }
+/* the close fits one screen */
+.closing__cta h2 { font-size: clamp(52px, 10.2vw, 156px); }
+html footer.closing > .wrap { gap: var(--s-7); }
+/* phone: the two-screen spreads give their photographs the room */
+@media (max-width: 639px) {
+  html body main.eo-home .eo-roles .eo-split > .eo-split__tall { height: 520px; }
+  html body main.eo-home .eo-roles { --hm: 2; }
+  html body main.eo-home .eo-wall__tile { min-height: 168px; }
+  html body main.eo-home #settings .eo-split > .eo-split__tall { height: 600px; }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  html body main.eo-home .eo-roles .eo-split > .eo-split__tall { height: clamp(260px, 36vw, 340px); }
+}
+.closing__cta h2 { font-size: clamp(52px, 9vw, 136px); }
+html footer.closing { --padb: 72px; }
+@media (max-width: 639px) { html footer.closing { --padb: 48px; } }
+@media (max-width: 639px) { main:not(.eo-home) #roles .rows > li { grid-template-columns: 76px minmax(0, 1fr); } }
+
+/* ============================================================================================
+   THE REFERENCE STRUCTURE (home): dark hero with a badge, list + panel, photo + statement,
+   services block, dark rows, tiles, contact cards. Same fonts and sizes as before.
+   ============================================================================================ */
+
+/* ---- hero, dark ---- */
+.eo-dark { background: var(--eo-night); color: #f4f1ea; overflow: clip; }
+.eo-dark__grid { position: relative; height: 100%; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); grid-template-rows: minmax(0, 1fr); }
+.eo-dark__text { grid-column: 1 / span 7; display: flex; flex-direction: column; justify-content: space-between; gap: var(--s-6); min-height: 0; }
+.eo-dark .eo-dark__title { --fs: clamp(48px, min(10vw, 19svh), 150px); font-size: var(--fs); color: #f4f1ea; }
+.eo-dark .eo-hero__line.is-accent { color: var(--eo-sky); }
+.eo-dark .eo-dark__foot { border-top-color: rgb(244 241 234 / 0.5); }
+.eo-dark .eo-hero__lead { color: #c9cbe0; }
+.eo-dark .btn--secondary { color: #f4f1ea; border-color: rgb(244 241 234 / 0.35); }
+.eo-dark .btn--secondary:hover { border-color: #f4f1ea; }
+.eo-dark .btn--primary { background: var(--eo-cobalt); color: #fff; }
+.eo-dark .btn--primary::before { background: #f4f1ea; }
+.eo-dark .btn--primary:hover { color: var(--eo-night); }
+.eo-dark__media {
+  grid-column: 8 / -1; position: relative; height: 100%; min-height: 0; overflow: hidden; background: var(--eo-night-2);
+  --c: clamp(56px, 6vw, 112px);
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c)) !important;
+}
+.eo-dark__media > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: var(--ly-pos, 50% 50%); }
+@media (prefers-reduced-motion: no-preference) {
+  .eo-dark__media > img { animation: eo-settle 1500ms cubic-bezier(0.2, 0.7, 0.2, 1) 80ms both; }
+}
+@media (max-width: 1023px) {
+  .eo-dark { --photo: min(36svh, 58vw); }
+  .eo-dark__grid { position: static; display: block; }
+  .eo-dark__text { height: 100%; justify-content: flex-start; }
+  .eo-dark .eo-dark__title { --fs: clamp(48px, 12.4vw, 112px); }
+  .eo-dark__media { position: absolute; top: calc(-1 * (var(--photo) + var(--hgap))); left: 0; right: 0; height: var(--photo); --c: clamp(44px, 9vw, 88px); }
+  .eo-dark__media > img { object-position: var(--ly-pos-phone, var(--ly-pos, 50% 50%)); }
+}
+@media (max-width: 639px) {
+  .eo-dark { --photo: min(30svh, 64vw); }
+  .eo-dark .eo-dark__title { --fs: clamp(42px, 12.6vw, 68px); }
+}
+
+/* ---- #settings: the numbered list beside a light panel ---- */
+.eo-panel { --c: clamp(44px, 5vw, 88px); background: var(--eo-paper-2); padding: clamp(16px, 1.8vw, 28px); clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c)); display: flex; }
+.eo-panel__photo { flex: 1 1 auto; height: auto !important; min-height: 0 !important; }
+.eo-list { counter-reset: eo-list; margin-top: auto; }
+.eo-list > li { counter-increment: eo-list; position: relative; grid-template-columns: 40px minmax(0, 1fr) 40px !important; column-gap: var(--s-4) !important; align-items: center; padding-block: 14px; cursor: pointer; }
+.eo-list > li:first-child { padding-top: 0; }
+.eo-list__num { grid-column: 1; grid-row: 1 / span 2; align-self: start; padding-top: 0.5em; }
+.eo-list__num::before { content: counter(eo-list, decimal-leading-zero); font: 500 13px/1 var(--font-mono); letter-spacing: 0.04em; color: var(--muted); }
+.eo-list .rows__name { grid-column: 2; font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 0.9vw + 14px, 30px); line-height: 1.1; letter-spacing: -0.015em; color: var(--muted); transition: color 200ms ease; }
+.eo-list > li > p { grid-column: 2; color: var(--muted); font-size: 15px; }
+.eo-list__go { grid-column: 3; grid-row: 1 / span 2; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-strong); display: grid; place-items: center; color: var(--ink); transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease; }
+.eo-list__go .m-arrow { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transform: rotate(-45deg); }
+.eo-list > li:is([aria-pressed="true"], .is-on) .rows__name, .eo-list > li:hover .rows__name { color: var(--ink); }
+.eo-list > li:is([aria-pressed="true"], .is-on) > p { color: var(--ink-soft); }
+.eo-list > li:is([aria-pressed="true"], .is-on) .eo-list__num::before { color: var(--eo-cobalt); }
+.eo-list > li:is([aria-pressed="true"], .is-on) .eo-list__go { background: var(--eo-cobalt); border-color: var(--eo-cobalt); color: #fff; }
+.eo-list [data-peek-to] .rows__name::after, .eo-list .rows__name::after { display: none !important; }
+.eo-list > li::before { display: none !important; }
+
+/* ---- #checks: the photograph beside the statement, on cobalt ---- */
+.eo-promise__text { display: flex; flex-direction: column; justify-content: center; gap: var(--s-6); }
+.eo-promise .mo-wh__text { font-size: clamp(32px, 2.6vw + 16px, 60px); line-height: 1.04; letter-spacing: -0.025em; max-width: 20ch; margin: 0; color: #fff; }
+.eo-promise .mo-wh .mo-w { color: rgb(255 255 255 / 0.42); }
+.eo-promise .mo-wh .mo-w.is-on { color: #fff; }
+.eo-promise .btn--primary { background: #fff; color: var(--eo-cobalt); }
+.eo-promise .btn--primary::before { background: var(--eo-night); }
+.eo-promise .btn--primary:hover { color: #fff; }
+#checks.eo-promise::after { right: -14vw; opacity: 0.8; }
+
+/* ---- #roles: the services block ---- */
+.eo-services .eo-split__side { justify-content: space-between; }
+.eo-roles-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: space-between; border-top: 1px solid var(--line); min-height: 0; }
+.eo-roles-list > li {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto 36px; align-items: center; column-gap: var(--s-3);
+  padding: 10px 6px 10px 14px; border-bottom: 1px solid var(--line); cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+.eo-roles-list__name { font-family: var(--font-display); font-size: clamp(20px, 0.6vw + 13px, 24px); line-height: 1.15; letter-spacing: -0.01em; }
+.eo-roles-list__code { font: 500 12px/1 var(--font-mono); letter-spacing: 0.06em; color: var(--muted); }
+.eo-roles-list__go { grid-column: 3; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; opacity: 0; transition: opacity 200ms ease; }
+.eo-roles-list__go .m-arrow { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.eo-roles-list > li:hover { background: var(--eo-paper-2); }
+.eo-roles-list > li:is([aria-pressed="true"], .is-on) { background: var(--eo-cobalt); color: #fff; border-bottom-color: var(--eo-cobalt); }
+.eo-roles-list > li:is([aria-pressed="true"], .is-on) .eo-roles-list__code { color: #dfe3ff; }
+.eo-roles-list > li:is([aria-pressed="true"], .is-on) .eo-roles-list__go { opacity: 1; background: #fff; color: var(--eo-cobalt); }
+.eo-services__detail { display: flex; flex-direction: column; gap: var(--s-5); min-height: 0; }
+html .eo-services .eo-services__photo { flex: 1 1 0; height: auto; min-height: 240px; margin: 0; }
+.eo-services__photo > img { object-position: 50% 30%; }
+.eo-services__copy { display: grid; gap: var(--s-2); }
+.eo-services__copy[hidden] { display: none; }
+.eo-services__copy h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 1vw + 16px, 34px); line-height: 1.08; letter-spacing: -0.015em; }
+.eo-services__copy p { color: var(--ink-soft); }
+
+/* ---- #steps: dark rows ---- */
+.eo-steps > .wrap { display: flex; flex-direction: column; }
+.eo-steps__rows { list-style: none; margin: 0; padding: 0; display: grid; grid-auto-rows: minmax(0, 1fr); border-top: 1px solid var(--line-strong); }
+.eo-steps__row {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); align-items: center;
+  border-bottom: 1px solid var(--line); padding-block: var(--s-4); min-height: 0;
+}
+.eo-steps__num { grid-column: 1; font-family: var(--font-display); font-size: clamp(40px, 2vw + 16px, 56px); line-height: 1; color: var(--eo-sky); }
+.eo-steps__title { grid-column: 2 / span 4; font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 1vw + 16px, 34px); line-height: 1.08; letter-spacing: -0.015em; }
+.eo-steps__body { grid-column: 6 / span 4; color: var(--ink-soft); font-size: 17px; max-width: 34ch; }
+.eo-steps__photo { grid-column: 10 / -1; height: 100%; min-height: 110px; max-height: 180px; overflow: hidden; background: var(--surface); position: relative; }
+.eo-steps__photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) {
+  .eo-steps__photo > img { transition: transform 900ms cubic-bezier(.2,.7,.2,1); }
+  .eo-steps__row:hover .eo-steps__photo > img { transform: scale(1.03); }
+}
+
+/* ---- #openings: the tickets beside a grid of photographs ---- */
+.eo-more { display: inline-flex; align-items: center; gap: var(--s-2); font-weight: 600; color: var(--eo-cobalt); align-self: flex-start; }
+.eo-tiles { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); column-gap: var(--gutter); min-height: 0; }
+.eo-tiles > .frame { height: 100%; min-height: 0; }
+html .eo-tiles > .frame--photo { min-height: 0; }
+
+/* ---- the close: the call and its button side by side, three contact cards, the directory ---- */
+footer.closing .closing__cta.close--type { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-5); align-items: end; }
+footer.closing .closing__cta .section-head { grid-column: 1 / span 8; }
+footer.closing .closing__cta.close--type > .btn--xl, footer.closing .closing__cta.close--type > .btn--xl:not(.btn--wide) { grid-column: 9 / -1; justify-self: start; align-self: end; }
+.eo-contact { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
+.eo-contact__card {
+  --c: 22px; display: flex; align-items: center; gap: var(--s-4); height: 100%;
+  padding: var(--s-5) var(--s-5); background: var(--eo-night-2); color: #f4f1ea; text-decoration: none;
+  box-shadow: inset 0 0 0 1px rgb(244 241 234 / 0.12);
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+  transition: background-color 250ms ease, transform 300ms cubic-bezier(.2,.7,.2,1);
+}
+.eo-contact__card:hover { background: var(--eo-cobalt); transform: translateY(-2px); }
+.eo-contact__icon { flex: none; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--eo-cobalt); color: #fff; transition: background-color 250ms ease, color 250ms ease; }
+.eo-contact__card:hover .eo-contact__icon { background: #fff; color: var(--eo-cobalt); }
+.eo-contact__icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.eo-contact__value { font-family: var(--font-display); font-size: clamp(20px, 0.8vw + 12px, 26px); line-height: 1.15; letter-spacing: -0.01em; }
+@media (max-width: 1023px) {
+  footer.closing .closing__cta .section-head, footer.closing .closing__cta.close--type > .btn--xl, footer.closing .closing__cta.close--type > .btn--xl:not(.btn--wide) { grid-column: 1 / -1; }
+  .eo-contact { grid-template-columns: minmax(0, 1fr); gap: var(--s-3); }
+}
+
+/* ---- tablet and phone for the new blocks ---- */
+@media (max-width: 1023px) {
+  html body main.eo-home .eo-panel { height: clamp(340px, 60vw, 520px); flex: none; }
+  html body main.eo-home .eo-promise .eo-split__tall, html body main.eo-home .eo-tiles { height: clamp(300px, 52vw, 460px); flex: none; }
+  .eo-roles-list { margin-top: var(--s-5); }
+  html .eo-services .eo-services__photo { flex: none; height: clamp(260px, 44vw, 380px); }
+  .eo-steps__row { grid-template-columns: 56px minmax(0, 1fr) 30%; row-gap: var(--s-2); }
+  .eo-steps__num { grid-column: 1; grid-row: 1 / span 2; align-self: start; }
+  .eo-steps__title { grid-column: 2; }
+  .eo-steps__body { grid-column: 2; }
+  .eo-steps__photo { grid-column: 3; grid-row: 1 / span 2; height: 130px; }
+}
+@media (max-width: 639px) {
+  html body main.eo-home #settings, html body main.eo-home #roles, html body main.eo-home #openings, html body main.eo-home #checks { --hm: 2; }
+  .eo-steps__row { grid-template-columns: 44px minmax(0, 1fr); }
+  .eo-steps__photo { grid-column: 2; grid-row: auto; height: 160px; max-height: none; margin-top: var(--s-3); }
+  .eo-tiles { grid-template-columns: minmax(0, 1fr); row-gap: var(--s-4); height: auto !important; }
+  .eo-tiles > .frame { height: 280px; }
+}
+/* openings: the tickets lie flat in their wider column; the close fits one screen */
+#openings .eo-ticket__pay { font-size: clamp(28px, 1.4vw + 12px, 38px); }
+#openings .eo-ticket__body { padding-block: 16px; }
+#openings .eo-split__side { gap: var(--s-6); }
+.eo-contact__card { padding: var(--s-4) var(--s-5); }
+html footer.closing > .wrap { gap: var(--s-6); }
+.closing__cta h2 { font-size: clamp(52px, 8.4vw, 128px); }
+@media (min-width: 1024px) { html footer.closing { --padt: 96px; } }
+.eo-contact { width: 100%; }
+@media (max-width: 639px) {
+  .eo-steps__rows { grid-auto-rows: auto; }
+  html body main.eo-home #steps { --hm: 2; }
+  .eo-steps__row { padding-block: var(--s-5); }
+  .eo-steps__photo { height: 220px; }
+  html .eo-services .eo-services__photo { height: 520px; }
+  .eo-tiles > .frame { height: 360px; }
+}
+
+/* ---- gate round 1 (reference structure) ---- */
+/* the badge sits inside the photograph, at its square lower-left corner */
+/* the headline's capitals start on the photograph's top line */
+.eo-dark .eo-dark__title { margin-top: -0.09em; }
+/* plain photographs (not the kit's frame) for the statement and the tiles */
+.eo-photo { position: relative; overflow: hidden; background: var(--surface); min-height: 0; }
+.eo-photo > img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) {
+  .eo-photo > img { transition: transform 900ms cubic-bezier(.2,.7,.2,1); }
+  .eo-photo:hover > img { transform: scale(1.03); }
+}
+/* the facility list: the number before the name, the arrow at the row's right */
+.eo-list > li { grid-template-columns: minmax(0, 1fr) !important; padding-right: 56px; }
+.eo-list .rows__name::before { content: counter(eo-list, decimal-leading-zero); display: inline-block; width: 2.6em; font: 500 13px/1 var(--font-mono); letter-spacing: 0.04em; color: var(--muted); vertical-align: 0.5em; }
+.eo-list > li:is([aria-pressed="true"], .is-on) .rows__name::before { color: var(--eo-cobalt); }
+.eo-list > li > p { padding-left: calc(13px * 2.6); }
+.eo-list__go { position: absolute; right: 0; top: 50%; translate: 0 -50%; }
+.eo-list > li:first-child .eo-list__go { translate: 0 calc(-50% - 7px); }
+.eo-list .rows__name::after { content: none !important; }
+/* the statement: words from the top of the column */
+.eo-promise__text { justify-content: flex-start; }
+.eo-promise .mo-wh__text { font-size: clamp(34px, 3.4vw + 14px, 76px); max-width: 18ch; }
+/* the services block: the chosen role's name as a line in the display face */
+.eo-services__name { font-family: var(--font-display); font-size: clamp(26px, 1vw + 16px, 34px); line-height: 1.08; letter-spacing: -0.015em; color: var(--ink); }
+/* the steps' rows: parted by air and hairlines under each row, no rule over the first */
+.eo-steps__rows { border-top: 0; }
+/* the tiles: two photographs stacked */
+.eo-tiles { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1.2fr) minmax(0, 1fr); row-gap: var(--gutter); }
+.eo-tiles > .eo-photo { height: auto; }
+/* the close's button in the brand cobalt, like every "Request staff" */
+footer.closing .btn--primary { background: var(--eo-cobalt); color: #fff; }
+footer.closing .btn--primary::before { background: #f4f1ea; }
+footer.closing .btn--primary:hover { color: var(--eo-night); }
+/* the contact list: open entries over a rule, not buttons */
+.closing__links { display: grid; gap: var(--s-7); }
+.eo-contact__card { clip-path: none; background: none; box-shadow: none; padding: var(--s-4) 0 0; border-top: 1px solid rgb(244 241 234 / 0.2); }
+.eo-contact__card:hover { background: none; transform: none; }
+.eo-contact__card:hover .eo-contact__value { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+@media (max-width: 639px) {
+  footer.closing .closing__cta.close--type > .btn--xl, footer.closing .closing__cta.close--type > .btn--xl:not(.btn--wide) { width: 100%; justify-content: center; }
+  .eo-steps__num { font-size: 32px; }
+  html body main.eo-home #checks { --hm: 1; }
+  html body main.eo-home .eo-promise .eo-split__tall { height: 240px; }
+  .eo-promise .mo-wh__text { font-size: 30px; }
+  html .eo-services .eo-services__photo { height: 640px; }
+}
+
+/* ---- gate round 1b ---- */
+#checks.tone-cobalt::after, #checks.eo-promise::after { content: none; display: none; }
+/* the hero headline's capitals on the photograph's top line */
+.eo-dark .eo-dark__title { margin-top: 0.09em; }
+/* contact icons: the glyph alone, in the sky tint, no disc */
+.eo-contact__icon { width: auto; height: auto; background: none; border-radius: 0; color: var(--eo-sky); }
+.eo-contact__card:hover .eo-contact__icon { background: none; color: #fff; }
+.eo-contact__icon svg { width: 26px; height: 26px; }
+/* the facility list: names on one left edge; the arrow drawn by the row itself */
+.eo-list .rows__name::before { content: none !important; display: none !important; }
+.eo-list > li > p { padding-left: 0; }
+.eo-list__go { display: none !important; }
+.eo-list > li::after {
+  content: "" !important; position: absolute; right: 0; top: 50%; left: auto; bottom: auto; width: 40px; height: 40px; border-radius: 50%;
+  transform: translateY(-50%) !important; translate: none; transition: background-color 200ms ease, border-color 200ms ease;
+  border: 1px solid var(--line-strong); background: transparent no-repeat center / 14px 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23101225' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9l6-6M4.5 3H9v4.5'/%3E%3C/svg%3E");
+}
+.eo-list > li:first-child::after { top: calc(50% - 7px); }
+.eo-list > li:is([aria-pressed="true"], .is-on)::after {
+  background-color: var(--eo-cobalt); border-color: var(--eo-cobalt);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23ffffff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9l6-6M4.5 3H9v4.5'/%3E%3C/svg%3E");
+}
+/* the roles list: names on the column's edge; the chosen row marked by a cobalt bar and the arrow */
+.eo-roles-list > li { padding-left: 0; padding-right: 0; }
+.eo-roles-list > li:is([aria-pressed="true"], .is-on) { background: none; color: var(--ink); border-bottom-color: var(--eo-cobalt); box-shadow: inset 0 -2px 0 var(--eo-cobalt); }
+.eo-roles-list > li:is([aria-pressed="true"], .is-on) .eo-roles-list__name { color: var(--eo-cobalt); }
+.eo-roles-list > li:is([aria-pressed="true"], .is-on) .eo-roles-list__code { color: var(--eo-cobalt); }
+.eo-roles-list > li:is([aria-pressed="true"], .is-on) .eo-roles-list__go { background: var(--eo-cobalt); color: #fff; }
+.eo-roles-list > li:hover { background: none; }
+.eo-roles-list > li:hover .eo-roles-list__name { color: var(--eo-cobalt); }
+/* phone: the open jobs and the roles fill their two screens */
+@media (max-width: 639px) {
+  html body main.eo-home #openings { --hm: 2; }
+  .eo-tiles { grid-template-rows: none; }
+  .eo-tiles > .eo-photo { height: 420px; }
+  html .eo-services .eo-services__photo { height: 560px; }
+  .eo-roles-list > li { padding-block: 14px; }
+}
+.eo-list .rows__name, .eo-list > li > p { grid-column: 1 !important; }
+/* the plain photographs keep still under the pointer (the kit zooms only linked pictures) */
+.eo-photo:hover > img { transform: none; }
+/* the stamp: a plain label in the mono, no box */
+.eo-stamp { padding: 0; border: 0; gap: 0; color: #dfe3ff !important; }
+.eo-stamp::before { content: none; }
+/* the tickets are cards: no kit card padding, ground or lift */
+.eo-ticket.card { padding: 0; border: 0; border-radius: 0; background: #fffdf8; gap: 0; display: grid; }
+.eo-ticket.card:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12); }
+/* phone: the tile photograph from a wide enough file; the roles screen filled */
+@media (max-width: 639px) { html .eo-services .eo-services__photo { height: 620px; } }
+#checks.tone-cobalt { overflow: visible; }
+.eo-promise .mo-wh__text { overflow-wrap: anywhere; min-width: 0; }
+@media (min-width: 1024px) { #checks .eo-promise__text { grid-column: 1 / span 7; } #checks .eo-photo { grid-column: 8 / -1; } }
+@media (max-width: 1023px) { #checks > .wrap.grid { display: flex; flex-direction: column; gap: var(--s-6); } #checks .eo-promise__text, #checks .eo-photo { width: 100%; max-width: 100%; } }
+
+/* ---- the shift tickets as open entries: the words on the page's left line, the stub on the right ---- */
+#openings .eo-ticket {
+  grid-template-columns: minmax(0, 1fr) var(--stub); background: none !important; box-shadow: none !important;
+  -webkit-mask: none; mask: none; border-top: 2px solid var(--eo-ink);
+}
+#openings .eo-ticket:hover { transform: none; box-shadow: none !important; }
+#openings .eo-ticket__stub { grid-column: 2; grid-row: 1; border-right: 0; border-left: 2px dashed var(--eo-paper); }
+#openings .eo-ticket__body { grid-column: 1; grid-row: 1; padding: 14px var(--s-5) 4px 0; }
+#openings .eo-ticket-list { gap: var(--s-5); }
+@media (min-width: 1024px) { #checks .frame--photo { grid-column: 8 / -1; height: 100%; min-height: 0; } }
+@media (max-width: 1023px) { #checks .frame--photo { height: clamp(240px, 52vw, 460px); flex: none; } }
+@media (max-width: 639px) { html .eo-services .eo-services__photo { height: 780px; } }
+#checks > .wrap.grid { column-gap: var(--gutter); }
+.eo-ticket__stub[data-code]::before { content: attr(data-code); }
+@media (max-width: 639px) { html #roles .eo-services__photo { height: 780px; } }
+.eo-ticket__stub--mark svg { width: 44%; max-width: 44px; height: auto; color: #fff; }
+@media (max-width: 639px) { html #roles .eo-services__photo { height: 660px; } .eo-tiles > .eo-photo { height: 380px; } }
+
+/* ---- the header: logo left, words centred, actions right (nav--centre) ---- */
+/* a wide screen: the two sides take equal room, so the words sit on the true centre */
+@media (min-width: 1280px) { .nav--centre .nav__bar { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); } }
+@media (min-width: 1024px) and (max-width: 1279px) { .nav--centre .nav__bar { grid-template-columns: auto minmax(0, 1fr) auto; } }
+
+/* ---- the big type, 25px smaller than the original sizes (client: -10px, then -15px more), with a
+   floor on phones so no headline drops to body size ---- */
+.eo-dark .eo-dark__title { font-size: max(36px, calc(var(--fs) - 25px)); }
+.eo-band .eo-band__title { font-size: max(32px, calc(clamp(48px, min(7.6vw, 13svh), 124px) - 25px)); }
+.closing__cta h2 { font-size: max(36px, calc(clamp(52px, 8.4vw, 128px) - 25px)); }
+.eo-promise .mo-wh__text { font-size: max(20px, calc(clamp(34px, 3.4vw + 14px, 76px) - 25px)); }
+:root { --t-h2: max(28px, calc(clamp(40px, 3.2vw + 18px, 76px) - 25px)); }
+main:not(.eo-home) .section-head > h2, main:not(.eo-home) .stack-4 > h2, main:not(.eo-home) .stack-5 > h2 { font-size: max(28px, calc(clamp(44px, 3.8vw + 16px, 88px) - 25px)); }
+@media (max-width: 1023px) {
+  .eo-band .eo-band__title { font-size: max(32px, calc(clamp(44px, 9.4vw, 88px) - 25px)); }
+}
+@media (max-width: 639px) {
+  .eo-band .eo-band__title { font-size: max(32px, calc(clamp(40px, 11.6vw, 60px) - 25px)); }
+  .eo-promise .mo-wh__text { font-size: 20px; }
+}
+@media (max-width: 639px) { .eo-steps__num { font-size: 26px; } }
+/* the step numbers stay under the smaller headings */
+.eo-steps__num { font-size: clamp(26px, 1.2vw + 14px, 34px); }
+@media (max-width: 639px) { .eo-steps__num { font-size: 24px; } }
+
+/* ---- #roles: the roles as cards, two across, beside the photograph ---- */
+.eo-role-cards { list-style: none; margin: 0; padding: 0; flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(0, 1fr); gap: var(--s-4); }
+.eo-role-card.card {
+  --c: 18px; position: relative; display: flex; flex-direction: column; gap: 6px; min-height: 0;
+  padding: clamp(14px, 1.3vw, 20px) clamp(16px, 1.5vw, 22px); background: #fffdf8; border: 0; border-radius: 0;
+  box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12);
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+  transition: box-shadow 250ms ease;
+}
+.eo-role-card.card:hover { transform: none; box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12), inset 0 3px 0 var(--eo-cobalt); }
+.eo-role-card__code { font: 500 12px/1 var(--font-mono); letter-spacing: 0.08em; color: var(--eo-cobalt); }
+.eo-role-card__mark { width: 18px; height: auto; color: var(--eo-cobalt); }
+.eo-role-card__name { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 0.6vw + 14px, 24px); line-height: 1.1; letter-spacing: -0.01em; margin-top: auto; }
+.eo-role-card__body { font-size: 14px; line-height: 1.45; color: var(--ink-soft); }
+html body main.eo-home #roles .eo-services__photo { height: 100%; margin: 0; }
+@media (max-width: 1023px) {
+  .eo-role-cards { grid-auto-rows: auto; }
+  .eo-role-card.card { min-height: 140px; }
+  html body main.eo-home #roles .eo-services__photo { flex: none; height: clamp(300px, 52vw, 460px); }
+}
+@media (max-width: 639px) {
+  .eo-role-cards { grid-template-columns: minmax(0, 1fr); gap: var(--s-3); }
+  .eo-role-card.card { min-height: 0; }
+  .eo-role-card__name { margin-top: var(--s-2); }
+  html body main.eo-home #roles .eo-services__photo, html #roles .eo-services__photo { height: 420px; }
+}
+.eo-role-card.card > .eo-role-card__name { font-family: var(--font-display); font-weight: 400; font-size: clamp(20px, 0.6vw + 14px, 24px); line-height: 1.1; letter-spacing: -0.01em; }
+.eo-role-card.card > .eo-role-card__body { font-size: 14px; line-height: 1.45; color: var(--ink-soft); max-width: none; }
+@media (max-width: 639px) { html body main.eo-home #roles .eo-services__photo, html #roles .eo-services__photo { height: 320px; } }
+/* each role card's icon: the EO hexagon in cobalt with the role's first code on it */
+.eo-role-card__icon { position: relative; display: grid; place-items: center; width: 44px; height: 38px; color: var(--eo-cobalt); flex: none; }
+.eo-role-card__icon > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.eo-role-card__abbr { position: relative; font: 500 11px/1 var(--font-mono); letter-spacing: 0.04em; color: #fff; }
+.eo-role-card.card > .eo-role-card__name { margin-top: auto; }
+.eo-role-card__code { font: 500 11.5px/1 var(--font-mono); letter-spacing: 0.06em; color: var(--eo-cobalt); }
+.eo-role-card.card { flex-direction: column; }
+@media (min-width: 1024px) {
+  .eo-role-card.card { display: grid; grid-template-columns: 44px minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: var(--s-4); row-gap: 4px; align-content: start; }
+  .eo-role-card__icon { grid-row: 1 / span 2; }
+  .eo-role-card.card > .eo-role-card__name { margin-top: 0; }
+}
+/* the icon beside the name at every width */
+.eo-role-card.card { display: grid; grid-template-columns: 44px minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: var(--s-4); row-gap: 4px; align-content: start; }
+.eo-role-card__icon { grid-row: 1 / span 2; }
+.eo-role-card.card > .eo-role-card__name { margin-top: 0; }
+@media (max-width: 639px) { html body main.eo-home #roles .eo-services__photo, html #roles .eo-services__photo { height: 300px; } }
+@media (max-width: 639px) { html body main.eo-home #roles .eo-services__photo, html #roles .eo-services__photo { height: 440px; } }
+
+/* ---- #openings: the tickets, the stub is the link to apply ---- */
+#openings .eo-ticket { --stub: clamp(170px, 15vw, 220px); grid-template-columns: minmax(0, 1fr) var(--stub); align-items: stretch; }
+#openings .eo-ticket__body { gap: var(--s-2); padding: var(--s-5) var(--s-5) var(--s-5) 0; align-content: center; }
+#openings .eo-ticket__title { font-size: clamp(26px, 1.2vw + 14px, 34px); }
+#openings .eo-ticket__shift { font-size: 14px; }
+#openings .eo-ticket__go {
+  grid-column: 2; grid-row: 1; position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: var(--s-4);
+  padding: var(--s-5); background: var(--eo-cobalt); color: #fff; text-decoration: none;
+  border-left: 2px dashed var(--eo-paper);
+  font: 600 16px/1.3 var(--font-text); letter-spacing: 0.005em;
+}
+#openings .eo-ticket__go::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; background: var(--eo-night);
+  transform: scaleY(0); transform-origin: bottom; transition: transform 320ms cubic-bezier(.2,.7,.2,1);
+}
+#openings .eo-ticket__go:hover::before, #openings .eo-ticket__go:focus-visible::before { transform: none; }
+#openings .eo-ticket__go .m-arrow { width: 22px; height: 22px; align-self: flex-end; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; transition: transform 320ms cubic-bezier(.2,.7,.2,1); }
+#openings .eo-ticket__go:hover .m-arrow { transform: translateX(4px); }
+#openings .eo-ticket__go:focus-visible { outline: 2px solid var(--eo-night); outline-offset: 3px; }
+@media (max-width: 639px) {
+  #openings .eo-ticket { --stub: 132px; }
+  #openings .eo-ticket__go { padding: var(--s-4); font-size: 15px; }
+  #openings .eo-ticket__title { font-size: 24px; }
+}
+/* the two tickets share the column's height, so the spread has no empty half */
+#openings .eo-split__side > .eo-tickets { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+#openings .eo-ticket-list { flex: 1 1 auto; grid-auto-rows: minmax(0, 1fr); }
+#openings .eo-ticket__body { gap: var(--s-3); }
+#openings .eo-ticket__title { font-size: clamp(28px, 1.6vw + 12px, 40px); }
+#openings .eo-ticket__go { font-size: 17px; }
+#openings .eo-ticket__go .m-arrow { width: 28px; height: 28px; }
+@media (max-width: 1023px) { #openings .eo-ticket-list { grid-auto-rows: auto; } #openings .eo-ticket { min-height: 170px; } }
+#openings .eo-ticket__go > span { text-wrap: balance; max-width: 11ch; }
+#openings .eo-ticket__title { font-size: clamp(24px, 1vw + 16px, 34px); }
+
+/* ---- the close: the button under the line, on the left (client request) ---- */
+footer.closing .closing__cta.close--type > .btn--xl, footer.closing .closing__cta.close--type > .btn--xl:not(.btn--wide) { grid-column: 1 / -1; justify-self: start; align-self: start; }
+footer.closing .closing__cta .section-head { grid-column: 1 / -1; }
+footer.closing .closing__cta.close--type { row-gap: var(--s-5); }
+footer.closing .closing__cta.close--type { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-5); }
+footer.closing .closing__cta .section-head { width: 100%; }
+
+/* ---- the footer directory, as on the agency's original site ---- */
+.eo-foot { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-7); }
+.eo-foot__col { grid-column: span 2; display: flex; flex-direction: column; gap: var(--s-4); min-width: 0; }
+.eo-foot__col:first-child, .eo-foot__touch { grid-column: span 3; }
+.eo-foot__col h3 { font: 600 16px/1.3 var(--font-text); letter-spacing: 0; text-transform: none; color: #f4f1ea; }
+.eo-foot__col h3.eo-foot__then { margin-top: var(--s-5); }
+.eo-foot__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.eo-foot__col a { color: #c9cbe0; font-size: 15px; text-decoration: none; transition: color 200ms ease; }
+.eo-foot__col a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.eo-foot__address { color: #c9cbe0; font-size: 15px; line-height: 1.5; }
+.eo-foot__col a.eo-foot__phone { color: #fff; font-weight: 600; }
+.eo-foot__quick { padding-top: var(--s-5) !important; border-top: 1px solid rgb(244 241 234 / 0.14); }
+.eo-foot__quick a { color: #fff; font-weight: 600; }
+.eo-foot__base { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-5); margin-top: var(--s-7); padding-top: var(--s-6); border-top: 1px solid rgb(244 241 234 / 0.14); }
+.eo-foot__brand { display: inline-flex; align-items: center; gap: var(--s-4); color: #f4f1ea; text-decoration: none; }
+.eo-foot__brand img { width: 64px; height: auto; }
+.eo-foot__brand > span { display: grid; gap: 4px; }
+.eo-foot__name { font: 600 17px/1 var(--font-text); letter-spacing: 0.18em; text-transform: uppercase; }
+.eo-foot__tag { font: 500 12.5px/1.2 var(--font-text); letter-spacing: 0.06em; color: #c9cbe0; }
+.eo-foot__legal { display: grid; gap: 4px; text-align: right; font-size: 13px; color: #a7acc6; margin: 0; }
+@media (max-width: 1023px) {
+  .eo-foot__col, .eo-foot__col:first-child, .eo-foot__touch { grid-column: span 6; }
+}
+@media (max-width: 639px) {
+  .eo-foot { row-gap: var(--s-6); }
+  .eo-foot__col, .eo-foot__col:first-child, .eo-foot__touch { grid-column: 1 / -1; }
+  .eo-foot__base { flex-direction: column; align-items: flex-start; }
+  .eo-foot__legal { text-align: left; }
+}
+footer.closing .eo-foot__col h3 { font: 600 16px/1.3 var(--font-text); letter-spacing: 0; text-transform: none; color: #f4f1ea; }
+footer.closing .eo-foot__col ul { gap: 8px; }
+footer.closing .eo-foot__col { gap: 14px; }
+footer.closing .eo-foot__col h3.eo-foot__then { margin-top: var(--s-4); }
+footer.closing .eo-foot__quick { padding-top: var(--s-4) !important; }
+footer.closing .eo-foot__base { margin-top: var(--s-5); padding-top: var(--s-5); }
+@media (min-width: 1024px) { html footer.closing { --padt: 80px; } }
+@media (min-width: 1024px) { html footer.closing { --padt: 70px; } }
+/* the close: the call on two balanced lines, never running to the edge */
+footer.closing .closing__cta .section-head > h2 { max-width: 11ch; text-wrap: balance; }
+/* the two-line call still fits the footer's one screen */
+.closing__cta h2 { font-size: max(36px, min(90px, calc(clamp(52px, 8.4vw, 128px) - 25px))); }
+@media (min-width: 1024px) { html footer.closing { --padt: 56px; } }
+html footer.closing > .wrap { gap: var(--s-5); }
+footer.closing .closing__cta.close--type { gap: var(--s-4); }
+footer.closing .eo-foot__base { margin-top: var(--s-4); padding-top: var(--s-4); }
+footer.closing .eo-foot__col ul { gap: 5px; }
+footer.closing .eo-foot__col { gap: 12px; }
+footer.closing .eo-foot__quick { padding-top: var(--s-3) !important; }
+.closing__cta h2 { font-size: max(36px, min(84px, calc(clamp(52px, 8.4vw, 128px) - 25px))); }
+footer.closing .closing__links { width: 100%; align-self: stretch; }
+@media (max-width: 639px) {
+  .eo-foot__col, .eo-foot__col:first-child { grid-column: span 6; }
+  .eo-foot__touch { grid-column: 1 / -1; }
+  footer.closing .eo-foot__col a, .eo-foot__address { font-size: 14px; }
+  .eo-foot__touch > ul:first-of-type { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); }
+  .eo-foot__quick { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); }
+}
+
+/* ---- Careers: the shift tickets with their facts (same ticket as the home page) ---- */
+.eo-ticket__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-5); margin: var(--s-2) 0 0; }
+.eo-ticket__fact { display: grid; gap: 4px; min-width: 0; }
+.eo-ticket__fact--shift { grid-column: 1 / -1; }
+.eo-ticket__fact dt { font: 500 11.5px/1.3 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.eo-ticket__fact dd { margin: 0; font-size: 15px; line-height: 1.45; color: var(--eo-ink); }
+.eo-ticket__fact--pay dd { font-family: var(--font-display); font-size: 22px; line-height: 1.1; letter-spacing: -0.01em; }
+.eo-ticket-list--facts .eo-ticket { grid-template-columns: minmax(0, 1fr) clamp(150px, 13vw, 190px); }
+@media (max-width: 639px) {
+  .eo-ticket-list--facts .eo-ticket { grid-template-columns: minmax(0, 1fr) 120px; }
+}
+/* phone: the stub becomes a full-width bar under the ticket, torn off along its top */
+@media (max-width: 639px) {
+  #openings .eo-ticket, .eo-ticket-list--facts .eo-ticket { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; }
+  #openings .eo-ticket__body { padding: var(--s-4) 0; }
+  #openings .eo-ticket__go { grid-column: 1; grid-row: 2; flex-direction: row; align-items: center; justify-content: space-between; min-height: 52px; padding: var(--s-3) var(--s-4); border-left: 0; border-top: 2px dashed var(--eo-paper); }
+  #openings .eo-ticket__go > span { max-width: none; }
+  #openings .eo-ticket__go .m-arrow { width: 20px; height: 20px; align-self: center; }
+}
+@media (max-width: 639px) {
+  #openings .eo-ticket__go { height: 44px; min-height: 44px; padding: 0 var(--s-4); font-size: 16px; line-height: 1; }
+  html body main.eo-home .eo-tiles > .eo-photo { height: 460px; }
+}
+
+/* ---- Careers: the two shift tickets side by side, no photograph ---- */
+.eo-tickets--wide > .eo-ticket-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); align-items: stretch; }
+.eo-tickets--wide .eo-ticket { grid-auto-rows: auto; }
+.eo-tickets--wide .eo-ticket__body { align-content: start; }
+/* the facts as labelled rows (stronger than any list default) */
+.eo-ticket-list--facts .eo-ticket__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-5); margin: var(--s-3) 0 0; padding: 0; }
+.eo-ticket-list--facts .eo-ticket__fact { display: grid; gap: 4px; margin: 0; }
+.eo-ticket-list--facts .eo-ticket__fact--shift { grid-column: 1 / -1; }
+.eo-ticket-list--facts .eo-ticket__fact dt { font: 500 11.5px/1.3 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.eo-ticket-list--facts .eo-ticket__fact dd { margin: 0; padding: 0; font-size: 15px; line-height: 1.45; color: var(--eo-ink); }
+.eo-ticket-list--facts .eo-ticket__fact--pay dd { font-family: var(--font-display); font-size: 22px; line-height: 1.1; }
+@media (max-width: 1023px) { .eo-tickets--wide > .eo-ticket-list { grid-template-columns: minmax(0, 1fr); } }
+#openings .eo-tickets--wide .eo-ticket__body { align-content: start; padding-top: var(--s-5); }
+
+/* ============================================================================================
+   HEADER (as on the agency's original site): a thin top bar over the main bar
+   ============================================================================================ */
+:root { --topbar: 0px; }
+@media (min-width: 1024px) { :root { --nav: 88px; --topbar: 40px; } }
+header.nav.nav--eo {
+  height: calc(var(--nav) + var(--topbar)); display: flex; flex-direction: column;
+  background: #f8f6f1; backdrop-filter: none; border-bottom: 1px solid rgb(16 18 37 / 0.08);
+  transition: transform 300ms cubic-bezier(.2,.7,.2,1);
+}
+html.nav-compact header.nav.nav--eo { transform: translateY(calc(-1 * var(--topbar))); }
+.nav--eo .nav__top { height: var(--topbar); flex: none; overflow: hidden; }
+.nav--eo .nav__top-bar { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--s-6); }
+.nav--eo .nav__licensed { margin: 0; font-size: 13px; color: #5b5d6b; }
+.nav--eo .nav__quick { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 28px; }
+.nav--eo .nav__quick a { font-size: 13.5px; color: var(--eo-ink); text-decoration: none; }
+.nav--eo .nav__quick a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.nav--eo .nav__quick .nav__phone { font-weight: 700; }
+.nav--eo .nav__bar { height: var(--nav); flex: none; display: flex; align-items: center; gap: var(--s-6); }
+.nav--eo .nav__brand { display: inline-flex; align-items: center; gap: var(--s-4); text-decoration: none; }
+.nav--eo .nav__brand .logo-mark { height: 60px; width: auto; }
+.nav--eo .nav__brand-text { display: grid; gap: 5px; }
+.nav--eo .nav__name { font: 700 17px/1 var(--font-text); letter-spacing: 0.16em; text-transform: uppercase; color: #1a2a8a; }
+.nav--eo .nav__tag { font: 400 12.5px/1 var(--font-text); letter-spacing: 0.06em; color: #5b5d6b; }
+.nav--eo .nav__links { flex: 1 1 auto; justify-content: flex-end; align-self: stretch; gap: 4px; }
+.nav--eo .nav__link { font-size: 16px; font-weight: 500; color: var(--eo-ink); padding: 0 16px; }
+.nav--eo .nav__link[aria-current="page"] { text-decoration: none; }
+.nav--eo .nav__link[aria-current="page"]::after { content: ""; position: absolute; left: 16px; right: 16px; bottom: -2px; height: 2px; background: var(--eo-cobalt); }
+.nav--eo .nav__actions { margin-left: var(--s-4); }
+.nav--eo .nav__cta { height: 44px; padding: 0 var(--s-5); background: #101225; color: #fff; font-weight: 600; border-radius: 2px; }
+.nav--eo .nav__cta::before { background: var(--eo-cobalt); }
+.nav--eo .nav__cta:hover { color: #fff; }
+/* the first screen starts under both bars */
+@media (min-width: 1024px) {
+  main > :is(.hero, .section--hero) { padding-top: calc(var(--nav) + var(--topbar) + var(--photo, 0px) + var(--hgap)); }
+  html { scroll-padding-top: calc(var(--nav) + var(--s-5)); }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .nav--eo .nav__link { padding: 0 10px; font-size: 15px; }
+  .nav--eo .nav__brand .logo-mark { height: 48px; }
+  .nav--eo .nav__quick { gap: 18px; }
+}
+@media (max-width: 1023px) {
+  .nav--eo .nav__top { display: none; }
+  .nav--eo .nav__brand .logo-mark { height: 36px; }
+  .nav--eo .nav__name { font-size: 14px; letter-spacing: 0.12em; }
+  .nav--eo .nav__tag { font-size: 10.5px; }
+}
+@media (max-width: 639px) {
+  .nav--eo .nav__brand .logo-mark { height: 28px; }
+  .nav--eo .nav__brand { gap: 8px; }
+  .nav--eo .nav__name { font-size: 12.5px; letter-spacing: 0.1em; }
+  .nav--eo .nav__tag { display: none; }
+}
+/* header fit: a small laptop drops the tagline and tightens the words; a phone keeps the kit's small button */
+.nav--eo .nav__links { flex: 0 1 auto; margin-left: auto; }
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .nav--eo .nav__tag { display: none; }
+  .nav--eo .nav__name { font-size: 15px; letter-spacing: 0.12em; }
+  .nav--eo .nav__link { padding: 0 8px; font-size: 14.5px; }
+  .nav--eo .nav__link[aria-current="page"]::after { left: 8px; right: 8px; }
+  .nav--eo .nav__cta { padding: 0 var(--s-4); }
+  .nav--eo .nav__bar { gap: var(--s-4); }
+}
+@media (max-width: 1023px) {
+  .nav--eo .nav__cta { padding: 0 var(--s-3); font-size: 14px; }
+  .nav--eo .nav__actions { margin-left: auto; }
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .nav--eo .nav__brand .logo-mark { height: 40px; }
+  .nav--eo .nav__brand { gap: 10px; }
+  .nav--eo .nav__name { font-size: 13px; letter-spacing: 0.1em; }
+  .nav--eo .nav__link { padding: 0 7px; font-size: 14px; }
+  .nav--eo .nav__links { margin-left: var(--s-5); }
+}
+@media (max-width: 639px) {
+  .nav--eo .nav__bar { gap: 8px; }
+  .nav--eo .nav__brand .logo-mark { height: 24px; }
+  .nav--eo .nav__brand { gap: 6px; }
+  .nav--eo .nav__name { font-size: 11px; letter-spacing: 0.08em; white-space: nowrap; }
+  .nav--eo .nav__cta { padding: 0 10px; font-size: 13px; }
+}
+/* the brand: the logo link (mark and name) with the tagline set under the name, outside the link */
+.nav--eo .nav__brand { display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; column-gap: var(--s-4); row-gap: 5px; align-items: center; }
+.nav--eo .nav__brand > .nav__logo { display: contents; }
+.nav--eo .nav__brand .logo-mark { grid-row: 1 / span 2; grid-column: 1; }
+.nav--eo .nav__name { grid-column: 2; grid-row: 1; align-self: end; }
+.nav--eo .nav__tag { grid-column: 2; grid-row: 2; align-self: start; }
+@media (min-width: 1024px) and (max-width: 1279px) { .nav--eo .nav__name { grid-row: 1 / span 2; align-self: center; } }
+@media (max-width: 1023px) { .nav--eo .nav__brand { column-gap: 8px; } .nav--eo .nav__tag { display: none; } .nav--eo .nav__name { grid-row: 1 / span 2; align-self: center; } }
+@media (max-width: 359px) { .nav--eo .nav__name { display: none; } }
+
+/* ---- #settings: the photographs as a slideshow (client request), the list right under its lead ---- */
+#settings .eo-split__side > .eo-list { margin-top: 0; }
+.eo-slides { position: relative; overflow: hidden; background: var(--surface); flex: 1 1 auto; min-height: 0; }
+.eo-slides > .eo-slide { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: 0; transition: opacity 900ms ease; }
+.eo-slides > .eo-slide.is-on { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .eo-slides > .eo-slide.is-on { animation: eo-drift 3600ms linear both; }
+}
+@keyframes eo-drift { from { transform: scale(1.08); } to { transform: scale(1); } }
+/* the pause button: a small round control on the photograph's square corner */
+.eo-slides__pause {
+  position: absolute; z-index: 2; left: 16px; bottom: 16px; width: 44px; height: 44px; border-radius: 50%; border: 0;
+  display: grid; place-items: center; background: rgb(11 16 48 / 0.72); color: #fff; cursor: pointer;
+}
+.eo-slides__pause:hover { background: var(--eo-cobalt); }
+.eo-slides__pause svg { width: 14px; height: 14px; fill: currentColor; }
+.eo-slides__pause .eo-slides__icon-play { display: none; }
+.eo-slides__pause[aria-pressed="true"] .eo-slides__icon-play { display: inline; }
+.eo-slides__pause[aria-pressed="true"] .eo-slides__icon-pause { display: none; }
+.eo-slides__pause:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+/* the row on show: a line under it fills over the 3 seconds */
+#settings .eo-list > li::before { display: block !important; content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--eo-cobalt); transform: scaleX(0); transform-origin: left; opacity: 1; width: auto; top: auto; }
+#settings .eo-list > li.is-on::before { transform: scaleX(1); }
+#settings .eo-list > li.is-run::before { animation: eo-fill 3000ms linear both; }
+@keyframes eo-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { #settings .eo-list > li.is-run::before { animation: none; } }
+
+/* ---- #roles: the cards with their names only, capitalised (client request) ---- */
+.eo-role-card.card { display: flex; flex-direction: column; gap: var(--s-2); }
+.eo-role-card.card > .eo-role-card__name { text-transform: capitalize; margin-top: 0; }
+#settings .eo-split__side { gap: var(--s-6); justify-content: flex-start; }
+#settings .eo-split__side > .eo-list { margin-top: 0 !important; }
+#settings .eo-list > li { padding-block: 18px; }
+#settings .eo-list > li:first-child { padding-top: 0; }
+
+/* ---- #steps: three cards on the night ground (client reference), no numbers ---- */
+.eo-step-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); flex: 1 1 auto; min-height: 0; }
+.eo-step-card.card {
+  --c: 22px; position: relative; display: flex; flex-direction: column; gap: 10px; min-height: 0; padding: 0 0 clamp(20px, 2vw, 28px);
+  background: #fffdf8; color: var(--eo-ink); border: 0; border-radius: 0; box-shadow: none;
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+}
+.eo-step-card.card:hover { transform: none; box-shadow: none; }
+.eo-step-card__media { position: relative; flex: 1 1 0; min-height: 170px; overflow: hidden; background: var(--eo-paper-2); margin-bottom: 18px; }
+.eo-step-card__media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) {
+  .eo-step-card__media > img { transition: transform 900ms cubic-bezier(.2,.7,.2,1); }
+  .eo-step-card:hover .eo-step-card__media > img { transform: scale(1.03); }
+}
+.eo-step-card__icon {
+  position: absolute; left: clamp(20px, 2vw, 28px); width: 52px; height: 52px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--eo-cobalt); color: #fff; box-shadow: 0 0 0 5px #fffdf8;
+  top: auto; margin-top: -44px; position: relative; flex: none;
+}
+.eo-step-card__icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.eo-step-card.card > .eo-step-card__title, .eo-step-card.card > .eo-step-card__body { padding-inline: clamp(20px, 2vw, 28px); }
+.eo-step-card.card > .eo-step-card__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 1vw + 16px, 34px); line-height: 1.1; letter-spacing: -0.015em; color: var(--eo-ink); }
+.eo-step-card.card > .eo-step-card__body { font-size: 15px; line-height: 1.55; color: var(--eo-ink-soft); max-width: 36ch; }
+@media (max-width: 1023px) {
+  .eo-step-cards { grid-template-columns: minmax(0, 1fr); }
+  .eo-step-card__media { flex: none; height: clamp(200px, 40vw, 300px); }
+}
+@media (min-width: 1024px) { .eo-step-card__media { flex: none; height: clamp(240px, 24vw, 340px); } }
+@media (min-width: 1024px) { .eo-step-card__media { height: clamp(240px, 29vw, 420px); } .eo-step-cards { align-items: start; } }
+@media (min-width: 1024px) { .eo-step-cards { align-items: stretch; align-content: start; grid-auto-rows: auto; } }
+
+/* ---- Employers #how: two tabs, three numbered step cards (client screenshot, in the site's system) ---- */
+.eo-how__tabs { display: inline-flex; gap: 0; padding: 4px; background: #fffdf8; box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.14); margin-bottom: var(--s-6); }
+.eo-how__tab {
+  height: 44px; padding: 0 var(--s-5); border: 0; border-radius: 2px; background: transparent; color: var(--eo-ink);
+  font: 600 15px/1 var(--font-text); cursor: pointer; transition: background-color 200ms ease, color 200ms ease;
+}
+.eo-how__tab:hover { background: var(--eo-paper-2); }
+.eo-how__tab[aria-selected="true"] { background: var(--eo-cobalt); color: #fff; }
+.eo-how__tab:focus-visible { outline: 2px solid var(--eo-cobalt); outline-offset: 2px; }
+.eo-how__cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); }
+.eo-how__card.card {
+  --c: 22px; display: flex; flex-direction: column; gap: var(--s-3); padding: clamp(24px, 2.4vw, 36px);
+  background: #fffdf8; border: 0; border-radius: 0; box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12);
+  clip-path: polygon(var(--c) 0, 100% 0, 100% calc(100% - var(--c)), calc(100% - var(--c)) 100%, 0 100%, 0 var(--c));
+}
+.eo-how__card.card:hover { transform: none; box-shadow: inset 0 0 0 1px rgb(16 18 37 / 0.12), inset 0 3px 0 var(--eo-cobalt); }
+.eo-how__num { font-family: var(--font-display); font-size: clamp(40px, 2vw + 20px, 56px); line-height: 1; color: rgb(16 18 37 / 0.22); margin-bottom: var(--s-4); }
+.eo-how__card.card > .eo-how__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 0.8vw + 14px, 28px); line-height: 1.15; letter-spacing: -0.01em; }
+.eo-how__card.card > .eo-how__body { font-size: 15px; line-height: 1.55; color: var(--eo-ink-soft); }
+@media (max-width: 1023px) { .eo-how__cards { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 639px) { .eo-how__tabs { display: flex; } .eo-how__tab { flex: 1 1 0; padding: 0 var(--s-3); } }
+@media (min-width: 640px) { .eo-how__tabs { align-self: flex-start; width: fit-content; } }
+
+/* ---- header dropdowns: each word's pages, on hover or keyboard focus ---- */
+.nav--eo .eo-drop-item { position: relative; }
+.nav--eo .eo-drop__chev { width: 12px; height: 12px; margin-left: 4px; transition: transform 200ms ease; }
+.nav--eo .eo-drop {
+  position: absolute; top: calc(100% - 14px); left: 4px; z-index: 60; min-width: 250px; list-style: none; margin: 0; padding: 8px;
+  background: #fffdf8; box-shadow: 0 0 0 1px rgb(16 18 37 / 0.1), 0 18px 40px rgb(16 18 37 / 0.14); border-top: 3px solid var(--eo-cobalt);
+  opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity 180ms ease, transform 180ms ease, visibility 0s 180ms;
+}
+.nav--eo .eo-drop a { display: flex; align-items: center; min-height: 44px; padding: 0 14px; font: 500 15px/1.3 var(--font-text); color: var(--eo-ink); text-decoration: none; border-radius: 2px; }
+.nav--eo .eo-drop a:hover, .nav--eo .eo-drop a:focus-visible { background: var(--eo-paper-2); color: var(--eo-cobalt); }
+@media (min-width: 1024px) {
+  .nav--eo .eo-drop-item:is(:hover, :focus-within) > .eo-drop { opacity: 1; visibility: visible; transform: none; transition: opacity 180ms ease, transform 180ms ease, visibility 0s; }
+  .nav--eo .eo-drop-item:is(:hover, :focus-within) .eo-drop__chev { transform: rotate(180deg); }
+  .nav--eo .eo-drop-item:last-child > .eo-drop { left: auto; right: 4px; }
+}
+/* tablet and phone: the dropdowns show as indented lists inside the menu sheet */
+@media (max-width: 1023px) {
+  .nav--eo .eo-drop__chev { display: none; }
+  .nav--eo .eo-drop { display: none; }
+  .nav.nav--eo.is-open .eo-drop { display: block; position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border-top: 0; background: none; padding: 0 0 var(--s-3) var(--s-4); min-width: 0; }
+  .nav.nav--eo.is-open .eo-drop a { font-size: 16px; color: var(--eo-ink-soft); }
+  .nav.nav--eo.is-open .eo-drop-item { display: block; height: auto; }
+}
+
+/* ---- the All roles page: the role cards four across ---- */
+.eo-role-cards--wide { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: auto; flex: none; }
+.eo-role-cards--wide .eo-role-card.card { min-height: 170px; }
+@media (max-width: 1023px) { .eo-role-cards--wide { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 639px) { .eo-role-cards--wide { grid-template-columns: minmax(0, 1fr); } }
+.nav--eo .eo-drop { min-width: 0; width: max-content; }
+.nav--eo .eo-drop a { white-space: nowrap; }
+
+/* ---------- Registered nurses: the original page's numbered duties, settings and role links ---------- */
+.eo-intro { font-size: clamp(18px, 0.4vw + 15px, 22px); line-height: 1.55; max-width: 62ch; margin: 0 0 clamp(24px, 3vw, 40px); }
+.eo-duties { list-style: none; margin: 0; padding: 0; counter-reset: eo-duty; border-top: 1px solid var(--line); }
+.eo-duties > li {
+  counter-increment: eo-duty; display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: baseline;
+  padding: 28px 0; border-bottom: 1px solid var(--line); font-size: 18px; line-height: 1.75;
+}
+.eo-duties > li::before {
+  content: counter(eo-duty, decimal-leading-zero);
+  font: 400 clamp(24px, 1vw + 16px, 30px)/1 var(--font-display); color: color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.eo-places { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+.eo-places > li {
+  padding: 14px 22px; border: 1px solid var(--line); font-size: 18px; line-height: 1.3;
+}
+.eo-places--links > li { padding: 0; }
+.eo-places--links a { display: block; padding: 14px 22px; color: inherit; text-decoration: none; transition: background-color .2s, color .2s; }
+.eo-places--links a:hover, .eo-places--links a:focus-visible { background: var(--accent); color: #fff; }
+.eo-how__cards--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.eo-how__cards--two .btn { width: auto; align-self: flex-start; justify-self: start; margin-top: 8px; }
+main #next { padding-bottom: 0; }
+@media (max-width: 1023px) { .eo-how__cards--two { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- All roles we place (/services/roles/): the original /services page in the site's system ---------- */
+.eo-eyebrow { font: 500 12px/1.4 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent, var(--eo-cobalt)); margin: 0 0 12px; }
+.tone-night .eo-eyebrow { color: #9fb0ff; }
+.eo-how__cards--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1279px) { .eo-how__cards--four { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 639px) { .eo-how__cards--four { grid-template-columns: minmax(0, 1fr); } }
+.eo-how__card.card > h2.eo-how__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(26px, 1vw + 16px, 34px); line-height: 1.15; letter-spacing: -0.01em; }
+
+.eo-rolepick { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 96px); align-items: start; }
+.eo-rolepick__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgb(255 255 255 / 0.16); }
+.eo-rolepick__list > li { border-bottom: 1px solid rgb(255 255 255 / 0.16); }
+.eo-rolepick__list button {
+  display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 18px 0; border: 0; background: none; color: rgb(255 255 255 / 0.55); text-align: left; cursor: pointer;
+  transition: color 250ms ease, padding 250ms ease;
+}
+.eo-rolepick__list button:hover, .eo-rolepick__list button[aria-pressed="true"] { color: #fff; }
+.eo-rolepick__list button[aria-pressed="true"] { padding-left: 14px; box-shadow: inset 3px 0 0 var(--eo-cobalt); }
+.eo-rolepick__list button:focus-visible { outline: 2px solid #9fb0ff; outline-offset: 2px; }
+.eo-rolepick__name { font-family: var(--font-display); font-size: clamp(22px, 1.2vw + 12px, 30px); line-height: 1.15; }
+.eo-rolepick__short {
+  flex: none; padding: 5px 12px; border: 1px solid currentColor; border-radius: 999px;
+  font: 600 11px/1 var(--font-mono); letter-spacing: 0.12em;
+}
+.eo-rolepick__list button[aria-pressed="true"] .eo-rolepick__short { background: var(--eo-cobalt); border-color: var(--eo-cobalt); color: #fff; }
+.eo-rolepick__cards { display: grid; gap: var(--gutter); }
+@media (min-width: 1024px) { .rolepick-on .eo-rolepick__cards { position: sticky; top: calc(var(--nav, 88px) + 32px); } }
+.eo-rolepick__card.card { color: var(--eo-ink); gap: var(--s-3); }
+.eo-rolepick__card.card .eo-eyebrow { color: var(--eo-cobalt); margin: 0; }
+.eo-rolepick__card.card > .eo-how__title { font-size: clamp(30px, 1.6vw + 16px, 44px); }
+.eo-rolepick__card.card > .eo-how__body { font-size: 18px; }
+.eo-rolepick__card.card > .eo-rolepick__label { margin-top: var(--s-4); color: var(--eo-ink-soft); }
+.eo-places--small > li { padding: 9px 14px; font-size: 15px; }
+.eo-rolepick__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--s-4); }
+.eo-rolepick__card[hidden] { display: none; }
+@media (max-width: 1023px) { .eo-rolepick { grid-template-columns: minmax(0, 1fr); } }
+/* the role card sits on the night section but reads as paper: reset the tone's words, lines and buttons */
+.tone-night .eo-rolepick__card.card {
+  --ink: var(--eo-ink); --ink-soft: var(--eo-ink-soft); --muted: var(--eo-ink-soft);
+  --line: rgb(16 18 37 / 0.14); --line-strong: rgb(16 18 37 / 0.32);
+  --accent: var(--eo-cobalt); --action: var(--eo-cobalt); --action-ink: #fff;
+  color: var(--eo-ink);
+}
+.tone-night .eo-rolepick__card.card > .eo-how__title { color: var(--eo-ink); }
+.tone-night .eo-rolepick__card .btn--primary { background: var(--eo-cobalt); color: #fff; border-color: var(--eo-cobalt); }
+.tone-night .eo-rolepick__card .btn--secondary { color: var(--eo-ink); border-color: rgb(16 18 37 / 0.32); }
+.tone-night .eo-rolepick__card .btn--secondary:hover { border-color: var(--eo-ink); }
+.eo-how__card.card > h2.eo-how__title::before { display: none; }
+main #audiences { padding-bottom: 0; }
+
+/* ---------- FAQ accordion (/services/roles/): a question opens its answer; a plus turns to a minus ---------- */
+.eo-accordion { border-top: 1px solid var(--line); }
+.eo-accordion__item { border-bottom: 1px solid var(--line); }
+.eo-accordion__item > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 26px 0; cursor: pointer; list-style: none;
+}
+.eo-accordion__item > summary::-webkit-details-marker { display: none; }
+.eo-accordion__item > summary:focus-visible { outline: 2px solid var(--eo-cobalt); outline-offset: 4px; }
+.eo-accordion .eo-accordion__q { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: clamp(22px, 1vw + 14px, 28px); line-height: 1.2; letter-spacing: -0.01em; transition: color 200ms ease; }
+.eo-accordion__q::before { display: none !important; }
+.eo-accordion__item > summary:hover .eo-accordion__q { color: var(--eo-cobalt); }
+.eo-accordion__icon { position: relative; flex: none; width: 40px; height: 40px; border: 1px solid var(--line-strong); border-radius: 50%; transition: background-color 200ms ease, border-color 200ms ease; }
+.eo-accordion__icon::before, .eo-accordion__icon::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 1.5px; background: currentColor;
+  transform: translate(-50%, -50%); transition: transform 250ms ease;
+}
+.eo-accordion__icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+.eo-accordion__item[open] .eo-accordion__icon { background: var(--eo-cobalt); border-color: var(--eo-cobalt); color: #fff; }
+.eo-accordion__item[open] .eo-accordion__icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+.eo-accordion .eo-accordion__a { margin: 0; padding: 0 64px 28px 0; max-width: 72ch; font-size: 17px; line-height: 1.65; color: var(--ink-soft, var(--ink)); }
+@media (prefers-reduced-motion: no-preference) {
+  .eo-accordion__item[open] .eo-accordion__a { animation: eo-acc-in 300ms ease both; }
+}
+@keyframes eo-acc-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+/* Request staff: the "What to expect" list beside the form, and the required-field star */
+.eo-duties--tight > li { padding: 20px 0; font-size: 17px; line-height: 1.6; grid-template-columns: 60px minmax(0, 1fr); }
+.field__star { color: var(--eo-cobalt); }
+
+/* ---------- About (/about/): the original page's copy in the site's system ---------- */
+.tone-cobalt .eo-eyebrow { color: #fff; opacity: 0.8; }
+.eo-about__side { display: grid; gap: clamp(28px, 3vw, 44px); align-content: start; }
+.eo-people { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); }
+.eo-people > li { display: flex; align-items: center; gap: 16px; }
+.eo-people__avatar {
+  flex: none; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%;
+  background: var(--eo-cobalt); color: #fff; font: 600 15px/1 var(--font-mono); letter-spacing: 0.08em;
+}
+.eo-people__avatar--lg { width: 72px; height: 72px; font-size: 18px; margin-bottom: var(--s-2); }
+.eo-people__name { display: block; font-family: var(--font-display); font-size: clamp(22px, 0.8vw + 14px, 28px); line-height: 1.15; }
+.eo-people__title { display: block; margin-top: 4px; font-size: 15px; color: var(--muted); }
+.eo-points { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--gutter); border-top: 1px solid var(--line); }
+.eo-points > div { padding: 22px 0; border-bottom: 1px solid var(--line); }
+.eo-points dt { font-weight: 600; font-size: 17px; margin-bottom: 6px; }
+.eo-points dd { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
+.eo-statement__license { font-weight: 600; font-size: 18px; }
+.eo-statement__mission { margin: 0; font-family: var(--font-display); font-size: clamp(30px, 2.4vw + 12px, 52px); line-height: 1.12; letter-spacing: -0.015em; }
+.eo-tile__num { display: block; font-family: var(--font-display); font-size: 28px; line-height: 1; color: color-mix(in srgb, var(--ink) 35%, transparent); margin-bottom: 8px; }
+.eo-leader.card { align-items: flex-start; }
+@media (max-width: 639px) { .eo-people, .eo-points { grid-template-columns: minmax(0, 1fr); } }
+#work .tile__head:has(.eo-tile__num) { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 4px; }
+main #work { padding-bottom: 0; }
+
+/* ============================================================================================
+   Client round, 26 Nov: header swap, Portal sign-in, the credential statement, the footer
+   ============================================================================================ */
+/* the top bar's licence line in capitals; the main bar's button is Request Staff, in the brand cobalt */
+.nav--eo .nav__licensed { text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px; font-weight: 600; }
+.nav--eo .nav__cta { background: var(--eo-cobalt); }
+.nav--eo .nav__cta::before { background: #101225; }
+/* Portal sits in the phone menu after the five words (the top bar is hidden there) */
+@media (min-width: 1024px) { .nav--eo .nav__portal-m { display: none !important; } }
+
+/* the credential statement: larger words, centred in the column so no empty block sits under them */
+.eo-promise__text { justify-content: center; }
+.eo-promise .mo-wh__text { font-size: clamp(36px, 3.4vw + 16px, 84px); line-height: 1.03; max-width: none; }
+@media (max-width: 1023px) {
+  html body main.eo-home #checks { min-height: 0; }
+  .eo-promise .mo-wh__text { font-size: clamp(34px, 5.6vw + 8px, 56px); }
+}
+@media (max-width: 639px) {
+  .eo-promise .mo-wh__text { font-size: clamp(30px, 8.4vw, 40px); line-height: 1.06; }
+  html body main.eo-home #checks { --hm: 1; }
+}
+
+/* the footer directory, spaced as the client's reference: five columns, airy link rows */
+footer.closing .eo-foot { grid-template-columns: minmax(0, 1.12fr) repeat(3, minmax(0, 1fr)) minmax(0, 1.12fr); column-gap: clamp(24px, 3vw, 48px); row-gap: var(--s-7); }
+footer.closing .eo-foot__col, footer.closing .eo-foot__col:first-child, footer.closing .eo-foot__touch { grid-column: auto; gap: 22px; }
+footer.closing .eo-foot__col h3 { font-size: 17px; }
+footer.closing .eo-foot__col ul { gap: 13px; }
+footer.closing .eo-foot__col a, footer.closing .eo-foot__address { font-size: 15.5px; line-height: 1.5; }
+footer.closing .eo-foot__col h3.eo-foot__then { margin-top: 26px; }
+.eo-foot__address { display: grid; }
+footer.closing .eo-foot__touch > ul:first-of-type { gap: 10px; }
+footer.closing .eo-foot__quick { margin-top: 10px; padding-top: 26px !important; gap: 13px; }
+footer.closing .eo-foot__base { margin-top: var(--s-7); padding-top: 28px; }
+.eo-foot__legal { gap: 6px; font-size: 13.5px; }
+.eo-foot__legal > span:first-child { text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; color: #c9cbe0; }
+@media (max-width: 1023px) {
+  footer.closing .eo-foot { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: var(--s-6); }
+  footer.closing .eo-foot__touch { grid-column: 1 / -1; }
+}
+@media (max-width: 639px) {
+  footer.closing .eo-foot { column-gap: var(--s-5); row-gap: var(--s-6); }
+  footer.closing .eo-foot__col { gap: 16px; }
+  footer.closing .eo-foot__col ul { gap: 11px; }
+  footer.closing .eo-foot__col a, footer.closing .eo-foot__address { font-size: 15px; }
+  footer.closing .eo-foot__touch > ul:first-of-type { display: grid; grid-template-columns: minmax(0, 1fr); }
+  footer.closing .eo-foot__quick { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-5); }
+}
+
+/* the Portal sign-in page */
+.eo-signin .wrap.grid { align-items: center; }
+.eo-signin__head h1 { font-size: max(36px, calc(clamp(48px, min(7.6vw, 13svh), 124px) - 25px)); line-height: 1.02; margin: 0; }
+.eo-signin__help a { color: var(--eo-cobalt); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.eo-signin__panel .form { grid-template-columns: minmax(0, 1fr); }
+.eo-signin__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-3) var(--s-5); font-size: 15px; }
+.eo-signin__check { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; }
+.eo-signin__check input { width: 18px; height: 18px; accent-color: var(--eo-cobalt); margin: 0; }
+.eo-signin__submit { width: 100%; justify-content: center; }
+@media (max-width: 1023px) { .eo-signin .form-panel { grid-column: 1 / -1; margin-top: var(--s-6); } .eo-signin__head { grid-column: 1 / -1; } }
+footer.closing .eo-foot__col, footer.closing .eo-foot__col:first-child, footer.closing .eo-foot__touch { gap: 16px; }
+.eo-foot__address > span { display: block; }
+@media (max-width: 639px) {
+  footer.closing .eo-foot__col ul, footer.closing .eo-foot__touch > ul:first-of-type, footer.closing .eo-foot__quick { row-gap: 0; }
+  footer.closing .eo-foot__col { gap: 8px; }
+  footer.closing .eo-foot__address { padding-block: 6px; }
+}
+.eo-signin .eo-signin__check { font: 400 15px/1.3 var(--font-text); letter-spacing: 0; text-transform: none; color: var(--eo-ink); }
+footer.closing .eo-foot__address { display: flex !important; flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start; }
+footer.closing .eo-foot__col h3 { margin: 0; }
+@media (max-width: 639px) {
+  footer.closing .eo-foot__base { margin-top: var(--s-5); padding-top: var(--s-5); }
+  footer.closing .closing__links { gap: var(--s-5); }
+}
+
+/* ---- the footer directory spaced as the client's reference (26 Nov); the close, colours and
+   ground stay as before ---- */
+footer.closing .eo-foot__base { margin-top: 56px; padding-top: 24px; }
+@media (max-width: 639px) { footer.closing .eo-foot__base { margin-top: var(--s-6); padding-top: var(--s-5); } }
+/* the client's hospital photograph: keep the doctor and the patient's face in the tall panel */
+.eo-slides > .eo-slide[data-subject="Hospitals"] { object-position: 34% 50%; }
+@media (max-width: 639px) { .eo-slides > .eo-slide[data-subject="Hospitals"] { object-position: 20% 50%; } }
+/* the directory keeps the reference's own gaps: no stretched space between the links and the base row */
+footer.closing .closing__links { display: block; flex: none; }
+/* the directory's rhythm, scaled from the client's reference: a wider gap under each heading, the
+   address set apart from the phone, more air over the quick links and over the base row */
+footer.closing .eo-foot__col, footer.closing .eo-foot__col:first-child, footer.closing .eo-foot__touch { gap: 26px; }
+footer.closing .eo-foot__touch > ul:first-of-type > li.eo-foot__address { margin-bottom: 6px; }
+footer.closing .eo-foot__quick { margin-top: 6px; padding-top: 30px !important; }
+footer.closing .eo-foot__base { margin-top: 64px; }
+@media (max-width: 639px) {
+  footer.closing .eo-foot__col, footer.closing .eo-foot__col:first-child, footer.closing .eo-foot__touch { gap: 14px; }
+  footer.closing .eo-foot__base { margin-top: var(--s-6); }
+}
+/* the footer keeps the page's column, so its button lines up under the header's Request staff (client, 26 Nov) */
+/* the close's button on its own row under the phone line, at the footer's right edge (client, 26 Nov) */
+@media (min-width: 640px) {
+  html footer.closing .closing__cta.close--type > .btn--xl, html footer.closing .closing__cta.close--type > .btn--xl:not(.btn--wide) { align-self: flex-end; justify-self: end; }
+}
+/* the close's button beside the heading, level with its last line, so no empty row sits under the
+   phone line (client, 26 Nov) */
+@media (min-width: 640px) {
+  html footer.closing .closing__cta.close--type { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--s-6); row-gap: 0; align-items: end; }
+  html footer.closing .closing__cta.close--type > .section-head { display: contents; }
+  html footer.closing .closing__cta .section-head > h2 { grid-column: 1; grid-row: 1; }
+  html footer.closing .closing__cta .section-head > p { grid-column: 1; grid-row: 2; margin-top: var(--s-4); }
+  html footer.closing .closing__cta.close--type > .btn--xl, html footer.closing .closing__cta.close--type > .btn--xl:not(.btn--wide) { grid-column: 2; grid-row: 1; align-self: end; justify-self: end; margin-bottom: 0.6em; }
+}
+/* the licence line in title case, not capitals (client, 26 Nov) */
+.nav--eo .nav__licensed, .eo-foot__legal > span:first-child { text-transform: none; letter-spacing: 0; }
+.nav--eo .nav__licensed { font-size: 13px; font-weight: 500; }
+.eo-foot__legal > span:first-child { font-size: 13.5px; }
+
+/* ---- home on a phone (client, 26 Nov): no hero photograph and a larger headline; each section only
+   as tall as its content; the step cards no taller than their words; no photographs beside the open
+   jobs ---- */
+@media (max-width: 639px) {
+  html body main.eo-home .eo-dark { --photo: 0px; }
+  html body main.eo-home .eo-dark__media { display: none; }
+  html body main.eo-home .eo-dark .eo-dark__title { font-size: clamp(54px, 17vw, 84px); line-height: 0.98; }
+  html body main.eo-home .eo-dark__text { justify-content: space-between; }
+  html body main.eo-home > section.section:not(.hero) { min-height: 0; --padt: 64px; --padb: 56px; }
+  html body main.eo-home .eo-split__tall, html body main.eo-home .eo-services__photo { flex: none; }
+  html body main.eo-home .eo-step-cards { grid-auto-rows: auto; align-items: start; flex: none; }
+  html body main.eo-home .eo-step-card.card { height: auto; padding-bottom: var(--s-5); }
+  html body main.eo-home #openings .eo-tiles { display: none; }
+}
+@media (max-width: 639px) {
+  html body main.eo-home > section.section:not(.hero), html body main.eo-home > section.section:not(.hero) > .wrap { height: auto !important; max-height: none !important; }
+  html body main.eo-home .eo-dark.hero { min-height: 0; height: auto; --padb: 56px; }
+  html body main.eo-home .eo-dark__text { height: auto; justify-content: flex-start; gap: var(--s-7); }
+}
+@media (max-width: 639px) {
+  html body main.eo-home #steps .eo-step-cards { flex: none; min-height: auto; }
+}
+@media (max-width: 639px) {
+  /* the roles photograph is hidden on a phone too (client, 26 Nov) */
+  html body main.eo-home #roles .eo-services__photo { display: none; }
+}
+@media (max-width: 639px) {
+  /* the hero photograph as the hero's background, under a dark overlay (client, 26 Nov) */
+  html body main.eo-home .eo-dark.hero {
+    background-color: var(--eo-night);
+    background-image: linear-gradient(180deg, rgb(10 12 36 / 0.66) 0%, rgb(10 12 36 / 0.58) 45%, rgb(10 12 36 / 0.84) 100%), var(--hero-bg);
+    background-size: cover; background-position: 46% 30%; background-repeat: no-repeat;
+  }
+  html body main.eo-home .eo-dark__media { display: none !important; }
+}
+
+/* ============================================================================================
+   PHONE MENU (below 1024px, client reference, 26 Nov): a card over the page, the logo and a cross,
+   the five words as an accordion with their pages, Portal, then Request staff and the phone
+   ============================================================================================ */
+.eo-mnav__open, .eo-mnav { display: none; }
+@media (max-width: 1023px) {
+  .nav--eo .nav__toggle { display: none !important; }
+  .eo-mnav__open {
+    display: inline-grid; place-items: center; flex: none; width: 44px; height: 44px; margin-left: var(--s-2);
+    border: 1px solid rgb(16 18 37 / 0.18); border-radius: 4px; background: transparent; color: var(--eo-ink); cursor: pointer;
+  }
+  .eo-mnav:not([hidden]) {
+    display: block; position: fixed; inset: 0; z-index: 1000; padding: 6px;
+    background: rgb(10 12 36 / 0.45);
+  }
+  html.eo-mnav-on, html.eo-mnav-on body { overflow: hidden; }
+  .eo-mnav__panel {
+    height: 100%; display: flex; flex-direction: column; overflow-y: auto; overscroll-behavior: contain;
+    background: #f8f6f1; color: var(--eo-ink); border-radius: 12px; padding: 18px 24px 24px;
+    box-shadow: 0 20px 60px rgb(10 12 36 / 0.35);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .eo-mnav:not([hidden]) .eo-mnav__panel { animation: eo-mnav-in 260ms cubic-bezier(.2,.7,.2,1) both; }
+  }
+  .eo-mnav__head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); padding-bottom: 28px; }
+  .eo-mnav__logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+  .eo-mnav__logo img { height: 48px; width: auto; }
+  .eo-mnav__logo > span { display: grid; gap: 5px; }
+  .eo-mnav__name { font: 700 17px/1 var(--font-text); letter-spacing: 0.16em; text-transform: uppercase; color: #1a2a8a; }
+  .eo-mnav__tag { font: 400 11.5px/1 var(--font-text); letter-spacing: 0.06em; color: #5b5d6b; }
+  .eo-mnav__close { display: grid; place-items: center; width: 44px; height: 44px; margin-right: -10px; border: 0; background: none; color: var(--eo-ink); cursor: pointer; }
+  .eo-mnav__list { display: flex; flex-direction: column; }
+  .eo-mnav__group { border-bottom: 1px solid rgb(16 18 37 / 0.1); }
+  .eo-mnav__group summary {
+    list-style: none; display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+    min-height: 66px; cursor: pointer; font: 600 21px/1.2 var(--font-text); letter-spacing: -0.005em; color: var(--eo-ink);
+  }
+  .eo-mnav__group summary::-webkit-details-marker { display: none; }
+  .eo-mnav__group summary:focus-visible { outline: 2px solid var(--eo-cobalt); outline-offset: 2px; }
+  .eo-mnav__plus { position: relative; width: 14px; height: 14px; flex: none; }
+  .eo-mnav__plus::before, .eo-mnav__plus::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: currentColor; border-radius: 1px; transition: transform 200ms ease; }
+  .eo-mnav__plus::after { transform: rotate(90deg); }
+  .eo-mnav__group[open] .eo-mnav__plus::after { transform: rotate(0deg); }
+  .eo-mnav__group[open] summary { color: var(--eo-cobalt); min-height: 58px; }
+  .eo-mnav__group ul { list-style: none; margin: 0; padding: 2px 0 20px; display: grid; gap: 4px; }
+  .eo-mnav__group ul a { display: block; padding: 7px 0; font: 400 17px/1.3 var(--font-display); letter-spacing: 0; color: #5b5d6b; text-decoration: none; }
+  .eo-mnav__group ul a:hover, .eo-mnav__group ul a:focus-visible { color: var(--eo-cobalt); }
+  .eo-mnav__row { display: flex; align-items: center; min-height: 66px; border-bottom: 1px solid rgb(16 18 37 / 0.1); font: 600 21px/1.2 var(--font-text); color: var(--eo-ink); text-decoration: none; }
+  .eo-mnav__actions { margin-top: auto; padding-top: 32px; display: grid; gap: 12px; }
+  .eo-mnav__btn { display: flex; align-items: center; justify-content: center; height: 52px; border-radius: 2px; font: 600 16px/1 var(--font-text); text-decoration: none; }
+  .eo-mnav__btn--primary { background: var(--eo-cobalt); color: #fff; }
+  .eo-mnav__btn--primary:hover { background: #1b2bb8; }
+  .eo-mnav__btn--line { border: 1px solid var(--eo-ink); color: var(--eo-ink); font-weight: 500; }
+}
+@keyframes eo-mnav-in { from { opacity: 0; transform: translateY(-8px) scale(0.985); } to { opacity: 1; transform: none; } }
+
+/* ---- type scale on a phone (client, 26 Nov): one clear step from section heading to lead to item.
+   Section h2 36px, lead 16px, list and card names 21-22px, body 15px; the heading block sits 32px
+   above what follows ---- */
+@media (max-width: 639px) {
+  :root { --t-h2: 36px; --head-gap: 32px; }
+  html main .section-head > h2, html main .stack-4 > h2, html main .stack-5 > h2, html main .eo-split h2, html main #steps h2 {
+    font-size: 36px; line-height: 1.04; letter-spacing: -0.02em; max-width: none;
+  }
+  html main .section-head { gap: 12px; margin-bottom: 32px; }
+  html main .section-head p, html main .stack-4 > h2 + p { font-size: 16px; line-height: 1.55; color: var(--ink-soft, #3d3f52); }
+  html main.eo-home .eo-split__side { gap: 0; }
+  html main.eo-home .eo-list { margin-top: 0; }
+  html main.eo-home .eo-list > li { padding-block: 16px; }
+  html main.eo-home .eo-list .rows__name { font-size: 22px; line-height: 1.15; margin-bottom: 4px; }
+  html main.eo-home .eo-list > li > p { font-size: 15px; line-height: 1.45; }
+  html main.eo-home #roles h2 { margin-bottom: 28px; }
+  html main.eo-home .eo-role-card h3, html main.eo-home .eo-role-card .eo-role-card__name { font-size: 21px; }
+  html main.eo-home .eo-step-card.card > .eo-step-card__title { font-size: 24px; }
+  html main.eo-home #openings .section-head { margin-bottom: 24px; }
+  html main.eo-home .eo-promise .mo-wh__text { font-size: 32px; line-height: 1.08; }
+}
+@media (max-width: 639px) {
+  html main.eo-home #settings .section-head { margin-bottom: 16px !important; }
+  html main.eo-home #settings .eo-list { margin-top: 0 !important; padding-top: 0 !important; }
+  html main.eo-home #roles .eo-split__side { gap: 24px !important; }
+  html main.eo-home #roles h2 { margin-bottom: 0 !important; }
+  html main.eo-home #roles .eo-role-cards { margin-top: 0 !important; }
+}
+
+/* ---- the header bar on a phone or tablet (client reference, 27 Nov): the full logo (mark, name,
+   tagline) at its reference size, a plain three-line menu button, no Request staff button (it is in
+   the menu) ---- */
+@media (max-width: 1023px) {
+  :root { --nav: 76px; }
+  .nav--eo .nav__actions, .nav--eo .nav__cta { display: none !important; }
+  .nav--eo .nav__brand { gap: 14px; }
+  .nav--eo .nav__brand .logo-mark { height: 50px; }
+  .nav--eo .nav__name { font-size: 17px; letter-spacing: 0.16em; }
+  .nav--eo .nav__tag { display: block !important; font-size: 11.5px; letter-spacing: 0.06em; }
+  .eo-mnav__open { margin-left: auto; width: 44px; height: 44px; border: 0; border-radius: 0; margin-right: -8px; }
+}
+@media (max-width: 359px) {
+  .nav--eo .nav__brand .logo-mark { height: 40px; }
+  .nav--eo .nav__name { font-size: 15px; letter-spacing: 0.12em; }
+  .nav--eo .nav__tag { font-size: 10.5px; }
+}
+
+/* ---- "From request to first shift" on the same cobalt as the credential statement (client, 27 Nov) ---- */
+html body main.eo-home #steps.tone-night { background: var(--eo-cobalt); --bg: var(--eo-cobalt); --p-inv-bg: var(--eo-cobalt); }
+html body main.eo-home #steps h2::before { background: #fff; }
+html body main.eo-home #steps .eo-step-card__icon { box-shadow: 0 0 0 4px #fffdf8; }
+
+/* ---- the phone menu fills the whole screen in the cream ground, no dark edge around it (client, 27 Nov) ---- */
+@media (max-width: 1023px) {
+  .eo-mnav:not([hidden]) { padding: 0; background: #f8f6f1; }
+  .eo-mnav__panel { border-radius: 0; box-shadow: none; padding: 14px 24px max(24px, env(safe-area-inset-bottom)); }
+  .eo-mnav__head { min-height: 48px; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 1023px) {
+  .eo-mnav:not([hidden]) .eo-mnav__panel { animation: eo-mnav-fade 200ms ease both; }
+}
+@keyframes eo-mnav-fade { from { opacity: 0; } to { opacity: 1; } }

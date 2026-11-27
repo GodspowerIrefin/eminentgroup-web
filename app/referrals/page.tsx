@@ -1,51 +1,47 @@
 import type { Metadata } from "next";
-import CtaBand from "@/components/CtaBand";
-import FormCard from "@/components/FormCard";
-import InquiryForm from "@/components/InquiryForm";
-import PageHero from "@/components/PageHero";
-import Reveal from "@/components/Reveal";
+import Closing from "@/components/Closing";
+import Header from "@/components/Header";
+import { HeroSplit } from "@/components/Heroes";
+import { Form } from "@/components/Blocks";
+import { actions, forms, pages, pic } from "@/content/content";
 
-export const metadata: Metadata = {
-  title: "Referrals",
-  description: "Refer a healthcare professional or facility to Eminent One LLC.",
-};
+const c = pages.referrals;
 
+export const metadata: Metadata = c.meta;
+
+// Word for word from the original /referrals page: hero (label, h1, lead) / #refer the referral
+// form / footer.closing
 export default function Referrals() {
   return (
     <>
-      <PageHero
-        eyebrow="Referrals"
-        title="Refer a facility or a healthcare professional."
-        lead="Give us their contact details and we will follow up with them directly."
-      />
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <Reveal className="mx-auto max-w-[900px]">
-          <FormCard
-            title="Refer someone"
-            lead="Tell us who to contact and whether they need staff or are looking for work."
-          >
-            <InquiryForm
-              subject="Referral"
-              submitLabel="Send referral"
-              fields={[
-                { name: "name", label: "Your name", required: true },
-                { name: "email", label: "Your email", type: "email", required: true },
-                { name: "referred", label: "Who are you referring?", required: true },
-                { name: "theirContact", label: "Their email or phone", required: true },
-                {
-                  name: "type",
-                  label: "They are a",
-                  type: "select",
-                  options: ["Healthcare facility", "Healthcare professional"],
-                  wide: true,
-                },
-                { name: "notes", label: "Notes", type: "textarea" },
-              ]}
-            />
-          </FormCard>
-        </Reveal>
-      </section>
-      <CtaBand />
+      <Header current="employers" />
+      <main id="top">
+        <HeroSplit eyebrow={c.hero.eyebrow} title={c.hero.title} lead={c.hero.lead} image={{ ...pic(c.hero.image), pos: "50% 50%" }} primary={c.action} />
+
+        <section className="section tone-paper" id="refer" aria-labelledby="refer-h">
+          <div className="wrap grid grid--top">
+            <div className="span-5 stack-4">
+              <h2 id="refer-h">{c.refer.title}</h2>
+              <p>{c.refer.lead}</p>
+            </div>
+            <div className="form-panel span-6 start-7">
+              <Form
+                id="ref"
+                copy={forms.referral}
+                fields={[
+                  { name: "name", autoComplete: "name", required: true },
+                  { name: "email", type: "email", autoComplete: "email", required: true },
+                  { name: "referred", required: true },
+                  { name: "theirContact", required: true },
+                  { name: "type", type: "select", full: true },
+                  { name: "notes", type: "textarea" },
+                ]}
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+      <Closing title={c.close.title} line={c.close.line} action={actions.requestStaff} />
     </>
   );
 }

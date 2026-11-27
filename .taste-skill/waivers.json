@@ -1,0 +1,27 @@
+[
+  {
+    "check": "phone-number",
+    "target": "header.nav.nav--eo > div.nav__top > div.wrap.nav__top-bar > ul.nav__quick",
+    "reason": "the client's own published office line (410-929-9388), shown where the agency's original site shows it: the header's top bar, the close line the client asked for (\"Call 410-929-9388 or start online.\") and the footer's Get in touch column"
+  },
+  {
+    "check": "phone-number",
+    "target": "div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(5) > a.nav__phone",
+    "reason": "the tel: links of the client's own published office line (410-929-9388), in the header's top bar and the footer as on the agency's original site, not an invented number"
+  },
+  {
+    "check": "run-on",
+    "target": "h1#hero-h",
+    "reason": "one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md"
+  },
+  {
+    "check": "copy-headings",
+    "target": "h2#roles-h",
+    "reason": "the client's own wording: \"The roles we place\" is the heading the client asked for (changed from \"The 8 roles we place\"), and the three step titles are locked copy (content-lock.md: do not change any text); together they name the agency's roles and the steps of a staffing request"
+  },
+  {
+    "check": "card-visual",
+    "target": "section#roles > div.wrap.grid > div.span-7.eo-split__side > ul.eo-role-cards",
+    "reason": "the client asked to remove the hexagon icons and the role codes from the role cards; each card is the role name and its one line, beside the section photograph"
+  }
+]

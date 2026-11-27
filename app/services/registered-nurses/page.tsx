@@ -1,106 +1,99 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Button from "@/components/Button";
-import CtaBand from "@/components/CtaBand";
-import PageHero from "@/components/PageHero";
-import Reveal from "@/components/Reveal";
-import SectionHead from "@/components/SectionHead";
-import { roles, settings, site } from "@/lib/site";
+import Closing from "@/components/Closing";
+import Header from "@/components/Header";
+import { HeroSplit } from "@/components/Heroes";
+import { actions, pages, pic, site } from "@/content/content";
 
-export const metadata: Metadata = {
-  title: "Registered Nurses",
-  description:
-    "Registered Nurse (RN) staffing from Eminent One LLC, placing RNs in hospitals, nursing homes, rehab centers, assisted living, and home care across our service area.",
-};
+const c = pages.registeredNurses;
 
-const duties = [
-  "Assess, plan, and deliver nursing care to accepted standards.",
-  "Give treatments and medications and monitor how patients respond.",
-  "Keep detailed records of patient progress.",
-  "Coordinate care with other health professionals and answer patient and family questions.",
-];
+export const metadata: Metadata = c.meta;
 
+// Word for word from the original page: hero (title, tagline) / #duties intro + "What RNs do" numbered,
+// beside a photograph / #where the settings / #next request an RN, RNs apply / #others the other roles /
+// footer.closing
 export default function RegisteredNurses() {
+  const img = pic(c.duties.image);
   return (
     <>
-      <PageHero
-        eyebrow="Registered nurses"
-        title="Registered nurses for clinical, hospital, home, and residential settings."
-        lead="Registered nurses monitor patient health, make sure treatments and medications are given as planned, and keep doctors informed of changes. Duties differ by facility. We match each RN to the setting."
-        crumbs={[{ href: "/services", label: "Medical Staffing" }]}
-      />
+      <Header current="services" />
+      <main id="top">
+        <HeroSplit
+          title={c.hero.title}
+          lead={c.hero.tagline}
+          image={{ ...pic(c.hero.image), pos: "40% 50%" }}
+          primary={actions.requestStaff}
+          secondary={actions.applyForWork}
+        />
 
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-[1200px] gap-14 lg:grid-cols-[1.4fr_1fr]">
-          <div>
-            <Reveal>
-              <h2 className="display text-4xl">What RNs do</h2>
-              <ul className="mt-8 border-t border-rule">
-                {duties.map((d, i) => (
-                  <li key={d} className="flex gap-6 border-b border-rule py-6 text-lg leading-relaxed">
-                    <span className="display numeral text-2xl text-forest/35">{String(i + 1).padStart(2, "0")}</span>
-                    {d}
-                  </li>
+        <section className="section" id="duties" aria-labelledby="duties-h">
+          <div className="wrap">
+            <div className="section-head">
+              <p className="eo-intro">{c.hero.lead}</p>
+              <h2 id="duties-h">{c.duties.title}</h2>
+            </div>
+            <div className="grid grid--top fill">
+              <ol className="eo-duties span-6">
+                {c.duties.items.map((d) => (
+                  <li key={d}>{d}</li>
                 ))}
-              </ul>
-            </Reveal>
-            <Reveal className="mt-16">
-              <h2 className="display text-4xl">Where we place RNs</h2>
-              <ul className="mt-8 flex flex-wrap gap-3">
-                {settings.map((s) => (
-                  <li key={s} className="rounded-full border border-rule bg-paper px-5 py-2.5 font-medium">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+              </ol>
+              <div className="frame frame--photo frame--fill span-5 start-8">
+                <img className="frame__img" src={img.src} srcSet={img.srcSet} sizes="(max-width: 1023px) 100vw, 45vw" width={img.width} height={img.height} alt={img.alt} loading="lazy" decoding="async" data-source="stand-in" data-subject={img.subject} />
+              </div>
+            </div>
           </div>
+        </section>
 
-          <aside className="flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start">
-            <Reveal>
-              <div className="rounded-[28px] bg-forest p-9 text-white">
-                <h2 className="display text-3xl">Request an RN</h2>
-                <p className="mb-7 mt-3 text-white/75">Tell us the shift and start date.</p>
-                <Button href="/employers#request" variant="light">
-                  Request staff
-                </Button>
-              </div>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <div className="card p-9">
-                <h2 className="display text-3xl">RNs: apply for work</h2>
-                <p className="mb-7 mt-3 text-mut">Apply for RN openings with our client facilities.</p>
-                <Button href="/job-seekers?position=RN#apply">Apply for work</Button>
-                <p className="mt-6 text-[15px] text-mut">
-                  Or call{" "}
-                  <a href={site.phoneHref} className="font-semibold text-forest underline underline-offset-4">
-                    {site.phone}
-                  </a>
+        <section className="section tone-night" id="where" aria-labelledby="where-h">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 id="where-h">{c.settings.title}</h2>
+            </div>
+            <ul className="eo-places">
+              {c.settings.items.map((s) => (
+                <li key={s}>{s}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="section tone-paper" id="next" aria-label={`${c.request.title}. ${c.apply.title}`}>
+          <div className="wrap">
+            <ul className="eo-how__cards eo-how__cards--two">
+              <li className="card eo-how__card">
+                <h3 className="eo-how__title">{c.request.title}</h3>
+                <p className="eo-how__body">{c.request.body}</p>
+                <a className="btn btn--primary" href={c.request.action.href}>{c.request.action.label}</a>
+              </li>
+              <li className="card eo-how__card">
+                <h3 className="eo-how__title">{c.apply.title}</h3>
+                <p className="eo-how__body">{c.apply.body}</p>
+                <a className="btn btn--primary" href={c.apply.action.href}>{c.apply.action.label}</a>
+                <p className="eo-how__body">
+                  {c.apply.call} <a href={site.phoneHref}>{site.phone}</a>
                 </p>
-              </div>
-            </Reveal>
-          </aside>
-        </div>
-      </section>
+              </li>
+            </ul>
+          </div>
+        </section>
 
-      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-20">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="Other roles" title="Other professionals we place." />
-          <Reveal className="mt-10 flex flex-wrap gap-3">
-            {roles.slice(1).map((r) => (
-              <Link
-                key={r.name}
-                href="/services"
-                className="rounded-full border border-rule px-5 py-2.5 font-medium transition-colors hover:border-forest hover:bg-forest hover:text-white"
-              >
-                {r.name}
-              </Link>
-            ))}
-          </Reveal>
-        </div>
-      </section>
-
-      <CtaBand />
+        <section className="section tone-paper" id="others" aria-labelledby="others-h">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 id="others-h">{c.others.title}</h2>
+              <p>{c.others.lead}</p>
+            </div>
+            <ul className="eo-places eo-places--links">
+              {c.others.items.map((r) => (
+                <li key={r}>
+                  <a href={c.others.href}>{r}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      </main>
+      <Closing title={c.close.title} line={c.close.line} />
     </>
   );
 }

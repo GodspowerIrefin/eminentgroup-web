@@ -1,131 +1,128 @@
 import type { Metadata } from "next";
-import CtaBand from "@/components/CtaBand";
-import PageHero from "@/components/PageHero";
-import Reveal from "@/components/Reveal";
-import SectionHead from "@/components/SectionHead";
-import { leaders, site } from "@/lib/site";
+import Closing from "@/components/Closing";
+import Header from "@/components/Header";
+import { HeroPhoto } from "@/components/Heroes";
+import { actions, leaders, pages, photos, pic } from "@/content/content";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description:
-    "Eminent One LLC is a licensed Maryland health care staff agency placing nurses and care staff with facilities across our service area.",
-};
+const c = pages.about;
 
-const work = [
-  ["Credentials first", "We verify licenses, certifications, employment history, and background checks before anyone starts."],
-  ["Matched to the setting", "We place each professional by license, experience, and the shift the facility needs."],
-  ["Follow-up", "We stay in contact with the facility and the professional after the placement starts."],
-];
+export const metadata: Metadata = c.meta;
 
+const initials = (name: string) => name.split(" ").map((w) => w[0]).join("");
+
+// Word for word from the original /about page: hero (label, h1, lead) / #agency about us, the two
+// leaders and four points, beside a photograph / #statement the licence, who comes to us, the
+// mission / #work three numbered tiles / #leadership the two leaders / footer.closing
 export default function About() {
+  const img = pic(c.agency.image);
   return (
     <>
-      <PageHero
-        eyebrow="Who we are"
-        title="A licensed healthcare staffing agency in Maryland."
-        lead="Eminent One LLC places nurses and care staff with hospitals, nursing homes, rehabilitation centers, assisted living facilities, and home care agencies across our service area."
-      />
+      <Header current="about" />
+      <main id="top">
+        <HeroPhoto
+          eyebrow={c.hero.eyebrow}
+          title={c.hero.title}
+          lead={c.hero.lead}
+          image={{ ...pic(c.hero.image), pos: "40% 50%" }}
+          calm="right"
+          primary={actions.requestStaff}
+          secondary={actions.applyForWork}
+        />
 
-      <section className="band-dark px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-[1200px] gap-16 lg:grid-cols-2">
-          <div>
-            <SectionHead
-              eyebrow="About us"
-              title="A licensed Maryland healthcare staffing agency."
-              lead={`Eminent One LLC is a Maryland agency and holds Maryland Health Care Staff Agency license ${site.license}. We place nurses and care staff with facilities across our service area.`}
-            />
-            <Reveal className="mt-10 flex flex-wrap gap-x-10 gap-y-6">
-              {leaders.map((p) => (
-                <div key={p.name} className="flex items-center gap-4">
-                  <span className="display flex h-14 w-14 items-center justify-center rounded-full border border-rule text-lg">
-                    {p.initials}
-                  </span>
-                  <div>
-                    <p className="font-bold">{p.name}</p>
-                    <p className="text-sm text-mut">{p.title}</p>
-                  </div>
-                </div>
-              ))}
-            </Reveal>
-          </div>
-          <dl className="grid gap-x-10 sm:grid-cols-2">
-            {[
-              ["Verified credentials", "Licenses, certifications, and background checks confirmed before placement."],
-              ["Flexible terms", "Temporary, temp-to-perm, or permanent placements."],
-              ["Follow-up", "We stay in touch with facilities and professionals after the placement."],
-              ["Local Maryland team", "Based in Maryland and serving our service area."],
-            ].map(([title, body], i) => (
-              <Reveal key={title} delay={i * 0.07} className="border-t border-rule py-7">
-                <dt className="text-lg font-bold">{title}</dt>
-                <dd className="mt-2 leading-relaxed text-mut">{body}</dd>
-              </Reveal>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-[1200px] gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
-          <Reveal>
-            <p className="display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.25]">
-              We operate under Maryland Health Care Staff Agency license {site.license}.
-            </p>
-            <p className="mt-8 text-lg leading-relaxed text-mut">
-              Facilities come to us for temporary coverage, temp-to-perm arrangements, and permanent
-              hires. Nurses and caregivers come to us for work that fits their license and schedule.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="rounded-[28px] bg-forest p-9 text-white sm:p-11">
-              <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-white/60">Our mission</p>
-              <p className="display mt-5 text-[clamp(1.6rem,2.6vw,2.1rem)] leading-[1.2]">
-                To connect qualified healthcare professionals with the Maryland facilities that need
-                them.
-              </p>
+        <section className="section tone-night" id="agency" aria-labelledby="agency-h">
+          <div className="wrap">
+            <div className="section-head">
+              <p className="eo-eyebrow">{c.agency.eyebrow}</p>
+              <h2 id="agency-h">{c.agency.title}</h2>
+              <p>{c.agency.lead}</p>
             </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="How we work" title="What every placement includes." />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {work.map(([title, body], i) => (
-              <Reveal key={title} delay={i * 0.08}>
-                <article className={`card card-hover h-full border-transparent p-8 ${["bg-sand", "bg-mint", "bg-blush"][i]}`}>
-                  <span className="display numeral text-5xl text-forest/40">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-6 text-xl font-bold">{title}</h3>
-                  <p className="mt-3 leading-relaxed text-mut">{body}</p>
-                </article>
-              </Reveal>
-            ))}
+            <div className="grid grid--top fill">
+              <div className="span-6 eo-about__side">
+                <ul className="eo-people">
+                  {leaders.map((p) => (
+                    <li key={p.name}>
+                      <span className="eo-people__avatar" aria-hidden="true">{initials(p.name)}</span>
+                      <span>
+                        <span className="eo-people__name">{p.name}</span>
+                        <span className="eo-people__title">{p.title}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <dl className="eo-points">
+                  {c.agency.points.map((x) => (
+                    <div key={x.name}>
+                      <dt>{x.name}</dt>
+                      <dd>{x.body}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+              <div className="frame frame--photo frame--fill span-5 start-8">
+                <img className="frame__img" src={img.src} srcSet={img.srcSet} sizes="(max-width: 1023px) 100vw, 45vw" width={img.width} height={img.height} alt={img.alt} loading="lazy" decoding="async" data-source="stand-in" data-subject={img.subject} />
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="Leadership" title="The people behind Eminent One." />
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {leaders.map((p, i) => (
-              <Reveal key={p.name} delay={i * 0.08}>
-                <article className="card flex h-full items-center gap-7 p-8 sm:p-10">
-                  <span className="display flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-forest text-3xl text-white">
-                    {p.initials}
-                  </span>
-                  <div>
-                    <h3 className="display text-3xl">{p.name}</h3>
-                    <p className="mt-1.5 font-semibold text-red">{p.title}</p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+        <section className="section tone-cobalt" id="statement" aria-labelledby="mission-h">
+          <div className="wrap grid grid--top">
+            <div className="span-5 stack-4 eo-statement__side">
+              <p className="eo-statement__license">{c.statement.license}</p>
+              <p>{c.statement.body}</p>
+            </div>
+            <div className="span-6 start-7">
+              <p className="eo-eyebrow" id="mission-h">{c.statement.missionLabel}</p>
+              <p className="eo-statement__mission">{c.statement.mission}</p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <CtaBand />
+        <section className="section tone-paper" id="work" aria-labelledby="work-h">
+          <div className="wrap">
+            <div className="section-head">
+              <p className="eo-eyebrow">{c.work.eyebrow}</p>
+              <h2 id="work-h">{c.work.title}</h2>
+            </div>
+            <div className="grid">
+              {c.work.items.map((w, i) => {
+                const tile = photos[w.photo];
+                return (
+                  <article className="tile span-4" key={w.title}>
+                    <div className="tile__media">
+                      <img src={tile.src} srcSet={tile.srcSet} sizes="(max-width: 1023px) 50vw, 33vw" width={tile.width} height={tile.height} alt={tile.alt} loading="lazy" decoding="async" data-source="stand-in" data-subject={w.title} />
+                    </div>
+                    <div className="tile__head">
+                      <span className="eo-tile__num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                      <h3>{w.title}</h3>
+                    </div>
+                    <p>{w.body}</p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="section tone-paper" id="leadership" aria-labelledby="leadership-h">
+          <div className="wrap">
+            <div className="section-head">
+              <p className="eo-eyebrow">{c.leadership.eyebrow}</p>
+              <h2 id="leadership-h">{c.leadership.title}</h2>
+            </div>
+            <ul className="eo-how__cards eo-how__cards--two">
+              {leaders.map((p) => (
+                <li className="card eo-how__card eo-leader" key={p.name}>
+                  <span className="eo-people__avatar eo-people__avatar--lg" aria-hidden="true">{initials(p.name)}</span>
+                  <h3 className="eo-how__title">{p.name}</h3>
+                  <p className="eo-how__body">{p.title}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      </main>
+      <Closing title={c.close.title} line={c.close.line} />
     </>
   );
 }

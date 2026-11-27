@@ -1,139 +1,101 @@
 import type { Metadata } from "next";
-import Button from "@/components/Button";
-import CtaBand from "@/components/CtaBand";
-import FormCard from "@/components/FormCard";
-import InquiryForm from "@/components/InquiryForm";
-import JobList from "@/components/JobList";
-import PageHero from "@/components/PageHero";
-import Reveal from "@/components/Reveal";
-import SectionHead from "@/components/SectionHead";
-import { roleOptions } from "@/lib/site";
+import Closing from "@/components/Closing";
+import Header from "@/components/Header";
+import { HeroPhoto } from "@/components/Heroes";
+import { Form, JobCards } from "@/components/Blocks";
+import { actions, forms, pages, pic } from "@/content/content";
 
-export const metadata: Metadata = {
-  title: "For Job Seekers",
-  description:
-    "Apply to work with Eminent One LLC. Healthcare staffing opportunities for RNs, LPNs, CNAs, HHAs, and more with facilities across our service area.",
-};
+const c = pages.jobSeekers;
 
-const why = [
-  "Temporary, temp-to-perm, and permanent roles",
-  "Work in hospitals, nursing homes, rehab centers, assisted living, and home care",
-  "Full-time, part-time, and per diem schedules",
-  "Follow-up from our office after you start",
-];
-const verify = [
-  "Current license or certification for your role",
-  "Employment history",
-  "Background check",
-];
+export const metadata: Metadata = c.meta;
 
-function List({ title, items }: { title: string; items: string[] }) {
-  return (
-    <div className="card h-full p-8 sm:p-10">
-      <h2 className="display text-3xl">{title}</h2>
-      <ul className="mt-6 flex flex-col gap-4">
-        {items.map((item) => (
-          <li key={item} className="flex gap-3.5 text-[17px] leading-relaxed">
-            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" className="mt-1 shrink-0 text-red">
-              <path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+// a link from a shift card (?position=RN) chooses that role in the form; the form works without it
+const PRESET = `(function(){var p=new URLSearchParams(location.search).get('position');var s=document.getElementById('apl-position');if(!p||!s)return;for(var o of s.options){if(o.value===p||o.text===p){s.value=o.value;break}}})();`;
 
-export default async function JobSeekers({ searchParams }: PageProps<"/job-seekers">) {
-  const { position } = await searchParams;
-  const preset = typeof position === "string" && roleOptions.includes(position) ? position : "";
-
+// Plan: hero (photo) / #openings the two shift tickets side by side / #checks what we check before
+// a first shift, beside a photograph / #apply the application / footer.closing
+export default function JobSeekers() {
+  const checkImg = pic(c.checks.image);
   return (
     <>
-      <PageHero
-        eyebrow="For job seekers"
-        title="Nursing and care work across our service area."
-        lead="We place RNs, LPNs, CNAs, home health aides, and other healthcare professionals with facilities across our service area. Apply and we will match you to openings that fit your license and availability."
-      >
-        <Button href="#apply">Apply now</Button>
-        <Button href="#openings" variant="ghost">
-          See openings
-        </Button>
-      </PageHero>
+      <Header current="careers" action={c.action} second={actions.requestStaff} />
+      <main id="top">
+        <HeroPhoto
+          title={c.hero.title}
+          lead={c.hero.lead}
+          image={{ ...pic(c.hero.image), pos: "68% 50%", posPhone: "62% 50%" }}
+          calm="left"
+          primary={c.action}
+          secondary={c.seeShifts}
+        />
 
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto grid max-w-[1200px] gap-5 md:grid-cols-2">
-          <Reveal>
-            <List title="Why work with us" items={why} />
-          </Reveal>
-          <Reveal delay={0.08}>
-            <List title="What we verify" items={verify} />
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="openings" className="bg-paper px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="Open positions" title="Current openings." />
-          <div className="mt-10">
-            <JobList />
+        <section className="section" id="openings" style={{ "--hm": 2 } as React.CSSProperties} aria-labelledby="openings-h">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 id="openings-h">{c.openings.title}</h2>
+              <p>{c.openings.lead}</p>
+            </div>
+            <div className="eo-tickets eo-tickets--wide">
+              <JobCards />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="px-5 py-16 sm:px-8 lg:py-24">
-        <Reveal className="mx-auto max-w-[900px]">
-          <FormCard
-            id="apply"
-            title="Apply to work with us"
-            lead="Complete the form and our office will review your application."
-          >
-            <InquiryForm
-              key={preset}
-              subject="Job application"
-              submitLabel="Submit application"
-              note="Opens your email app with the details filled in. Attach your resume there before sending."
-              fields={[
-                { name: "name", label: "Full name", required: true },
-                { name: "email", label: "Email", type: "email", required: true },
-                { name: "phone", label: "Phone", type: "tel", required: true },
-                { name: "location", label: "City, State, ZIP" },
-                {
-                  name: "position",
-                  label: "Position applying for",
-                  type: "select",
-                  options: roleOptions,
-                  required: true,
-                  defaultValue: preset,
-                },
-                {
-                  name: "license",
-                  label: "License or certification held",
-                  type: "select",
-                  options: ["RN", "LPN", "CNA / GNA", "HHA", "CMT", "None"],
-                },
-                {
-                  name: "availability",
-                  label: "Availability",
-                  type: "select",
-                  options: ["Full-time", "Part-time", "Per diem", "Live-in"],
-                },
-                {
-                  name: "shift",
-                  label: "Preferred shift",
-                  type: "select",
-                  options: ["Days", "Evenings", "Nights", "Any"],
-                },
-                { name: "experience", label: "Tell us about your experience", type: "textarea" },
-                { name: "source", label: "How did you hear about us?", wide: true },
-              ]}
-            />
-          </FormCard>
-        </Reveal>
-      </section>
+        <section className="section tone-night" id="checks" aria-labelledby="checks-h">
+          <div className="wrap">
+            <div className="section-head">
+              <h2 id="checks-h">{c.checks.title}</h2>
+              <p>{c.checks.lead}</p>
+            </div>
+            <div className="grid grid--top fill">
+              <ul className="rows span-5">
+                {c.checks.items.map((item) => (
+                  <li key={item.name}>
+                    <span className="rows__name">{item.name}</span>
+                    <p>{item.body}</p>
+                  </li>
+                ))}
+              </ul>
+              <div className="frame frame--photo frame--fill span-6 start-7">
+                <img className="frame__img" src={checkImg.src} srcSet={checkImg.srcSet} sizes="(max-width: 1023px) 100vw, 50vw" width={checkImg.width} height={checkImg.height} alt={checkImg.alt} loading="lazy" decoding="async" data-source="stand-in" data-subject={checkImg.subject} />
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <CtaBand />
+        <section className="section" id="apply" style={{ "--hm": 2 } as React.CSSProperties} aria-labelledby="apply-h">
+          <div className="wrap grid grid--top">
+            <div className="span-5 stack-4">
+              <h2 id="apply-h">{c.apply.title}</h2>
+              <p>{c.apply.lead}</p>
+              <ul className="rows">
+                {c.apply.facts.map((f) => (
+                  <li key={f.name}>
+                    <span className="rows__name">{f.name}</span>
+                    <span className="rows__value">{f.value}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="form-panel span-6 start-7">
+              <Form
+                id="apl"
+                copy={forms.apply}
+                fields={[
+                  { name: "name", autoComplete: "name", required: true },
+                  { name: "email", type: "email", autoComplete: "email", required: true },
+                  { name: "phone", type: "tel", autoComplete: "tel", required: true },
+                  { name: "position", type: "select", required: true },
+                  { name: "availability", type: "select", full: true },
+                  { name: "experience", type: "textarea" },
+                ]}
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+      <Closing title={c.close.title} line={c.close.line} action={c.action} />
+      <script dangerouslySetInnerHTML={{ __html: PRESET }} />
     </>
   );
 }

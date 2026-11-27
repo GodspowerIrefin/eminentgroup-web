@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "fraunces",
+        "createdAt": "2026-11-18T20:06:50.888Z",
+        "reason": "DESIGN-BRIEF.md (owner's binding brief) names Fraunces as the display serif; used for the home hero headline"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "public/assets/ui/search/fragment.css"
+        ],
+        "createdAt": "2026-11-18T21:47:15.432Z",
+        "reason": "Unused third-party design-kit fragment (design-taste-frontend kit copy); no page loads it and the kit's files must not be edited"
+      }
+    ]
+  }
+}

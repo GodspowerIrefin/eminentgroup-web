@@ -1,0 +1,16 @@
+gate: checking out/index.html (service); this takes a few minutes on a CPU Chrome
+gate: 2 FAIL open
+  FAIL button-styles    (one screen)  [1440, 390]
+       3 button styles on one screen: square, fill #2338d1 ("Request staff"); square, fill #101225 ("Portal"); square, outline #f4f1ea ("Apply for work"); the odd one out: "Apply for work"
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL button-styles    (the page)  [1440, 390]
+       3 button styles on the page: square, fill #101225 x1 ("Portal"); square, fill #2338d1 x2 ("Request staff"); square, outline #f4f1ea x1 ("Apply for work")
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  WAIVED card-visual section#roles > div.wrap.grid > div.span-7.eo-split__side > ul.eo-role-cards "Re: the client asked to remove the hexagon icons and the role codes from the role cards; each card is the role name and its one line, beside the section photograph
+  WAIVED copy-headings h2#roles-h "The roles we place": the client's own wording: "The roles we place" is the heading the client asked for (changed from "The 8 roles we place"), and the three step titles are locked copy (content-lock.md: do not change any text); together they name the agency's roles and the steps of a staffing request
+  WAIVED phone-number header.nav.nav--eo > div.nav__top > div.wrap.nav__top-bar > ul.nav__quick "410-9: the client's own published office line (410-929-9388), shown where the agency's original site shows it: the header's top bar, the close line the client asked for ("Call 410-929-9388 or start online.") and the footer's Get in touch column
+  WAIVED phone-number div.wrap.nav__top-bar > ul.nav__quick > li:nth-of-type(5) > a.nav__phone "tel:+1: the tel: links of the client's own published office line (410-929-9388), in the header's top bar and the footer as on the agency's original site, not an invented number
+  WAIVED run-on h1#hero-h "Healthcare staffing in Maryland": one headline, not two sentences: the third line (Maryland) is set in the brand cobalt as its one highlighted word, not a grey second sentence; the words are locked by content-lock.md
+  21 WARN (not blocking), first: scroll-reveal section#checks > div.wrap.grid > div.spa; scroll-reveal section#roles > div.wrap.grid > figure.d; copy-headings div.wrap > ul.eo-step-cards.fill > li.ca; copy-buttons header.nav.nav--eo > div.wrap.nav__bar >; heading-scale div.wrap > ul.eo-step-cards.fill > li.ca
+A FAIL you judge false: add {"check": "<id>", "target": "<its where, enough to name that one finding>", "reason": "<why, 12+ characters>"} to .taste-skill/waivers.json (one finding each, 5 at most, never for kit-edited or checker-gaming); it goes in your report. Never edit the kit's files or hide the page from the checker.
+GATE: FAIL 2 (round 2 of 3)
