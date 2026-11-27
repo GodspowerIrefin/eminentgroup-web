@@ -137,6 +137,7 @@ const ALT = {
   credentialing: "A hand holding a pen over printed forms on a wooden desk",
   hospitals: "Two nurses in teal scrubs reading a chart in a hospital corridor",
   hospitalWard: "A nurse in a protective gown and mask reaching for a monitor beside a patient's bed in a hospital room",
+  careTeam: "Two nurses in blue scrubs standing in front of three doctors in white coats in a hospital corridor",
   hospitalDoctor: "A doctor holding a tablet talks with a woman resting in a hospital bed",
   nursingHomes: "A care worker pouring a hot drink for a woman resting in bed in a nursing home room",
   rehabilitation: "A therapist guiding a patient's arm and hip through a stretch on a treatment table",
@@ -170,6 +171,14 @@ export const photos = {
     width: 1280,
     height: 914,
     alt: ALT.hospitalWard,
+  },
+  // supplied by the client (27 Nov): the home page's hero, on desktop and phone
+  careTeam: {
+    src: "/assets/img/photo-care-team.webp",
+    srcSet: "/assets/img/photo-care-team-500.webp 500w, /assets/img/photo-care-team-960.webp 960w, /assets/img/photo-care-team.webp 1600w",
+    width: 1600,
+    height: 1067,
+    alt: ALT.careTeam,
   },
   // supplied by the client (26 Nov): the first photograph of the home page's facility slideshow
   hospitalDoctor: {
@@ -448,7 +457,7 @@ export const pages = {
     hero: {
       title: "Healthcare staffing in Maryland",
       lead: "We recruit, credential and place nurses and care staff with Maryland facilities.",
-      image: { photo: "medicineHero", subject: "nurse giving medicine" } as PhotoRef,
+      image: { photo: "careTeam", subject: "nurses and doctors" } as PhotoRef,
     },
     roles: {
       title: "The roles we place",

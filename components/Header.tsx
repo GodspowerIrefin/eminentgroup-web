@@ -79,8 +79,8 @@ export default function Header({
           </a>
         </div>
         <button className="eo-mnav__open" type="button" aria-expanded="false" aria-controls="eo-mnav" aria-label={ui.menuButtonLabel}>
-          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
-            <path d="M2 5h14M2 13h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          <svg width="26" height="20" viewBox="0 0 26 20" aria-hidden="true">
+            <path d="M2 3h22M2 10h22M2 17h22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </button>
       </div>

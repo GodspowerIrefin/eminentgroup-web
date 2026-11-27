@@ -47,7 +47,7 @@ export default function Home() {
           lines={[1, 2, 1]}
           accentLine={2}
           lead={c.hero.lead}
-          image={{ ...pic(c.hero.image), sizes: "(max-width: 1023px) 100vw, 80vw", pos: "34% 50%", posPhone: "40% 45%" }}
+          image={{ ...pic(c.hero.image), sizes: "(max-width: 1023px) 100vw, 80vw", pos: "46% 40%", posPhone: "46% 35%" }}
           primary={actions.requestStaff}
           secondary={actions.applyForWork}
         />
